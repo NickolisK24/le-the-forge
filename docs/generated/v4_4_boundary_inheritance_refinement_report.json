@@ -1,0 +1,2951 @@
+{
+  "ancestry_depth_visibility": {
+    "ancestry_ids": [
+      "ancestry_inheritance_conflicting_scope_signal",
+      "ancestry_inheritance_external_runtime_semantics",
+      "ancestry_inheritance_governance_scope",
+      "ancestry_inheritance_implicit_provider_identity",
+      "ancestry_inheritance_lineage_propagation",
+      "ancestry_inheritance_missing_lineage",
+      "ancestry_inheritance_runtime_execution",
+      "ancestry_inheritance_segmentation_scope"
+    ],
+    "ancestry_visibility_count": 8,
+    "descriptive_only": true,
+    "max_ancestry_depth": 3,
+    "multi_level_ancestry_count": 5,
+    "non_authoritative": true,
+    "operational_authority_count": 0
+  },
+  "boundary_inheritance_refinement_intelligence": {
+    "ancestry_visibility": [
+      {
+        "ancestor_boundary_ids": [
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 1,
+        "ancestry_id": "ancestry_inheritance_governance_scope",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_governance_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "inherited"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 2,
+        "ancestry_id": "ancestry_inheritance_segmentation_scope",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_deterministic_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "inherited"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 2,
+        "ancestry_id": "ancestry_inheritance_lineage_propagation",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "supported"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility"
+        ],
+        "ancestry_depth": 1,
+        "ancestry_id": "ancestry_inheritance_external_runtime_semantics",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility"
+        ],
+        "ancestry_depth": 1,
+        "ancestry_id": "ancestry_inheritance_runtime_execution",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 3,
+        "ancestry_id": "ancestry_inheritance_missing_lineage",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "blocked"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 2,
+        "ancestry_id": "ancestry_inheritance_implicit_provider_identity",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "ambiguous"
+      },
+      {
+        "ancestor_boundary_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "ancestry_depth": 2,
+        "ancestry_id": "ancestry_inheritance_conflicting_scope_signal",
+        "ancestry_reason": "Ancestry visibility is deterministic and does not grant operational authority",
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "visibility_state": "conflicting"
+      }
+    ],
+    "continuity_propagation_metadata": {
+      "continuity_id": "v4_4_boundary_inheritance_continuity_propagation",
+      "continuity_propagation_preserved": true,
+      "deterministic_order": 1,
+      "operational_mutation_enabled": false,
+      "propagated_relationship_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ],
+      "replay_evidence_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ],
+      "replay_safe": true,
+      "rollback_evidence_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ],
+      "rollback_safe": true,
+      "runtime_mutation_enabled": false,
+      "source_phase_id": "v4_4_boundary_intelligence_foundations",
+      "source_report_hash_reference": "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+      "source_report_reference": "docs/generated/v4_4_boundary_intelligence_foundations_report.json"
+    },
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "ancestry_depth_visibility_stability",
+      "continuity_propagation_visibility",
+      "fail_visible_ambiguity_preservation",
+      "fail_visible_conflict_preservation",
+      "governance_safe_descriptive_only_enforcement",
+      "inheritance_ordering_stability",
+      "inheritance_serialization_stability",
+      "lineage_propagation_continuity",
+      "non_operational_certification",
+      "provenance_propagation_continuity",
+      "refinement_hashing_stability",
+      "refinement_ordering_stability",
+      "replay_safe_inheritance_evidence",
+      "rollback_safe_refinement_evidence"
+    ],
+    "diagnostics": [
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "diagnostic_inheritance_governance_scope",
+        "diagnostic_message": "inherited inheritance is visible without runtime authority",
+        "diagnostic_type": "inherited_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_governance_scope",
+        "severity": "info",
+        "visibility_state": "inherited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "diagnostic_inheritance_segmentation_scope",
+        "diagnostic_message": "inherited inheritance is visible without runtime authority",
+        "diagnostic_type": "inherited_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_segmentation_scope",
+        "severity": "info",
+        "visibility_state": "inherited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "diagnostic_inheritance_lineage_propagation",
+        "diagnostic_message": "supported inheritance is visible without runtime authority",
+        "diagnostic_type": "supported_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_lineage_propagation",
+        "severity": "info",
+        "visibility_state": "supported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "diagnostic_inheritance_external_runtime_semantics",
+        "diagnostic_message": "unsupported inheritance is visible without runtime authority",
+        "diagnostic_type": "unsupported_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_external_runtime_semantics",
+        "severity": "warning",
+        "visibility_state": "unsupported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "diagnostic_inheritance_runtime_execution",
+        "diagnostic_message": "prohibited inheritance is visible without runtime authority",
+        "diagnostic_type": "prohibited_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_runtime_execution",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_runtime_execution",
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "diagnostic_inheritance_missing_lineage",
+        "diagnostic_message": "blocked inheritance is visible without runtime authority",
+        "diagnostic_type": "blocked_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_missing_lineage",
+        "severity": "blocker",
+        "visibility_state": "blocked"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "diagnostic_inheritance_implicit_provider_identity",
+        "diagnostic_message": "ambiguous inheritance is visible without runtime authority",
+        "diagnostic_type": "ambiguous_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_implicit_provider_identity",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_implicit_provider_identity",
+        "severity": "warning",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "diagnostic_inheritance_conflicting_scope_signal",
+        "diagnostic_message": "conflicting inheritance is visible without runtime authority",
+        "diagnostic_type": "conflicting_inheritance_visibility",
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "inheritance_conflicting_scope_signal",
+        "severity": "warning",
+        "visibility_state": "conflicting"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "diagnostic_refinement_scope_to_ancestry",
+        "diagnostic_message": "refined refinement is visible without execution capability",
+        "diagnostic_type": "refined_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_ancestry_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_scope_to_ancestry",
+        "severity": "info",
+        "visibility_state": "refined"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_id": "diagnostic_refinement_segmentation_to_lineage",
+        "diagnostic_message": "refined refinement is visible without execution capability",
+        "diagnostic_type": "refined_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "refined_boundary_lineage_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_segmentation_to_lineage",
+        "severity": "info",
+        "visibility_state": "refined"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_id": "diagnostic_refinement_diagnostics_continuity",
+        "diagnostic_message": "supported refinement is visible without execution capability",
+        "diagnostic_type": "supported_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_diagnostics_continuity",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_diagnostics_continuity",
+        "severity": "info",
+        "visibility_state": "supported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "diagnostic_id": "diagnostic_refinement_external_runtime_semantics",
+        "diagnostic_message": "unsupported refinement is visible without execution capability",
+        "diagnostic_type": "unsupported_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_external_runtime_semantics",
+        "severity": "warning",
+        "visibility_state": "unsupported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "diagnostic_id": "diagnostic_refinement_planner_production",
+        "diagnostic_message": "prohibited refinement is visible without execution capability",
+        "diagnostic_type": "prohibited_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_planner_production",
+          "refined_planner_production_prohibition",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_planner_production",
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "diagnostic_id": "diagnostic_refinement_stale_source_evidence",
+        "diagnostic_message": "stale refinement is visible without execution capability",
+        "diagnostic_type": "stale_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_stale_source_evidence",
+          "refined_stale_source_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_stale_source_evidence",
+        "severity": "warning",
+        "visibility_state": "stale"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "diagnostic_id": "diagnostic_refinement_conflicting_scope_signal",
+        "diagnostic_message": "conflicting refinement is visible without execution capability",
+        "diagnostic_type": "conflicting_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "refined_conflicting_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_conflicting_scope_signal",
+        "severity": "warning",
+        "visibility_state": "conflicting"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "diagnostic_id": "diagnostic_refinement_implicit_provider_identity",
+        "diagnostic_message": "ambiguous refinement is visible without execution capability",
+        "diagnostic_type": "ambiguous_refinement_visibility",
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "relationship_id": "refinement_implicit_provider_identity",
+        "severity": "warning",
+        "visibility_state": "ambiguous"
+      }
+    ],
+    "dispatch_execution_enabled": false,
+    "explainability": [
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_governance_scope",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "inheritance_governance_scope",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "explanation_type": "inherited_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_governance_scope",
+        "visibility_state": "inherited"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_segmentation_scope",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility",
+          "inheritance_segmentation_scope"
+        ],
+        "explanation_type": "inherited_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_segmentation_scope",
+        "visibility_state": "inherited"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_lineage_propagation",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "inheritance_lineage_propagation"
+        ],
+        "explanation_type": "supported_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_lineage_propagation",
+        "visibility_state": "supported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_external_runtime_semantics",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_governance_scope_visibility",
+          "inheritance_external_runtime_semantics"
+        ],
+        "explanation_type": "unsupported_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_runtime_execution",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_runtime_execution",
+          "inheritance_runtime_execution"
+        ],
+        "explanation_type": "prohibited_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_runtime_execution",
+        "visibility_state": "prohibited"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_missing_lineage",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "inheritance_missing_lineage"
+        ],
+        "explanation_type": "blocked_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_missing_lineage",
+        "visibility_state": "blocked"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_implicit_provider_identity",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_implicit_provider_identity",
+          "inheritance_implicit_provider_identity"
+        ],
+        "explanation_type": "ambiguous_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_implicit_provider_identity",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "explainability_first": true,
+        "explainability_id": "explainability_inheritance_conflicting_scope_signal",
+        "explanation": "Inheritance chain is visible for governance analysis only and does not create authority",
+        "explanation_chain_ids": [
+          "boundary_conflicting_scope_signal",
+          "boundary_governance_scope_visibility",
+          "inheritance_conflicting_scope_signal"
+        ],
+        "explanation_type": "conflicting_inheritance_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "inheritance_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_scope_to_ancestry",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_ancestry_visibility",
+          "refinement_scope_to_ancestry"
+        ],
+        "explanation_type": "refined_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_scope_to_ancestry",
+        "visibility_state": "refined"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_segmentation_to_lineage",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_deterministic_segmentation",
+          "refined_boundary_lineage_visibility",
+          "refinement_segmentation_to_lineage"
+        ],
+        "explanation_type": "refined_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_segmentation_to_lineage",
+        "visibility_state": "refined"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_diagnostics_continuity",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_diagnostics_continuity",
+          "refinement_diagnostics_continuity"
+        ],
+        "explanation_type": "supported_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_diagnostics_continuity",
+        "visibility_state": "supported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_external_runtime_semantics",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "refinement_external_runtime_semantics"
+        ],
+        "explanation_type": "unsupported_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_planner_production",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_planner_production",
+          "refined_planner_production_prohibition",
+          "refinement_planner_production"
+        ],
+        "explanation_type": "prohibited_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_planner_production",
+        "visibility_state": "prohibited"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_stale_source_evidence",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_stale_source_evidence",
+          "refined_stale_source_visibility",
+          "refinement_stale_source_evidence"
+        ],
+        "explanation_type": "stale_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_stale_source_evidence",
+        "visibility_state": "stale"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_conflicting_scope_signal",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_conflicting_scope_signal",
+          "refined_conflicting_scope_visibility",
+          "refinement_conflicting_scope_signal"
+        ],
+        "explanation_type": "conflicting_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "explainability_first": true,
+        "explainability_id": "explainability_refinement_implicit_provider_identity",
+        "explanation": "Refinement chain is visible for deterministic explainability only and does not create execution capability",
+        "explanation_chain_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "refinement_implicit_provider_identity"
+        ],
+        "explanation_type": "ambiguous_refinement_explainability",
+        "recommendation_enabled": false,
+        "relationship_id": "refinement_implicit_provider_identity",
+        "visibility_state": "ambiguous"
+      }
+    ],
+    "explicit_limitations": [
+      "v4.4 Phase 2 does not authorize or approve orchestration.",
+      "v4.4 Phase 2 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 2 does not execute orchestration.",
+      "v4.4 Phase 2 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 2 does not recommend, decide, rank, score, select, or optimize orchestration.",
+      "v4.4 Phase 2 does not repair, remediate, infer hidden authority, or mutate runtime or operational state.",
+      "v4.4 Phase 2 inheritance relationships are descriptive-only and non-authoritative.",
+      "v4.4 Phase 2 models boundary inheritance and refinement intelligence only.",
+      "v4.4 Phase 2 refinement relationships are descriptive-only and non-operational."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation exists.",
+      "No automatic repair exists.",
+      "No implicit operational authority exists.",
+      "No inheritance relationship grants operational authority.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration decision exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No refinement relationship grants orchestration execution capability.",
+      "No runtime mutation exists."
+    ],
+    "fail_visible_findings": [
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_inheritance_external_runtime_semantics",
+        "finding_message": "unsupported inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "unsupported_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "inheritance_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_runtime_execution",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_inheritance_runtime_execution",
+        "finding_message": "prohibited inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "prohibited_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "inheritance_runtime_execution",
+        "visibility_state": "prohibited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_inheritance_missing_lineage",
+        "finding_message": "blocked inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "blocked_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "inheritance_missing_lineage",
+        "visibility_state": "blocked"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_implicit_provider_identity",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_inheritance_implicit_provider_identity",
+        "finding_message": "ambiguous inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "ambiguous_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "inheritance_implicit_provider_identity",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_inheritance_conflicting_scope_signal",
+        "finding_message": "conflicting inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "conflicting_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "inheritance_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_refinement_external_runtime_semantics",
+        "finding_message": "unsupported inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "unsupported_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "refinement_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "boundary_planner_production",
+          "refined_planner_production_prohibition",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_refinement_planner_production",
+        "finding_message": "prohibited inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "prohibited_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "refinement_planner_production",
+        "visibility_state": "prohibited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "boundary_stale_source_evidence",
+          "refined_stale_source_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_refinement_stale_source_evidence",
+        "finding_message": "stale inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "stale_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "refinement_stale_source_evidence",
+        "visibility_state": "stale"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "refined_conflicting_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_refinement_conflicting_scope_signal",
+        "finding_message": "conflicting inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "conflicting_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "refinement_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_refinement_implicit_provider_identity",
+        "finding_message": "ambiguous inheritance/refinement state remains visible and cannot imply operational authority",
+        "finding_type": "ambiguous_inheritance_refinement_visibility",
+        "hidden_inference_used": false,
+        "relationship_id": "refinement_implicit_provider_identity",
+        "visibility_state": "ambiguous"
+      }
+    ],
+    "identity": {
+      "ancestry_reference": "v4_4_boundary_ancestry_visibility",
+      "classification": "governance_safe_descriptive_boundary_inheritance_refinement_intelligence",
+      "continuity_propagation_reference": "v4_4_boundary_continuity_propagation",
+      "descriptive_only": true,
+      "deterministic": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "governance_safe": true,
+      "inheritance_intelligence_id": "v4_4_boundary_inheritance_refinement_intelligence",
+      "inheritance_reference": "v4_4_boundary_inheritance_relationships",
+      "lineage_propagation_reference": "v4_4_boundary_lineage_propagation",
+      "non_operational": true,
+      "non_operational_reference": "v4_4_boundary_inheritance_non_operational_certification",
+      "operational_mutation_enabled": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "phase_id": "v4_4_boundary_inheritance_refinement",
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_propagation_reference": "v4_4_boundary_provenance_propagation",
+      "purpose": "deterministic_governance_safe_boundary_inheritance_and_refinement_intelligence_descriptive_only",
+      "refinement_reference": "v4_4_boundary_refinement_relationships",
+      "replay_safe": true,
+      "rollback_safe": true,
+      "routing_execution_enabled": false,
+      "runtime_execution_enabled": false,
+      "schema_version": "v4_4.boundary_inheritance_refinement.1",
+      "source_boundary_foundation_hash_reference": "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+      "source_boundary_foundation_reference": "v4_4_boundary_intelligence_foundations"
+    },
+    "inheritance_relationships": [
+      {
+        "ancestry_depth": 1,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_governance_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": false,
+        "inheritance_id": "inheritance_governance_scope",
+        "inheritance_reason": "inherited inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "v4_4_boundary_intelligence_foundations",
+        "relationship_type": "direct_inheritance_visibility",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "inherited"
+      },
+      {
+        "ancestry_depth": 2,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_deterministic_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": false,
+        "inheritance_id": "inheritance_segmentation_scope",
+        "inheritance_reason": "inherited inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "multi_level_refinement_ancestry_visibility",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "inherited"
+      },
+      {
+        "ancestry_depth": 2,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": false,
+        "inheritance_id": "inheritance_lineage_propagation",
+        "inheritance_reason": "supported inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "governance_safe_lineage_propagation",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "supported"
+      },
+      {
+        "ancestry_depth": 1,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": true,
+        "inheritance_id": "inheritance_external_runtime_semantics",
+        "inheritance_reason": "unsupported inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "inheritance_conflict_diagnostic_visibility",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "ancestry_depth": 1,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_runtime_execution",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": true,
+        "inheritance_id": "inheritance_runtime_execution",
+        "inheritance_reason": "prohibited inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "direct_inheritance_visibility",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "ancestry_depth": 3,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_missing_lineage_evidence",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": true,
+        "inheritance_id": "inheritance_missing_lineage",
+        "inheritance_reason": "blocked inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "deterministic_continuity_propagation",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "blocked"
+      },
+      {
+        "ancestry_depth": 2,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "boundary_implicit_provider_identity",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": true,
+        "inheritance_id": "inheritance_implicit_provider_identity",
+        "inheritance_reason": "ambiguous inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "deterministic_provenance_propagation",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "ambiguous"
+      },
+      {
+        "ancestry_depth": 2,
+        "approval_capability": false,
+        "authorization_capability": false,
+        "child_boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_authority": false,
+        "fail_visible": true,
+        "inheritance_id": "inheritance_conflicting_scope_signal",
+        "inheritance_reason": "conflicting inheritance relationship remains visible and non-authoritative",
+        "non_authoritative": true,
+        "operational_authority": false,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "relationship_type": "inheritance_conflict_diagnostic_visibility",
+        "routing_capability": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_capability": false,
+        "visibility_state": "conflicting"
+      }
+    ],
+    "lineage_propagation_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_continuity_preserved": true,
+      "lineage_hash_references": [
+        "v4_3_boundary_capability_visibility_hash_reference",
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_intelligence_foundations_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_inheritance_lineage_propagation",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_boundary_and_capability_visibility",
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_state": "lineage_propagation_visible",
+      "operational_mutation_enabled": false,
+      "propagated_relationship_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ]
+    },
+    "non_approving": true,
+    "non_authoritative": true,
+    "non_authorizing": true,
+    "non_dispatching": true,
+    "non_executing": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_routing": true,
+    "operational_mutation_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_runtime_behavior_enabled": false,
+    "parent_child_refinement_visibility": [
+      {
+        "child_boundary_id": "refined_boundary_ancestry_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "parent_child_id": "parent_child_refinement_scope_to_ancestry",
+        "refinement_id": "refinement_scope_to_ancestry",
+        "routing_capability": false,
+        "visibility_state": "refined"
+      },
+      {
+        "child_boundary_id": "refined_boundary_lineage_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_deterministic_segmentation",
+        "parent_child_id": "parent_child_refinement_segmentation_to_lineage",
+        "refinement_id": "refinement_segmentation_to_lineage",
+        "routing_capability": false,
+        "visibility_state": "refined"
+      },
+      {
+        "child_boundary_id": "refined_boundary_diagnostics_continuity",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_governance_scope_visibility",
+        "parent_child_id": "parent_child_refinement_diagnostics_continuity",
+        "refinement_id": "refinement_diagnostics_continuity",
+        "routing_capability": false,
+        "visibility_state": "supported"
+      },
+      {
+        "child_boundary_id": "refined_external_runtime_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_external_runtime_semantics",
+        "parent_child_id": "parent_child_refinement_external_runtime_semantics",
+        "refinement_id": "refinement_external_runtime_semantics",
+        "routing_capability": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "child_boundary_id": "refined_planner_production_prohibition",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_planner_production",
+        "parent_child_id": "parent_child_refinement_planner_production",
+        "refinement_id": "refinement_planner_production",
+        "routing_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "child_boundary_id": "refined_stale_source_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_stale_source_evidence",
+        "parent_child_id": "parent_child_refinement_stale_source_evidence",
+        "refinement_id": "refinement_stale_source_evidence",
+        "routing_capability": false,
+        "visibility_state": "stale"
+      },
+      {
+        "child_boundary_id": "refined_conflicting_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_conflicting_scope_signal",
+        "parent_child_id": "parent_child_refinement_conflicting_scope_signal",
+        "refinement_id": "refinement_conflicting_scope_signal",
+        "routing_capability": false,
+        "visibility_state": "conflicting"
+      },
+      {
+        "child_boundary_id": "refined_ambiguous_provider_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "execution_capability": false,
+        "parent_boundary_id": "boundary_implicit_provider_identity",
+        "parent_child_id": "parent_child_refinement_implicit_provider_identity",
+        "refinement_id": "refinement_implicit_provider_identity",
+        "routing_capability": false,
+        "visibility_state": "ambiguous"
+      }
+    ],
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_propagation_metadata": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "propagated_relationship_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ],
+      "provenance_continuity_preserved": true,
+      "provenance_id": "v4_4_boundary_inheritance_provenance_propagation",
+      "provenance_state": "provenance_propagation_visible",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    },
+    "refinement_lineage_continuity": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_scope_to_ancestry",
+        "lineage_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_ancestry_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "refined",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_scope_to_ancestry"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_segmentation_to_lineage",
+        "lineage_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "refined_boundary_lineage_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "refined",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_segmentation_to_lineage"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_diagnostics_continuity",
+        "lineage_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_diagnostics_continuity",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "supported",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_diagnostics_continuity"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_external_runtime_semantics",
+        "lineage_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "unsupported",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_external_runtime_semantics"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_planner_production",
+        "lineage_reference_ids": [
+          "boundary_planner_production",
+          "refined_planner_production_prohibition",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "prohibited",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_planner_production"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_stale_source_evidence",
+        "lineage_reference_ids": [
+          "boundary_stale_source_evidence",
+          "refined_stale_source_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "stale",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_stale_source_evidence"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_conflicting_scope_signal",
+        "lineage_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "refined_conflicting_scope_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "conflicting",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_conflicting_scope_signal"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "lineage_continuity_preserved": true,
+        "lineage_id": "lineage_refinement_implicit_provider_identity",
+        "lineage_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "ambiguous",
+        "operational_mutation_enabled": false,
+        "propagation_state": "lineage_propagation_visible",
+        "provenance_continuity_preserved": true,
+        "refinement_id": "refinement_implicit_provider_identity"
+      }
+    ],
+    "refinement_relationships": [
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_ancestry_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": false,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_boundary_ancestry_visibility",
+        "refinement_depth": 1,
+        "refinement_id": "refinement_scope_to_ancestry",
+        "refinement_reason": "refined refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "boundary_refinement_explainability_chain",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_governance_scope_visibility",
+        "visibility_state": "refined"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "refined_boundary_lineage_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": false,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_boundary_lineage_visibility",
+        "refinement_depth": 2,
+        "refinement_id": "refinement_segmentation_to_lineage",
+        "refinement_reason": "refined refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "refinement_segmentation_visibility",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_deterministic_segmentation",
+        "visibility_state": "refined"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "refined_boundary_diagnostics_continuity",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": false,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_boundary_diagnostics_continuity",
+        "refinement_depth": 2,
+        "refinement_id": "refinement_diagnostics_continuity",
+        "refinement_reason": "supported refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "deterministic_continuity_propagation",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_governance_scope_visibility",
+        "visibility_state": "supported"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_external_runtime_visibility",
+        "refinement_depth": 1,
+        "refinement_id": "refinement_external_runtime_semantics",
+        "refinement_reason": "unsupported refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "boundary_refinement_explainability_chain",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_planner_production",
+          "refined_planner_production_prohibition",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_planner_production_prohibition",
+        "refinement_depth": 1,
+        "refinement_id": "refinement_planner_production",
+        "refinement_reason": "prohibited refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "direct_inheritance_visibility",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_planner_production",
+        "visibility_state": "prohibited"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_stale_source_evidence",
+          "refined_stale_source_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_stale_source_visibility",
+        "refinement_depth": 2,
+        "refinement_id": "refinement_stale_source_evidence",
+        "refinement_reason": "stale refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "refinement_drift_visibility",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_stale_source_evidence",
+        "visibility_state": "stale"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "refined_conflicting_scope_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_conflicting_scope_visibility",
+        "refinement_depth": 2,
+        "refinement_id": "refinement_conflicting_scope_signal",
+        "refinement_reason": "conflicting refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "inheritance_conflict_diagnostic_visibility",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      },
+      {
+        "decision_capability": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_intelligence_foundations_report"
+        ],
+        "execution_capability": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_capability": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_capability": false,
+        "refined_boundary_id": "refined_ambiguous_provider_visibility",
+        "refinement_depth": 2,
+        "refinement_id": "refinement_implicit_provider_identity",
+        "refinement_reason": "ambiguous refinement relationship remains descriptive-only and non-operational",
+        "relationship_type": "deterministic_provenance_propagation",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_boundary_id": "boundary_implicit_provider_identity",
+        "visibility_state": "ambiguous"
+      }
+    ],
+    "routing_execution_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scheduling_execution_enabled": false,
+    "sequencing_execution_enabled": false,
+    "traversal_execution_enabled": false
+  },
+  "continuity_propagation_visibility": {
+    "continuity_id": "v4_4_boundary_inheritance_continuity_propagation",
+    "continuity_propagation_preserved": true,
+    "operational_mutation_enabled": false,
+    "propagated_relationship_count": 16,
+    "replay_evidence_count": 16,
+    "replay_safe": true,
+    "rollback_evidence_count": 16,
+    "rollback_safe": true,
+    "runtime_mutation_enabled": false
+  },
+  "deterministic_hash_evidence": {
+    "ancestry_visibility_hashes": {
+      "ancestry_inheritance_conflicting_scope_signal": "4f40b07f3cebd316dc3d7ede47c869a500d4c56c4990a48b23a8f810f22f5823",
+      "ancestry_inheritance_external_runtime_semantics": "807fd753db41385cff3dcc4fcce9cd41c8c1b14d07b884f40398cc8d6736841f",
+      "ancestry_inheritance_governance_scope": "e2dc4b3f9e55bc3a950df0de39111a8a24bde915c72a97401fb08ad2cd97c121",
+      "ancestry_inheritance_implicit_provider_identity": "3fb59ff3b79fada41434a7805aac1d055e2a5d8c257a3ff9b6798aeb14ea2710",
+      "ancestry_inheritance_lineage_propagation": "3338cedaaedba914f5efce8e2407faf1a9140fb03ddf85f25f3d649531646fe2",
+      "ancestry_inheritance_missing_lineage": "43bbed1f08380bba7ffd1519b94ed72d145f70f3fc0f66e18aa15f75ea13b670",
+      "ancestry_inheritance_runtime_execution": "0d4dbb630a6e4002e3e5f61e590b0e0de7b7237d7db7abcca5af2667de63007b",
+      "ancestry_inheritance_segmentation_scope": "9fc9b380eb23e9647c0148f4dadbb7515d373d7a13dc54df370d1801b7bb5dc1"
+    },
+    "continuity_propagation_hash": "4da68ecb7dfed76ef73a84d289e6705e41326820d3c494979a98cdc2d7c45386",
+    "diagnostic_hashes": {
+      "diagnostic_inheritance_conflicting_scope_signal": "6b73ea9d6f27e788e4ee88f46231818062e8131a70ad4b5648c7fa5e4e6470e8",
+      "diagnostic_inheritance_external_runtime_semantics": "506a7619c51bd9adb656864d20ae3a2b37d05f2974db24edbd3349baf704b0e6",
+      "diagnostic_inheritance_governance_scope": "d986ee6bb81023e9b3d60156a49067d142e6965c581b7ca72d26260cc779b1a5",
+      "diagnostic_inheritance_implicit_provider_identity": "c001ae73a37bd9f4f61f6b1fd7771cdd5ddb91feeb3b99fbe3629e6c4a8620f7",
+      "diagnostic_inheritance_lineage_propagation": "bd19863934585488254c5df92370a467b615c2b934ed9166b8108e8595ec7e11",
+      "diagnostic_inheritance_missing_lineage": "f2573433f1206a61465597d06ec3171a54cff6cc29749ce40d98dc8790172749",
+      "diagnostic_inheritance_runtime_execution": "c1a32cbf1ffa51edcc4b3615ee8ba396d3608f66afc8b7467cfcefd1854158ad",
+      "diagnostic_inheritance_segmentation_scope": "6c02e238dadc504e4df4ec5a5f50747b53b7b1e3ec49a277de195e0a857a6443",
+      "diagnostic_refinement_conflicting_scope_signal": "6fa1c24cbf29abfddd5626fa5a310991dac92c61a6e09e189eff733227ed548c",
+      "diagnostic_refinement_diagnostics_continuity": "db9d568e07dead1230aeab18e789c1eff992db194a31fa4e2696bd2d2fa205fd",
+      "diagnostic_refinement_external_runtime_semantics": "9aa8c412da18425b4efe25a3101c098de21b852bd2174e19ac8a96104b9275b2",
+      "diagnostic_refinement_implicit_provider_identity": "15da9e09d8d19a40bf8f223e9f4f6a8af449cf0836fb32877be05e8714e028af",
+      "diagnostic_refinement_planner_production": "df627fde79516f34b5a79384322d482846e14c3d1f3463bc7cf88fafcf13b14e",
+      "diagnostic_refinement_scope_to_ancestry": "aa23d3446ddd1a1f230f26a794502be4f435f03b495892b553f01bf9d1b7b8fa",
+      "diagnostic_refinement_segmentation_to_lineage": "883043937871850159f10255a085eca8e261ce3c1eb38acd40ff0ff36ea40eb3",
+      "diagnostic_refinement_stale_source_evidence": "4e690cb67bcb53962bd61aa59fd5837c1ec47b4a0dbe943cd1f2a34b964e933e"
+    },
+    "explainability_hashes": {
+      "explainability_inheritance_conflicting_scope_signal": "b8c65cd29eea2004755ac585f13128cd82a7ca73533b6b10ed634fe276f8baee",
+      "explainability_inheritance_external_runtime_semantics": "2c1f799fdcd0517775b94765386aaab60b5ff78a4823e8fb4beea7dadc26a9f9",
+      "explainability_inheritance_governance_scope": "146c8dd2efac3e8083e4024032e026e2afe286d997e95d923142a4069d25ad6b",
+      "explainability_inheritance_implicit_provider_identity": "9836575b5e7672e34a25f7c04f08c228a1e3c075e4d2cabd3c28e846b92d5cd4",
+      "explainability_inheritance_lineage_propagation": "cf1122739707e44f16eaee3699f163319aabcd44f756a50d99e130f2e6436804",
+      "explainability_inheritance_missing_lineage": "592caec3222ab432f5abc4a319c22d4a5b58ce3ae54e35ea126aa31a4c5297b0",
+      "explainability_inheritance_runtime_execution": "6be6c08eab7db9939678dfe43ac8dfc30d070c89ae2cf27a247e41fe4668f668",
+      "explainability_inheritance_segmentation_scope": "b0b713938b7505648a9658985a694d4506f37833edf8739aee80558ae8c96f10",
+      "explainability_refinement_conflicting_scope_signal": "11df4cdc5b87e6c2ff87ad5533a8be6b298ad8b3c5fad416ea101a3ebb98de2d",
+      "explainability_refinement_diagnostics_continuity": "b291ab7c4fd1a03e0d25bdf66e197a1e53181ff2ca1d5a92c294808908ffaf81",
+      "explainability_refinement_external_runtime_semantics": "559d32640fb1fcefbb5c2272e85607fa979479f43b546d43942f2b53d6a83155",
+      "explainability_refinement_implicit_provider_identity": "21c5809471bd933ace5155e7c64ee0a4291e3156e87e3b60debb7f2683e8fe7f",
+      "explainability_refinement_planner_production": "1089028b4591b68c242c86e4dbbd05b810840327a8100a25cd667eff2e64a79e",
+      "explainability_refinement_scope_to_ancestry": "e2adce506e975ecfb23fb33f14fd9909d773b2f6a4a9fa531d6036126af3d903",
+      "explainability_refinement_segmentation_to_lineage": "6b0bf1924002a93687a9260b20eaec3b72cc840eff1bedcae737ef876b33b379",
+      "explainability_refinement_stale_source_evidence": "a8b05700cb0e7d23cca7306298dcc3e9ce730d7719e33d03501484be248df57b"
+    },
+    "fail_visible_finding_hashes": {
+      "finding_inheritance_conflicting_scope_signal": "7ea71290d64565218363281dd1507b43d70cdc53c9f172071646c97d09c01239",
+      "finding_inheritance_external_runtime_semantics": "5441da38eb201aa47c61a19903174155a88987959b54c2bb9c75d256d3bb9123",
+      "finding_inheritance_implicit_provider_identity": "326d8c50c2875ba14a49d498811d1e852fc8490c99720dbe2b5a58c17f5d1512",
+      "finding_inheritance_missing_lineage": "6480ecb45ad750295268722426bdbd7ba73cbd354fc9c03cee1f1b39dd6389fe",
+      "finding_inheritance_runtime_execution": "3a3817f694064a2b91e32326faced5246d5550580d9e921d12c0314f59c5628a",
+      "finding_refinement_conflicting_scope_signal": "a93fcc9192ce7fe5b3a3b399adf4ec16bfca40b2f884d12bdbb93d0e530f7eb6",
+      "finding_refinement_external_runtime_semantics": "62945da3a329e8a79d3e0dd9993edc04b19d099712935deee47a053de4639092",
+      "finding_refinement_implicit_provider_identity": "459accfc0d9b864f4b9e9d4309496e6e1ca2a76deb0363d78dd3724d5377b76f",
+      "finding_refinement_planner_production": "187565d3541c808cdbcc797727501ea89a6ccc1456abe3280f612e679c31a460",
+      "finding_refinement_stale_source_evidence": "a3ade662617fa2ca2b52fa68562621351581bba331200b67d9a3cbda1bbade64"
+    },
+    "identity_hash": "f21258abaa53cf4dfa7adb1b78ee806490f940d706ea876b43f1cc13bfd24cb4",
+    "inheritance_relationship_hashes": {
+      "inheritance_conflicting_scope_signal": "bbcd9e769216e10c26a1a613589760a0d4f99eb13709dd32048df58d3197944f",
+      "inheritance_external_runtime_semantics": "960d1e77f4b19a14450d7bb93a04d5d91979bf2fef53d9774cc6e6acc8673640",
+      "inheritance_governance_scope": "cf2a81c684f033640b8ee7264a08d1a015493540177b4378c1cd845bbb4ea9b4",
+      "inheritance_implicit_provider_identity": "9350ff1be7a0c2548394c35caef823744d03c4cb7deb90c45ec327715476f1a8",
+      "inheritance_lineage_propagation": "04f7555dc025c393cf48e96ea3fc64c60024ffc0dfd1a1f7dae0877965c2d8da",
+      "inheritance_missing_lineage": "d2509f696536961811610018270cc54f186bd047bda7f718ee97eafe38c2b804",
+      "inheritance_runtime_execution": "0fc8a35ff2fc21187a850bb6e5f3f133d1664935e012909baeabfa03ec85d9eb",
+      "inheritance_segmentation_scope": "992632b3c0ed4808a2c2fac3a55e6b68c7d3ff5cf275ef0706487fdbdde54491"
+    },
+    "intelligence_hash": "6290e15686e2d01030ef7a66616c1672e6d7407832765e98b6f0b8f8b1a54499",
+    "lineage_propagation_hash": "7216ad0b3c0c47579ab9e22a83abf3c1b20ce69001ef1fd1197a07f8882c469f",
+    "provenance_propagation_hash": "2e9855fa36d8b9df29eb9133978ce5703bb959822d4180639112afb46e99b6de",
+    "refinement_lineage_hashes": {
+      "lineage_refinement_conflicting_scope_signal": "70a861bd659a1ea7ad9c13b0ef9dbd73b3da747ff26b3819633fc6f11af39284",
+      "lineage_refinement_diagnostics_continuity": "9e70b69fd25a479475a54a654c783b96a94857e4820a4c9ffe3a7d6bac41a359",
+      "lineage_refinement_external_runtime_semantics": "62d00a3fb88407e1bddf3bf4bbc7dfdaa3ff84965c85ba45f30cef4dd503855d",
+      "lineage_refinement_implicit_provider_identity": "c4afe6d25b3f2b17f24c1b2412cb1a66546434d7609c86c2f155d4a2e19afa89",
+      "lineage_refinement_planner_production": "b4a1fe62ac413341ba3045d559386447bd361ee6dafaa8eeed85bdf0a65947ff",
+      "lineage_refinement_scope_to_ancestry": "f7af82d80528e65a304d312bc731d58dddcdc047ef32d6c3e11dab4ce68210c6",
+      "lineage_refinement_segmentation_to_lineage": "8b10ef26abc16245e14fd9219abd4d3129db3cd13729e4446b366eb4c8c348a4",
+      "lineage_refinement_stale_source_evidence": "1668f16fd7457e6b4150a049fe039e269ed87e7b248e908b80774961797ebb42"
+    },
+    "refinement_relationship_hashes": {
+      "refinement_conflicting_scope_signal": "7902d99fb3b32e1e617d6febc18ae6e089b296947cc8404ea3505185e998fac8",
+      "refinement_diagnostics_continuity": "277cbd6992f568d8318a9000482716c99bf42c494f5b1d6c498668c3ca4b5999",
+      "refinement_external_runtime_semantics": "d944aaa0ee23b3df4316caf3df832b419a4aafde7a0edbba0dd1574e3455a032",
+      "refinement_implicit_provider_identity": "c138fb3b11b6d9a604ca7afe61b606c36be4dbdffaaab7d2a9920e3c2209666f",
+      "refinement_planner_production": "197831ba00aadc9fbaff49236240e24712e5a14cb1743f7b97c3c33b6a2b08e3",
+      "refinement_scope_to_ancestry": "dd5aca5de9e87189ae9e297b584bf6c29378496a52db9f9033aa2111a5c1129d",
+      "refinement_segmentation_to_lineage": "1d8a78332e05b9008085dbdd53af1b4f4309f737bc12dfdbbd7571d471df3297",
+      "refinement_stale_source_evidence": "b7cf6c59b419be0d4293146f4499c0eb7e7b1a7ff325ecb92c999820dc1e76ec"
+    }
+  },
+  "deterministic_report_hash": "e55466e9c4e47eeab32f883c48958c96036973ad8ff9d5116f2e01d8a2159b01",
+  "deterministic_serialization_evidence": {
+    "hashing_stable": true,
+    "intelligence_hash": "6290e15686e2d01030ef7a66616c1672e6d7407832765e98b6f0b8f8b1a54499",
+    "serialization_length": 61506,
+    "serialization_stable": true
+  },
+  "diagnostics_visibility": {
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_count": 16,
+    "diagnostic_ids": [
+      "diagnostic_inheritance_conflicting_scope_signal",
+      "diagnostic_inheritance_external_runtime_semantics",
+      "diagnostic_inheritance_governance_scope",
+      "diagnostic_inheritance_implicit_provider_identity",
+      "diagnostic_inheritance_lineage_propagation",
+      "diagnostic_inheritance_missing_lineage",
+      "diagnostic_inheritance_runtime_execution",
+      "diagnostic_inheritance_segmentation_scope",
+      "diagnostic_refinement_conflicting_scope_signal",
+      "diagnostic_refinement_diagnostics_continuity",
+      "diagnostic_refinement_external_runtime_semantics",
+      "diagnostic_refinement_implicit_provider_identity",
+      "diagnostic_refinement_planner_production",
+      "diagnostic_refinement_scope_to_ancestry",
+      "diagnostic_refinement_segmentation_to_lineage",
+      "diagnostic_refinement_stale_source_evidence"
+    ],
+    "fail_visible": true,
+    "severity_counts": {
+      "blocker": 1,
+      "info": 6,
+      "prohibited": 2,
+      "warning": 7
+    },
+    "state_counts": {
+      "ambiguous": 2,
+      "blocked": 1,
+      "conflicting": 2,
+      "inherited": 2,
+      "prohibited": 2,
+      "refined": 2,
+      "stale": 1,
+      "supported": 2,
+      "unsupported": 2
+    }
+  },
+  "explainability_visibility": {
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_count": 16,
+    "explainability_first": true,
+    "explainability_ids": [
+      "explainability_inheritance_conflicting_scope_signal",
+      "explainability_inheritance_external_runtime_semantics",
+      "explainability_inheritance_governance_scope",
+      "explainability_inheritance_implicit_provider_identity",
+      "explainability_inheritance_lineage_propagation",
+      "explainability_inheritance_missing_lineage",
+      "explainability_inheritance_runtime_execution",
+      "explainability_inheritance_segmentation_scope",
+      "explainability_refinement_conflicting_scope_signal",
+      "explainability_refinement_diagnostics_continuity",
+      "explainability_refinement_external_runtime_semantics",
+      "explainability_refinement_implicit_provider_identity",
+      "explainability_refinement_planner_production",
+      "explainability_refinement_scope_to_ancestry",
+      "explainability_refinement_segmentation_to_lineage",
+      "explainability_refinement_stale_source_evidence"
+    ],
+    "recommendation_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 2,
+      "blocked": 1,
+      "conflicting": 2,
+      "inherited": 2,
+      "prohibited": 2,
+      "refined": 2,
+      "stale": 1,
+      "supported": 2,
+      "unsupported": 2
+    }
+  },
+  "fail_visible_ambiguity_visibility": [
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_governance_scope_visibility",
+        "boundary_implicit_provider_identity",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_inheritance_implicit_provider_identity",
+      "finding_message": "ambiguous inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "ambiguous_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "inheritance_implicit_provider_identity",
+      "visibility_state": "ambiguous"
+    },
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_implicit_provider_identity",
+        "refined_ambiguous_provider_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_refinement_implicit_provider_identity",
+      "finding_message": "ambiguous inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "ambiguous_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "refinement_implicit_provider_identity",
+      "visibility_state": "ambiguous"
+    }
+  ],
+  "fail_visible_visibility": {
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "descriptive_only": true,
+    "fail_visible": true,
+    "finding_count": 10,
+    "finding_ids": [
+      "finding_inheritance_conflicting_scope_signal",
+      "finding_inheritance_external_runtime_semantics",
+      "finding_inheritance_implicit_provider_identity",
+      "finding_inheritance_missing_lineage",
+      "finding_inheritance_runtime_execution",
+      "finding_refinement_conflicting_scope_signal",
+      "finding_refinement_external_runtime_semantics",
+      "finding_refinement_implicit_provider_identity",
+      "finding_refinement_planner_production",
+      "finding_refinement_stale_source_evidence"
+    ],
+    "hidden_inference_used_count": 0,
+    "state_counts": {
+      "ambiguous": 2,
+      "blocked": 1,
+      "conflicting": 2,
+      "inherited": 0,
+      "prohibited": 2,
+      "refined": 0,
+      "stale": 1,
+      "supported": 0,
+      "unsupported": 2
+    }
+  },
+  "foundation_status": "v4_4_boundary_inheritance_refinement_stable",
+  "inheritance_chain_visibility": [
+    {
+      "ancestry_depth": 1,
+      "child_boundary_id": "boundary_governance_scope_visibility",
+      "descriptive_only": true,
+      "fail_visible": false,
+      "inheritance_id": "inheritance_governance_scope",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "v4_4_boundary_intelligence_foundations",
+      "relationship_type": "direct_inheritance_visibility",
+      "visibility_state": "inherited"
+    },
+    {
+      "ancestry_depth": 2,
+      "child_boundary_id": "boundary_deterministic_segmentation",
+      "descriptive_only": true,
+      "fail_visible": false,
+      "inheritance_id": "inheritance_segmentation_scope",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "multi_level_refinement_ancestry_visibility",
+      "visibility_state": "inherited"
+    },
+    {
+      "ancestry_depth": 2,
+      "child_boundary_id": "boundary_missing_lineage_evidence",
+      "descriptive_only": true,
+      "fail_visible": false,
+      "inheritance_id": "inheritance_lineage_propagation",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "governance_safe_lineage_propagation",
+      "visibility_state": "supported"
+    },
+    {
+      "ancestry_depth": 1,
+      "child_boundary_id": "boundary_external_runtime_semantics",
+      "descriptive_only": true,
+      "fail_visible": true,
+      "inheritance_id": "inheritance_external_runtime_semantics",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "inheritance_conflict_diagnostic_visibility",
+      "visibility_state": "unsupported"
+    },
+    {
+      "ancestry_depth": 1,
+      "child_boundary_id": "boundary_runtime_execution",
+      "descriptive_only": true,
+      "fail_visible": true,
+      "inheritance_id": "inheritance_runtime_execution",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "direct_inheritance_visibility",
+      "visibility_state": "prohibited"
+    },
+    {
+      "ancestry_depth": 3,
+      "child_boundary_id": "boundary_missing_lineage_evidence",
+      "descriptive_only": true,
+      "fail_visible": true,
+      "inheritance_id": "inheritance_missing_lineage",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "deterministic_continuity_propagation",
+      "visibility_state": "blocked"
+    },
+    {
+      "ancestry_depth": 2,
+      "child_boundary_id": "boundary_implicit_provider_identity",
+      "descriptive_only": true,
+      "fail_visible": true,
+      "inheritance_id": "inheritance_implicit_provider_identity",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "deterministic_provenance_propagation",
+      "visibility_state": "ambiguous"
+    },
+    {
+      "ancestry_depth": 2,
+      "child_boundary_id": "boundary_conflicting_scope_signal",
+      "descriptive_only": true,
+      "fail_visible": true,
+      "inheritance_id": "inheritance_conflicting_scope_signal",
+      "non_authoritative": true,
+      "operational_authority": false,
+      "parent_boundary_id": "boundary_governance_scope_visibility",
+      "relationship_type": "inheritance_conflict_diagnostic_visibility",
+      "visibility_state": "conflicting"
+    }
+  ],
+  "inheritance_conflict_visibility": [
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_conflicting_scope_signal",
+        "boundary_governance_scope_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_inheritance_conflicting_scope_signal",
+      "finding_message": "conflicting inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "conflicting_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "inheritance_conflicting_scope_signal",
+      "visibility_state": "conflicting"
+    },
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_conflicting_scope_signal",
+        "refined_conflicting_scope_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_refinement_conflicting_scope_signal",
+      "finding_message": "conflicting inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "conflicting_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "refinement_conflicting_scope_signal",
+      "visibility_state": "conflicting"
+    }
+  ],
+  "lineage_continuity_evidence": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_continuity_verified": true,
+    "lineage_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_continuity_preserved": true,
+      "lineage_hash_references": [
+        "v4_3_boundary_capability_visibility_hash_reference",
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_intelligence_foundations_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_inheritance_lineage_propagation",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_boundary_and_capability_visibility",
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_state": "lineage_propagation_visible",
+      "operational_mutation_enabled": false,
+      "propagated_relationship_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ]
+    }
+  },
+  "lineage_propagation_visibility": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_continuity_preserved": true,
+    "lineage_hash_references": [
+      "v4_3_boundary_capability_visibility_hash_reference",
+      "v4_3_continuity_integrity_hash_reference",
+      "v4_4_boundary_intelligence_foundations_hash_reference"
+    ],
+    "lineage_id": "v4_4_boundary_inheritance_lineage_propagation",
+    "lineage_reference_ids": [
+      "v4_3_orchestration_boundary_and_capability_visibility",
+      "v4_3_orchestration_continuity_and_integrity_certification",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations"
+    ],
+    "operational_mutation_enabled": false,
+    "propagated_relationship_count": 16
+  },
+  "non_operational_certification_evidence": {
+    "counters": {
+      "enabled_dispatch_execution_count": 0,
+      "enabled_operational_mutation_count": 0,
+      "enabled_orchestration_approval_count": 0,
+      "enabled_orchestration_authorization_count": 0,
+      "enabled_routing_execution_count": 0,
+      "enabled_runtime_execution_count": 0
+    },
+    "descriptive_only": true,
+    "enabled_flags": {},
+    "non_approving": true,
+    "non_authoritative": true,
+    "non_authorizing": true,
+    "non_dispatching": true,
+    "non_executing": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_routing": true,
+    "operational_mutation_disabled": true,
+    "planner_integration_disabled": true,
+    "production_consumption_disabled": true,
+    "runtime_mutation_disabled": true,
+    "valid": true
+  },
+  "phase_id": "v4_4_boundary_inheritance_refinement",
+  "prohibited_inheritance_visibility": [
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_governance_scope_visibility",
+        "boundary_runtime_execution",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_inheritance_runtime_execution",
+      "finding_message": "prohibited inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "prohibited_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "inheritance_runtime_execution",
+      "visibility_state": "prohibited"
+    },
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_planner_production",
+        "refined_planner_production_prohibition",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_refinement_planner_production",
+      "finding_message": "prohibited inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "prohibited_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "refinement_planner_production",
+      "visibility_state": "prohibited"
+    }
+  ],
+  "provenance_continuity_evidence": {
+    "hidden_source_inference_used": false,
+    "provenance_continuity_verified": true,
+    "provenance_metadata": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "propagated_relationship_ids": [
+        "inheritance_conflicting_scope_signal",
+        "inheritance_external_runtime_semantics",
+        "inheritance_governance_scope",
+        "inheritance_implicit_provider_identity",
+        "inheritance_lineage_propagation",
+        "inheritance_missing_lineage",
+        "inheritance_runtime_execution",
+        "inheritance_segmentation_scope",
+        "refinement_conflicting_scope_signal",
+        "refinement_diagnostics_continuity",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity",
+        "refinement_planner_production",
+        "refinement_scope_to_ancestry",
+        "refinement_segmentation_to_lineage",
+        "refinement_stale_source_evidence"
+      ],
+      "provenance_continuity_preserved": true,
+      "provenance_id": "v4_4_boundary_inheritance_provenance_propagation",
+      "provenance_state": "provenance_propagation_visible",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    }
+  },
+  "provenance_propagation_visibility": {
+    "hidden_source_inference_used": false,
+    "production_consumption_enabled": false,
+    "propagated_relationship_count": 16,
+    "provenance_continuity_preserved": true,
+    "provenance_id": "v4_4_boundary_inheritance_provenance_propagation",
+    "source_hash_references": [
+      "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+      "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+    ],
+    "source_reference_ids": [
+      "v4_3_closeout_and_v4_4_readiness",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations"
+    ]
+  },
+  "refinement_ancestry_visibility": [
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": false,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_boundary_ancestry_visibility",
+      "refinement_depth": 1,
+      "refinement_id": "refinement_scope_to_ancestry",
+      "relationship_type": "boundary_refinement_explainability_chain",
+      "source_boundary_id": "boundary_governance_scope_visibility",
+      "visibility_state": "refined"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": false,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_boundary_lineage_visibility",
+      "refinement_depth": 2,
+      "refinement_id": "refinement_segmentation_to_lineage",
+      "relationship_type": "refinement_segmentation_visibility",
+      "source_boundary_id": "boundary_deterministic_segmentation",
+      "visibility_state": "refined"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": false,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_boundary_diagnostics_continuity",
+      "refinement_depth": 2,
+      "refinement_id": "refinement_diagnostics_continuity",
+      "relationship_type": "deterministic_continuity_propagation",
+      "source_boundary_id": "boundary_governance_scope_visibility",
+      "visibility_state": "supported"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": true,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_external_runtime_visibility",
+      "refinement_depth": 1,
+      "refinement_id": "refinement_external_runtime_semantics",
+      "relationship_type": "boundary_refinement_explainability_chain",
+      "source_boundary_id": "boundary_external_runtime_semantics",
+      "visibility_state": "unsupported"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": true,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_planner_production_prohibition",
+      "refinement_depth": 1,
+      "refinement_id": "refinement_planner_production",
+      "relationship_type": "direct_inheritance_visibility",
+      "source_boundary_id": "boundary_planner_production",
+      "visibility_state": "prohibited"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": true,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_stale_source_visibility",
+      "refinement_depth": 2,
+      "refinement_id": "refinement_stale_source_evidence",
+      "relationship_type": "refinement_drift_visibility",
+      "source_boundary_id": "boundary_stale_source_evidence",
+      "visibility_state": "stale"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": true,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_conflicting_scope_visibility",
+      "refinement_depth": 2,
+      "refinement_id": "refinement_conflicting_scope_signal",
+      "relationship_type": "inheritance_conflict_diagnostic_visibility",
+      "source_boundary_id": "boundary_conflicting_scope_signal",
+      "visibility_state": "conflicting"
+    },
+    {
+      "descriptive_only": true,
+      "execution_capability": false,
+      "fail_visible": true,
+      "non_authoritative": true,
+      "refined_boundary_id": "refined_ambiguous_provider_visibility",
+      "refinement_depth": 2,
+      "refinement_id": "refinement_implicit_provider_identity",
+      "relationship_type": "deterministic_provenance_propagation",
+      "source_boundary_id": "boundary_implicit_provider_identity",
+      "visibility_state": "ambiguous"
+    }
+  ],
+  "refinement_drift_visibility": [
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_stale_source_evidence",
+        "refined_stale_source_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_refinement_stale_source_evidence",
+      "finding_message": "stale inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "stale_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "refinement_stale_source_evidence",
+      "visibility_state": "stale"
+    }
+  ],
+  "remaining_blockers": [],
+  "remaining_warnings": [],
+  "replay_safe_evidence": {
+    "missing_propagated_relationship_ids": [],
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "propagated_relationship_count": 16,
+    "relationship_count": 16,
+    "replay_safe": true,
+    "replay_safe_evidence_count": 16,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 16,
+    "valid": true
+  },
+  "report_schema_version": "v4_4.boundary_inheritance_refinement_report.1",
+  "rollback_safe_evidence": {
+    "missing_propagated_relationship_ids": [],
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "propagated_relationship_count": 16,
+    "relationship_count": 16,
+    "replay_safe": true,
+    "replay_safe_evidence_count": 16,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 16,
+    "valid": true
+  },
+  "summary": {
+    "ambiguous_inheritance_count": 2,
+    "ancestry_visibility_count": 8,
+    "conflicting_refinement_count": 2,
+    "continuity_propagation_verified": true,
+    "descriptive_only_enforced": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_ordering_verified": true,
+    "deterministic_serialization_verified": true,
+    "enabled_dispatch_execution_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_routing_execution_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "fail_visible_ambiguity_verified": true,
+    "fail_visible_finding_count": 10,
+    "governance_safe_certification_verified": true,
+    "inheritance_continuity_verified": true,
+    "inheritance_relationship_count": 8,
+    "inherited_visibility_count": 2,
+    "lineage_continuity_verified": true,
+    "max_ancestry_depth": 3,
+    "multi_level_ancestry_count": 5,
+    "non_operational_certification_verified": true,
+    "operational_mutation_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "prohibited_visibility_count": 2,
+    "provenance_continuity_verified": true,
+    "refined_visibility_count": 2,
+    "refinement_lineage_count": 8,
+    "refinement_relationship_count": 8,
+    "relationship_count": 16,
+    "remaining_blocker_count": 0,
+    "remaining_warning_count": 0,
+    "replay_safe_evidence_verified": true,
+    "rollback_safe_evidence_verified": true,
+    "runtime_mutation_enabled": false,
+    "stale_refinement_count": 1,
+    "supported_visibility_count": 2,
+    "unsupported_visibility_count": 2,
+    "validation_error_count": 0
+  },
+  "unsupported_inheritance_visibility": [
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_external_runtime_semantics",
+        "boundary_governance_scope_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_inheritance_external_runtime_semantics",
+      "finding_message": "unsupported inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "unsupported_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "inheritance_external_runtime_semantics",
+      "visibility_state": "unsupported"
+    },
+    {
+      "automatic_remediation_enabled": false,
+      "automatic_repair_enabled": false,
+      "evidence_reference_ids": [
+        "boundary_external_runtime_semantics",
+        "refined_external_runtime_visibility",
+        "v4_4_boundary_intelligence_foundations_report"
+      ],
+      "fail_visible": true,
+      "finding_id": "finding_refinement_external_runtime_semantics",
+      "finding_message": "unsupported inheritance/refinement state remains visible and cannot imply operational authority",
+      "finding_type": "unsupported_inheritance_refinement_visibility",
+      "hidden_inference_used": false,
+      "relationship_id": "refinement_external_runtime_semantics",
+      "visibility_state": "unsupported"
+    }
+  ],
+  "validation": {
+    "invalid_validation_names": [],
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "ancestry": {
+        "ancestry_depth_visibility": {
+          "ancestry_ids": [
+            "ancestry_inheritance_conflicting_scope_signal",
+            "ancestry_inheritance_external_runtime_semantics",
+            "ancestry_inheritance_governance_scope",
+            "ancestry_inheritance_implicit_provider_identity",
+            "ancestry_inheritance_lineage_propagation",
+            "ancestry_inheritance_missing_lineage",
+            "ancestry_inheritance_runtime_execution",
+            "ancestry_inheritance_segmentation_scope"
+          ],
+          "ancestry_visibility_count": 8,
+          "descriptive_only": true,
+          "max_ancestry_depth": 3,
+          "multi_level_ancestry_count": 5,
+          "non_authoritative": true,
+          "operational_authority_count": 0
+        },
+        "missing_ancestry_boundary_ids": [],
+        "valid": true
+      },
+      "diagnostics_explainability": {
+        "diagnostics": {
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_count": 16,
+          "diagnostic_ids": [
+            "diagnostic_inheritance_conflicting_scope_signal",
+            "diagnostic_inheritance_external_runtime_semantics",
+            "diagnostic_inheritance_governance_scope",
+            "diagnostic_inheritance_implicit_provider_identity",
+            "diagnostic_inheritance_lineage_propagation",
+            "diagnostic_inheritance_missing_lineage",
+            "diagnostic_inheritance_runtime_execution",
+            "diagnostic_inheritance_segmentation_scope",
+            "diagnostic_refinement_conflicting_scope_signal",
+            "diagnostic_refinement_diagnostics_continuity",
+            "diagnostic_refinement_external_runtime_semantics",
+            "diagnostic_refinement_implicit_provider_identity",
+            "diagnostic_refinement_planner_production",
+            "diagnostic_refinement_scope_to_ancestry",
+            "diagnostic_refinement_segmentation_to_lineage",
+            "diagnostic_refinement_stale_source_evidence"
+          ],
+          "fail_visible": true,
+          "severity_counts": {
+            "blocker": 1,
+            "info": 6,
+            "prohibited": 2,
+            "warning": 7
+          },
+          "state_counts": {
+            "ambiguous": 2,
+            "blocked": 1,
+            "conflicting": 2,
+            "inherited": 2,
+            "prohibited": 2,
+            "refined": 2,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          }
+        },
+        "explainability": {
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_count": 16,
+          "explainability_first": true,
+          "explainability_ids": [
+            "explainability_inheritance_conflicting_scope_signal",
+            "explainability_inheritance_external_runtime_semantics",
+            "explainability_inheritance_governance_scope",
+            "explainability_inheritance_implicit_provider_identity",
+            "explainability_inheritance_lineage_propagation",
+            "explainability_inheritance_missing_lineage",
+            "explainability_inheritance_runtime_execution",
+            "explainability_inheritance_segmentation_scope",
+            "explainability_refinement_conflicting_scope_signal",
+            "explainability_refinement_diagnostics_continuity",
+            "explainability_refinement_external_runtime_semantics",
+            "explainability_refinement_implicit_provider_identity",
+            "explainability_refinement_planner_production",
+            "explainability_refinement_scope_to_ancestry",
+            "explainability_refinement_segmentation_to_lineage",
+            "explainability_refinement_stale_source_evidence"
+          ],
+          "recommendation_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 2,
+            "blocked": 1,
+            "conflicting": 2,
+            "inherited": 2,
+            "prohibited": 2,
+            "refined": 2,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          }
+        },
+        "valid": true
+      },
+      "non_operational": {
+        "counters": {
+          "enabled_dispatch_execution_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_routing_execution_count": 0,
+          "enabled_runtime_execution_count": 0
+        },
+        "descriptive_only": true,
+        "enabled_flags": {},
+        "non_approving": true,
+        "non_authoritative": true,
+        "non_authorizing": true,
+        "non_dispatching": true,
+        "non_executing": true,
+        "non_mutating": true,
+        "non_operational": true,
+        "non_routing": true,
+        "operational_mutation_disabled": true,
+        "planner_integration_disabled": true,
+        "production_consumption_disabled": true,
+        "runtime_mutation_disabled": true,
+        "valid": true
+      },
+      "ordering": {
+        "duplicate_order_groups": [],
+        "order_groups": {
+          "ancestry_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "explainability": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "fail_visible_findings": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "inheritance_relationships": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "parent_child_refinement_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "refinement_lineage_continuity": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "refinement_relationships": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "provenance_lineage": {
+        "ambiguous_lineage_inferred": false,
+        "continuity_propagation_preserved": true,
+        "hidden_source_inference_used": false,
+        "lineage_continuity_preserved": true,
+        "provenance_continuity_preserved": true,
+        "valid": true
+      },
+      "replay_rollback": {
+        "missing_propagated_relationship_ids": [],
+        "missing_replay_evidence_ids": [],
+        "missing_rollback_evidence_ids": [],
+        "propagated_relationship_count": 16,
+        "relationship_count": 16,
+        "replay_safe": true,
+        "replay_safe_evidence_count": 16,
+        "rollback_safe": true,
+        "rollback_safe_evidence_count": 16,
+        "valid": true
+      },
+      "serialization_hashing": {
+        "hashing_stable": true,
+        "intelligence_hash": "6290e15686e2d01030ef7a66616c1672e6d7407832765e98b6f0b8f8b1a54499",
+        "rebuilt_intelligence_hash": "6290e15686e2d01030ef7a66616c1672e6d7407832765e98b6f0b8f8b1a54499",
+        "serialization_length": 61506,
+        "serialization_stable": true,
+        "valid": true
+      },
+      "state_visibility": {
+        "ambiguous_visibility_count": 2,
+        "combined_counts": {
+          "ambiguous": 2,
+          "blocked": 1,
+          "conflicting": 2,
+          "inherited": 2,
+          "prohibited": 2,
+          "refined": 2,
+          "stale": 1,
+          "supported": 2,
+          "unsupported": 2
+        },
+        "conflicting_visibility_count": 2,
+        "fail_visible_summary": {
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "descriptive_only": true,
+          "fail_visible": true,
+          "finding_count": 10,
+          "finding_ids": [
+            "finding_inheritance_conflicting_scope_signal",
+            "finding_inheritance_external_runtime_semantics",
+            "finding_inheritance_implicit_provider_identity",
+            "finding_inheritance_missing_lineage",
+            "finding_inheritance_runtime_execution",
+            "finding_refinement_conflicting_scope_signal",
+            "finding_refinement_external_runtime_semantics",
+            "finding_refinement_implicit_provider_identity",
+            "finding_refinement_planner_production",
+            "finding_refinement_stale_source_evidence"
+          ],
+          "hidden_inference_used_count": 0,
+          "state_counts": {
+            "ambiguous": 2,
+            "blocked": 1,
+            "conflicting": 2,
+            "inherited": 0,
+            "prohibited": 2,
+            "refined": 0,
+            "stale": 1,
+            "supported": 0,
+            "unsupported": 2
+          }
+        },
+        "inheritance_counts": {
+          "ambiguous": 1,
+          "blocked": 1,
+          "conflicting": 1,
+          "inherited": 2,
+          "prohibited": 1,
+          "refined": 0,
+          "stale": 0,
+          "supported": 1,
+          "unsupported": 1
+        },
+        "missing_fail_visible_states": [],
+        "missing_states": [],
+        "prohibited_visibility_count": 2,
+        "refinement_counts": {
+          "ambiguous": 1,
+          "blocked": 0,
+          "conflicting": 1,
+          "inherited": 0,
+          "prohibited": 1,
+          "refined": 2,
+          "stale": 1,
+          "supported": 1,
+          "unsupported": 1
+        },
+        "stale_visibility_count": 1,
+        "unsupported_visibility_count": 2,
+        "valid": true
+      }
+    }
+  }
+}
