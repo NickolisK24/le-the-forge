@@ -1,0 +1,3255 @@
+{
+  "boundary_segmentation_scope_intelligence": {
+    "automatic_remediation_enabled": false,
+    "automatic_repair_enabled": false,
+    "boundary_group_execution_lane_enabled": false,
+    "continuity_visibility": [
+      {
+        "continuity_id": "continuity_scope_consistent",
+        "continuity_reason": "consistent scope continuity remains visible and non-mutating",
+        "continuity_reference_ids": [
+          "scope_governance_visible",
+          "segment_governance_core"
+        ],
+        "continuity_state": "consistent",
+        "continuity_type": "consistent_scope_continuity_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "scope_governance_visible"
+      },
+      {
+        "continuity_id": "continuity_scope_stale",
+        "continuity_reason": "stale scope continuity remains visible and non-mutating",
+        "continuity_reference_ids": [
+          "scope_stale_source",
+          "stale_source_visibility"
+        ],
+        "continuity_state": "stale",
+        "continuity_type": "stale_scope_continuity_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "scope_stale_source"
+      },
+      {
+        "continuity_id": "continuity_scope_degraded",
+        "continuity_reason": "degraded scope continuity remains visible and non-mutating",
+        "continuity_reference_ids": [
+          "lineage_visibility",
+          "scope_degraded_lineage"
+        ],
+        "continuity_state": "degraded",
+        "continuity_type": "degraded_scope_continuity_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "scope_degraded_lineage"
+      },
+      {
+        "continuity_id": "continuity_scope_unsupported",
+        "continuity_reason": "unsupported scope continuity remains visible and non-mutating",
+        "continuity_reference_ids": [
+          "runtime_semantics_visibility",
+          "scope_external_runtime_unscoped"
+        ],
+        "continuity_state": "unsupported",
+        "continuity_type": "unsupported_scope_continuity_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "scope_external_runtime_unscoped"
+      }
+    ],
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "governance_safe_descriptive_only_enforcement",
+      "isolation_coupling_visibility",
+      "lineage_visibility",
+      "non_operational_certification",
+      "overlap_visibility",
+      "provenance_visibility",
+      "replay_safe_segmentation_evidence",
+      "rollback_safe_segmentation_evidence",
+      "scope_ambiguity_visibility",
+      "scope_hashing_stability",
+      "scope_ordering_stability",
+      "scope_serialization_stability",
+      "segment_membership_visibility",
+      "segmentation_hashing_stability",
+      "segmentation_ordering_stability",
+      "segmentation_serialization_stability"
+    ],
+    "dispatch_execution_enabled": false,
+    "evidence_metadata": {
+      "deterministic_order": 1,
+      "evidence_id": "v4_4_boundary_segmentation_scope_replay_rollback_evidence",
+      "membership_record_ids": [
+        "membership_consistency_segmented",
+        "membership_foundation_scoped",
+        "membership_lineage_blocked",
+        "membership_overlap_conflicting",
+        "membership_provider_ambiguous",
+        "membership_runtime_unscoped"
+      ],
+      "operational_mutation_enabled": false,
+      "relationship_record_ids": [
+        "relationship_consistency_supported",
+        "relationship_core_isolated",
+        "relationship_lineage_coupled",
+        "relationship_refinement_overlap",
+        "relationship_runtime_prohibited",
+        "relationship_scope_inconsistent"
+      ],
+      "replay_evidence_ids": [
+        "membership_consistency_segmented",
+        "membership_foundation_scoped",
+        "membership_lineage_blocked",
+        "membership_overlap_conflicting",
+        "membership_provider_ambiguous",
+        "membership_runtime_unscoped",
+        "relationship_consistency_supported",
+        "relationship_core_isolated",
+        "relationship_lineage_coupled",
+        "relationship_refinement_overlap",
+        "relationship_runtime_prohibited",
+        "relationship_scope_inconsistent",
+        "scope_consistency_baseline",
+        "scope_degraded_lineage",
+        "scope_external_runtime_unscoped",
+        "scope_governance_visible",
+        "scope_inconsistent_authority",
+        "scope_stale_source",
+        "segment_ambiguous_provider",
+        "segment_coupled_lineage",
+        "segment_governance_core",
+        "segment_isolated_provenance",
+        "segment_overlap_refinement",
+        "segment_unsegmented_external_runtime"
+      ],
+      "replay_safe": true,
+      "rollback_evidence_ids": [
+        "membership_consistency_segmented",
+        "membership_foundation_scoped",
+        "membership_lineage_blocked",
+        "membership_overlap_conflicting",
+        "membership_provider_ambiguous",
+        "membership_runtime_unscoped",
+        "relationship_consistency_supported",
+        "relationship_core_isolated",
+        "relationship_lineage_coupled",
+        "relationship_refinement_overlap",
+        "relationship_runtime_prohibited",
+        "relationship_scope_inconsistent",
+        "scope_consistency_baseline",
+        "scope_degraded_lineage",
+        "scope_external_runtime_unscoped",
+        "scope_governance_visible",
+        "scope_inconsistent_authority",
+        "scope_stale_source",
+        "segment_ambiguous_provider",
+        "segment_coupled_lineage",
+        "segment_governance_core",
+        "segment_isolated_provenance",
+        "segment_overlap_refinement",
+        "segment_unsegmented_external_runtime"
+      ],
+      "rollback_safe": true,
+      "runtime_mutation_enabled": false,
+      "scope_record_ids": [
+        "scope_consistency_baseline",
+        "scope_degraded_lineage",
+        "scope_external_runtime_unscoped",
+        "scope_governance_visible",
+        "scope_inconsistent_authority",
+        "scope_stale_source"
+      ],
+      "segment_record_ids": [
+        "segment_ambiguous_provider",
+        "segment_coupled_lineage",
+        "segment_governance_core",
+        "segment_isolated_provenance",
+        "segment_overlap_refinement",
+        "segment_unsegmented_external_runtime"
+      ]
+    },
+    "explainability": [
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_governance_visible",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_diagnostic_scope_governance_visible",
+          "scope_governance_visible",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "scoped_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_governance_visible",
+        "visibility_state": "scoped"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_external_runtime_unscoped",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_diagnostic_scope_external_runtime_unscoped",
+          "scope_external_runtime_unscoped",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "unscoped_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_external_runtime_unscoped",
+        "visibility_state": "unscoped"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_consistency_baseline",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_consistency_baseline",
+          "scope_diagnostic_scope_consistency_baseline",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "consistent_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_consistency_baseline",
+        "visibility_state": "consistent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_inconsistent_authority",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_diagnostic_scope_inconsistent_authority",
+          "scope_inconsistent_authority",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "inconsistent_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_inconsistent_authority",
+        "visibility_state": "inconsistent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_stale_source",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_diagnostic_scope_stale_source",
+          "scope_stale_source",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "stale_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_stale_source",
+        "visibility_state": "stale"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "explainability_first": true,
+        "explainability_id": "explainability_scope_diagnostic_scope_degraded_lineage",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "scope_degraded_lineage",
+          "scope_diagnostic_scope_degraded_lineage",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "degraded_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "scope_degraded_lineage",
+        "visibility_state": "degraded"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_governance_core",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_governance_core",
+          "segmentation_diagnostic_segment_governance_core",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "segmented_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_governance_core",
+        "visibility_state": "segmented"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_unsegmented_external_runtime",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_unsegmented_external_runtime",
+          "segmentation_diagnostic_segment_unsegmented_external_runtime",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "unsegmented_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_unsegmented_external_runtime",
+        "visibility_state": "unsegmented"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_isolated_provenance",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_isolated_provenance",
+          "segmentation_diagnostic_segment_isolated_provenance",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "isolated_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_isolated_provenance",
+        "visibility_state": "isolated"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_coupled_lineage",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_coupled_lineage",
+          "segmentation_diagnostic_segment_coupled_lineage",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "coupled_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_coupled_lineage",
+        "visibility_state": "coupled"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_overlap_refinement",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_overlap_refinement",
+          "segmentation_diagnostic_segment_overlap_refinement",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "overlapping_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_overlap_refinement",
+        "visibility_state": "overlapping"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_segment_ambiguous_provider",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "segment_ambiguous_provider",
+          "segmentation_diagnostic_segment_ambiguous_provider",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "ambiguous_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "segment_ambiguous_provider",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_core_isolated",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_core_isolated",
+          "segmentation_diagnostic_relationship_core_isolated",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "isolated_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_core_isolated",
+        "visibility_state": "isolated"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_lineage_coupled",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_lineage_coupled",
+          "segmentation_diagnostic_relationship_lineage_coupled",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "coupled_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_lineage_coupled",
+        "visibility_state": "coupled"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_refinement_overlap",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_refinement_overlap",
+          "segmentation_diagnostic_relationship_refinement_overlap",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "overlapping_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_refinement_overlap",
+        "visibility_state": "overlapping"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_consistency_supported",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_consistency_supported",
+          "segmentation_diagnostic_relationship_consistency_supported",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "consistent_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_consistency_supported",
+        "visibility_state": "consistent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 17,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_scope_inconsistent",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_scope_inconsistent",
+          "segmentation_diagnostic_relationship_scope_inconsistent",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "inconsistent_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_scope_inconsistent",
+        "visibility_state": "inconsistent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 18,
+        "explainability_first": true,
+        "explainability_id": "explainability_segmentation_diagnostic_relationship_runtime_prohibited",
+        "explanation": "Segmentation and scope evidence explains visibility without routing or authorization",
+        "explanation_chain_ids": [
+          "relationship_runtime_prohibited",
+          "segmentation_diagnostic_relationship_runtime_prohibited",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "explanation_type": "prohibited_segmentation_scope_explainability",
+        "recommendation_enabled": false,
+        "routing_enabled": false,
+        "subject_id": "relationship_runtime_prohibited",
+        "visibility_state": "prohibited"
+      }
+    ],
+    "explicit_limitations": [
+      "v4.4 Phase 5 boundary groups do not become routing lanes, dispatch lanes, schedule lanes, or execution paths.",
+      "v4.4 Phase 5 does not authorize or approve orchestration.",
+      "v4.4 Phase 5 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 5 does not execute orchestration.",
+      "v4.4 Phase 5 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 5 does not recommend, rank, score, select, optimize, or decide orchestration.",
+      "v4.4 Phase 5 does not repair, remediate, or mutate runtime or operational state.",
+      "v4.4 Phase 5 models boundary segmentation and scope intelligence only.",
+      "v4.4 Phase 5 scope visibility does not authorize behavior.",
+      "v4.4 Phase 5 segmentation visibility does not route work."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation exists.",
+      "No automatic repair exists.",
+      "No boundary group becomes a routing lane, dispatch lane, schedule lane, or execution path.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution exists.",
+      "No orchestration ranking, scoring, selection, or optimization exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No runtime mutation exists.",
+      "No scope result authorizes orchestration behavior.",
+      "No scope-based authorization exists.",
+      "No segmentation system grants runtime authority.",
+      "No segmentation-based routing exists."
+    ],
+    "identity": {
+      "classification": "governance_safe_descriptive_boundary_segmentation_scope_intelligence",
+      "descriptive_only": true,
+      "deterministic": true,
+      "diagnostics_reference": "v4_4_boundary_segmentation_scope_diagnostics",
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "governance_safe": true,
+      "lineage_reference": "v4_4_boundary_scope_lineage_visibility",
+      "membership_reference": "v4_4_scoped_boundary_membership_visibility",
+      "non_operational": true,
+      "non_operational_reference": "v4_4_boundary_segmentation_scope_non_operational_certification",
+      "operational_mutation_enabled": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "phase_id": "v4_4_boundary_segmentation_scope",
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_reference": "v4_4_boundary_scope_provenance_visibility",
+      "purpose": "deterministic_governance_safe_boundary_segmentation_scope_intelligence_descriptive_only",
+      "replay_safe": true,
+      "rollback_safe": true,
+      "routing_execution_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "schema_version": "v4_4.boundary_segmentation_scope.1",
+      "scope_reference": "v4_4_boundary_scope_visibility",
+      "segment_reference": "v4_4_boundary_segment_visibility",
+      "segmentation_scope_id": "v4_4_boundary_segmentation_scope_intelligence",
+      "source_cross_boundary_consistency_reference": "v4_4_cross_boundary_consistency",
+      "source_foundation_reference": "v4_4_boundary_intelligence_foundations"
+    },
+    "lineage_visibility": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_hash_references": [
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_conflict_drift_hash_reference",
+        "v4_4_boundary_inheritance_hash_reference",
+        "v4_4_boundary_intelligence_hash_reference",
+        "v4_4_cross_boundary_consistency_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_scope_lineage_visibility",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations",
+        "v4_4_boundary_segmentation_scope",
+        "v4_4_cross_boundary_consistency"
+      ],
+      "lineage_state": "scope_lineage_visible",
+      "lineage_visible": true,
+      "operational_mutation_enabled": false,
+      "segment_reference_ids": [
+        "segment_ambiguous_provider",
+        "segment_coupled_lineage",
+        "segment_governance_core",
+        "segment_isolated_provenance",
+        "segment_overlap_refinement",
+        "segment_unsegmented_external_runtime"
+      ]
+    },
+    "membership_records": [
+      {
+        "boundary_id": "boundary_foundation",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "scope_governance_visible",
+          "segment_governance_core"
+        ],
+        "fail_visible": false,
+        "membership_id": "membership_foundation_scoped",
+        "membership_reason": "scoped scoped membership is visible and non-routing",
+        "membership_state": "scoped",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_governance_visible",
+        "segment_id": "segment_governance_core"
+      },
+      {
+        "boundary_id": "runtime_semantics_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility",
+          "scope_external_runtime_unscoped",
+          "segment_unsegmented_external_runtime"
+        ],
+        "fail_visible": true,
+        "membership_id": "membership_runtime_unscoped",
+        "membership_reason": "unscoped scoped membership is visible and non-routing",
+        "membership_state": "unscoped",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_external_runtime_unscoped",
+        "segment_id": "segment_unsegmented_external_runtime"
+      },
+      {
+        "boundary_id": "cross_boundary_consistency",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "scope_consistency_baseline",
+          "segment_governance_core"
+        ],
+        "fail_visible": false,
+        "membership_id": "membership_consistency_segmented",
+        "membership_reason": "segmented scoped membership is visible and non-routing",
+        "membership_state": "segmented",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_consistency_baseline",
+        "segment_id": "segment_governance_core"
+      },
+      {
+        "boundary_id": "provider_identity_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "provider_identity_visibility",
+          "scope_external_runtime_unscoped",
+          "segment_ambiguous_provider"
+        ],
+        "fail_visible": true,
+        "membership_id": "membership_provider_ambiguous",
+        "membership_reason": "ambiguous scoped membership is visible and non-routing",
+        "membership_state": "ambiguous",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_external_runtime_unscoped",
+        "segment_id": "segment_ambiguous_provider"
+      },
+      {
+        "boundary_id": "drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "drift_visibility",
+          "scope_inconsistent_authority",
+          "segment_overlap_refinement"
+        ],
+        "fail_visible": true,
+        "membership_id": "membership_overlap_conflicting",
+        "membership_reason": "conflicting scoped membership is visible and non-routing",
+        "membership_state": "conflicting",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_inconsistent_authority",
+        "segment_id": "segment_overlap_refinement"
+      },
+      {
+        "boundary_id": "lineage_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_enabled": false,
+        "evidence_reference_ids": [
+          "lineage_visibility",
+          "scope_degraded_lineage",
+          "segment_coupled_lineage"
+        ],
+        "fail_visible": true,
+        "membership_id": "membership_lineage_blocked",
+        "membership_reason": "blocked scoped membership is visible and non-routing",
+        "membership_state": "blocked",
+        "non_authoritative": true,
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "scope_id": "scope_degraded_lineage",
+        "segment_id": "segment_coupled_lineage"
+      }
+    ],
+    "non_authoritative": true,
+    "non_dispatching": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_remediating": true,
+    "non_routing": true,
+    "non_scheduling": true,
+    "operational_mutation_enabled": false,
+    "optimization_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_runtime_behavior_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_visibility": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_id": "v4_4_boundary_scope_provenance_visibility",
+      "provenance_state": "scope_provenance_visible",
+      "provenance_visible": true,
+      "scope_reference_ids": [
+        "scope_consistency_baseline",
+        "scope_degraded_lineage",
+        "scope_external_runtime_unscoped",
+        "scope_governance_visible",
+        "scope_inconsistent_authority",
+        "scope_stale_source"
+      ],
+      "source_hash_references": [
+        "v4_4_boundary_conflict_drift.deterministic_report_hash",
+        "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+        "v4_4_cross_boundary_consistency.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations",
+        "v4_4_boundary_segmentation_scope",
+        "v4_4_cross_boundary_consistency"
+      ]
+    },
+    "ranking_enabled": false,
+    "relationship_records": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_enabled": false,
+        "fail_visible": false,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "boundary_foundation",
+          "provenance_visibility"
+        ],
+        "relationship_id": "relationship_core_isolated",
+        "relationship_reason": "isolated segment relationship remains descriptive and non-operational",
+        "relationship_state": "isolated",
+        "relationship_type": "segment_isolation_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_governance_core",
+        "target_segment_id": "segment_isolated_provenance"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_enabled": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "continuity_visibility",
+          "lineage_visibility"
+        ],
+        "relationship_id": "relationship_lineage_coupled",
+        "relationship_reason": "coupled segment relationship remains descriptive and non-operational",
+        "relationship_state": "coupled",
+        "relationship_type": "segment_coupling_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_coupled_lineage",
+        "target_segment_id": "segment_governance_core"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_enabled": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "drift_visibility",
+          "inheritance_refinement"
+        ],
+        "relationship_id": "relationship_refinement_overlap",
+        "relationship_reason": "overlapping segment relationship remains descriptive and non-operational",
+        "relationship_state": "overlapping",
+        "relationship_type": "segment_overlap_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_overlap_refinement",
+        "target_segment_id": "segment_governance_core"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_enabled": false,
+        "fail_visible": false,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "cross_boundary_consistency"
+        ],
+        "relationship_id": "relationship_consistency_supported",
+        "relationship_reason": "consistent segment relationship remains descriptive and non-operational",
+        "relationship_state": "consistent",
+        "relationship_type": "segment_continuity_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_governance_core",
+        "target_segment_id": "segment_coupled_lineage"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_enabled": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "runtime_semantics_visibility"
+        ],
+        "relationship_id": "relationship_scope_inconsistent",
+        "relationship_reason": "inconsistent segment relationship remains descriptive and non-operational",
+        "relationship_state": "inconsistent",
+        "relationship_type": "scoped_membership_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_unsegmented_external_runtime",
+        "target_segment_id": "segment_governance_core"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_enabled": false,
+        "fail_visible": true,
+        "non_authoritative": true,
+        "relationship_boundary_ids": [
+          "runtime_authority_visibility"
+        ],
+        "relationship_id": "relationship_runtime_prohibited",
+        "relationship_reason": "prohibited segment relationship remains descriptive and non-operational",
+        "relationship_state": "prohibited",
+        "relationship_type": "segment_overlap_visibility",
+        "routing_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_enabled": false,
+        "source_segment_id": "segment_unsegmented_external_runtime",
+        "target_segment_id": "segment_overlap_refinement"
+      }
+    ],
+    "routing_execution_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scheduling_execution_enabled": false,
+    "scope_based_authorization_enabled": false,
+    "scope_classifications": [
+      {
+        "classification_id": "classification_scope_governance_visible",
+        "classification_reason": "scoped scope classification remains descriptive-only",
+        "classification_type": "scoped_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "scoped",
+        "subject_id": "scope_governance_visible"
+      },
+      {
+        "classification_id": "classification_scope_external_runtime_unscoped",
+        "classification_reason": "unscoped scope classification remains descriptive-only",
+        "classification_type": "unscoped_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "unscoped",
+        "subject_id": "scope_external_runtime_unscoped"
+      },
+      {
+        "classification_id": "classification_scope_consistency_baseline",
+        "classification_reason": "consistent scope classification remains descriptive-only",
+        "classification_type": "consistent_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "consistent",
+        "subject_id": "scope_consistency_baseline"
+      },
+      {
+        "classification_id": "classification_scope_inconsistent_authority",
+        "classification_reason": "inconsistent scope classification remains descriptive-only",
+        "classification_type": "inconsistent_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "inconsistent",
+        "subject_id": "scope_inconsistent_authority"
+      },
+      {
+        "classification_id": "classification_scope_stale_source",
+        "classification_reason": "stale scope classification remains descriptive-only",
+        "classification_type": "stale_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "stale",
+        "subject_id": "scope_stale_source"
+      },
+      {
+        "classification_id": "classification_scope_degraded_lineage",
+        "classification_reason": "degraded scope classification remains descriptive-only",
+        "classification_type": "degraded_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "degraded",
+        "subject_id": "scope_degraded_lineage"
+      },
+      {
+        "classification_id": "classification_scope_governance_visible",
+        "classification_reason": "scoped scope classification remains descriptive-only",
+        "classification_type": "scoped_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "scoped",
+        "subject_id": "scope_governance_visible"
+      },
+      {
+        "classification_id": "classification_scope_external_runtime_unscoped",
+        "classification_reason": "unscoped scope classification remains descriptive-only",
+        "classification_type": "unscoped_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "unscoped",
+        "subject_id": "scope_external_runtime_unscoped"
+      },
+      {
+        "classification_id": "classification_scope_consistency_baseline",
+        "classification_reason": "segmented scope classification remains descriptive-only",
+        "classification_type": "segmented_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "segmented",
+        "subject_id": "scope_consistency_baseline"
+      },
+      {
+        "classification_id": "classification_scope_external_runtime_unscoped",
+        "classification_reason": "ambiguous scope classification remains descriptive-only",
+        "classification_type": "ambiguous_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "ambiguous",
+        "subject_id": "scope_external_runtime_unscoped"
+      },
+      {
+        "classification_id": "classification_scope_inconsistent_authority",
+        "classification_reason": "conflicting scope classification remains descriptive-only",
+        "classification_type": "conflicting_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "conflicting",
+        "subject_id": "scope_inconsistent_authority"
+      },
+      {
+        "classification_id": "classification_scope_degraded_lineage",
+        "classification_reason": "blocked scope classification remains descriptive-only",
+        "classification_type": "blocked_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "blocked",
+        "subject_id": "scope_degraded_lineage"
+      },
+      {
+        "classification_id": "classification_continuity_scope_consistent",
+        "classification_reason": "consistent scope classification remains descriptive-only",
+        "classification_type": "consistent_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "consistent",
+        "subject_id": "continuity_scope_consistent"
+      },
+      {
+        "classification_id": "classification_continuity_scope_stale",
+        "classification_reason": "stale scope classification remains descriptive-only",
+        "classification_type": "stale_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "stale",
+        "subject_id": "continuity_scope_stale"
+      },
+      {
+        "classification_id": "classification_continuity_scope_degraded",
+        "classification_reason": "degraded scope classification remains descriptive-only",
+        "classification_type": "degraded_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "degraded",
+        "subject_id": "continuity_scope_degraded"
+      },
+      {
+        "classification_id": "classification_continuity_scope_unsupported",
+        "classification_reason": "unsupported scope classification remains descriptive-only",
+        "classification_type": "unsupported_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "scope_authorization_enabled": false,
+        "scope_state": "unsupported",
+        "subject_id": "continuity_scope_unsupported"
+      }
+    ],
+    "scope_diagnostics": [
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "scope_diagnostic_scope_governance_visible",
+        "diagnostic_message": "scoped scope diagnostic remains visible without authorization",
+        "diagnostic_type": "scoped_scope_diagnostic",
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "scope_governance_visible",
+          "segment_governance_core",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "scoped",
+        "severity": "info",
+        "subject_id": "scope_governance_visible"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "scope_diagnostic_scope_external_runtime_unscoped",
+        "diagnostic_message": "unscoped scope diagnostic remains visible without authorization",
+        "diagnostic_type": "unscoped_scope_diagnostic",
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility",
+          "scope_external_runtime_unscoped",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "unscoped",
+        "severity": "warning",
+        "subject_id": "scope_external_runtime_unscoped"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "scope_diagnostic_scope_consistency_baseline",
+        "diagnostic_message": "consistent scope diagnostic remains visible without authorization",
+        "diagnostic_type": "consistent_scope_diagnostic",
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "scope_consistency_baseline",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "consistent",
+        "severity": "info",
+        "subject_id": "scope_consistency_baseline"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "scope_diagnostic_scope_inconsistent_authority",
+        "diagnostic_message": "inconsistent scope diagnostic remains visible without authorization",
+        "diagnostic_type": "inconsistent_scope_diagnostic",
+        "evidence_reference_ids": [
+          "runtime_authority_visibility",
+          "scope_inconsistent_authority",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "inconsistent",
+        "severity": "warning",
+        "subject_id": "scope_inconsistent_authority"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "scope_diagnostic_scope_stale_source",
+        "diagnostic_message": "stale scope diagnostic remains visible without authorization",
+        "diagnostic_type": "stale_scope_diagnostic",
+        "evidence_reference_ids": [
+          "scope_stale_source",
+          "stale_source_visibility",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "stale",
+        "severity": "warning",
+        "subject_id": "scope_stale_source"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "scope_diagnostic_scope_degraded_lineage",
+        "diagnostic_message": "degraded scope diagnostic remains visible without authorization",
+        "diagnostic_type": "degraded_scope_diagnostic",
+        "evidence_reference_ids": [
+          "continuity_visibility",
+          "lineage_visibility",
+          "scope_degraded_lineage",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "scope_based_authorization_enabled": false,
+        "scope_state": "degraded",
+        "severity": "warning",
+        "subject_id": "scope_degraded_lineage"
+      }
+    ],
+    "scope_records": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "scope_governance_visible",
+          "segment_governance_core",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_governance_visible",
+        "scope_name": "Governance visibility scope",
+        "scope_reason": "scoped scope visibility remains descriptive and non-authorizing",
+        "scope_state": "scoped",
+        "scoped_governance_ids": [
+          "boundary_foundation",
+          "segment_governance_core"
+        ]
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility",
+          "scope_external_runtime_unscoped",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_external_runtime_unscoped",
+        "scope_name": "External runtime scope",
+        "scope_reason": "unscoped scope visibility remains descriptive and non-authorizing",
+        "scope_state": "unscoped",
+        "scoped_governance_ids": [
+          "runtime_semantics_visibility"
+        ]
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "scope_consistency_baseline",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_consistency_baseline",
+        "scope_name": "Consistency baseline scope",
+        "scope_reason": "consistent scope visibility remains descriptive and non-authorizing",
+        "scope_state": "consistent",
+        "scoped_governance_ids": [
+          "cross_boundary_consistency"
+        ]
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "runtime_authority_visibility",
+          "scope_inconsistent_authority",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_inconsistent_authority",
+        "scope_name": "Authority mismatch scope",
+        "scope_reason": "inconsistent scope visibility remains descriptive and non-authorizing",
+        "scope_state": "inconsistent",
+        "scoped_governance_ids": [
+          "runtime_authority_visibility"
+        ]
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "scope_stale_source",
+          "stale_source_visibility",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_stale_source",
+        "scope_name": "Stale source scope",
+        "scope_reason": "stale scope visibility remains descriptive and non-authorizing",
+        "scope_state": "stale",
+        "scoped_governance_ids": [
+          "stale_source_visibility"
+        ]
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "continuity_visibility",
+          "lineage_visibility",
+          "scope_degraded_lineage",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "scope_based_authorization_enabled": false,
+        "scope_id": "scope_degraded_lineage",
+        "scope_name": "Degraded lineage scope",
+        "scope_reason": "degraded scope visibility remains descriptive and non-authorizing",
+        "scope_state": "degraded",
+        "scoped_governance_ids": [
+          "continuity_visibility",
+          "lineage_visibility"
+        ]
+      }
+    ],
+    "scoring_enabled": false,
+    "segment_records": [
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "cross_boundary_consistency",
+          "segment_governance_core",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": false,
+        "grouped_boundary_ids": [
+          "boundary_foundation",
+          "cross_boundary_consistency"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_governance_core",
+        "segment_name": "Governance core",
+        "segment_state": "segmented",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "segmented segment visibility remains descriptive and non-routing"
+      },
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility",
+          "segment_unsegmented_external_runtime",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "grouped_boundary_ids": [
+          "runtime_semantics_visibility"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_unsegmented_external_runtime",
+        "segment_name": "External runtime boundary",
+        "segment_state": "unsegmented",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "unsegmented segment visibility remains descriptive and non-routing"
+      },
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "provenance_visibility",
+          "segment_isolated_provenance",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": false,
+        "grouped_boundary_ids": [
+          "provenance_visibility"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_isolated_provenance",
+        "segment_name": "Provenance isolation",
+        "segment_state": "isolated",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "isolated segment visibility remains descriptive and non-routing"
+      },
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "continuity_visibility",
+          "lineage_visibility",
+          "segment_coupled_lineage",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "grouped_boundary_ids": [
+          "continuity_visibility",
+          "lineage_visibility"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_coupled_lineage",
+        "segment_name": "Lineage coupling",
+        "segment_state": "coupled",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "coupled segment visibility remains descriptive and non-routing"
+      },
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "drift_visibility",
+          "inheritance_refinement",
+          "segment_overlap_refinement",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "grouped_boundary_ids": [
+          "drift_visibility",
+          "inheritance_refinement"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_overlap_refinement",
+        "segment_name": "Refinement overlap",
+        "segment_state": "overlapping",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "overlapping segment visibility remains descriptive and non-routing"
+      },
+      {
+        "boundary_group_execution_lane_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_execution_enabled": false,
+        "evidence_reference_ids": [
+          "provider_identity_visibility",
+          "segment_ambiguous_provider",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "grouped_boundary_ids": [
+          "provider_identity_visibility"
+        ],
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "scheduling_execution_enabled": false,
+        "segment_id": "segment_ambiguous_provider",
+        "segment_name": "Provider ambiguity",
+        "segment_state": "ambiguous",
+        "segmentation_based_routing_enabled": false,
+        "segmentation_reason": "ambiguous segment visibility remains descriptive and non-routing"
+      }
+    ],
+    "segmentation_based_routing_enabled": false,
+    "segmentation_classifications": [
+      {
+        "classification_id": "classification_segment_governance_core",
+        "classification_reason": "segmented segmentation classification remains descriptive-only",
+        "classification_type": "segmented_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "segmented",
+        "subject_id": "segment_governance_core"
+      },
+      {
+        "classification_id": "classification_segment_unsegmented_external_runtime",
+        "classification_reason": "unsegmented segmentation classification remains descriptive-only",
+        "classification_type": "unsegmented_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "unsegmented",
+        "subject_id": "segment_unsegmented_external_runtime"
+      },
+      {
+        "classification_id": "classification_segment_isolated_provenance",
+        "classification_reason": "isolated segmentation classification remains descriptive-only",
+        "classification_type": "isolated_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "isolated",
+        "subject_id": "segment_isolated_provenance"
+      },
+      {
+        "classification_id": "classification_segment_coupled_lineage",
+        "classification_reason": "coupled segmentation classification remains descriptive-only",
+        "classification_type": "coupled_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "coupled",
+        "subject_id": "segment_coupled_lineage"
+      },
+      {
+        "classification_id": "classification_segment_overlap_refinement",
+        "classification_reason": "overlapping segmentation classification remains descriptive-only",
+        "classification_type": "overlapping_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "overlapping",
+        "subject_id": "segment_overlap_refinement"
+      },
+      {
+        "classification_id": "classification_segment_ambiguous_provider",
+        "classification_reason": "ambiguous segmentation classification remains descriptive-only",
+        "classification_type": "ambiguous_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "ambiguous",
+        "subject_id": "segment_ambiguous_provider"
+      },
+      {
+        "classification_id": "classification_relationship_core_isolated",
+        "classification_reason": "isolated segmentation classification remains descriptive-only",
+        "classification_type": "isolated_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "isolated",
+        "subject_id": "relationship_core_isolated"
+      },
+      {
+        "classification_id": "classification_relationship_lineage_coupled",
+        "classification_reason": "coupled segmentation classification remains descriptive-only",
+        "classification_type": "coupled_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "coupled",
+        "subject_id": "relationship_lineage_coupled"
+      },
+      {
+        "classification_id": "classification_relationship_refinement_overlap",
+        "classification_reason": "overlapping segmentation classification remains descriptive-only",
+        "classification_type": "overlapping_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "overlapping",
+        "subject_id": "relationship_refinement_overlap"
+      },
+      {
+        "classification_id": "classification_relationship_consistency_supported",
+        "classification_reason": "consistent segmentation classification remains descriptive-only",
+        "classification_type": "consistent_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "consistent",
+        "subject_id": "relationship_consistency_supported"
+      },
+      {
+        "classification_id": "classification_relationship_scope_inconsistent",
+        "classification_reason": "inconsistent segmentation classification remains descriptive-only",
+        "classification_type": "inconsistent_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "inconsistent",
+        "subject_id": "relationship_scope_inconsistent"
+      },
+      {
+        "classification_id": "classification_relationship_runtime_prohibited",
+        "classification_reason": "prohibited segmentation classification remains descriptive-only",
+        "classification_type": "prohibited_segmentation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "non_authoritative": true,
+        "routing_authority": false,
+        "segmentation_enforcement_enabled": false,
+        "segmentation_state": "prohibited",
+        "subject_id": "relationship_runtime_prohibited"
+      }
+    ],
+    "segmentation_diagnostics": [
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "segmentation_diagnostic_segment_governance_core",
+        "diagnostic_message": "segmented segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "segmented_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "cross_boundary_consistency",
+          "segment_governance_core",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "segmented",
+        "severity": "info",
+        "subject_id": "segment_governance_core"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "segmentation_diagnostic_segment_unsegmented_external_runtime",
+        "diagnostic_message": "unsegmented segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "unsegmented_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility",
+          "segment_unsegmented_external_runtime",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "unsegmented",
+        "severity": "warning",
+        "subject_id": "segment_unsegmented_external_runtime"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "segmentation_diagnostic_segment_isolated_provenance",
+        "diagnostic_message": "isolated segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "isolated_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "provenance_visibility",
+          "segment_isolated_provenance",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "isolated",
+        "severity": "info",
+        "subject_id": "segment_isolated_provenance"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "segmentation_diagnostic_segment_coupled_lineage",
+        "diagnostic_message": "coupled segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "coupled_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "continuity_visibility",
+          "lineage_visibility",
+          "segment_coupled_lineage",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "coupled",
+        "severity": "warning",
+        "subject_id": "segment_coupled_lineage"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "segmentation_diagnostic_segment_overlap_refinement",
+        "diagnostic_message": "overlapping segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "overlapping_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "drift_visibility",
+          "inheritance_refinement",
+          "segment_overlap_refinement",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "overlapping",
+        "severity": "warning",
+        "subject_id": "segment_overlap_refinement"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "segmentation_diagnostic_segment_ambiguous_provider",
+        "diagnostic_message": "ambiguous segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "ambiguous_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "provider_identity_visibility",
+          "segment_ambiguous_provider",
+          "v4_4_cross_boundary_consistency_report"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "ambiguous",
+        "severity": "warning",
+        "subject_id": "segment_ambiguous_provider"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "segmentation_diagnostic_relationship_core_isolated",
+        "diagnostic_message": "isolated segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "isolated_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "boundary_foundation",
+          "provenance_visibility"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "isolated",
+        "severity": "info",
+        "subject_id": "relationship_core_isolated"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "segmentation_diagnostic_relationship_lineage_coupled",
+        "diagnostic_message": "coupled segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "coupled_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "continuity_visibility",
+          "lineage_visibility"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "coupled",
+        "severity": "warning",
+        "subject_id": "relationship_lineage_coupled"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "segmentation_diagnostic_relationship_refinement_overlap",
+        "diagnostic_message": "overlapping segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "overlapping_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "drift_visibility",
+          "inheritance_refinement"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "overlapping",
+        "severity": "warning",
+        "subject_id": "relationship_refinement_overlap"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_id": "segmentation_diagnostic_relationship_consistency_supported",
+        "diagnostic_message": "consistent segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "consistent_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "cross_boundary_consistency"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "consistent",
+        "severity": "info",
+        "subject_id": "relationship_consistency_supported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_id": "segmentation_diagnostic_relationship_scope_inconsistent",
+        "diagnostic_message": "inconsistent segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "inconsistent_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "runtime_semantics_visibility"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "inconsistent",
+        "severity": "warning",
+        "subject_id": "relationship_scope_inconsistent"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "diagnostic_id": "segmentation_diagnostic_relationship_runtime_prohibited",
+        "diagnostic_message": "prohibited segmentation diagnostic remains visible without routing",
+        "diagnostic_type": "prohibited_segmentation_diagnostic",
+        "evidence_reference_ids": [
+          "runtime_authority_visibility"
+        ],
+        "fail_visible": true,
+        "segmentation_based_routing_enabled": false,
+        "segmentation_state": "prohibited",
+        "severity": "prohibited",
+        "subject_id": "relationship_runtime_prohibited"
+      }
+    ],
+    "selection_enabled": false,
+    "sequencing_execution_enabled": false,
+    "traversal_execution_enabled": false
+  },
+  "degraded_scope_visibility": {
+    "continuity_count": 4,
+    "continuity_ids": [
+      "continuity_scope_consistent",
+      "continuity_scope_degraded",
+      "continuity_scope_stale",
+      "continuity_scope_unsupported"
+    ],
+    "degraded_count": 1,
+    "descriptive_only": true,
+    "fail_visible": true,
+    "mutation_enabled_count": 0,
+    "stale_count": 1,
+    "state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 1,
+      "coupled": 0,
+      "degraded": 1,
+      "inconsistent": 0,
+      "isolated": 0,
+      "overlapping": 0,
+      "prohibited": 0,
+      "scoped": 0,
+      "segmented": 0,
+      "stale": 1,
+      "unscoped": 0,
+      "unsegmented": 0,
+      "unsupported": 1
+    }
+  },
+  "deterministic_hash_evidence": {
+    "continuity_hashes": {
+      "continuity_scope_consistent": "e698a686f55b8a62e02078d9f2e02f81c5d0fbeabfbef204ad97e108a0a639d9",
+      "continuity_scope_degraded": "69f9aaba6ae70e9a1358e303e51baaab31ae7c8dc6b59003b94baa51eaa4ec1a",
+      "continuity_scope_stale": "6da76b84d99927956f83de71505d3245efca98ea63cb02a71620094a71fa45f4",
+      "continuity_scope_unsupported": "22156e0ae3732267506506fac6bd6b9d3b3e0a3a80c6cb5cae8840fe2dad7e97"
+    },
+    "evidence_metadata_hash": "057915ae02802abcad188f923ecb3ff4058c8350ee094e20da847e691e857221",
+    "explainability_hashes": {
+      "explainability_scope_diagnostic_scope_consistency_baseline": "f9ab4638e151ded6d4f23b5dfc95888646e31bc0f7d9c0b07cf4b596f3f54ec5",
+      "explainability_scope_diagnostic_scope_degraded_lineage": "710602039164f2cb404a9204895aee03055c96486589197ed3a48df33ffb6630",
+      "explainability_scope_diagnostic_scope_external_runtime_unscoped": "78a40d18103f476fb0096941cfac573a7c9cc7c2d57c003b7750a80928383946",
+      "explainability_scope_diagnostic_scope_governance_visible": "3b1881155389fe17c37822774e9b5b53dc5c4391d23ff5c6f7d4294ae7c08407",
+      "explainability_scope_diagnostic_scope_inconsistent_authority": "d483fdf055245dd4b8bb896ff6afcdd3e5150e70334fdaf5469007e55c8d275e",
+      "explainability_scope_diagnostic_scope_stale_source": "c587eb2c0fa76b3dfa1eda6cd0a9ca6c9c8ed8d6a96dc1bea009d5529ed522e3",
+      "explainability_segmentation_diagnostic_relationship_consistency_supported": "faf1d5020b0057b8452f0b59f6adcb3966041d24e28f01b5c0c88821f6b26202",
+      "explainability_segmentation_diagnostic_relationship_core_isolated": "afffbb67cc4860db7f2f2a697cdb5ee085198abbcfb3324a5035e4fecbec85b1",
+      "explainability_segmentation_diagnostic_relationship_lineage_coupled": "5624d99de592196264dc2827e00abd8ffce91a0f382d431c3d656a67be5f57c6",
+      "explainability_segmentation_diagnostic_relationship_refinement_overlap": "d433a677c97c42b0cbf6e0a7e404969422077a18f2906ec460b61d3582736cd7",
+      "explainability_segmentation_diagnostic_relationship_runtime_prohibited": "bef5d69bdde477d1fd26bb42c16fbdadedce913bb52b1bef8d99e95e9f6435c4",
+      "explainability_segmentation_diagnostic_relationship_scope_inconsistent": "18afa37ff5e55209e455ef66a97fb83bb9101789206607e99d7be80c5431d021",
+      "explainability_segmentation_diagnostic_segment_ambiguous_provider": "34bb344972a963e5710db0613fd6eacf2766c08e0426d30b4fdd70d2146b7a17",
+      "explainability_segmentation_diagnostic_segment_coupled_lineage": "6783f1c3bc76f7700d34052ab3ea6f75265f077f26f65be3a1c6bb6cf7466331",
+      "explainability_segmentation_diagnostic_segment_governance_core": "807e734a1a60fbb17673115f79f3b82efe604f09f0df615a0122a7dcc5f172e6",
+      "explainability_segmentation_diagnostic_segment_isolated_provenance": "0fad84d5d1ffb58e45a2fd265e3ad0247dcca39d007bb67500b99b56aaed19f0",
+      "explainability_segmentation_diagnostic_segment_overlap_refinement": "eba86f23678ef259830339b7607a2d3f86a99af2a125b805b58415ede3e858ca",
+      "explainability_segmentation_diagnostic_segment_unsegmented_external_runtime": "88e30191346b1acc5a31e965dcb2cb9d1b981040c51d40f8449cb304305626f9"
+    },
+    "identity_hash": "85407e290e2ec4446523fb914b0e03d6fcc04fd96eb20780e991c0766619949f",
+    "intelligence_hash": "dc8a5dab214643446cb47b65ac5cb898027e82b7b241175632636d224e99628a",
+    "lineage_hash": "55bbd4d733b6b9e4db3a70acd7ba111ebbc9b4d1bbff4e26ffc96383f1779d63",
+    "membership_record_hashes": {
+      "membership_consistency_segmented": "03b66ca9d8f6785a7b5796da5c14e99e0db2d31c3e4c90a3cf1a4ef10eb8b923",
+      "membership_foundation_scoped": "76640e7f06d7efd949cf646f361acc3a371ec1f25bc9d4e2f1a2fab1a0416a61",
+      "membership_lineage_blocked": "a625ca501beda88d96a1f30e3b497a81feed10fedddb6757dc1fd52d96a1d64b",
+      "membership_overlap_conflicting": "91b87697c461e5bdf80a979aea1bf4756807827cdde6aa460bc4bc07cf00476c",
+      "membership_provider_ambiguous": "a3449605bfaeacc07db410a201474b7d0bf8878b737b939c02783a6fcfa9159b",
+      "membership_runtime_unscoped": "c2b4e14efe0c10b5883a7c39005f67dd5839801c7f78fe6a72bc9899f8c4c701"
+    },
+    "provenance_hash": "d026a3637d16ced6367c965c2d43c311077ee6399bd498263409ca6be5565757",
+    "relationship_record_hashes": {
+      "relationship_consistency_supported": "4e3bfb24ceaa9ecbb68cf43bf378b18069515dcf34408be1c327f284b5421510",
+      "relationship_core_isolated": "155667ec80f941cd4168773c1ae4a6655e40166ac3aa266edf181fd138e12a6a",
+      "relationship_lineage_coupled": "77d905a7e298c8bacd0e99d83478025b9d66a9b6c626e2cd7b2c962b0592693c",
+      "relationship_refinement_overlap": "2f254c2d7d87a7d29d239ab5d0d8768d9fa8c5eda24f60443b3174eaad6a20b7",
+      "relationship_runtime_prohibited": "054058e566c072253ee83ab9023753aac60d5c10faba001111e1f2e2d87d6bf6",
+      "relationship_scope_inconsistent": "29bbce3ffe65b6f8a6751b14cdee36bc0fab4a79f0bbecdf722d96bd59d90213"
+    },
+    "scope_diagnostic_hashes": {
+      "scope_diagnostic_scope_consistency_baseline": "9b8be2705fd399a5a2f4ef275a76f1a1ed6b486c29a3e9b50890180916dcd485",
+      "scope_diagnostic_scope_degraded_lineage": "3b7b1d495d2647b102d7b9b10d0c981650b35cdac13f4f37925b9b17a7ec86e5",
+      "scope_diagnostic_scope_external_runtime_unscoped": "5e51196eacec78d3f8a90aaed7e2fd74eac4e2bb765bbc26b4f10e2a5aef7826",
+      "scope_diagnostic_scope_governance_visible": "a349c008a607715606eec4628ced3d21108300bd1cb5df168b103d96a5d5be94",
+      "scope_diagnostic_scope_inconsistent_authority": "1baaa8f57393508b97f8fd32cba5a6d80eae872a8f3f34d293fba46fee3865fd",
+      "scope_diagnostic_scope_stale_source": "cdf273bdd569cce73e1902ce36d42a226bd8c417482a47cccd8d333b843082a9"
+    },
+    "scope_record_hashes": {
+      "scope_consistency_baseline": "854857e767229cd61052808f1739893eb783f840e0a6084e9d8d1f7307c0896d",
+      "scope_degraded_lineage": "3a0689451ee53562b825de726f8e5c84d032095a30a179694a929187f5282ddc",
+      "scope_external_runtime_unscoped": "8d14aa79ca57c4b9623bcbc0cf8314cdee64279c426fb935fa9e0f6838a68446",
+      "scope_governance_visible": "5d784edffc08fa0e68e7c2befe9fd89ce49faab81dc73b5a6afcd10c59c9b29b",
+      "scope_inconsistent_authority": "13bd63b474c7b65defa26c89a153cb6ce447ddd07d5804cc2e574b44fc74763a",
+      "scope_stale_source": "12d417d25b7037dd38276b0ed3f1533327fd217d664f20bad34ae63bd3576bd3"
+    },
+    "segment_record_hashes": {
+      "segment_ambiguous_provider": "843a39acc1cf18c31bf9f092eaf454252e290b97641ad7bf5ec8682ce37b3190",
+      "segment_coupled_lineage": "71fc5123c2ff8b20e019320c996f86afb50f7961393dd3170475f6240dd1787e",
+      "segment_governance_core": "061bb1eef9ac6cb129ef89100318f00aa932cbff8e5656f64fb4ad7e0269dce0",
+      "segment_isolated_provenance": "249473d805df3e4b5b71416aecf282019df6c9974e1cff464c33bcf5fc85297e",
+      "segment_overlap_refinement": "5dac90eae3503411d85cb1462a3e6c4642ef497d9bfe6e3a5c1853402744dd29",
+      "segment_unsegmented_external_runtime": "c88730daf329f4f8a3074d9a92aa19c615b84b466da8a6e70dd38b04b5650c5d"
+    },
+    "segmentation_diagnostic_hashes": {
+      "segmentation_diagnostic_relationship_consistency_supported": "e6d3429fe5f9529458193e838a6b1083757c489785dc8bf3f85deb18f7400c4a",
+      "segmentation_diagnostic_relationship_core_isolated": "d820fb5566d647fa49bc3ca56184f72fabc8a5dff9dd436519a53ca5965a9477",
+      "segmentation_diagnostic_relationship_lineage_coupled": "098f0ea89167f581a6fde278ebbc1a973ccdbb2845ebaf4720710b24df87e591",
+      "segmentation_diagnostic_relationship_refinement_overlap": "7439eee79af4b11bf729a79833b111574dcb15a538329c53832db75b88bd432e",
+      "segmentation_diagnostic_relationship_runtime_prohibited": "e92de2fe8d15cb58c5e6f534224bd1216b61f9a6be541c0e67adad0d086a606c",
+      "segmentation_diagnostic_relationship_scope_inconsistent": "8dce99a55b4f3d61bbaa949c8a1b01f6ff3f3fdc6a3034777ecbd6e8428b3843",
+      "segmentation_diagnostic_segment_ambiguous_provider": "9eb9cde793e944d95f3a5d9419889363cab04ee118d2f9e289d8e02d62302631",
+      "segmentation_diagnostic_segment_coupled_lineage": "9bece3383363a7114b605f2725da355480f2bda09f8263e7cd370a6ba8cfdf72",
+      "segmentation_diagnostic_segment_governance_core": "6d665e5ae42d0b8298a100555269eda52e313815197784f14a86e15e21ed7cec",
+      "segmentation_diagnostic_segment_isolated_provenance": "568abbe6bbd294c66e90a6c1460c437eac357e4a6af296d68e2f3e6d0f6ed4de",
+      "segmentation_diagnostic_segment_overlap_refinement": "862c8d0b39a00a3e16d863e662b420ec05d0fbaa62e2aba48ed0fca65393d631",
+      "segmentation_diagnostic_segment_unsegmented_external_runtime": "652eed4836926615c07c562d0083b53267594c718f44c6967d39206ab5e5e90f"
+    }
+  },
+  "deterministic_report_hash": "2e462b097e16836680e8d2781d98663ecc7f104fe59d985b1420629b347440a0",
+  "deterministic_serialization_evidence": {
+    "intelligence_hash": "dc8a5dab214643446cb47b65ac5cb898027e82b7b241175632636d224e99628a",
+    "scope_hashing_stable": true,
+    "scope_serialization_stable": true,
+    "segmentation_hashing_stable": true,
+    "segmentation_serialization_stable": true,
+    "serialization_length": 60493
+  },
+  "fail_visible_segmentation_visibility": [
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "segment_unsegmented_external_runtime",
+      "reference_ids": [
+        "runtime_semantics_visibility"
+      ],
+      "visibility_state": "unsegmented"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "segment_coupled_lineage",
+      "reference_ids": [
+        "continuity_visibility",
+        "lineage_visibility"
+      ],
+      "visibility_state": "coupled"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "segment_overlap_refinement",
+      "reference_ids": [
+        "drift_visibility",
+        "inheritance_refinement"
+      ],
+      "visibility_state": "overlapping"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "segment_ambiguous_provider",
+      "reference_ids": [
+        "provider_identity_visibility"
+      ],
+      "visibility_state": "ambiguous"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "scope_external_runtime_unscoped",
+      "reference_ids": [
+        "runtime_semantics_visibility"
+      ],
+      "visibility_state": "unscoped"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "scope_inconsistent_authority",
+      "reference_ids": [
+        "runtime_authority_visibility"
+      ],
+      "visibility_state": "inconsistent"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "scope_stale_source",
+      "reference_ids": [
+        "stale_source_visibility"
+      ],
+      "visibility_state": "stale"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "scope_degraded_lineage",
+      "reference_ids": [
+        "continuity_visibility",
+        "lineage_visibility"
+      ],
+      "visibility_state": "degraded"
+    }
+  ],
+  "foundation_status": "v4_4_boundary_segmentation_scope_stable",
+  "isolation_coupling_visibility": {
+    "coupled_count": 1,
+    "descriptive_only": true,
+    "dispatch_enabled_count": 0,
+    "isolated_count": 1,
+    "non_authoritative": true,
+    "overlap_count": 1,
+    "relationship_count": 6,
+    "relationship_ids": [
+      "relationship_consistency_supported",
+      "relationship_core_isolated",
+      "relationship_lineage_coupled",
+      "relationship_refinement_overlap",
+      "relationship_runtime_prohibited",
+      "relationship_scope_inconsistent"
+    ],
+    "routing_enabled_count": 0,
+    "runtime_execution_enabled_count": 0,
+    "scheduling_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 1,
+      "coupled": 1,
+      "degraded": 0,
+      "inconsistent": 1,
+      "isolated": 1,
+      "overlapping": 1,
+      "prohibited": 1,
+      "scoped": 0,
+      "segmented": 0,
+      "stale": 0,
+      "unscoped": 0,
+      "unsegmented": 0,
+      "unsupported": 0
+    }
+  },
+  "lineage_visibility_evidence": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_visibility": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_hash_references": [
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_conflict_drift_hash_reference",
+        "v4_4_boundary_inheritance_hash_reference",
+        "v4_4_boundary_intelligence_hash_reference",
+        "v4_4_cross_boundary_consistency_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_scope_lineage_visibility",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations",
+        "v4_4_boundary_segmentation_scope",
+        "v4_4_cross_boundary_consistency"
+      ],
+      "lineage_state": "scope_lineage_visible",
+      "lineage_visible": true,
+      "operational_mutation_enabled": false,
+      "segment_reference_ids": [
+        "segment_ambiguous_provider",
+        "segment_coupled_lineage",
+        "segment_governance_core",
+        "segment_isolated_provenance",
+        "segment_overlap_refinement",
+        "segment_unsegmented_external_runtime"
+      ]
+    },
+    "lineage_visible": true
+  },
+  "non_operational_certification_evidence": {
+    "automatic_remediation_disabled": true,
+    "automatic_repair_disabled": true,
+    "boundary_group_execution_lane_disabled": true,
+    "counters": {
+      "enabled_dispatch_execution_count": 0,
+      "enabled_operational_mutation_count": 0,
+      "enabled_orchestration_approval_count": 0,
+      "enabled_orchestration_authorization_count": 0,
+      "enabled_routing_execution_count": 0,
+      "enabled_runtime_execution_count": 0,
+      "enabled_scheduling_execution_count": 0
+    },
+    "descriptive_only": true,
+    "enabled_flags": {},
+    "non_authoritative": true,
+    "non_dispatching": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_remediating": true,
+    "non_routing": true,
+    "non_scheduling": true,
+    "operational_mutation_disabled": true,
+    "planner_integration_disabled": true,
+    "production_consumption_disabled": true,
+    "runtime_mutation_disabled": true,
+    "scope_based_authorization_disabled": true,
+    "segmentation_based_routing_disabled": true,
+    "valid": true
+  },
+  "overlap_visibility": [
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "relationship_boundary_ids": [
+        "drift_visibility",
+        "inheritance_refinement"
+      ],
+      "relationship_id": "relationship_refinement_overlap",
+      "relationship_state": "overlapping",
+      "source_segment_id": "segment_overlap_refinement",
+      "target_segment_id": "segment_governance_core"
+    }
+  ],
+  "phase_id": "v4_4_boundary_segmentation_scope",
+  "provenance_visibility_evidence": {
+    "hidden_source_inference_used": false,
+    "provenance_visibility": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_id": "v4_4_boundary_scope_provenance_visibility",
+      "provenance_state": "scope_provenance_visible",
+      "provenance_visible": true,
+      "scope_reference_ids": [
+        "scope_consistency_baseline",
+        "scope_degraded_lineage",
+        "scope_external_runtime_unscoped",
+        "scope_governance_visible",
+        "scope_inconsistent_authority",
+        "scope_stale_source"
+      ],
+      "source_hash_references": [
+        "v4_4_boundary_conflict_drift.deterministic_report_hash",
+        "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+        "v4_4_cross_boundary_consistency.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations",
+        "v4_4_boundary_segmentation_scope",
+        "v4_4_cross_boundary_consistency"
+      ]
+    },
+    "provenance_visible": true
+  },
+  "remaining_blockers": [],
+  "remaining_warnings": [],
+  "replay_safe_evidence": {
+    "expected_evidence_count": 24,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 24,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 24,
+    "valid": true
+  },
+  "report_schema_version": "v4_4.boundary_segmentation_scope_report.1",
+  "rollback_safe_evidence": {
+    "expected_evidence_count": 24,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 24,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 24,
+    "valid": true
+  },
+  "scope_diagnostics_visibility": {
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_count": 6,
+    "diagnostic_ids": [
+      "scope_diagnostic_scope_consistency_baseline",
+      "scope_diagnostic_scope_degraded_lineage",
+      "scope_diagnostic_scope_external_runtime_unscoped",
+      "scope_diagnostic_scope_governance_visible",
+      "scope_diagnostic_scope_inconsistent_authority",
+      "scope_diagnostic_scope_stale_source"
+    ],
+    "fail_visible": true,
+    "scope_based_authorization_enabled_count": 0,
+    "severity_counts": {
+      "info": 2,
+      "warning": 4
+    },
+    "state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 1,
+      "coupled": 0,
+      "degraded": 1,
+      "inconsistent": 1,
+      "isolated": 0,
+      "overlapping": 0,
+      "prohibited": 0,
+      "scoped": 1,
+      "segmented": 0,
+      "stale": 1,
+      "unscoped": 1,
+      "unsegmented": 0,
+      "unsupported": 0
+    }
+  },
+  "scope_lineage_visibility": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_hash_references": [
+      "v4_3_continuity_integrity_hash_reference",
+      "v4_4_boundary_conflict_drift_hash_reference",
+      "v4_4_boundary_inheritance_hash_reference",
+      "v4_4_boundary_intelligence_hash_reference",
+      "v4_4_cross_boundary_consistency_hash_reference"
+    ],
+    "lineage_id": "v4_4_boundary_scope_lineage_visibility",
+    "lineage_reference_ids": [
+      "v4_3_orchestration_continuity_and_integrity_certification",
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations",
+      "v4_4_boundary_segmentation_scope",
+      "v4_4_cross_boundary_consistency"
+    ],
+    "lineage_visible": true,
+    "operational_mutation_enabled": false,
+    "segment_reference_ids": [
+      "segment_ambiguous_provider",
+      "segment_coupled_lineage",
+      "segment_governance_core",
+      "segment_isolated_provenance",
+      "segment_overlap_refinement",
+      "segment_unsegmented_external_runtime"
+    ]
+  },
+  "scope_provenance_visibility": {
+    "hidden_source_inference_used": false,
+    "production_consumption_enabled": false,
+    "provenance_id": "v4_4_boundary_scope_provenance_visibility",
+    "provenance_visible": true,
+    "scope_reference_ids": [
+      "scope_consistency_baseline",
+      "scope_degraded_lineage",
+      "scope_external_runtime_unscoped",
+      "scope_governance_visible",
+      "scope_inconsistent_authority",
+      "scope_stale_source"
+    ],
+    "source_hash_references": [
+      "v4_4_boundary_conflict_drift.deterministic_report_hash",
+      "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+      "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+      "v4_4_cross_boundary_consistency.deterministic_report_hash"
+    ],
+    "source_reference_ids": [
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations",
+      "v4_4_boundary_segmentation_scope",
+      "v4_4_cross_boundary_consistency"
+    ]
+  },
+  "scope_visibility": [
+    {
+      "descriptive_only": true,
+      "fail_visible": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_governance_visible",
+      "scope_name": "Governance visibility scope",
+      "scope_state": "scoped",
+      "scoped_governance_ids": [
+        "boundary_foundation",
+        "segment_governance_core"
+      ]
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_external_runtime_unscoped",
+      "scope_name": "External runtime scope",
+      "scope_state": "unscoped",
+      "scoped_governance_ids": [
+        "runtime_semantics_visibility"
+      ]
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_consistency_baseline",
+      "scope_name": "Consistency baseline scope",
+      "scope_state": "consistent",
+      "scoped_governance_ids": [
+        "cross_boundary_consistency"
+      ]
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_inconsistent_authority",
+      "scope_name": "Authority mismatch scope",
+      "scope_state": "inconsistent",
+      "scoped_governance_ids": [
+        "runtime_authority_visibility"
+      ]
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_stale_source",
+      "scope_name": "Stale source scope",
+      "scope_state": "stale",
+      "scoped_governance_ids": [
+        "stale_source_visibility"
+      ]
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "scope_based_authorization_enabled": false,
+      "scope_id": "scope_degraded_lineage",
+      "scope_name": "Degraded lineage scope",
+      "scope_state": "degraded",
+      "scoped_governance_ids": [
+        "continuity_visibility",
+        "lineage_visibility"
+      ]
+    }
+  ],
+  "scoped_boundary_membership_visibility": {
+    "descriptive_only": true,
+    "dispatch_enabled_count": 0,
+    "membership_count": 6,
+    "membership_ids": [
+      "membership_consistency_segmented",
+      "membership_foundation_scoped",
+      "membership_lineage_blocked",
+      "membership_overlap_conflicting",
+      "membership_provider_ambiguous",
+      "membership_runtime_unscoped"
+    ],
+    "non_authoritative": true,
+    "routing_enabled_count": 0,
+    "scheduling_enabled_count": 0,
+    "scoped_count": 1,
+    "segmented_count": 1,
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 1,
+      "conflicting": 1,
+      "consistent": 0,
+      "coupled": 0,
+      "degraded": 0,
+      "inconsistent": 0,
+      "isolated": 0,
+      "overlapping": 0,
+      "prohibited": 0,
+      "scoped": 1,
+      "segmented": 1,
+      "stale": 0,
+      "unscoped": 1,
+      "unsegmented": 0,
+      "unsupported": 0
+    },
+    "unscoped_count": 1
+  },
+  "segmentation_diagnostics_visibility": {
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_count": 12,
+    "diagnostic_ids": [
+      "segmentation_diagnostic_relationship_consistency_supported",
+      "segmentation_diagnostic_relationship_core_isolated",
+      "segmentation_diagnostic_relationship_lineage_coupled",
+      "segmentation_diagnostic_relationship_refinement_overlap",
+      "segmentation_diagnostic_relationship_runtime_prohibited",
+      "segmentation_diagnostic_relationship_scope_inconsistent",
+      "segmentation_diagnostic_segment_ambiguous_provider",
+      "segmentation_diagnostic_segment_coupled_lineage",
+      "segmentation_diagnostic_segment_governance_core",
+      "segmentation_diagnostic_segment_isolated_provenance",
+      "segmentation_diagnostic_segment_overlap_refinement",
+      "segmentation_diagnostic_segment_unsegmented_external_runtime"
+    ],
+    "fail_visible": true,
+    "segmentation_based_routing_enabled_count": 0,
+    "severity_counts": {
+      "info": 4,
+      "prohibited": 1,
+      "warning": 7
+    },
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 1,
+      "coupled": 2,
+      "degraded": 0,
+      "inconsistent": 1,
+      "isolated": 2,
+      "overlapping": 2,
+      "prohibited": 1,
+      "scoped": 0,
+      "segmented": 1,
+      "stale": 0,
+      "unscoped": 0,
+      "unsegmented": 1,
+      "unsupported": 0
+    }
+  },
+  "segmentation_explainability_visibility": {
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_count": 18,
+    "explainability_first": true,
+    "explainability_ids": [
+      "explainability_scope_diagnostic_scope_consistency_baseline",
+      "explainability_scope_diagnostic_scope_degraded_lineage",
+      "explainability_scope_diagnostic_scope_external_runtime_unscoped",
+      "explainability_scope_diagnostic_scope_governance_visible",
+      "explainability_scope_diagnostic_scope_inconsistent_authority",
+      "explainability_scope_diagnostic_scope_stale_source",
+      "explainability_segmentation_diagnostic_relationship_consistency_supported",
+      "explainability_segmentation_diagnostic_relationship_core_isolated",
+      "explainability_segmentation_diagnostic_relationship_lineage_coupled",
+      "explainability_segmentation_diagnostic_relationship_refinement_overlap",
+      "explainability_segmentation_diagnostic_relationship_runtime_prohibited",
+      "explainability_segmentation_diagnostic_relationship_scope_inconsistent",
+      "explainability_segmentation_diagnostic_segment_ambiguous_provider",
+      "explainability_segmentation_diagnostic_segment_coupled_lineage",
+      "explainability_segmentation_diagnostic_segment_governance_core",
+      "explainability_segmentation_diagnostic_segment_isolated_provenance",
+      "explainability_segmentation_diagnostic_segment_overlap_refinement",
+      "explainability_segmentation_diagnostic_segment_unsegmented_external_runtime"
+    ],
+    "recommendation_enabled_count": 0,
+    "routing_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 2,
+      "coupled": 2,
+      "degraded": 1,
+      "inconsistent": 2,
+      "isolated": 2,
+      "overlapping": 2,
+      "prohibited": 1,
+      "scoped": 1,
+      "segmented": 1,
+      "stale": 1,
+      "unscoped": 1,
+      "unsegmented": 1,
+      "unsupported": 0
+    }
+  },
+  "segmentation_visibility": [
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": false,
+      "grouped_boundary_ids": [
+        "boundary_foundation",
+        "cross_boundary_consistency"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_governance_core",
+      "segment_name": "Governance core",
+      "segment_state": "segmented",
+      "segmentation_based_routing_enabled": false
+    },
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "grouped_boundary_ids": [
+        "runtime_semantics_visibility"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_unsegmented_external_runtime",
+      "segment_name": "External runtime boundary",
+      "segment_state": "unsegmented",
+      "segmentation_based_routing_enabled": false
+    },
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": false,
+      "grouped_boundary_ids": [
+        "provenance_visibility"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_isolated_provenance",
+      "segment_name": "Provenance isolation",
+      "segment_state": "isolated",
+      "segmentation_based_routing_enabled": false
+    },
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "grouped_boundary_ids": [
+        "continuity_visibility",
+        "lineage_visibility"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_coupled_lineage",
+      "segment_name": "Lineage coupling",
+      "segment_state": "coupled",
+      "segmentation_based_routing_enabled": false
+    },
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "grouped_boundary_ids": [
+        "drift_visibility",
+        "inheritance_refinement"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_overlap_refinement",
+      "segment_name": "Refinement overlap",
+      "segment_state": "overlapping",
+      "segmentation_based_routing_enabled": false
+    },
+    {
+      "boundary_group_execution_lane_enabled": false,
+      "descriptive_only": true,
+      "dispatch_execution_enabled": false,
+      "fail_visible": true,
+      "grouped_boundary_ids": [
+        "provider_identity_visibility"
+      ],
+      "routing_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "segment_id": "segment_ambiguous_provider",
+      "segment_name": "Provider ambiguity",
+      "segment_state": "ambiguous",
+      "segmentation_based_routing_enabled": false
+    }
+  ],
+  "summary": {
+    "ambiguity_count": 2,
+    "conflict_count": 1,
+    "continuity_degraded_count": 1,
+    "coupled_count": 2,
+    "degraded_count": 2,
+    "deterministic_ordering_verified": true,
+    "enabled_dispatch_execution_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_routing_execution_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "enabled_scheduling_execution_count": 0,
+    "explainability_visibility_verified": true,
+    "governance_safe_certification_verified": true,
+    "isolated_count": 2,
+    "isolation_coupling_visibility_verified": true,
+    "lineage_visibility_verified": true,
+    "membership_record_count": 6,
+    "non_operational_certification_verified": true,
+    "operational_mutation_enabled": false,
+    "overlap_count": 2,
+    "overlap_visibility_verified": true,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_visibility_verified": true,
+    "remaining_blocker_count": 0,
+    "remaining_warning_count": 0,
+    "replay_safe_evidence_verified": true,
+    "rollback_safe_evidence_verified": true,
+    "runtime_mutation_enabled": false,
+    "scope_ambiguity_visibility_verified": true,
+    "scope_diagnostic_count": 6,
+    "scope_hashing_verified": true,
+    "scope_record_count": 6,
+    "scope_serialization_verified": true,
+    "scoped_count": 2,
+    "segment_membership_visibility_verified": true,
+    "segment_record_count": 6,
+    "segment_relationship_count": 6,
+    "segmentation_diagnostic_count": 12,
+    "segmentation_hashing_verified": true,
+    "segmentation_serialization_verified": true,
+    "segmented_count": 2,
+    "unscoped_count": 2,
+    "unsegmented_count": 1,
+    "validation_error_count": 0
+  },
+  "validation": {
+    "invalid_validation_names": [],
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "explainability": {
+        "explainability": {
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_count": 18,
+          "explainability_first": true,
+          "explainability_ids": [
+            "explainability_scope_diagnostic_scope_consistency_baseline",
+            "explainability_scope_diagnostic_scope_degraded_lineage",
+            "explainability_scope_diagnostic_scope_external_runtime_unscoped",
+            "explainability_scope_diagnostic_scope_governance_visible",
+            "explainability_scope_diagnostic_scope_inconsistent_authority",
+            "explainability_scope_diagnostic_scope_stale_source",
+            "explainability_segmentation_diagnostic_relationship_consistency_supported",
+            "explainability_segmentation_diagnostic_relationship_core_isolated",
+            "explainability_segmentation_diagnostic_relationship_lineage_coupled",
+            "explainability_segmentation_diagnostic_relationship_refinement_overlap",
+            "explainability_segmentation_diagnostic_relationship_runtime_prohibited",
+            "explainability_segmentation_diagnostic_relationship_scope_inconsistent",
+            "explainability_segmentation_diagnostic_segment_ambiguous_provider",
+            "explainability_segmentation_diagnostic_segment_coupled_lineage",
+            "explainability_segmentation_diagnostic_segment_governance_core",
+            "explainability_segmentation_diagnostic_segment_isolated_provenance",
+            "explainability_segmentation_diagnostic_segment_overlap_refinement",
+            "explainability_segmentation_diagnostic_segment_unsegmented_external_runtime"
+          ],
+          "recommendation_enabled_count": 0,
+          "routing_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 2,
+            "coupled": 2,
+            "degraded": 1,
+            "inconsistent": 2,
+            "isolated": 2,
+            "overlapping": 2,
+            "prohibited": 1,
+            "scoped": 1,
+            "segmented": 1,
+            "stale": 1,
+            "unscoped": 1,
+            "unsegmented": 1,
+            "unsupported": 0
+          }
+        },
+        "valid": true
+      },
+      "non_operational": {
+        "automatic_remediation_disabled": true,
+        "automatic_repair_disabled": true,
+        "boundary_group_execution_lane_disabled": true,
+        "counters": {
+          "enabled_dispatch_execution_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_routing_execution_count": 0,
+          "enabled_runtime_execution_count": 0,
+          "enabled_scheduling_execution_count": 0
+        },
+        "descriptive_only": true,
+        "enabled_flags": {},
+        "non_authoritative": true,
+        "non_dispatching": true,
+        "non_mutating": true,
+        "non_operational": true,
+        "non_remediating": true,
+        "non_routing": true,
+        "non_scheduling": true,
+        "operational_mutation_disabled": true,
+        "planner_integration_disabled": true,
+        "production_consumption_disabled": true,
+        "runtime_mutation_disabled": true,
+        "scope_based_authorization_disabled": true,
+        "segmentation_based_routing_disabled": true,
+        "valid": true
+      },
+      "ordering": {
+        "duplicate_order_groups": [],
+        "order_groups": {
+          "continuity_visibility": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "explainability": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "membership_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "relationship_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "scope_classifications": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "scope_diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "scope_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "segment_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "segmentation_classifications": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "segmentation_diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "provenance_lineage": {
+        "ambiguous_lineage_inferred": false,
+        "hidden_source_inference_used": false,
+        "lineage_visible": true,
+        "provenance_visible": true,
+        "valid": true
+      },
+      "replay_rollback": {
+        "expected_evidence_count": 24,
+        "missing_replay_evidence_ids": [],
+        "missing_rollback_evidence_ids": [],
+        "replay_safe": true,
+        "replay_safe_evidence_count": 24,
+        "rollback_safe": true,
+        "rollback_safe_evidence_count": 24,
+        "valid": true
+      },
+      "serialization_hashing": {
+        "intelligence_hash": "dc8a5dab214643446cb47b65ac5cb898027e82b7b241175632636d224e99628a",
+        "rebuilt_intelligence_hash": "dc8a5dab214643446cb47b65ac5cb898027e82b7b241175632636d224e99628a",
+        "scope_hashing_stable": true,
+        "scope_serialization_stable": true,
+        "segmentation_hashing_stable": true,
+        "segmentation_serialization_stable": true,
+        "serialization_length": 60493,
+        "valid": true
+      },
+      "visibility": {
+        "ambiguity": {
+          "ambiguous_count": 2,
+          "conflicting_count": 1,
+          "degraded_count": 2
+        },
+        "combined_counts": {
+          "ambiguous": 2,
+          "blocked": 1,
+          "conflicting": 1,
+          "consistent": 3,
+          "coupled": 2,
+          "degraded": 2,
+          "inconsistent": 2,
+          "isolated": 2,
+          "overlapping": 2,
+          "prohibited": 1,
+          "scoped": 2,
+          "segmented": 2,
+          "stale": 2,
+          "unscoped": 2,
+          "unsegmented": 1,
+          "unsupported": 1
+        },
+        "continuity_counts": {
+          "ambiguous": 0,
+          "blocked": 0,
+          "conflicting": 0,
+          "consistent": 1,
+          "coupled": 0,
+          "degraded": 1,
+          "inconsistent": 0,
+          "isolated": 0,
+          "overlapping": 0,
+          "prohibited": 0,
+          "scoped": 0,
+          "segmented": 0,
+          "stale": 1,
+          "unscoped": 0,
+          "unsegmented": 0,
+          "unsupported": 1
+        },
+        "degradation": {
+          "continuity_count": 4,
+          "continuity_ids": [
+            "continuity_scope_consistent",
+            "continuity_scope_degraded",
+            "continuity_scope_stale",
+            "continuity_scope_unsupported"
+          ],
+          "degraded_count": 1,
+          "descriptive_only": true,
+          "fail_visible": true,
+          "mutation_enabled_count": 0,
+          "stale_count": 1,
+          "state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 1,
+            "coupled": 0,
+            "degraded": 1,
+            "inconsistent": 0,
+            "isolated": 0,
+            "overlapping": 0,
+            "prohibited": 0,
+            "scoped": 0,
+            "segmented": 0,
+            "stale": 1,
+            "unscoped": 0,
+            "unsegmented": 0,
+            "unsupported": 1
+          }
+        },
+        "isolation_coupling": {
+          "coupled_count": 1,
+          "descriptive_only": true,
+          "dispatch_enabled_count": 0,
+          "isolated_count": 1,
+          "non_authoritative": true,
+          "overlap_count": 1,
+          "relationship_count": 6,
+          "relationship_ids": [
+            "relationship_consistency_supported",
+            "relationship_core_isolated",
+            "relationship_lineage_coupled",
+            "relationship_refinement_overlap",
+            "relationship_runtime_prohibited",
+            "relationship_scope_inconsistent"
+          ],
+          "routing_enabled_count": 0,
+          "runtime_execution_enabled_count": 0,
+          "scheduling_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 1,
+            "coupled": 1,
+            "degraded": 0,
+            "inconsistent": 1,
+            "isolated": 1,
+            "overlapping": 1,
+            "prohibited": 1,
+            "scoped": 0,
+            "segmented": 0,
+            "stale": 0,
+            "unscoped": 0,
+            "unsegmented": 0,
+            "unsupported": 0
+          }
+        },
+        "membership": {
+          "descriptive_only": true,
+          "dispatch_enabled_count": 0,
+          "membership_count": 6,
+          "membership_ids": [
+            "membership_consistency_segmented",
+            "membership_foundation_scoped",
+            "membership_lineage_blocked",
+            "membership_overlap_conflicting",
+            "membership_provider_ambiguous",
+            "membership_runtime_unscoped"
+          ],
+          "non_authoritative": true,
+          "routing_enabled_count": 0,
+          "scheduling_enabled_count": 0,
+          "scoped_count": 1,
+          "segmented_count": 1,
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 1,
+            "conflicting": 1,
+            "consistent": 0,
+            "coupled": 0,
+            "degraded": 0,
+            "inconsistent": 0,
+            "isolated": 0,
+            "overlapping": 0,
+            "prohibited": 0,
+            "scoped": 1,
+            "segmented": 1,
+            "stale": 0,
+            "unscoped": 1,
+            "unsegmented": 0,
+            "unsupported": 0
+          },
+          "unscoped_count": 1
+        },
+        "membership_counts": {
+          "ambiguous": 1,
+          "blocked": 1,
+          "conflicting": 1,
+          "consistent": 0,
+          "coupled": 0,
+          "degraded": 0,
+          "inconsistent": 0,
+          "isolated": 0,
+          "overlapping": 0,
+          "prohibited": 0,
+          "scoped": 1,
+          "segmented": 1,
+          "stale": 0,
+          "unscoped": 1,
+          "unsegmented": 0,
+          "unsupported": 0
+        },
+        "missing_fail_visible_states": [],
+        "missing_states": [],
+        "relationship_counts": {
+          "ambiguous": 0,
+          "blocked": 0,
+          "conflicting": 0,
+          "consistent": 1,
+          "coupled": 1,
+          "degraded": 0,
+          "inconsistent": 1,
+          "isolated": 1,
+          "overlapping": 1,
+          "prohibited": 1,
+          "scoped": 0,
+          "segmented": 0,
+          "stale": 0,
+          "unscoped": 0,
+          "unsegmented": 0,
+          "unsupported": 0
+        },
+        "scope_counts": {
+          "ambiguous": 0,
+          "blocked": 0,
+          "conflicting": 0,
+          "consistent": 1,
+          "coupled": 0,
+          "degraded": 1,
+          "inconsistent": 1,
+          "isolated": 0,
+          "overlapping": 0,
+          "prohibited": 0,
+          "scoped": 1,
+          "segmented": 0,
+          "stale": 1,
+          "unscoped": 1,
+          "unsegmented": 0,
+          "unsupported": 0
+        },
+        "scope_diagnostics": {
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_count": 6,
+          "diagnostic_ids": [
+            "scope_diagnostic_scope_consistency_baseline",
+            "scope_diagnostic_scope_degraded_lineage",
+            "scope_diagnostic_scope_external_runtime_unscoped",
+            "scope_diagnostic_scope_governance_visible",
+            "scope_diagnostic_scope_inconsistent_authority",
+            "scope_diagnostic_scope_stale_source"
+          ],
+          "fail_visible": true,
+          "scope_based_authorization_enabled_count": 0,
+          "severity_counts": {
+            "info": 2,
+            "warning": 4
+          },
+          "state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 1,
+            "coupled": 0,
+            "degraded": 1,
+            "inconsistent": 1,
+            "isolated": 0,
+            "overlapping": 0,
+            "prohibited": 0,
+            "scoped": 1,
+            "segmented": 0,
+            "stale": 1,
+            "unscoped": 1,
+            "unsegmented": 0,
+            "unsupported": 0
+          }
+        },
+        "segment_counts": {
+          "ambiguous": 1,
+          "blocked": 0,
+          "conflicting": 0,
+          "consistent": 0,
+          "coupled": 1,
+          "degraded": 0,
+          "inconsistent": 0,
+          "isolated": 1,
+          "overlapping": 1,
+          "prohibited": 0,
+          "scoped": 0,
+          "segmented": 1,
+          "stale": 0,
+          "unscoped": 0,
+          "unsegmented": 1,
+          "unsupported": 0
+        },
+        "segmentation_diagnostics": {
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_count": 12,
+          "diagnostic_ids": [
+            "segmentation_diagnostic_relationship_consistency_supported",
+            "segmentation_diagnostic_relationship_core_isolated",
+            "segmentation_diagnostic_relationship_lineage_coupled",
+            "segmentation_diagnostic_relationship_refinement_overlap",
+            "segmentation_diagnostic_relationship_runtime_prohibited",
+            "segmentation_diagnostic_relationship_scope_inconsistent",
+            "segmentation_diagnostic_segment_ambiguous_provider",
+            "segmentation_diagnostic_segment_coupled_lineage",
+            "segmentation_diagnostic_segment_governance_core",
+            "segmentation_diagnostic_segment_isolated_provenance",
+            "segmentation_diagnostic_segment_overlap_refinement",
+            "segmentation_diagnostic_segment_unsegmented_external_runtime"
+          ],
+          "fail_visible": true,
+          "segmentation_based_routing_enabled_count": 0,
+          "severity_counts": {
+            "info": 4,
+            "prohibited": 1,
+            "warning": 7
+          },
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 1,
+            "coupled": 2,
+            "degraded": 0,
+            "inconsistent": 1,
+            "isolated": 2,
+            "overlapping": 2,
+            "prohibited": 1,
+            "scoped": 0,
+            "segmented": 1,
+            "stale": 0,
+            "unscoped": 0,
+            "unsegmented": 1,
+            "unsupported": 0
+          }
+        },
+        "valid": true
+      }
+    }
+  }
+}
