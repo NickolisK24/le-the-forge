@@ -1,0 +1,1895 @@
+{
+  "boundary_explainability_aggregation_intelligence": {
+    "automatic_remediation_enabled": false,
+    "automatic_repair_enabled": false,
+    "coverage_summaries": [
+      {
+        "coverage_id": "coverage_source_boundary_foundations",
+        "coverage_state": "explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_count": 1,
+        "explained_count": 1,
+        "partially_explained_count": 0,
+        "recommendation_enabled": false,
+        "source_id": "source_boundary_foundations",
+        "unexplained_count": 0
+      },
+      {
+        "coverage_id": "coverage_source_inheritance_refinement",
+        "coverage_state": "partially_explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_count": 1,
+        "explained_count": 0,
+        "partially_explained_count": 1,
+        "recommendation_enabled": false,
+        "source_id": "source_inheritance_refinement",
+        "unexplained_count": 0
+      },
+      {
+        "coverage_id": "coverage_source_conflict_drift",
+        "coverage_state": "diagnostic",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_count": 1,
+        "explained_count": 0,
+        "partially_explained_count": 0,
+        "recommendation_enabled": false,
+        "source_id": "source_conflict_drift",
+        "unexplained_count": 0
+      },
+      {
+        "coverage_id": "coverage_source_cross_boundary_consistency",
+        "coverage_state": "consistent",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_count": 1,
+        "explained_count": 1,
+        "partially_explained_count": 0,
+        "recommendation_enabled": false,
+        "source_id": "source_cross_boundary_consistency",
+        "unexplained_count": 0
+      },
+      {
+        "coverage_id": "coverage_source_segmentation_scope",
+        "coverage_state": "partially_explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_count": 1,
+        "explained_count": 0,
+        "partially_explained_count": 0,
+        "recommendation_enabled": false,
+        "source_id": "source_segmentation_scope",
+        "unexplained_count": 1
+      }
+    ],
+    "decision_enabled": false,
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "diagnostic_hashing_stability",
+      "diagnostic_ordering_stability",
+      "diagnostic_serialization_stability",
+      "diagnostic_visibility_preservation",
+      "explainability_coverage_visibility",
+      "explainability_hashing_stability",
+      "explainability_ordering_stability",
+      "explainability_serialization_stability",
+      "governance_safe_descriptive_only_enforcement",
+      "lineage_visibility",
+      "non_operational_certification",
+      "provenance_visibility",
+      "replay_safe_aggregation_evidence",
+      "rollback_safe_aggregation_evidence",
+      "source_evidence_reference_stability",
+      "unresolved_diagnostic_preservation"
+    ],
+    "diagnostic_auto_resolution_enabled": false,
+    "diagnostic_identity": {
+      "authorization_enabled": false,
+      "coverage_reference": "v4_4_boundary_explainability_coverage_summary",
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "diagnostic_aggregation_id": "v4_4_boundary_diagnostic_aggregation",
+      "diagnostic_auto_resolution_enabled": false,
+      "diagnostic_count": 11,
+      "non_operational": true,
+      "phase_id": "v4_4_boundary_explainability_aggregation",
+      "source_count": 5
+    },
+    "diagnostic_records": [
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_foundation_visibility",
+        "diagnostic_source_type": "boundary_foundations",
+        "diagnostic_state": "diagnostic",
+        "diagnostic_summary": "diagnostic diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "boundary_foundations",
+          "diagnostic_foundation_visibility",
+          "source_boundary_foundations"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "informational",
+        "source_id": "source_boundary_foundations",
+        "unresolved": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_foundation_informational",
+        "diagnostic_source_type": "boundary_foundations",
+        "diagnostic_state": "informational",
+        "diagnostic_summary": "informational diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "boundary_foundations",
+          "diagnostic_foundation_informational",
+          "source_boundary_foundations"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "informational",
+        "source_id": "source_boundary_foundations",
+        "unresolved": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_inheritance_warning",
+        "diagnostic_source_type": "inheritance_refinement",
+        "diagnostic_state": "warning",
+        "diagnostic_summary": "warning diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "diagnostic_inheritance_warning",
+          "inheritance_refinement",
+          "source_inheritance_refinement"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_inheritance_refinement",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_lineage_blocked",
+        "diagnostic_source_type": "inheritance_refinement",
+        "diagnostic_state": "blocked",
+        "diagnostic_summary": "blocked diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "diagnostic_lineage_blocked",
+          "inheritance_refinement",
+          "source_inheritance_refinement"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "blocked",
+        "source_id": "source_inheritance_refinement",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_unsupported_boundary",
+        "diagnostic_source_type": "conflict_drift",
+        "diagnostic_state": "unsupported",
+        "diagnostic_summary": "unsupported diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "conflict_drift",
+          "diagnostic_unsupported_boundary",
+          "source_conflict_drift"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_conflict_drift",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_prohibited_authority",
+        "diagnostic_source_type": "conflict_drift",
+        "diagnostic_state": "prohibited",
+        "diagnostic_summary": "prohibited diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "conflict_drift",
+          "diagnostic_prohibited_authority",
+          "source_conflict_drift"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "prohibited",
+        "source_id": "source_conflict_drift",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_stale_scope",
+        "diagnostic_source_type": "segmentation_scope",
+        "diagnostic_state": "stale",
+        "diagnostic_summary": "stale diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "diagnostic_stale_scope",
+          "segmentation_scope",
+          "source_segmentation_scope"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_segmentation_scope",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_conflicting_scope",
+        "diagnostic_source_type": "cross_boundary_consistency",
+        "diagnostic_state": "conflicting",
+        "diagnostic_summary": "conflicting diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "diagnostic_conflicting_scope",
+          "source_cross_boundary_consistency"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_cross_boundary_consistency",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_ambiguous_provider",
+        "diagnostic_source_type": "segmentation_scope",
+        "diagnostic_state": "ambiguous",
+        "diagnostic_summary": "ambiguous diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "diagnostic_ambiguous_provider",
+          "segmentation_scope",
+          "source_segmentation_scope"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_segmentation_scope",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_degraded_lineage",
+        "diagnostic_source_type": "segmentation_scope",
+        "diagnostic_state": "degraded",
+        "diagnostic_summary": "degraded diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "diagnostic_degraded_lineage",
+          "segmentation_scope",
+          "source_segmentation_scope"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_segmentation_scope",
+        "unresolved": true
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_auto_resolution_enabled": false,
+        "diagnostic_id": "diagnostic_inconsistent_consistency",
+        "diagnostic_source_type": "cross_boundary_consistency",
+        "diagnostic_state": "inconsistent",
+        "diagnostic_summary": "inconsistent diagnostic remains unresolved visibility, not an action trigger",
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "diagnostic_inconsistent_consistency",
+          "source_cross_boundary_consistency"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "severity": "warning",
+        "source_id": "source_cross_boundary_consistency",
+        "unresolved": true
+      }
+    ],
+    "dispatch_execution_enabled": false,
+    "explainability_based_recommendation_enabled": false,
+    "explainability_records": [
+      {
+        "coverage_state": "explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_reference_ids": [
+          "diagnostic_source_boundary_foundations"
+        ],
+        "explanation_id": "explain_boundary_foundations",
+        "explanation_summary": "explained source evidence remains visible without recommendation or decision behavior",
+        "explanation_trace_ids": [
+          "source_boundary_foundations",
+          "trace_explain_boundary_foundations"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_boundary_foundations"
+      },
+      {
+        "coverage_state": "partially_explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_reference_ids": [
+          "diagnostic_source_inheritance_refinement"
+        ],
+        "explanation_id": "explain_inheritance_refinement",
+        "explanation_summary": "partially_explained source evidence remains visible without recommendation or decision behavior",
+        "explanation_trace_ids": [
+          "source_inheritance_refinement",
+          "trace_explain_inheritance_refinement"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_inheritance_refinement"
+      },
+      {
+        "coverage_state": "diagnostic",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_reference_ids": [
+          "diagnostic_source_conflict_drift"
+        ],
+        "explanation_id": "explain_conflict_drift",
+        "explanation_summary": "diagnostic source evidence remains visible without recommendation or decision behavior",
+        "explanation_trace_ids": [
+          "source_conflict_drift",
+          "trace_explain_conflict_drift"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_conflict_drift"
+      },
+      {
+        "coverage_state": "explained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_reference_ids": [
+          "diagnostic_source_cross_boundary_consistency"
+        ],
+        "explanation_id": "explain_cross_boundary_consistency",
+        "explanation_summary": "explained source evidence remains visible without recommendation or decision behavior",
+        "explanation_trace_ids": [
+          "source_cross_boundary_consistency",
+          "trace_explain_cross_boundary_consistency"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_cross_boundary_consistency"
+      },
+      {
+        "coverage_state": "unexplained",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_reference_ids": [
+          "diagnostic_source_segmentation_scope"
+        ],
+        "explanation_id": "explain_segmentation_scope_gap",
+        "explanation_summary": "unexplained source evidence remains visible without recommendation or decision behavior",
+        "explanation_trace_ids": [
+          "source_segmentation_scope",
+          "trace_explain_segmentation_scope_gap"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_segmentation_scope"
+      }
+    ],
+    "explanation_traces": [
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "explainability_first": true,
+        "explanation_id": "explain_boundary_foundations",
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_boundary_foundations",
+        "trace_id": "trace_explain_boundary_foundations",
+        "trace_reference_ids": [
+          "diagnostic_source_boundary_foundations",
+          "explain_boundary_foundations",
+          "source_boundary_foundations"
+        ],
+        "trace_state": "explained",
+        "trace_summary": "explained explanation trace remains descriptive and auditable"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "explainability_first": true,
+        "explanation_id": "explain_inheritance_refinement",
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_inheritance_refinement",
+        "trace_id": "trace_explain_inheritance_refinement",
+        "trace_reference_ids": [
+          "diagnostic_source_inheritance_refinement",
+          "explain_inheritance_refinement",
+          "source_inheritance_refinement"
+        ],
+        "trace_state": "partially_explained",
+        "trace_summary": "partially_explained explanation trace remains descriptive and auditable"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "explainability_first": true,
+        "explanation_id": "explain_conflict_drift",
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_conflict_drift",
+        "trace_id": "trace_explain_conflict_drift",
+        "trace_reference_ids": [
+          "diagnostic_source_conflict_drift",
+          "explain_conflict_drift",
+          "source_conflict_drift"
+        ],
+        "trace_state": "diagnostic",
+        "trace_summary": "diagnostic explanation trace remains descriptive and auditable"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "explainability_first": true,
+        "explanation_id": "explain_cross_boundary_consistency",
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_cross_boundary_consistency",
+        "trace_id": "trace_explain_cross_boundary_consistency",
+        "trace_reference_ids": [
+          "diagnostic_source_cross_boundary_consistency",
+          "explain_cross_boundary_consistency",
+          "source_cross_boundary_consistency"
+        ],
+        "trace_state": "explained",
+        "trace_summary": "explained explanation trace remains descriptive and auditable"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "explainability_first": true,
+        "explanation_id": "explain_segmentation_scope_gap",
+        "recommendation_enabled": false,
+        "runtime_readiness_inferred": false,
+        "source_id": "source_segmentation_scope",
+        "trace_id": "trace_explain_segmentation_scope_gap",
+        "trace_reference_ids": [
+          "diagnostic_source_segmentation_scope",
+          "explain_segmentation_scope_gap",
+          "source_segmentation_scope"
+        ],
+        "trace_state": "unexplained",
+        "trace_summary": "unexplained explanation trace remains descriptive and auditable"
+      }
+    ],
+    "explicit_limitations": [
+      "v4.4 Phase 6 aggregates boundary explainability and diagnostics only.",
+      "v4.4 Phase 6 aggregation does not imply operational readiness.",
+      "v4.4 Phase 6 diagnostic summaries do not trigger action.",
+      "v4.4 Phase 6 does not authorize or approve orchestration.",
+      "v4.4 Phase 6 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 6 does not execute orchestration.",
+      "v4.4 Phase 6 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 6 does not recommend, rank, score, select, optimize, or decide orchestration.",
+      "v4.4 Phase 6 does not repair, remediate, auto-resolve diagnostics, or mutate runtime or operational state.",
+      "v4.4 Phase 6 explanations do not become recommendations."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation exists.",
+      "No automatic repair exists.",
+      "No diagnostic aggregation authorizes orchestration behavior.",
+      "No diagnostic auto-resolution exists.",
+      "No explainability system grants runtime authority.",
+      "No explainability-based recommendations exist.",
+      "No explanation result is a recommendation, decision, approval, or readiness signal.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution exists.",
+      "No orchestration ranking, scoring, selection, or optimization exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No runtime mutation exists."
+    ],
+    "identity": {
+      "aggregation_id": "v4_4_boundary_explainability_diagnostic_aggregation",
+      "classification": "governance_safe_descriptive_boundary_explainability_diagnostic_aggregation",
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "deterministic": true,
+      "diagnostics_reference": "v4_4_boundary_diagnostic_aggregation_records",
+      "dispatch_execution_enabled": false,
+      "explainability_reference": "v4_4_boundary_explainability_aggregation_records",
+      "fail_visible": true,
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "governance_safe": true,
+      "lineage_reference": "v4_4_boundary_explainability_lineage_visibility",
+      "non_operational": true,
+      "non_operational_reference": "v4_4_boundary_explainability_non_operational_certification",
+      "operational_mutation_enabled": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "phase_id": "v4_4_boundary_explainability_aggregation",
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_reference": "v4_4_boundary_explainability_provenance_visibility",
+      "purpose": "deterministic_governance_safe_boundary_explainability_diagnostic_aggregation_descriptive_only",
+      "recommendation_enabled": false,
+      "replay_rollback_reference": "v4_4_boundary_explainability_replay_rollback_evidence",
+      "replay_safe": true,
+      "rollback_safe": true,
+      "routing_execution_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_execution_enabled": false,
+      "schema_version": "v4_4.boundary_explainability_aggregation.1",
+      "source_evidence_reference": "v4_4_phase_1_through_5_source_evidence_references"
+    },
+    "lineage_summary": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "explanation_reference_ids": [
+        "explain_boundary_foundations",
+        "explain_conflict_drift",
+        "explain_cross_boundary_consistency",
+        "explain_inheritance_refinement",
+        "explain_segmentation_scope_gap"
+      ],
+      "lineage_hash_references": [
+        "v4_4_boundary_conflict_drift_hash_reference",
+        "v4_4_boundary_inheritance_hash_reference",
+        "v4_4_boundary_intelligence_hash_reference",
+        "v4_4_boundary_segmentation_scope_hash_reference",
+        "v4_4_cross_boundary_consistency_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_explainability_lineage_visibility",
+      "lineage_reference_ids": [
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_explainability_aggregation",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations",
+        "v4_4_boundary_segmentation_scope",
+        "v4_4_cross_boundary_consistency"
+      ],
+      "lineage_state": "explainability_lineage_visible",
+      "lineage_visible": true,
+      "operational_mutation_enabled": false
+    },
+    "non_authoritative": true,
+    "non_deciding": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_recommending": true,
+    "non_remediating": true,
+    "operational_mutation_enabled": false,
+    "optimization_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_runtime_behavior_enabled": false,
+    "phase_evidence_summaries": [
+      {
+        "coverage_state": "explained",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_state": "informational",
+        "explained_reference_ids": [
+          "docs/generated/v4_4_boundary_intelligence_foundations_report.json",
+          "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "phase_label": "v4_4_boundary_intelligence_foundations",
+        "source_id": "source_boundary_foundations",
+        "summary_id": "summary_source_boundary_foundations",
+        "unresolved_reference_ids": [
+          "v4_4_boundary_intelligence_foundations.fail_visible_diagnostics",
+          "v4_4_boundary_intelligence_foundations.unresolved_visibility"
+        ]
+      },
+      {
+        "coverage_state": "partially_explained",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_state": "warning",
+        "explained_reference_ids": [
+          "docs/generated/v4_4_boundary_inheritance_refinement_report.json",
+          "v4_4_boundary_inheritance_refinement.deterministic_report_hash"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "phase_label": "v4_4_boundary_inheritance_refinement",
+        "source_id": "source_inheritance_refinement",
+        "summary_id": "summary_source_inheritance_refinement",
+        "unresolved_reference_ids": [
+          "v4_4_boundary_inheritance_refinement.fail_visible_diagnostics",
+          "v4_4_boundary_inheritance_refinement.unresolved_visibility"
+        ]
+      },
+      {
+        "coverage_state": "diagnostic",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_state": "conflicting",
+        "explained_reference_ids": [
+          "docs/generated/v4_4_boundary_conflict_drift_report.json",
+          "v4_4_boundary_conflict_drift.deterministic_report_hash"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "phase_label": "v4_4_boundary_conflict_drift",
+        "source_id": "source_conflict_drift",
+        "summary_id": "summary_source_conflict_drift",
+        "unresolved_reference_ids": [
+          "v4_4_boundary_conflict_drift.fail_visible_diagnostics",
+          "v4_4_boundary_conflict_drift.unresolved_visibility"
+        ]
+      },
+      {
+        "coverage_state": "consistent",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_state": "inconsistent",
+        "explained_reference_ids": [
+          "docs/generated/v4_4_cross_boundary_consistency_report.json",
+          "v4_4_cross_boundary_consistency.deterministic_report_hash"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "phase_label": "v4_4_cross_boundary_consistency",
+        "source_id": "source_cross_boundary_consistency",
+        "summary_id": "summary_source_cross_boundary_consistency",
+        "unresolved_reference_ids": [
+          "v4_4_cross_boundary_consistency.fail_visible_diagnostics",
+          "v4_4_cross_boundary_consistency.unresolved_visibility"
+        ]
+      },
+      {
+        "coverage_state": "partially_explained",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_state": "ambiguous",
+        "explained_reference_ids": [
+          "docs/generated/v4_4_boundary_segmentation_scope_report.json",
+          "v4_4_boundary_segmentation_scope.deterministic_report_hash"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "phase_label": "v4_4_boundary_segmentation_scope",
+        "source_id": "source_segmentation_scope",
+        "summary_id": "summary_source_segmentation_scope",
+        "unresolved_reference_ids": [
+          "v4_4_boundary_segmentation_scope.fail_visible_diagnostics",
+          "v4_4_boundary_segmentation_scope.unresolved_visibility"
+        ]
+      }
+    ],
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_summary": {
+      "deterministic_order": 1,
+      "diagnostic_reference_ids": [
+        "diagnostic_ambiguous_provider",
+        "diagnostic_conflicting_scope",
+        "diagnostic_degraded_lineage",
+        "diagnostic_foundation_informational",
+        "diagnostic_foundation_visibility",
+        "diagnostic_inconsistent_consistency",
+        "diagnostic_inheritance_warning",
+        "diagnostic_lineage_blocked",
+        "diagnostic_prohibited_authority",
+        "diagnostic_stale_scope",
+        "diagnostic_unsupported_boundary"
+      ],
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_id": "v4_4_boundary_explainability_provenance_visibility",
+      "provenance_state": "explainability_provenance_visible",
+      "provenance_visible": true,
+      "source_hash_references": [
+        "v4_4_boundary_conflict_drift.deterministic_report_hash",
+        "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+        "v4_4_boundary_segmentation_scope.deterministic_report_hash",
+        "v4_4_cross_boundary_consistency.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "docs/generated/v4_4_boundary_conflict_drift_report.json",
+        "docs/generated/v4_4_boundary_inheritance_refinement_report.json",
+        "docs/generated/v4_4_boundary_intelligence_foundations_report.json",
+        "docs/generated/v4_4_boundary_segmentation_scope_report.json",
+        "docs/generated/v4_4_cross_boundary_consistency_report.json"
+      ]
+    },
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "replay_rollback_summary": {
+      "deterministic_order": 1,
+      "diagnostic_record_ids": [
+        "diagnostic_ambiguous_provider",
+        "diagnostic_conflicting_scope",
+        "diagnostic_degraded_lineage",
+        "diagnostic_foundation_informational",
+        "diagnostic_foundation_visibility",
+        "diagnostic_inconsistent_consistency",
+        "diagnostic_inheritance_warning",
+        "diagnostic_lineage_blocked",
+        "diagnostic_prohibited_authority",
+        "diagnostic_stale_scope",
+        "diagnostic_unsupported_boundary"
+      ],
+      "evidence_id": "v4_4_boundary_explainability_replay_rollback_evidence",
+      "explanation_record_ids": [
+        "explain_boundary_foundations",
+        "explain_conflict_drift",
+        "explain_cross_boundary_consistency",
+        "explain_inheritance_refinement",
+        "explain_segmentation_scope_gap"
+      ],
+      "operational_mutation_enabled": false,
+      "replay_evidence_ids": [
+        "diagnostic_ambiguous_provider",
+        "diagnostic_conflicting_scope",
+        "diagnostic_degraded_lineage",
+        "diagnostic_foundation_informational",
+        "diagnostic_foundation_visibility",
+        "diagnostic_inconsistent_consistency",
+        "diagnostic_inheritance_warning",
+        "diagnostic_lineage_blocked",
+        "diagnostic_prohibited_authority",
+        "diagnostic_stale_scope",
+        "diagnostic_unsupported_boundary",
+        "explain_boundary_foundations",
+        "explain_conflict_drift",
+        "explain_cross_boundary_consistency",
+        "explain_inheritance_refinement",
+        "explain_segmentation_scope_gap",
+        "source_boundary_foundations",
+        "source_conflict_drift",
+        "source_cross_boundary_consistency",
+        "source_inheritance_refinement",
+        "source_segmentation_scope"
+      ],
+      "replay_safe": true,
+      "rollback_evidence_ids": [
+        "diagnostic_ambiguous_provider",
+        "diagnostic_conflicting_scope",
+        "diagnostic_degraded_lineage",
+        "diagnostic_foundation_informational",
+        "diagnostic_foundation_visibility",
+        "diagnostic_inconsistent_consistency",
+        "diagnostic_inheritance_warning",
+        "diagnostic_lineage_blocked",
+        "diagnostic_prohibited_authority",
+        "diagnostic_stale_scope",
+        "diagnostic_unsupported_boundary",
+        "explain_boundary_foundations",
+        "explain_conflict_drift",
+        "explain_cross_boundary_consistency",
+        "explain_inheritance_refinement",
+        "explain_segmentation_scope_gap",
+        "source_boundary_foundations",
+        "source_conflict_drift",
+        "source_cross_boundary_consistency",
+        "source_inheritance_refinement",
+        "source_segmentation_scope"
+      ],
+      "rollback_safe": true,
+      "runtime_mutation_enabled": false,
+      "source_evidence_ids": [
+        "source_boundary_foundations",
+        "source_conflict_drift",
+        "source_cross_boundary_consistency",
+        "source_inheritance_refinement",
+        "source_segmentation_scope"
+      ]
+    },
+    "routing_execution_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "runtime_readiness_inference_disabled": true,
+    "scheduling_execution_enabled": false,
+    "scoring_enabled": false,
+    "selection_enabled": false,
+    "sequencing_execution_enabled": false,
+    "source_evidence_references": [
+      {
+        "coverage_state": "explained",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_state": "informational",
+        "evidence_reference_ids": [
+          "boundary_foundations",
+          "source_boundary_foundations",
+          "v4_4_boundary_intelligence_foundations"
+        ],
+        "non_authoritative": true,
+        "production_consumption_enabled": false,
+        "source_available": true,
+        "source_hash_reference": "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+        "source_id": "source_boundary_foundations",
+        "source_phase_id": "v4_4_boundary_intelligence_foundations",
+        "source_report_reference": "docs/generated/v4_4_boundary_intelligence_foundations_report.json",
+        "source_type": "boundary_foundations"
+      },
+      {
+        "coverage_state": "partially_explained",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_state": "warning",
+        "evidence_reference_ids": [
+          "inheritance_refinement",
+          "source_inheritance_refinement",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "non_authoritative": true,
+        "production_consumption_enabled": false,
+        "source_available": true,
+        "source_hash_reference": "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "source_id": "source_inheritance_refinement",
+        "source_phase_id": "v4_4_boundary_inheritance_refinement",
+        "source_report_reference": "docs/generated/v4_4_boundary_inheritance_refinement_report.json",
+        "source_type": "inheritance_refinement"
+      },
+      {
+        "coverage_state": "diagnostic",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_state": "conflicting",
+        "evidence_reference_ids": [
+          "conflict_drift",
+          "source_conflict_drift",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "non_authoritative": true,
+        "production_consumption_enabled": false,
+        "source_available": true,
+        "source_hash_reference": "v4_4_boundary_conflict_drift.deterministic_report_hash",
+        "source_id": "source_conflict_drift",
+        "source_phase_id": "v4_4_boundary_conflict_drift",
+        "source_report_reference": "docs/generated/v4_4_boundary_conflict_drift_report.json",
+        "source_type": "conflict_drift"
+      },
+      {
+        "coverage_state": "consistent",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_state": "inconsistent",
+        "evidence_reference_ids": [
+          "cross_boundary_consistency",
+          "source_cross_boundary_consistency",
+          "v4_4_cross_boundary_consistency"
+        ],
+        "non_authoritative": true,
+        "production_consumption_enabled": false,
+        "source_available": true,
+        "source_hash_reference": "v4_4_cross_boundary_consistency.deterministic_report_hash",
+        "source_id": "source_cross_boundary_consistency",
+        "source_phase_id": "v4_4_cross_boundary_consistency",
+        "source_report_reference": "docs/generated/v4_4_cross_boundary_consistency_report.json",
+        "source_type": "cross_boundary_consistency"
+      },
+      {
+        "coverage_state": "partially_explained",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_state": "ambiguous",
+        "evidence_reference_ids": [
+          "segmentation_scope",
+          "source_segmentation_scope",
+          "v4_4_boundary_segmentation_scope"
+        ],
+        "non_authoritative": true,
+        "production_consumption_enabled": false,
+        "source_available": true,
+        "source_hash_reference": "v4_4_boundary_segmentation_scope.deterministic_report_hash",
+        "source_id": "source_segmentation_scope",
+        "source_phase_id": "v4_4_boundary_segmentation_scope",
+        "source_report_reference": "docs/generated/v4_4_boundary_segmentation_scope_report.json",
+        "source_type": "segmentation_scope"
+      }
+    ],
+    "traversal_execution_enabled": false
+  },
+  "deterministic_hash_evidence": {
+    "coverage_hashes": {
+      "coverage_source_boundary_foundations": "b1e9448b5bdfac70593f29ec9634124bf604cdaeceecf40b1bac42490f7bdd47",
+      "coverage_source_conflict_drift": "66a9ec7be671390c2284e7fbe1a72c014ac09e9efc57003d6b3b72e489dc4316",
+      "coverage_source_cross_boundary_consistency": "34fea056fd57464f8732b76841b41c21f2d995d730dd2c7a333276436a890ae0",
+      "coverage_source_inheritance_refinement": "bebdb116ff9d0abd5f6f98e9efc6c5a2bc5e4a916ee3c725507bf66daa185390",
+      "coverage_source_segmentation_scope": "ebfda7917da4950d8a279c35dd8cefe1e8331448c9514ea9d5fff7106b470cd8"
+    },
+    "diagnostic_hashes": {
+      "diagnostic_ambiguous_provider": "9e54dc671c6cc4e0ab6e29a5835aa83266a8a25fb200345dd860e23bdac63906",
+      "diagnostic_conflicting_scope": "f0540dfb8f5b09256e4750d041961a698555fe36f7ee09c1080ea8b21d0dde06",
+      "diagnostic_degraded_lineage": "082e17bd7c2e98a3ed5afd785ca78c2c13a84347ff47068c2922798cf19d8be5",
+      "diagnostic_foundation_informational": "85733e48f9103dc4561923e9e14034f0ada547a952f389ba7a68206499bd70e3",
+      "diagnostic_foundation_visibility": "2a92125aedd111d3254eea2bbd34b7ad225aaf647eb4082f408207c28fe94e38",
+      "diagnostic_inconsistent_consistency": "5b0f0135cbd35a05dfc527f9729ba8eeb3419d38fabdae276c985dacd50b18a7",
+      "diagnostic_inheritance_warning": "fe147c795d8f1ca546080a9e45ee3d9f44f696fbd011b25641b094a467a6a052",
+      "diagnostic_lineage_blocked": "57e553d07eebd8bae36d59ee6f4f555a02f1427c8e8760b1ebe842dfb7fe7410",
+      "diagnostic_prohibited_authority": "d2fcb8f396b576b3e1e6fee78f0b392b4dec97ac019771a446f7f0104abbd3d0",
+      "diagnostic_stale_scope": "6527976e8546e7a67b154373efe31ef0b4bd5ded9e957cdabe52dc82fceba2f0",
+      "diagnostic_unsupported_boundary": "dfaf75ad1e57f865f81403d86ac956f7fccc11ccdb5453804061c725debda659"
+    },
+    "diagnostic_identity_hash": "16cce0f92d9515925d3a1af3059f5ed86f3597f5e3d0d46d0ab6366e1b7a4c0d",
+    "explainability_hashes": {
+      "explain_boundary_foundations": "eae0e7a99168d59eb9b9cee685b0f28e107491580f60ee1093290e707c32fff0",
+      "explain_conflict_drift": "25533d753147d4ca1718c5ecaefa0a609fc3e40ad82887f1d23c2d4768f8a878",
+      "explain_cross_boundary_consistency": "7514bdec370aa6fbd78d21c8198ce90c0acbfbba9917bae3285b121cac48904b",
+      "explain_inheritance_refinement": "edbcfa5f41723dbf80994199db8243b680d98b78460abc45f3570df27c75113c",
+      "explain_segmentation_scope_gap": "6d9e89917d04fc6258211c737be1669c400df53168b3358693fdc667471b5e3d"
+    },
+    "identity_hash": "e977db9204ff85fb9bb30b7fbeefdbe54fb38e740af56e25a844c70f228a48b4",
+    "intelligence_hash": "d535ef86e58bff2061965a0ebcc3d20e1ce5f2d3627caa26f2ef73e4f952f71b",
+    "lineage_hash": "c8b4ec3130575c2691d8fd0de9a16d183164931890ebbfed36c30297d0ad1c83",
+    "phase_summary_hashes": {
+      "summary_source_boundary_foundations": "1ac267f0e77524870fd23af718c88c29a13be77ce1d3d9d39d429ac8442d7037",
+      "summary_source_conflict_drift": "9724014b0c34fc628f4f6c794028ced203ddd619b6e07798f6b07418c3d31dab",
+      "summary_source_cross_boundary_consistency": "20418c9a120f2a8c69f6a4b2e3e582e5b1bdbe873f90a39e020bbd54a9b9ab48",
+      "summary_source_inheritance_refinement": "c0f5ea96395f3724feeb12c6d377009820ac956c815e7de9ab08f54d5210b5be",
+      "summary_source_segmentation_scope": "ebda82dc443d79a7a6cc44d851ec71a34b1a07714cd5f4196326e708b9bef882"
+    },
+    "provenance_hash": "6b02eb423638079603dca99cf41d8827b8d4622a5b450841634e8256bf0f8300",
+    "replay_rollback_hash": "0e094041b892ae47603df3d60b1ed571dbd0b3d7c67452346eca88a7dc8faed3",
+    "source_evidence_hashes": {
+      "source_boundary_foundations": "469404393be7fcb7a208860620956f55805da499284c5cecebea862976e61a25",
+      "source_conflict_drift": "e7776050c38abb8b10eacdef252b83c52523c164d2881c10b40d67fbc4cebeee",
+      "source_cross_boundary_consistency": "325b42a40234272abf188638a360cb920ef1631cac29a4b2984f29a0793405a9",
+      "source_inheritance_refinement": "cccb0262136cc4f93b461a0e145fb5b8553be6dd6355649e8a04d218210bb007",
+      "source_segmentation_scope": "cb1530919544dcf196a911e74536ba1d383bea035ee99171b082eef4b1554d0c"
+    },
+    "trace_hashes": {
+      "trace_explain_boundary_foundations": "4334eed1345ffa293a951e6b0dfd1603ca58f17b369ab552686393c552301c79",
+      "trace_explain_conflict_drift": "c1dc459dd078b85eb5acf702af1f21cbcef1f9c28131bf6c475122e1afb28685",
+      "trace_explain_cross_boundary_consistency": "f81f309373ef02ee781676d1e8d9aec9f7cd604e48a913c2dd01b860af9b8c86",
+      "trace_explain_inheritance_refinement": "7f68e295b8f951732e2393b3918210e08caf089f5152df22619ac8fe670ba179",
+      "trace_explain_segmentation_scope_gap": "961488af33d350b49e4dd2f18a1684546e873eaa9b9362e47b86c9762c91107f"
+    }
+  },
+  "deterministic_report_hash": "cda8b24ecdda7ee8243c75ab1de5b35c2f57d3f242aa7078c5a7f397df971b3e",
+  "deterministic_serialization_evidence": {
+    "diagnostic_hashing_stable": true,
+    "diagnostic_serialization_stable": true,
+    "explainability_hashing_stable": true,
+    "explainability_serialization_stable": true,
+    "intelligence_hash": "d535ef86e58bff2061965a0ebcc3d20e1ce5f2d3627caa26f2ef73e4f952f71b",
+    "serialization_length": 31343
+  },
+  "diagnostic_aggregation_visibility": {
+    "authorization_enabled_count": 0,
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_auto_resolution_enabled_count": 0,
+    "diagnostic_ids": [
+      "diagnostic_ambiguous_provider",
+      "diagnostic_conflicting_scope",
+      "diagnostic_degraded_lineage",
+      "diagnostic_foundation_informational",
+      "diagnostic_foundation_visibility",
+      "diagnostic_inconsistent_consistency",
+      "diagnostic_inheritance_warning",
+      "diagnostic_lineage_blocked",
+      "diagnostic_prohibited_authority",
+      "diagnostic_stale_scope",
+      "diagnostic_unsupported_boundary"
+    ],
+    "diagnostic_record_count": 11,
+    "diagnostic_source_counts": {
+      "boundary_foundations": 2,
+      "conflict_drift": 2,
+      "cross_boundary_consistency": 2,
+      "inheritance_refinement": 2,
+      "segmentation_scope": 3
+    },
+    "fail_visible_diagnostic_count": 9,
+    "recommendation_enabled_count": 0,
+    "severity_counts": {
+      "blocked": 1,
+      "informational": 2,
+      "prohibited": 1,
+      "warning": 7
+    },
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 1,
+      "conflicting": 1,
+      "consistent": 0,
+      "degraded": 1,
+      "diagnostic": 1,
+      "explained": 0,
+      "inconsistent": 1,
+      "informational": 1,
+      "partially_explained": 0,
+      "prohibited": 1,
+      "stale": 1,
+      "unexplained": 0,
+      "unsupported": 1,
+      "warning": 1
+    },
+    "unresolved_diagnostic_count": 9
+  },
+  "explainability_coverage_visibility": {
+    "coverage_state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 0,
+      "degraded": 0,
+      "diagnostic": 1,
+      "explained": 2,
+      "inconsistent": 0,
+      "informational": 0,
+      "partially_explained": 1,
+      "prohibited": 0,
+      "stale": 0,
+      "unexplained": 1,
+      "unsupported": 0,
+      "warning": 0
+    },
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_record_count": 5,
+    "explained_count": 2,
+    "explanation_ids": [
+      "explain_boundary_foundations",
+      "explain_conflict_drift",
+      "explain_cross_boundary_consistency",
+      "explain_inheritance_refinement",
+      "explain_segmentation_scope_gap"
+    ],
+    "non_authoritative": true,
+    "partially_explained_count": 1,
+    "recommendation_enabled_count": 0,
+    "runtime_readiness_inferred_count": 0,
+    "unexplained_count": 1
+  },
+  "fail_visible_diagnostic_visibility": [
+    {
+      "diagnostic_id": "diagnostic_inheritance_warning",
+      "diagnostic_state": "warning",
+      "evidence_reference_ids": [
+        "diagnostic_inheritance_warning",
+        "inheritance_refinement",
+        "source_inheritance_refinement"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_inheritance_refinement",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_lineage_blocked",
+      "diagnostic_state": "blocked",
+      "evidence_reference_ids": [
+        "diagnostic_lineage_blocked",
+        "inheritance_refinement",
+        "source_inheritance_refinement"
+      ],
+      "fail_visible": true,
+      "severity": "blocked",
+      "source_id": "source_inheritance_refinement",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_unsupported_boundary",
+      "diagnostic_state": "unsupported",
+      "evidence_reference_ids": [
+        "conflict_drift",
+        "diagnostic_unsupported_boundary",
+        "source_conflict_drift"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_conflict_drift",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_prohibited_authority",
+      "diagnostic_state": "prohibited",
+      "evidence_reference_ids": [
+        "conflict_drift",
+        "diagnostic_prohibited_authority",
+        "source_conflict_drift"
+      ],
+      "fail_visible": true,
+      "severity": "prohibited",
+      "source_id": "source_conflict_drift",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_stale_scope",
+      "diagnostic_state": "stale",
+      "evidence_reference_ids": [
+        "diagnostic_stale_scope",
+        "segmentation_scope",
+        "source_segmentation_scope"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_segmentation_scope",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_conflicting_scope",
+      "diagnostic_state": "conflicting",
+      "evidence_reference_ids": [
+        "cross_boundary_consistency",
+        "diagnostic_conflicting_scope",
+        "source_cross_boundary_consistency"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_cross_boundary_consistency",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_ambiguous_provider",
+      "diagnostic_state": "ambiguous",
+      "evidence_reference_ids": [
+        "diagnostic_ambiguous_provider",
+        "segmentation_scope",
+        "source_segmentation_scope"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_segmentation_scope",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_degraded_lineage",
+      "diagnostic_state": "degraded",
+      "evidence_reference_ids": [
+        "diagnostic_degraded_lineage",
+        "segmentation_scope",
+        "source_segmentation_scope"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_segmentation_scope",
+      "unresolved": true
+    },
+    {
+      "diagnostic_id": "diagnostic_inconsistent_consistency",
+      "diagnostic_state": "inconsistent",
+      "evidence_reference_ids": [
+        "cross_boundary_consistency",
+        "diagnostic_inconsistent_consistency",
+        "source_cross_boundary_consistency"
+      ],
+      "fail_visible": true,
+      "severity": "warning",
+      "source_id": "source_cross_boundary_consistency",
+      "unresolved": true
+    }
+  ],
+  "foundation_status": "v4_4_boundary_explainability_aggregation_stable",
+  "governance_safe_explanation_traces": {
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_first": true,
+    "recommendation_enabled_count": 0,
+    "runtime_readiness_inferred_count": 0,
+    "trace_count": 5,
+    "trace_ids": [
+      "trace_explain_boundary_foundations",
+      "trace_explain_conflict_drift",
+      "trace_explain_cross_boundary_consistency",
+      "trace_explain_inheritance_refinement",
+      "trace_explain_segmentation_scope_gap"
+    ],
+    "trace_state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 0,
+      "degraded": 0,
+      "diagnostic": 1,
+      "explained": 2,
+      "inconsistent": 0,
+      "informational": 0,
+      "partially_explained": 1,
+      "prohibited": 0,
+      "stale": 0,
+      "unexplained": 1,
+      "unsupported": 0,
+      "warning": 0
+    }
+  },
+  "lineage_visibility_evidence": {
+    "ambiguous_lineage_inferred": false,
+    "explanation_reference_ids": [
+      "explain_boundary_foundations",
+      "explain_conflict_drift",
+      "explain_cross_boundary_consistency",
+      "explain_inheritance_refinement",
+      "explain_segmentation_scope_gap"
+    ],
+    "lineage_hash_references": [
+      "v4_4_boundary_conflict_drift_hash_reference",
+      "v4_4_boundary_inheritance_hash_reference",
+      "v4_4_boundary_intelligence_hash_reference",
+      "v4_4_boundary_segmentation_scope_hash_reference",
+      "v4_4_cross_boundary_consistency_hash_reference"
+    ],
+    "lineage_id": "v4_4_boundary_explainability_lineage_visibility",
+    "lineage_reference_ids": [
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_explainability_aggregation",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations",
+      "v4_4_boundary_segmentation_scope",
+      "v4_4_cross_boundary_consistency"
+    ],
+    "lineage_visible": true,
+    "operational_mutation_enabled": false
+  },
+  "non_operational_certification_evidence": {
+    "automatic_remediation_disabled": true,
+    "automatic_repair_disabled": true,
+    "counters": {
+      "enabled_decision_count": 0,
+      "enabled_dispatch_execution_count": 0,
+      "enabled_operational_mutation_count": 0,
+      "enabled_orchestration_approval_count": 0,
+      "enabled_orchestration_authorization_count": 0,
+      "enabled_recommendation_count": 0,
+      "enabled_routing_execution_count": 0,
+      "enabled_runtime_execution_count": 0,
+      "enabled_scheduling_execution_count": 0
+    },
+    "descriptive_only": true,
+    "diagnostic_auto_resolution_disabled": true,
+    "enabled_flags": {},
+    "explainability_based_recommendation_disabled": true,
+    "non_authoritative": true,
+    "non_deciding": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_recommending": true,
+    "non_remediating": true,
+    "operational_mutation_disabled": true,
+    "planner_integration_disabled": true,
+    "production_consumption_disabled": true,
+    "runtime_mutation_disabled": true,
+    "runtime_readiness_inference_disabled": true,
+    "valid": true
+  },
+  "phase_id": "v4_4_boundary_explainability_aggregation",
+  "provenance_visibility_evidence": {
+    "diagnostic_reference_ids": [
+      "diagnostic_ambiguous_provider",
+      "diagnostic_conflicting_scope",
+      "diagnostic_degraded_lineage",
+      "diagnostic_foundation_informational",
+      "diagnostic_foundation_visibility",
+      "diagnostic_inconsistent_consistency",
+      "diagnostic_inheritance_warning",
+      "diagnostic_lineage_blocked",
+      "diagnostic_prohibited_authority",
+      "diagnostic_stale_scope",
+      "diagnostic_unsupported_boundary"
+    ],
+    "hidden_source_inference_used": false,
+    "production_consumption_enabled": false,
+    "provenance_id": "v4_4_boundary_explainability_provenance_visibility",
+    "provenance_visible": true,
+    "source_hash_references": [
+      "v4_4_boundary_conflict_drift.deterministic_report_hash",
+      "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+      "v4_4_boundary_intelligence_foundations.deterministic_report_hash",
+      "v4_4_boundary_segmentation_scope.deterministic_report_hash",
+      "v4_4_cross_boundary_consistency.deterministic_report_hash"
+    ],
+    "source_reference_ids": [
+      "docs/generated/v4_4_boundary_conflict_drift_report.json",
+      "docs/generated/v4_4_boundary_inheritance_refinement_report.json",
+      "docs/generated/v4_4_boundary_intelligence_foundations_report.json",
+      "docs/generated/v4_4_boundary_segmentation_scope_report.json",
+      "docs/generated/v4_4_cross_boundary_consistency_report.json"
+    ]
+  },
+  "remaining_blockers": [],
+  "remaining_warnings": [],
+  "replay_safe_evidence": {
+    "expected_evidence_count": 21,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 21,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 21,
+    "valid": true
+  },
+  "report_schema_version": "v4_4.boundary_explainability_aggregation_report.1",
+  "rollback_safe_evidence": {
+    "expected_evidence_count": 21,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 21,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 21,
+    "valid": true
+  },
+  "source_evidence_coverage": {
+    "all_sources_available": true,
+    "coverage_state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "conflicting": 0,
+      "consistent": 1,
+      "degraded": 0,
+      "diagnostic": 1,
+      "explained": 1,
+      "inconsistent": 0,
+      "informational": 0,
+      "partially_explained": 2,
+      "prohibited": 0,
+      "stale": 0,
+      "unexplained": 0,
+      "unsupported": 0,
+      "warning": 0
+    },
+    "descriptive_only": true,
+    "production_consumption_enabled_count": 0,
+    "source_evidence_reference_count": 5,
+    "source_ids": [
+      "source_boundary_foundations",
+      "source_conflict_drift",
+      "source_cross_boundary_consistency",
+      "source_inheritance_refinement",
+      "source_segmentation_scope"
+    ],
+    "source_phase_ids": [
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations",
+      "v4_4_boundary_segmentation_scope",
+      "v4_4_cross_boundary_consistency"
+    ],
+    "source_type_counts": {
+      "boundary_foundations": 1,
+      "conflict_drift": 1,
+      "cross_boundary_consistency": 1,
+      "inheritance_refinement": 1,
+      "segmentation_scope": 1
+    }
+  },
+  "summary": {
+    "deterministic_ordering_verified": true,
+    "diagnostic_aggregation_record_count": 11,
+    "diagnostic_hashing_verified": true,
+    "diagnostic_serialization_verified": true,
+    "diagnostic_severity_totals": {
+      "blocked": 1,
+      "informational": 2,
+      "prohibited": 1,
+      "warning": 7
+    },
+    "diagnostic_source_totals": {
+      "boundary_foundations": 2,
+      "conflict_drift": 2,
+      "cross_boundary_consistency": 2,
+      "inheritance_refinement": 2,
+      "segmentation_scope": 3
+    },
+    "diagnostic_visibility_preserved": true,
+    "enabled_decision_count": 0,
+    "enabled_dispatch_execution_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_recommendation_count": 0,
+    "enabled_routing_execution_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "enabled_scheduling_execution_count": 0,
+    "explainability_aggregation_record_count": 5,
+    "explainability_coverage_preserved": true,
+    "explainability_hashing_verified": true,
+    "explainability_serialization_verified": true,
+    "explained_count": 2,
+    "explanation_trace_count": 5,
+    "fail_visible_diagnostic_count": 9,
+    "governance_safe_certification_verified": true,
+    "lineage_visibility_verified": true,
+    "non_operational_certification_verified": true,
+    "operational_mutation_enabled": false,
+    "partially_explained_count": 1,
+    "phase_evidence_summary_count": 5,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_visibility_verified": true,
+    "remaining_blocker_count": 0,
+    "remaining_warning_count": 0,
+    "replay_safe_evidence_verified": true,
+    "rollback_safe_evidence_verified": true,
+    "runtime_mutation_enabled": false,
+    "source_evidence_reference_count": 5,
+    "source_evidence_reference_stability_verified": true,
+    "unexplained_count": 1,
+    "unresolved_diagnostic_count": 9,
+    "unresolved_diagnostic_preserved": true,
+    "validation_error_count": 0
+  },
+  "unresolved_diagnostic_visibility": {
+    "fail_visible_unresolved_count": 9,
+    "states": {
+      "ambiguous": 1,
+      "blocked": 1,
+      "conflicting": 1,
+      "consistent": 0,
+      "degraded": 1,
+      "diagnostic": 0,
+      "explained": 0,
+      "inconsistent": 1,
+      "informational": 0,
+      "partially_explained": 0,
+      "prohibited": 1,
+      "stale": 1,
+      "unexplained": 0,
+      "unsupported": 1,
+      "warning": 1
+    },
+    "unresolved_diagnostic_count": 9,
+    "unresolved_diagnostic_ids": [
+      "diagnostic_ambiguous_provider",
+      "diagnostic_conflicting_scope",
+      "diagnostic_degraded_lineage",
+      "diagnostic_inconsistent_consistency",
+      "diagnostic_inheritance_warning",
+      "diagnostic_lineage_blocked",
+      "diagnostic_prohibited_authority",
+      "diagnostic_stale_scope",
+      "diagnostic_unsupported_boundary"
+    ]
+  },
+  "validation": {
+    "invalid_validation_names": [],
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "non_operational": {
+        "automatic_remediation_disabled": true,
+        "automatic_repair_disabled": true,
+        "counters": {
+          "enabled_decision_count": 0,
+          "enabled_dispatch_execution_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_recommendation_count": 0,
+          "enabled_routing_execution_count": 0,
+          "enabled_runtime_execution_count": 0,
+          "enabled_scheduling_execution_count": 0
+        },
+        "descriptive_only": true,
+        "diagnostic_auto_resolution_disabled": true,
+        "enabled_flags": {},
+        "explainability_based_recommendation_disabled": true,
+        "non_authoritative": true,
+        "non_deciding": true,
+        "non_mutating": true,
+        "non_operational": true,
+        "non_recommending": true,
+        "non_remediating": true,
+        "operational_mutation_disabled": true,
+        "planner_integration_disabled": true,
+        "production_consumption_disabled": true,
+        "runtime_mutation_disabled": true,
+        "runtime_readiness_inference_disabled": true,
+        "valid": true
+      },
+      "ordering": {
+        "duplicate_order_groups": [],
+        "order_groups": {
+          "coverage_summaries": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "diagnostic_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "explainability_records": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "explanation_traces": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "phase_evidence_summaries": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "source_evidence_references": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "provenance_lineage": {
+        "ambiguous_lineage_inferred": false,
+        "hidden_source_inference_used": false,
+        "lineage_visible": true,
+        "provenance_visible": true,
+        "valid": true
+      },
+      "replay_rollback": {
+        "expected_evidence_count": 21,
+        "missing_replay_evidence_ids": [],
+        "missing_rollback_evidence_ids": [],
+        "replay_safe": true,
+        "replay_safe_evidence_count": 21,
+        "rollback_safe": true,
+        "rollback_safe_evidence_count": 21,
+        "valid": true
+      },
+      "serialization_hashing": {
+        "diagnostic_hashing_stable": true,
+        "diagnostic_serialization_stable": true,
+        "explainability_hashing_stable": true,
+        "explainability_serialization_stable": true,
+        "intelligence_hash": "d535ef86e58bff2061965a0ebcc3d20e1ce5f2d3627caa26f2ef73e4f952f71b",
+        "rebuilt_intelligence_hash": "d535ef86e58bff2061965a0ebcc3d20e1ce5f2d3627caa26f2ef73e4f952f71b",
+        "serialization_length": 31343,
+        "valid": true
+      },
+      "visibility": {
+        "combined_counts": {
+          "ambiguous": 2,
+          "blocked": 1,
+          "conflicting": 2,
+          "consistent": 1,
+          "degraded": 1,
+          "diagnostic": 3,
+          "explained": 3,
+          "inconsistent": 2,
+          "informational": 2,
+          "partially_explained": 3,
+          "prohibited": 1,
+          "stale": 1,
+          "unexplained": 1,
+          "unsupported": 1,
+          "warning": 2
+        },
+        "coverage": {
+          "coverage_state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 0,
+            "degraded": 0,
+            "diagnostic": 1,
+            "explained": 2,
+            "inconsistent": 0,
+            "informational": 0,
+            "partially_explained": 1,
+            "prohibited": 0,
+            "stale": 0,
+            "unexplained": 1,
+            "unsupported": 0,
+            "warning": 0
+          },
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_record_count": 5,
+          "explained_count": 2,
+          "explanation_ids": [
+            "explain_boundary_foundations",
+            "explain_conflict_drift",
+            "explain_cross_boundary_consistency",
+            "explain_inheritance_refinement",
+            "explain_segmentation_scope_gap"
+          ],
+          "non_authoritative": true,
+          "partially_explained_count": 1,
+          "recommendation_enabled_count": 0,
+          "runtime_readiness_inferred_count": 0,
+          "unexplained_count": 1
+        },
+        "diagnostics": {
+          "authorization_enabled_count": 0,
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_auto_resolution_enabled_count": 0,
+          "diagnostic_ids": [
+            "diagnostic_ambiguous_provider",
+            "diagnostic_conflicting_scope",
+            "diagnostic_degraded_lineage",
+            "diagnostic_foundation_informational",
+            "diagnostic_foundation_visibility",
+            "diagnostic_inconsistent_consistency",
+            "diagnostic_inheritance_warning",
+            "diagnostic_lineage_blocked",
+            "diagnostic_prohibited_authority",
+            "diagnostic_stale_scope",
+            "diagnostic_unsupported_boundary"
+          ],
+          "diagnostic_record_count": 11,
+          "diagnostic_source_counts": {
+            "boundary_foundations": 2,
+            "conflict_drift": 2,
+            "cross_boundary_consistency": 2,
+            "inheritance_refinement": 2,
+            "segmentation_scope": 3
+          },
+          "fail_visible_diagnostic_count": 9,
+          "recommendation_enabled_count": 0,
+          "severity_counts": {
+            "blocked": 1,
+            "informational": 2,
+            "prohibited": 1,
+            "warning": 7
+          },
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 1,
+            "conflicting": 1,
+            "consistent": 0,
+            "degraded": 1,
+            "diagnostic": 1,
+            "explained": 0,
+            "inconsistent": 1,
+            "informational": 1,
+            "partially_explained": 0,
+            "prohibited": 1,
+            "stale": 1,
+            "unexplained": 0,
+            "unsupported": 1,
+            "warning": 1
+          },
+          "unresolved_diagnostic_count": 9
+        },
+        "missing_fail_visible_states": [],
+        "missing_states": [],
+        "source": {
+          "all_sources_available": true,
+          "coverage_state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 1,
+            "degraded": 0,
+            "diagnostic": 1,
+            "explained": 1,
+            "inconsistent": 0,
+            "informational": 0,
+            "partially_explained": 2,
+            "prohibited": 0,
+            "stale": 0,
+            "unexplained": 0,
+            "unsupported": 0,
+            "warning": 0
+          },
+          "descriptive_only": true,
+          "production_consumption_enabled_count": 0,
+          "source_evidence_reference_count": 5,
+          "source_ids": [
+            "source_boundary_foundations",
+            "source_conflict_drift",
+            "source_cross_boundary_consistency",
+            "source_inheritance_refinement",
+            "source_segmentation_scope"
+          ],
+          "source_phase_ids": [
+            "v4_4_boundary_conflict_drift",
+            "v4_4_boundary_inheritance_refinement",
+            "v4_4_boundary_intelligence_foundations",
+            "v4_4_boundary_segmentation_scope",
+            "v4_4_cross_boundary_consistency"
+          ],
+          "source_type_counts": {
+            "boundary_foundations": 1,
+            "conflict_drift": 1,
+            "cross_boundary_consistency": 1,
+            "inheritance_refinement": 1,
+            "segmentation_scope": 1
+          }
+        },
+        "traces": {
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_first": true,
+          "recommendation_enabled_count": 0,
+          "runtime_readiness_inferred_count": 0,
+          "trace_count": 5,
+          "trace_ids": [
+            "trace_explain_boundary_foundations",
+            "trace_explain_conflict_drift",
+            "trace_explain_cross_boundary_consistency",
+            "trace_explain_inheritance_refinement",
+            "trace_explain_segmentation_scope_gap"
+          ],
+          "trace_state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "conflicting": 0,
+            "consistent": 0,
+            "degraded": 0,
+            "diagnostic": 1,
+            "explained": 2,
+            "inconsistent": 0,
+            "informational": 0,
+            "partially_explained": 1,
+            "prohibited": 0,
+            "stale": 0,
+            "unexplained": 1,
+            "unsupported": 0,
+            "warning": 0
+          }
+        },
+        "unresolved": {
+          "fail_visible_unresolved_count": 9,
+          "states": {
+            "ambiguous": 1,
+            "blocked": 1,
+            "conflicting": 1,
+            "consistent": 0,
+            "degraded": 1,
+            "diagnostic": 0,
+            "explained": 0,
+            "inconsistent": 1,
+            "informational": 0,
+            "partially_explained": 0,
+            "prohibited": 1,
+            "stale": 1,
+            "unexplained": 0,
+            "unsupported": 1,
+            "warning": 1
+          },
+          "unresolved_diagnostic_count": 9,
+          "unresolved_diagnostic_ids": [
+            "diagnostic_ambiguous_provider",
+            "diagnostic_conflicting_scope",
+            "diagnostic_degraded_lineage",
+            "diagnostic_inconsistent_consistency",
+            "diagnostic_inheritance_warning",
+            "diagnostic_lineage_blocked",
+            "diagnostic_prohibited_authority",
+            "diagnostic_stale_scope",
+            "diagnostic_unsupported_boundary"
+          ]
+        },
+        "valid": true
+      }
+    }
+  }
+}
