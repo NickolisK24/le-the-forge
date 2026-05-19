@@ -1,0 +1,5374 @@
+{
+  "audited_systems": [
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/classes\"": true,
+          "@ref_bp.get(\"/classes\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 40,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 2,
+        "planner_contract_count": 1,
+        "raw_record_count": 5,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 43810,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_class_mastery_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.class_mastery_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/constants/classes.py",
+            "planner_finding": ""
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/routes/ref.py",
+            "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 4857,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/classes.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 938,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalClassMastery.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 2645,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_class_mastery_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-classes\"": true,
+          "fetchV2ClassMastery": true,
+          "path=\"/classes\"": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Classes",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.class_mastery_bundle.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {
+        "partial": 20
+      },
+      "system_id": "classes",
+      "trust_level_counts": {
+        "generated_from_game_data": 20
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/masteries\"": true,
+          "CLASS_MASTERIES": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 40,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 2,
+        "planner_contract_count": 1,
+        "raw_record_count": 5,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 43810,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_class_mastery_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.class_mastery_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/constants/classes.py",
+            "planner_finding": ""
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/routes/ref.py",
+            "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 4857,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/classes.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 938,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalClassMastery.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 2645,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_class_mastery_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-classes\"": true,
+          "fetchV2ClassMastery": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Masteries",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.class_mastery_bundle.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {
+        "partial": 20
+      },
+      "system_id": "masteries",
+      "trust_level_counts": {
+        "generated_from_game_data": 20
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/passives\"": true,
+          "@passives_bp.get(\"\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 1615,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 568,
+        "raw_source_count": 2,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 926,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 2701804,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.passive_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 407025,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/passives.json"
+          },
+          {
+            "byte_size": 3163,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/unmatched_trees.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1227,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalPassive.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 293701,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 1782,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_tree_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-passives\"": true,
+          "V2PassivesDebugPage": true,
+          "path=\"/passives\"": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Passive Trees",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.passive_tree_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 144,
+        "scripted_runtime_behavior": 418,
+        "unsupported_special_behavior": 508
+      },
+      "support_status_counts": {
+        "partial": 540
+      },
+      "system_id": "passive_trees",
+      "trust_level_counts": {
+        "generated_from_game_data": 540
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@passives_bp.get(\"\")": true,
+          "@ref_bp.get(\"/passives\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 1615,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 541,
+        "raw_source_count": 1,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 926,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 2701804,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.passive_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 407025,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/passives.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1227,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalPassive.ts"
+          },
+          {
+            "byte_size": 5909,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/passiveEffects.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 293701,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 1782,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_tree_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "PassiveTreePage": true,
+          "V2PassivesDebugPage": true,
+          "path=\"/passives\"": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Passives",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.passive_tree_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 144,
+        "scripted_runtime_behavior": 418,
+        "unsupported_special_behavior": 508
+      },
+      "support_status_counts": {
+        "partial": 540
+      },
+      "system_id": "passives",
+      "trust_level_counts": {
+        "generated_from_game_data": 540
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills\"": true,
+          "@ref_bp.get(\"/skills\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 12581,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 2,
+        "planner_contract_count": 1,
+        "raw_record_count": 346,
+        "raw_source_count": 2,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 8157,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 64
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 673814,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.skill_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/game_data/skills.json",
+            "planner_finding": "Legacy skill metadata source."
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "frontend/src/data/skillTrees/index.ts",
+            "planner_finding": ""
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 64077,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/classes/skills_metadata.json"
+          },
+          {
+            "byte_size": 4941180,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/skills_with_trees.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1921,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalSkill.ts"
+          },
+          {
+            "byte_size": 1116,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/skillClassification.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 2542660,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 25591,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-skills\"": true,
+          "V2SkillsDebugPage": true,
+          "refApi.skills": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Skills",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.skill_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 145,
+        "scripted_runtime_behavior": 2508,
+        "text_only_effect": 193,
+        "unknown": 30,
+        "unsupported_special_behavior": 1411
+      },
+      "support_status_counts": {
+        "partial": 184
+      },
+      "system_id": "skills",
+      "trust_level_counts": {
+        "generated_from_game_data": 184
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills/trees/": true,
+          "@skills_bp.get(\"/skills/<skill_id>/tree\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 12581,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 1,
+        "planner_contract_count": 1,
+        "raw_record_count": 324,
+        "raw_source_count": 2,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 11918,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 64
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 19895274,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.skill_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "frontend/src/data/skillTrees/index.ts",
+            "planner_finding": ""
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 5015615,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/community_skill_trees.json"
+          },
+          {
+            "byte_size": 4941180,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/skills_with_trees.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1976,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/skillTree.ts"
+          },
+          {
+            "byte_size": 1921,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalSkill.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 2542660,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 25591,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "SkillTreeDebugPanel": true,
+          "V2SkillsDebugPage": true,
+          "skillTrees": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Skill Trees",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.skill_tree_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 119,
+        "scripted_runtime_behavior": 4767,
+        "text_only_effect": 254,
+        "unknown": 60,
+        "unsupported_special_behavior": 2822
+      },
+      "support_status_counts": {
+        "partial": 4055
+      },
+      "system_id": "skill_trees",
+      "trust_level_counts": {
+        "generated_from_game_data": 4055
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills/trees/<path:tree_id>/nodes": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 12581,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 1,
+        "planner_contract_count": 1,
+        "raw_record_count": 272,
+        "raw_source_count": 2,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 11918,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 64
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 19895274,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.skill_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "frontend/src/data/skillTrees/index.ts",
+            "planner_finding": ""
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 625024,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/classes/skill_tree_nodes.json"
+          },
+          {
+            "byte_size": 5015615,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/classes/community_skill_trees.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1921,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalSkill.ts"
+          },
+          {
+            "byte_size": 1976,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/skillTree.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 2542660,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 25591,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "CanonicalSkillTreeNode": true,
+          "SkillTreeDebugPanel": true,
+          "skillTrees": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Skill Nodes",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.skill_tree_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 119,
+        "scripted_runtime_behavior": 4767,
+        "text_only_effect": 254,
+        "unknown": 60,
+        "unsupported_special_behavior": 2822
+      },
+      "support_status_counts": {
+        "partial": 4055
+      },
+      "system_id": "skill_nodes",
+      "trust_level_counts": {
+        "generated_from_game_data": 4055
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/items/bases\"": true,
+          "@ref_bp.get(\"/base-items\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 1084,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 3,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 1,
+        "planner_contract_count": 1,
+        "raw_record_count": 41,
+        "raw_source_count": 3,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 1350335,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_base_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.item_base_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 4188651,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_implicit_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.item_implicit_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/constants/base_type_id_to_item_type_id.py",
+            "planner_finding": ""
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 1292277,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/items.json"
+          },
+          {
+            "byte_size": 19584,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/base_items.json"
+          },
+          {
+            "byte_size": 1988,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/implicit_stats.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1110,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalItem.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 723,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-items\"": true,
+          "V2ItemsDebugPage": true,
+          "refApi.baseItems": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Items",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.item_base_bundle.1",
+        "v2.item_implicit_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "accessory": 154,
+        "armor": 194,
+        "weapon": 194
+      },
+      "support_status_counts": {
+        "partial": 1724
+      },
+      "system_id": "items",
+      "trust_level_counts": {
+        "generated_from_game_data": 1724
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/uniques\"": true,
+          "@ref_bp.get(\"/uniques\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 922,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 404,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 344,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 5277038,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.unique_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 340977,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/uniques.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 784,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalUnique.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 121694,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_set_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 917,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_set_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-unique-sets\"": true,
+          "V2UniqueSetDebugPage": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Uniques",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.unique_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 681,
+        "text_only_effect": 72
+      },
+      "support_status_counts": {
+        "partial": 409
+      },
+      "system_id": "uniques",
+      "trust_level_counts": {
+        "generated_from_game_data": 409
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/sets\"": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 617,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 49,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 344,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 919201,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_set_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.set_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 35659,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/set_items.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1492,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalSet.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 121694,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_set_unsupported_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 917,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_set_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-unique-sets\"": true,
+          "V2UniqueSetDebugPage": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Set Items",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.set_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "partial_modifier": 399,
+        "text_only_effect": 72
+      },
+      "support_status_counts": {
+        "partial": 127
+      },
+      "system_id": "set_items",
+      "trust_level_counts": {
+        "generated_from_game_data": 127
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@affixes_bp.get(\"/catalog\"": true,
+          "@experimental_bp.route(\"/v2/affixes\"": true,
+          "@ref_bp.get(\"/affixes\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 1581,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 2,
+        "planner_contract_count": 1,
+        "raw_record_count": 1228,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 7534548,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_affix_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.affix_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/constants/cache.py",
+            "planner_finding": ""
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/routes/ref.py",
+            "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 1191694,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/items/affixes.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1017,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalAffix.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 668,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_affix_validation_report.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "ForgeSafeAffixesDebugPage": true,
+          "path=\"/affixes\"": true,
+          "refApi.affixes": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Affixes",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.affix_bundle.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {
+        "partial": 1098
+      },
+      "system_id": "affixes",
+      "trust_level_counts": {
+        "generated_from_game_data": 1098
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/idols\"": true,
+          "@experimental_bp.route(\"/v2/idols/affixes\"": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 1108,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 1230,
+        "raw_source_count": 2,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 155194,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_idol_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.idol_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 3123496,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_idol_affix_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.idol_affix_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 1292277,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/items.json"
+          },
+          {
+            "byte_size": 1191694,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/items/affixes.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1068,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalIdol.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 3976,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_idol_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-idols\"": true,
+          "V2IdolsDebugPage": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Idols",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.idol_affix_bundle.1",
+        "v2.idol_bundle.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {
+        "partial": 554
+      },
+      "system_id": "idols",
+      "trust_level_counts": {
+        "generated_from_game_data": 554
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/blessings\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 10,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 48402,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/progression/blessings.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1434,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/blessings.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "SelectedBlessing": true,
+          "getBlessings": true,
+          "types/blessings": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Blessings",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "blessings",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@craft_bp": true,
+          "@ref_bp.get(\"/crafting-rules\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": false,
+        "hardcoded": true,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 2,
+        "planner_contract_count": 1,
+        "raw_record_count": 7,
+        "raw_source_count": 2,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/engines/craft_engine.py",
+            "planner_finding": ""
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/engines/fp_engine.py",
+            "planner_finding": ""
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 1123,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/crafting_rules.json"
+          },
+          {
+            "byte_size": 371,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/items/forging_potential_ranges.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 16767,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/index.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "CraftingPage": true,
+          "CraftingWorkspace": true,
+          "craftApi": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Crafting Materials",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "crafting_materials",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/blessings\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 3,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 243,
+        "raw_source_count": 3,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 13129,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/world/timelines.json"
+          },
+          {
+            "byte_size": 48402,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/progression/blessings.json"
+          },
+          {
+            "byte_size": 22785,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/localization/monolith_objective_strings.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 1434,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/blessings.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "BlessingTimeline": true,
+          "blessings": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Monolith Systems",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "monolith_systems",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {},
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": true,
+        "frontend_visible": false,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 3,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 235,
+        "raw_source_count": 3,
+        "schema_mapping_count": 0,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 80534,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/progression/weaver_tree.json"
+          },
+          {
+            "byte_size": 13129,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/world/timelines.json"
+          },
+          {
+            "byte_size": 22785,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/localization/monolith_objective_strings.json"
+          }
+        ],
+        "schema_mappings": [],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {},
+        "visible": false
+      },
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Echo Systems",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "echo_systems",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/enemy-profiles\")": true,
+          "BossAnalysisResponse": false
+        },
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 247,
+        "raw_source_count": 2,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 3701,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/entities/enemy_profiles.json"
+          },
+          {
+            "byte_size": 126198,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/entities/actors.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 16767,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/index.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "BossAnalysisResponse": true,
+          "SimulationPage": true,
+          "encounterApi": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Bosses",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "bosses",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "ailment": false,
+          "get_ailments": false
+        },
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 771,
+        "raw_source_count": 2,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 3020,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/combat/ailments.json"
+          },
+          {
+            "byte_size": 65127,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/localization/ailment_strings.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 3626,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/conditionalStats.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Ailment": true,
+          "ailment": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Ailments",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "ailments",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/damage-types\")": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": false,
+        "generated": false,
+        "hardcoded": false,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 0,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 0,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 7,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 1944,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/combat/damage_types.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 3626,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/conditionalStats.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Damage": true,
+          "damageTypes": false,
+          "damage_types": true
+        },
+        "visible": false
+      },
+      "gap_reasons": [
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Damage Types",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "damage_types",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "combat_engine": false,
+          "modifier": true,
+          "stat_resolution_pipeline": false
+        },
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 2,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 12,
+        "planner_contract_count": 1,
+        "raw_record_count": 2591,
+        "raw_source_count": 2,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 1,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 2,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 37321193,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_modifier_registry.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.modifier_registry.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 2668383,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_stat_registry.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.stat_registry.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/constants/crafting.py",
+            "planner_finding": "Manual crafting constants."
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/engines/stat_engine.py",
+            "planner_finding": "Manual BuildStats field schema and stat aggregation mappings."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/engines/stat_resolution_pipeline.py",
+            "planner_finding": "Manual layer ordering and blessing stat conversion."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/classes.json",
+            "planner_finding": "Legacy class metadata source."
+          },
+          {
+            "domain_declared_hardcoded": true,
+            "exists": true,
+            "path": "backend/app/game_data/constants.json",
+            "planner_finding": "Legacy runtime constants consumed by stat and combat engines."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/game_data_loader.py",
+            "planner_finding": "Legacy JSON and DB loader for affixes, blessings, and reference data."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/skills.json",
+            "planner_finding": "Legacy skill metadata source."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/routes/ref.py",
+            "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/constants/statBenchmarks.ts",
+            "planner_finding": "Frontend stat benchmark constants."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/constants/statLabels.ts",
+            "planner_finding": "Frontend stat label map."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/lib/crafting.ts",
+            "planner_finding": "Frontend crafting helper logic."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/lib/simulation.ts",
+            "planner_finding": "Frontend simulation/stat mirror logic."
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 177511,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/localization/game_guide_strings.json"
+          },
+          {
+            "byte_size": 117030,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/localization/descriptor_strings.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 538,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalModifier.ts"
+          },
+          {
+            "byte_size": 3626,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/conditionalStats.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [
+          {
+            "byte_size": 18693,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_modifier_blocked_reasons_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.modifier_blocked_reasons_report.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "validation_reports": [
+          {
+            "byte_size": 1190,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_modifier_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.modifier_validation_report.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 13059,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_stat_modifier_dry_run_report.json",
+            "production_consumed": false,
+            "production_safe": null,
+            "read_only": true,
+            "schema_version": "v2.stat_modifier_dry_run.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-stats-modifiers\"": true,
+          "V2StatsModifiersDebugPage": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_on_values": [
+        "2026-05-13T01:43:33.429693+00:00"
+      ],
+      "label": "Mechanics",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.modifier_blocked_reasons_report.1",
+        "v2.modifier_registry.1",
+        "v2.modifier_validation_report.1",
+        "v2.stat_modifier_dry_run.1",
+        "v2.stat_registry.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {
+        "partial": 2070
+      },
+      "system_id": "mechanics",
+      "trust_level_counts": {
+        "generated_from_game_data": 2070
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get": true,
+          "tags": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": true,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 2665,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 59,
+        "raw_source_count": 1,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 2,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 7534548,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_affix_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.affix_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 1350335,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_base_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.item_base_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 3411,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "non_object_json",
+            "path": "data/items/tags.json"
+          }
+        ],
+        "schema_mappings": [
+          {
+            "byte_size": 554,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/types/canonicalBase.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 668,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_affix_validation_report.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 723,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_validation_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "tags": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [
+        "2026-05-12"
+      ],
+      "label": "Tags",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.affix_bundle.1",
+        "v2.item_base_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "accessory": 154,
+        "armor": 194,
+        "weapon": 194
+      },
+      "support_status_counts": {
+        "partial": 1640
+      },
+      "system_id": "tags",
+      "trust_level_counts": {
+        "generated_from_game_data": 1640
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route": true,
+          "@health_bp.get": true,
+          "@ref_bp.get": true,
+          "@trust_bp.get": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": false,
+        "frontend_visible": false,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 58,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 0,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 0,
+        "raw_source_count": 0,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 62220,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_api_contract_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 47988,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_backend_repository_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [],
+        "schema_mappings": [
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "backend/app/api_contracts/v2"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 4682,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_validation_ci_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Gameplay Backend Payloads",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "gameplay_backend_payloads",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": false,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "frontend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 48,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 0,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 0,
+        "raw_source_count": 0,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 0,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 62220,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_api_contract_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [],
+        "schema_mappings": [
+          {
+            "byte_size": 19774,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/lib/api.ts"
+          },
+          {
+            "byte_size": 3340,
+            "exists": true,
+            "is_directory": false,
+            "path": "frontend/src/lib/v2ApiEnvelope.ts"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": []
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "FrontendTrustSurface": true,
+          "V2EnvelopePanels": true,
+          "fetchV2": true,
+          "refApi": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Gameplay Frontend Payloads",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "gameplay_frontend_payloads",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": true,
+        "frontend_visible": false,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 890,
+        "expected_generated_asset_count": 1,
+        "expected_raw_source_count": 1,
+        "generated_asset_count": 1,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 3,
+        "raw_source_count": 1,
+        "schema_mapping_count": 0,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [
+          {
+            "byte_size": 141,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "data/version.json"
+          }
+        ],
+        "schema_mappings": [],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 4682,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_validation_ci_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Trusted Extraction Manifests",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "trusted_extraction_manifests",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": false,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": true,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 11745,
+        "expected_generated_asset_count": 13,
+        "expected_raw_source_count": 0,
+        "generated_asset_count": 13,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 0,
+        "raw_source_count": 0,
+        "schema_mapping_count": 2,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 4478,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 128
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 43810,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_class_mastery_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.class_mastery_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 2701804,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_passive_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.passive_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 673814,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.skill_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          },
+          {
+            "byte_size": 19895274,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_skill_tree_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.skill_tree_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          },
+          {
+            "byte_size": 1350335,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_base_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.item_base_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 4188651,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_item_implicit_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.item_implicit_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 5277038,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_unique_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.unique_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 919201,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_set_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.set_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 7534548,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_affix_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.affix_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 155194,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_idol_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.idol_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 3123496,
+            "exists": true,
+            "generated_on": "2026-05-12",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_idol_affix_bundle.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.idol_affix_bundle.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 2668383,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_stat_registry.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.stat_registry.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 37321193,
+            "exists": true,
+            "generated_on": "2026-05-13T01:43:33.429693+00:00",
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_modifier_registry.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "schema_version": "v2.modifier_registry.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [],
+        "schema_mappings": [
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "backend/app/repositories/v2"
+          },
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "frontend/src/types"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 4682,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_validation_ci_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "V2DebugNavigationPage": true,
+          "V2EnvelopePanels": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_on_values": [
+        "2026-05-12",
+        "2026-05-13T01:43:33.429693+00:00"
+      ],
+      "label": "Trusted Generated Assets",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.affix_bundle.1",
+        "v2.class_mastery_bundle.1",
+        "v2.idol_affix_bundle.1",
+        "v2.idol_bundle.1",
+        "v2.item_base_bundle.1",
+        "v2.item_implicit_bundle.1",
+        "v2.modifier_registry.1",
+        "v2.passive_tree_bundle.1",
+        "v2.set_bundle.1",
+        "v2.skill_bundle.1",
+        "v2.skill_tree_bundle.1",
+        "v2.stat_registry.1",
+        "v2.unique_bundle.1"
+      ],
+      "special_behavior_counts": {
+        "accessory": 154,
+        "armor": 194,
+        "partial_modifier": 648,
+        "scripted_runtime_behavior": 2634,
+        "text_only_effect": 197,
+        "unknown": 30,
+        "unsupported_special_behavior": 1665,
+        "weapon": 194
+      },
+      "support_status_counts": {
+        "partial": 10781
+      },
+      "system_id": "trusted_generated_assets",
+      "trust_level_counts": {
+        "generated_from_game_data": 10781
+      }
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "V2": true,
+          "standardize_v2_payload": true
+        },
+        "visible": true
+      },
+      "classification_flags": {
+        "backend_visible": true,
+        "extracted": false,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": false,
+        "missing": false,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": true,
+        "stale": true,
+        "trusted": true,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 58,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 0,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 0,
+        "planner_contract_count": 1,
+        "raw_record_count": 0,
+        "raw_source_count": 0,
+        "schema_mapping_count": 3,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 62220,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_api_contract_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 47988,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_backend_repository_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [],
+        "schema_mappings": [
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "backend/app/api_contracts/v2"
+          },
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "backend/app/repositories/v2"
+          },
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "frontend/src/types"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 4682,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_validation_ci_report.json",
+            "production_consumed": false,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Canonical": true,
+          "V2ApiEnvelope": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Schema Mappings",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "schema_mappings",
+      "trust_level_counts": {}
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "planner_adapters": false,
+          "production_remap": false
+        },
+        "visible": false
+      },
+      "classification_flags": {
+        "backend_visible": false,
+        "extracted": false,
+        "frontend_visible": true,
+        "generated": true,
+        "hardcoded": true,
+        "missing": true,
+        "partial": true,
+        "planner_dependency_gap": true,
+        "present": true,
+        "schema_mismatch": false,
+        "stale": true,
+        "trusted": false,
+        "unsupported": false,
+        "untrusted": true
+      },
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "generated",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "coverage_summary": {
+        "estimated_generated_record_count": 0,
+        "expected_generated_asset_count": 2,
+        "expected_raw_source_count": 0,
+        "generated_asset_count": 2,
+        "hardcoded_reference_count": 12,
+        "planner_contract_count": 2,
+        "raw_record_count": 0,
+        "raw_source_count": 0,
+        "schema_mapping_count": 1,
+        "stable_calculable_count": 0,
+        "trusted_manifest_count": 1,
+        "unsupported_report_count": 0,
+        "unsupported_visibility_count": 0,
+        "validation_error_count": 0,
+        "validation_report_count": 1,
+        "validation_warning_count": 0
+      },
+      "evidence": {
+        "generated_assets": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 153240,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v3_production_remap_gate_audit_report.json",
+            "production_consumed": false,
+            "production_safe": null,
+            "read_only": null,
+            "schema_version": "v3.production_remap_gate_audit_report.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "hardcoded_references": [
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/constants/crafting.py",
+            "planner_finding": "Manual crafting constants."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/engines/stat_engine.py",
+            "planner_finding": "Manual BuildStats field schema and stat aggregation mappings."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/engines/stat_resolution_pipeline.py",
+            "planner_finding": "Manual layer ordering and blessing stat conversion."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/classes.json",
+            "planner_finding": "Legacy class metadata source."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/constants.json",
+            "planner_finding": "Legacy runtime constants consumed by stat and combat engines."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/game_data_loader.py",
+            "planner_finding": "Legacy JSON and DB loader for affixes, blessings, and reference data."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/game_data/skills.json",
+            "planner_finding": "Legacy skill metadata source."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "backend/app/routes/ref.py",
+            "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/constants/statBenchmarks.ts",
+            "planner_finding": "Frontend stat benchmark constants."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/constants/statLabels.ts",
+            "planner_finding": "Frontend stat label map."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/lib/crafting.ts",
+            "planner_finding": "Frontend crafting helper logic."
+          },
+          {
+            "domain_declared_hardcoded": false,
+            "exists": true,
+            "path": "frontend/src/lib/simulation.ts",
+            "planner_finding": "Frontend simulation/stat mirror logic."
+          }
+        ],
+        "planner_contracts": [
+          {
+            "byte_size": 68852,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_remap_readiness_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": null,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          {
+            "byte_size": 153240,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v3_production_remap_gate_audit_report.json",
+            "production_consumed": false,
+            "production_safe": null,
+            "read_only": null,
+            "schema_version": "v3.production_remap_gate_audit_report.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "raw_sources": [],
+        "schema_mappings": [
+          {
+            "exists": true,
+            "is_directory": true,
+            "path": "backend/app/planner_adapters"
+          }
+        ],
+        "trusted_manifests": [
+          {
+            "byte_size": 580606,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_source_inventory.json",
+            "production_consumed": null,
+            "production_safe": false,
+            "read_only": true,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ],
+        "unsupported_reports": [],
+        "validation_reports": [
+          {
+            "byte_size": 20922,
+            "exists": true,
+            "is_directory": false,
+            "json_status": "valid",
+            "path": "docs/generated/v2_planner_adapter_diagnostics_report.json",
+            "production_consumed": null,
+            "production_safe": null,
+            "read_only": true,
+            "schema_version": "v2.planner_adapter_diagnostics.1",
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        ]
+      },
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "PreV3MechanicalReadinessPage": true,
+          "V2PlannerAdapterStatusPanel": true
+        },
+        "visible": true
+      },
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_on_values": [],
+      "label": "Planner-facing Gameplay Contracts",
+      "notes": [],
+      "required_audit_domain": true,
+      "schema_versions": [
+        "v2.planner_adapter_diagnostics.1",
+        "v3.production_remap_gate_audit_report.1"
+      ],
+      "special_behavior_counts": {},
+      "support_status_counts": {},
+      "system_id": "planner_facing_gameplay_contracts",
+      "trust_level_counts": {}
+    }
+  ],
+  "classification_totals": {
+    "backend_visible": 20,
+    "extracted": 22,
+    "frontend_visible": 23,
+    "generated": 20,
+    "hardcoded": 10,
+    "missing": 9,
+    "partial": 27,
+    "planner_dependency_gap": 27,
+    "present": 27,
+    "schema_mismatch": 8,
+    "stale": 27,
+    "trusted": 17,
+    "unsupported": 9,
+    "untrusted": 27
+  },
+  "data_manifest": {
+    "exists": true,
+    "files_updated": [
+      "data\\items\\affixes.json"
+    ],
+    "patch_version": "unknown",
+    "patch_version_unknown": true,
+    "path": "data/version.json",
+    "synced_at": "2026-04-26T01:32:48.052920+00:00"
+  },
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "42e53436c4acf6c5f327d9221bd4f99ee7cf91a39ef7687c06f35bfce6aac040",
+  "enabled_semantics": {
+    "approval_semantics_enabled": false,
+    "authorization_semantics_enabled": false,
+    "autonomous_decision_system_enabled": false,
+    "operational_runtime_behavior_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_mutation_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "planner_scoring_enabled": false,
+    "production_consumption_enabled": false,
+    "runtime_mutation_enabled": false
+  },
+  "generated_at": "2026-05-19T00:00:00+00:00",
+  "non_operational_statement": "Trusted gameplay data coverage diagnostics do NOT enable planner execution, planner recommendations, ranking, scoring, approval, authorization, orchestration execution, runtime mutation, operational runtime behavior, autonomous decisions, or inferred gameplay support.",
+  "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+  "phase_name": "diagnostics/trusted-game-data-coverage-audit",
+  "planner_dependency_status": {
+    "audit_only": true,
+    "blocked_modifier_count": 19398,
+    "dependency_category_count": 15,
+    "dependency_classification_counts": {
+      "blocked_by_behavioral_risk": 2,
+      "blocked_by_identity_resolution": 1,
+      "blocked_by_missing_tests": 1,
+      "blocked_by_unsupported_mechanics": 3,
+      "blocked_by_value_normalization": 4,
+      "manual_only_currently": 1,
+      "ready_for_adapter_later": 3
+    },
+    "eligible_planner_calculable_count": 0,
+    "exists": true,
+    "legacy_or_hardcoded_source_count": 12,
+    "path": "docs/generated/v2_planner_remap_readiness_report.json",
+    "planner_remap_performed": false,
+    "production_routes_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "status": "ready_for_review",
+    "value_normalization_status": "audit_only"
+  },
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "FAIL-VISIBLE",
+    "NON-operational",
+    "NON-mutating",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-orchestrating"
+  ],
+  "required_outputs": {
+    "backend_gameplay_visibility_coverage": [
+      "classes",
+      "masteries",
+      "passive_trees",
+      "passives",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "items",
+      "uniques",
+      "set_items",
+      "affixes",
+      "idols",
+      "blessings",
+      "crafting_materials",
+      "monolith_systems",
+      "damage_types",
+      "tags",
+      "gameplay_backend_payloads",
+      "trusted_generated_assets",
+      "schema_mappings"
+    ],
+    "frontend_gameplay_visibility_coverage": [
+      "classes",
+      "masteries",
+      "passive_trees",
+      "passives",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "items",
+      "uniques",
+      "set_items",
+      "affixes",
+      "idols",
+      "blessings",
+      "crafting_materials",
+      "monolith_systems",
+      "bosses",
+      "ailments",
+      "mechanics",
+      "tags",
+      "gameplay_frontend_payloads",
+      "trusted_generated_assets",
+      "schema_mappings",
+      "planner_facing_gameplay_contracts"
+    ],
+    "gameplay_coverage_summary": {
+      "audited_system_count": 27,
+      "backend_visible_system_count": 20,
+      "coverage_certification": "trusted_gameplay_coverage_partial_fail_visible",
+      "frontend_visible_system_count": 23,
+      "gameplay_maturity_state": "generated_trusted_assets_exist_but_planner_completeness_not_certified",
+      "generated_at": "2026-05-19T00:00:00+00:00",
+      "governance_aggregation_deferred_reason": "Governance aggregation is deferred until trusted gameplay data coverage, unsupported states, schema drift, and planner dependency gaps are visible.",
+      "hardcoded_system_count": 10,
+      "missing_system_count": 9,
+      "non_operational_boundary_preserved": true,
+      "partial_system_count": 27,
+      "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+      "phase_name": "diagnostics/trusted-game-data-coverage-audit",
+      "planner_dependency_gap_system_count": 27,
+      "present_system_count": 27,
+      "schema_mismatch_system_count": 8,
+      "schema_version": "trusted_gameplay_data_coverage_audit.v1",
+      "stale_system_count": 27,
+      "trusted_system_count": 17,
+      "unsupported_system_count": 9,
+      "untrusted_system_count": 27
+    },
+    "hardcoded_gameplay_detection": [
+      "classes",
+      "masteries",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "items",
+      "affixes",
+      "crafting_materials",
+      "mechanics",
+      "planner_facing_gameplay_contracts"
+    ],
+    "missing_gameplay_systems": [
+      "blessings",
+      "crafting_materials",
+      "monolith_systems",
+      "echo_systems",
+      "bosses",
+      "ailments",
+      "damage_types",
+      "mechanics",
+      "planner_facing_gameplay_contracts"
+    ],
+    "partial_gameplay_support": [
+      "classes",
+      "masteries",
+      "passive_trees",
+      "passives",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "items",
+      "uniques",
+      "set_items",
+      "affixes",
+      "idols",
+      "blessings",
+      "crafting_materials",
+      "monolith_systems",
+      "echo_systems",
+      "bosses",
+      "ailments",
+      "damage_types",
+      "mechanics",
+      "tags",
+      "gameplay_backend_payloads",
+      "gameplay_frontend_payloads",
+      "trusted_extraction_manifests",
+      "trusted_generated_assets",
+      "schema_mappings",
+      "planner_facing_gameplay_contracts"
+    ],
+    "planner_dependency_gap_visibility": [
+      "classes",
+      "masteries",
+      "passive_trees",
+      "passives",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "items",
+      "uniques",
+      "set_items",
+      "affixes",
+      "idols",
+      "blessings",
+      "crafting_materials",
+      "monolith_systems",
+      "echo_systems",
+      "bosses",
+      "ailments",
+      "damage_types",
+      "mechanics",
+      "tags",
+      "gameplay_backend_payloads",
+      "gameplay_frontend_payloads",
+      "trusted_extraction_manifests",
+      "trusted_generated_assets",
+      "schema_mappings",
+      "planner_facing_gameplay_contracts"
+    ],
+    "schema_drift_detection": [
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "gameplay_backend_payloads",
+      "gameplay_frontend_payloads",
+      "trusted_extraction_manifests",
+      "trusted_generated_assets",
+      "schema_mappings"
+    ],
+    "trusted_extraction_coverage": {
+      "checkpoint": "checkpoint_1",
+      "current_trust_status_counts": {
+        "partial": 90,
+        "text_only": 14,
+        "unknown": 724,
+        "unsupported": 62
+      },
+      "exists": true,
+      "generated_on": "2026-05-12",
+      "manual_source_count": 66,
+      "path": "docs/generated/v2_source_inventory.json",
+      "production_safe": false,
+      "read_only": true,
+      "replace_or_remap_count": 369,
+      "source_count": 890,
+      "source_kind_counts": {
+        "debug_demo": 39,
+        "extracted": 55,
+        "fallback": 1,
+        "fixture": 22,
+        "generated": 35,
+        "manual": 66,
+        "static_json": 18,
+        "unknown": 654
+      },
+      "unknown_source_kind_count": 654,
+      "unknown_trust_count": 724
+    },
+    "unsupported_gameplay_state_visibility": [
+      "passive_trees",
+      "passives",
+      "skills",
+      "skill_trees",
+      "skill_nodes",
+      "uniques",
+      "set_items",
+      "mechanics",
+      "trusted_generated_assets"
+    ]
+  },
+  "schema_version": "trusted_gameplay_data_coverage_audit.v1",
+  "source_inventory_status": {
+    "checkpoint": "checkpoint_1",
+    "current_trust_status_counts": {
+      "partial": 90,
+      "text_only": 14,
+      "unknown": 724,
+      "unsupported": 62
+    },
+    "exists": true,
+    "generated_on": "2026-05-12",
+    "manual_source_count": 66,
+    "path": "docs/generated/v2_source_inventory.json",
+    "production_safe": false,
+    "read_only": true,
+    "replace_or_remap_count": 369,
+    "source_count": 890,
+    "source_kind_counts": {
+      "debug_demo": 39,
+      "extracted": 55,
+      "fallback": 1,
+      "fixture": 22,
+      "generated": 35,
+      "manual": 66,
+      "static_json": 18,
+      "unknown": 654
+    },
+    "unknown_source_kind_count": 654,
+    "unknown_trust_count": 724
+  },
+  "stabilized_route_expectations": [
+    {
+      "read_only_inspection": true,
+      "route": "/api/health",
+      "route_id": "backend_health",
+      "route_type": "backend",
+      "route_validation_type": "static_source_token",
+      "source_path": "backend/app/routes/health.py",
+      "token": "@health_bp.get(\"/health\")",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/api/trust/visibility",
+      "route_id": "backend_trust_visibility",
+      "route_type": "backend",
+      "route_validation_type": "static_source_token",
+      "source_path": "backend/app/routes/trust.py",
+      "token": "@trust_bp.get(\"/visibility\")",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/classes",
+      "route_id": "frontend_classes",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/classes\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/passives",
+      "route_id": "frontend_passives",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/passives\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/trusted-data",
+      "route_id": "frontend_trusted_data",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/trusted-data\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/trusted-data/frontend-trust",
+      "route_id": "frontend_trusted_data_frontend_trust",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/trusted-data/frontend-trust\"",
+      "visible": true
+    }
+  ],
+  "summary": {
+    "audited_system_count": 27,
+    "backend_visible_system_count": 20,
+    "coverage_certification": "trusted_gameplay_coverage_partial_fail_visible",
+    "frontend_visible_system_count": 23,
+    "gameplay_maturity_state": "generated_trusted_assets_exist_but_planner_completeness_not_certified",
+    "generated_at": "2026-05-19T00:00:00+00:00",
+    "governance_aggregation_deferred_reason": "Governance aggregation is deferred until trusted gameplay data coverage, unsupported states, schema drift, and planner dependency gaps are visible.",
+    "hardcoded_system_count": 10,
+    "missing_system_count": 9,
+    "non_operational_boundary_preserved": true,
+    "partial_system_count": 27,
+    "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+    "phase_name": "diagnostics/trusted-game-data-coverage-audit",
+    "planner_dependency_gap_system_count": 27,
+    "present_system_count": 27,
+    "schema_mismatch_system_count": 8,
+    "schema_version": "trusted_gameplay_data_coverage_audit.v1",
+    "stale_system_count": 27,
+    "trusted_system_count": 17,
+    "unsupported_system_count": 9,
+    "untrusted_system_count": 27
+  },
+  "validation": {
+    "compile_validation_scope": "trusted gameplay coverage module and report script",
+    "deterministic_hashing_valid": true,
+    "deterministic_serialization_valid": true,
+    "frontend_backend_route_validation_complete": true,
+    "missing_state_validation_complete": true,
+    "non_operational_boundary_preserved": true,
+    "regression_validation_scope": "focused_report_module_and_route_visibility",
+    "report_reproducibility_validation_required": true,
+    "schema_consistency_validation_complete": true,
+    "stale_state_validation_complete": true,
+    "unsupported_state_validation_complete": true
+  }
+}

@@ -1,0 +1,636 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "bbb1c74efd746ed99c62d4d3c6316501a13671e38649ffdd957fd053c556bb0f",
+  "generated_at": "2026-05-19T00:00:00+00:00",
+  "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+  "report_id": "gameplay_schema_alignment_report",
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "FAIL-VISIBLE",
+    "NON-operational",
+    "NON-mutating",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-orchestrating"
+  ],
+  "schema_alignment_records": [
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Classes",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 938,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalClassMastery.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.class_mastery_bundle.1"
+      ],
+      "system_id": "classes",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Masteries",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 938,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalClassMastery.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.class_mastery_bundle.1"
+      ],
+      "system_id": "masteries",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Passive Trees",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1227,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalPassive.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.passive_tree_bundle.1"
+      ],
+      "system_id": "passive_trees",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [],
+      "label": "Passives",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 1227,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalPassive.ts"
+        },
+        {
+          "byte_size": 5909,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/passiveEffects.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.passive_tree_bundle.1"
+      ],
+      "system_id": "passives",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [
+        "validation_warnings_present"
+      ],
+      "label": "Skills",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 1921,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalSkill.ts"
+        },
+        {
+          "byte_size": 1116,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/skillClassification.ts"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [
+        "v2.skill_bundle.1"
+      ],
+      "system_id": "skills",
+      "validation_error_count": 0,
+      "validation_warning_count": 64
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [
+        "validation_warnings_present"
+      ],
+      "label": "Skill Trees",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 1976,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/skillTree.ts"
+        },
+        {
+          "byte_size": 1921,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalSkill.ts"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [
+        "v2.skill_tree_bundle.1"
+      ],
+      "system_id": "skill_trees",
+      "validation_error_count": 0,
+      "validation_warning_count": 64
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [
+        "validation_warnings_present"
+      ],
+      "label": "Skill Nodes",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 1921,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalSkill.ts"
+        },
+        {
+          "byte_size": 1976,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/skillTree.ts"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [
+        "v2.skill_tree_bundle.1"
+      ],
+      "system_id": "skill_nodes",
+      "validation_error_count": 0,
+      "validation_warning_count": 64
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Items",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1110,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalItem.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.item_base_bundle.1",
+        "v2.item_implicit_bundle.1"
+      ],
+      "system_id": "items",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Uniques",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 784,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalUnique.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.unique_bundle.1"
+      ],
+      "system_id": "uniques",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Set Items",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1492,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalSet.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.set_bundle.1"
+      ],
+      "system_id": "set_items",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Affixes",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1017,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalAffix.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.affix_bundle.1"
+      ],
+      "system_id": "affixes",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Idols",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1068,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalIdol.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.idol_affix_bundle.1",
+        "v2.idol_bundle.1"
+      ],
+      "system_id": "idols",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Blessings",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1434,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/blessings.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "blessings",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Crafting Materials",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 16767,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/index.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "crafting_materials",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Monolith Systems",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 1434,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/blessings.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "monolith_systems",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 0,
+      "gap_reasons": [],
+      "label": "Echo Systems",
+      "schema_mapping_count": 0,
+      "schema_mappings": [],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "echo_systems",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Bosses",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 16767,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/index.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "bosses",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Ailments",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 3626,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/conditionalStats.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "ailments",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Damage Types",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 3626,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/conditionalStats.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [],
+      "system_id": "damage_types",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [],
+      "label": "Mechanics",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 538,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalModifier.ts"
+        },
+        {
+          "byte_size": 3626,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/conditionalStats.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.modifier_blocked_reasons_report.1",
+        "v2.modifier_registry.1",
+        "v2.modifier_validation_report.1",
+        "v2.stat_modifier_dry_run.1",
+        "v2.stat_registry.1"
+      ],
+      "system_id": "mechanics",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Tags",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "byte_size": 554,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/types/canonicalBase.ts"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.affix_bundle.1",
+        "v2.item_base_bundle.1"
+      ],
+      "system_id": "tags",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Gameplay Backend Payloads",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "backend/app/api_contracts/v2"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [],
+      "system_id": "gameplay_backend_payloads",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [],
+      "label": "Gameplay Frontend Payloads",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "byte_size": 19774,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/lib/api.ts"
+        },
+        {
+          "byte_size": 3340,
+          "exists": true,
+          "is_directory": false,
+          "path": "frontend/src/lib/v2ApiEnvelope.ts"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [],
+      "system_id": "gameplay_frontend_payloads",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 0,
+      "gap_reasons": [],
+      "label": "Trusted Extraction Manifests",
+      "schema_mapping_count": 0,
+      "schema_mappings": [],
+      "schema_mismatch": true,
+      "schema_versions": [],
+      "system_id": "trusted_extraction_manifests",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 2,
+      "gap_reasons": [
+        "validation_warnings_present"
+      ],
+      "label": "Trusted Generated Assets",
+      "schema_mapping_count": 2,
+      "schema_mappings": [
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "backend/app/repositories/v2"
+        },
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "frontend/src/types"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [
+        "v2.affix_bundle.1",
+        "v2.class_mastery_bundle.1",
+        "v2.idol_affix_bundle.1",
+        "v2.idol_bundle.1",
+        "v2.item_base_bundle.1",
+        "v2.item_implicit_bundle.1",
+        "v2.modifier_registry.1",
+        "v2.passive_tree_bundle.1",
+        "v2.set_bundle.1",
+        "v2.skill_bundle.1",
+        "v2.skill_tree_bundle.1",
+        "v2.stat_registry.1",
+        "v2.unique_bundle.1"
+      ],
+      "system_id": "trusted_generated_assets",
+      "validation_error_count": 0,
+      "validation_warning_count": 128
+    },
+    {
+      "expected_schema_mapping_count": 3,
+      "gap_reasons": [],
+      "label": "Schema Mappings",
+      "schema_mapping_count": 3,
+      "schema_mappings": [
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "backend/app/api_contracts/v2"
+        },
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "backend/app/repositories/v2"
+        },
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "frontend/src/types"
+        }
+      ],
+      "schema_mismatch": true,
+      "schema_versions": [],
+      "system_id": "schema_mappings",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    },
+    {
+      "expected_schema_mapping_count": 1,
+      "gap_reasons": [],
+      "label": "Planner-facing Gameplay Contracts",
+      "schema_mapping_count": 1,
+      "schema_mappings": [
+        {
+          "exists": true,
+          "is_directory": true,
+          "path": "backend/app/planner_adapters"
+        }
+      ],
+      "schema_mismatch": false,
+      "schema_versions": [
+        "v2.planner_adapter_diagnostics.1",
+        "v3.production_remap_gate_audit_report.1"
+      ],
+      "system_id": "planner_facing_gameplay_contracts",
+      "validation_error_count": 0,
+      "validation_warning_count": 0
+    }
+  ],
+  "schema_version": "trusted_gameplay_data_coverage_audit.v1.schema_alignment",
+  "summary": {
+    "audited_schema_system_count": 27,
+    "schema_alignment_status": "schema_alignment_partial_fail_visible",
+    "schema_mismatch_count": 8,
+    "validation_error_system_count": 0,
+    "validation_warning_system_count": 4
+  }
+}

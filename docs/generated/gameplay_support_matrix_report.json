@@ -1,0 +1,1107 @@
+{
+  "classification_totals": {
+    "backend_visible": 20,
+    "extracted": 22,
+    "frontend_visible": 23,
+    "generated": 20,
+    "hardcoded": 10,
+    "missing": 9,
+    "partial": 27,
+    "planner_dependency_gap": 27,
+    "present": 27,
+    "schema_mismatch": 8,
+    "stale": 27,
+    "trusted": 17,
+    "unsupported": 9,
+    "untrusted": 27
+  },
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "fd3ad9bdfd50a23b57dcaeef938b9f2e3ab6bd13763521636db2faaf9c3acb46",
+  "generated_at": "2026-05-19T00:00:00+00:00",
+  "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+  "report_id": "gameplay_support_matrix_report",
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "FAIL-VISIBLE",
+    "NON-operational",
+    "NON-mutating",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-orchestrating"
+  ],
+  "schema_version": "trusted_gameplay_data_coverage_audit.v1.support_matrix",
+  "summary": {
+    "audited_system_count": 27,
+    "backend_visible_system_count": 20,
+    "coverage_certification": "trusted_gameplay_coverage_partial_fail_visible",
+    "frontend_visible_system_count": 23,
+    "gameplay_maturity_state": "generated_trusted_assets_exist_but_planner_completeness_not_certified",
+    "generated_at": "2026-05-19T00:00:00+00:00",
+    "governance_aggregation_deferred_reason": "Governance aggregation is deferred until trusted gameplay data coverage, unsupported states, schema drift, and planner dependency gaps are visible.",
+    "hardcoded_system_count": 10,
+    "missing_system_count": 9,
+    "non_operational_boundary_preserved": true,
+    "partial_system_count": 27,
+    "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+    "phase_name": "diagnostics/trusted-game-data-coverage-audit",
+    "planner_dependency_gap_system_count": 27,
+    "present_system_count": 27,
+    "schema_mismatch_system_count": 8,
+    "schema_version": "trusted_gameplay_data_coverage_audit.v1",
+    "stale_system_count": 27,
+    "trusted_system_count": 17,
+    "unsupported_system_count": 9,
+    "untrusted_system_count": 27
+  },
+  "support_matrix": [
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 40,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Classes",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 5,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 20
+      },
+      "system_id": "classes",
+      "trust_level_counts": {
+        "generated_from_game_data": 20
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 40,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Masteries",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 5,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 20
+      },
+      "system_id": "masteries",
+      "trust_level_counts": {
+        "generated_from_game_data": 20
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 1615,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "label": "Passive Trees",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 568,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 540
+      },
+      "system_id": "passive_trees",
+      "trust_level_counts": {
+        "generated_from_game_data": 540
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 1615,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "label": "Passives",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 541,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 540
+      },
+      "system_id": "passives",
+      "trust_level_counts": {
+        "generated_from_game_data": 540
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 12581,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "label": "Skills",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 346,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 184
+      },
+      "system_id": "skills",
+      "trust_level_counts": {
+        "generated_from_game_data": 184
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 12581,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "label": "Skill Trees",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 324,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 4055
+      },
+      "system_id": "skill_trees",
+      "trust_level_counts": {
+        "generated_from_game_data": 4055
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 12581,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "label": "Skill Nodes",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 272,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 4055
+      },
+      "system_id": "skill_nodes",
+      "trust_level_counts": {
+        "generated_from_game_data": 4055
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 1084,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Items",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 41,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 1724
+      },
+      "system_id": "items",
+      "trust_level_counts": {
+        "generated_from_game_data": 1724
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 922,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "label": "Uniques",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 404,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 409
+      },
+      "system_id": "uniques",
+      "trust_level_counts": {
+        "generated_from_game_data": 409
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 617,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "label": "Set Items",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 49,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 127
+      },
+      "system_id": "set_items",
+      "trust_level_counts": {
+        "generated_from_game_data": 127
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 1581,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Affixes",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 1228,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 1098
+      },
+      "system_id": "affixes",
+      "trust_level_counts": {
+        "generated_from_game_data": 1098
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 1108,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Idols",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 1230,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 554
+      },
+      "system_id": "idols",
+      "trust_level_counts": {
+        "generated_from_game_data": 554
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Blessings",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 10,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "blessings",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Crafting Materials",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 7,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "crafting_materials",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Monolith Systems",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 243,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "monolith_systems",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": false,
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Echo Systems",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 235,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "echo_systems",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Bosses",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 247,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "bosses",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Ailments",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 771,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "ailments",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": false,
+      "gap_reasons": [
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Damage Types",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 7,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "damage_types",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "label": "Mechanics",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 2591,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 2070
+      },
+      "system_id": "mechanics",
+      "trust_level_counts": {
+        "generated_from_game_data": 2070
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 2665,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Tags",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 59,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 1640
+      },
+      "system_id": "tags",
+      "trust_level_counts": {
+        "generated_from_game_data": 1640
+      },
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 58,
+      "frontend_visible": false,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Gameplay Backend Payloads",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 0,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "gameplay_backend_payloads",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "frontend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 48,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Gameplay Frontend Payloads",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 0,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "gameplay_frontend_payloads",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 890,
+      "frontend_visible": false,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Trusted Extraction Manifests",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 3,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "trusted_extraction_manifests",
+      "trust_level_counts": {},
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 11745,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "label": "Trusted Generated Assets",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 0,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {
+        "partial": 10781
+      },
+      "system_id": "trusted_generated_assets",
+      "trust_level_counts": {
+        "generated_from_game_data": 10781
+      },
+      "trusted": true,
+      "unsupported": true,
+      "untrusted": true
+    },
+    {
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 58,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Schema Mappings",
+      "missing": false,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 0,
+      "schema_mismatch": true,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "schema_mappings",
+      "trust_level_counts": {},
+      "trusted": true,
+      "unsupported": false,
+      "untrusted": true
+    },
+    {
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "generated",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "estimated_generated_record_count": 0,
+      "frontend_visible": true,
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "label": "Planner-facing Gameplay Contracts",
+      "missing": true,
+      "partial": true,
+      "planner_dependency_gap": true,
+      "present": true,
+      "raw_record_count": 0,
+      "schema_mismatch": false,
+      "stable_calculable_count": 0,
+      "support_status_counts": {},
+      "system_id": "planner_facing_gameplay_contracts",
+      "trust_level_counts": {},
+      "trusted": false,
+      "unsupported": false,
+      "untrusted": true
+    }
+  ]
+}

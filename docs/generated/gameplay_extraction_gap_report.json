@@ -1,0 +1,2496 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "1700d3fed878b480c69e6f0fcf965900fcc098896e3ce8a761727a07b84a8ee1",
+  "gap_records": [
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 43810,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_class_mastery_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.class_mastery_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/constants/classes.py",
+          "planner_finding": ""
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/routes/ref.py",
+          "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+        }
+      ],
+      "label": "Classes",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 4857,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/classes.json"
+        }
+      ],
+      "system_id": "classes",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 43810,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_class_mastery_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.class_mastery_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/constants/classes.py",
+          "planner_finding": ""
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/routes/ref.py",
+          "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+        }
+      ],
+      "label": "Masteries",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 4857,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/classes.json"
+        }
+      ],
+      "system_id": "masteries",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 2701804,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_passive_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.passive_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Passive Trees",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 407025,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/passives.json"
+        },
+        {
+          "byte_size": 3163,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/unmatched_trees.json"
+        }
+      ],
+      "system_id": "passive_trees",
+      "unsupported_reports": [
+        {
+          "byte_size": 293701,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_passive_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 2701804,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_passive_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.passive_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Passives",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 407025,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/passives.json"
+        }
+      ],
+      "system_id": "passives",
+      "unsupported_reports": [
+        {
+          "byte_size": 293701,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_passive_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 673814,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.skill_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 64
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/game_data/skills.json",
+          "planner_finding": "Legacy skill metadata source."
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "frontend/src/data/skillTrees/index.ts",
+          "planner_finding": ""
+        }
+      ],
+      "label": "Skills",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 64077,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/classes/skills_metadata.json"
+        },
+        {
+          "byte_size": 4941180,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/skills_with_trees.json"
+        }
+      ],
+      "system_id": "skills",
+      "unsupported_reports": [
+        {
+          "byte_size": 2542660,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 19895274,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.skill_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 64
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "frontend/src/data/skillTrees/index.ts",
+          "planner_finding": ""
+        }
+      ],
+      "label": "Skill Trees",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 5015615,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/community_skill_trees.json"
+        },
+        {
+          "byte_size": 4941180,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/skills_with_trees.json"
+        }
+      ],
+      "system_id": "skill_trees",
+      "unsupported_reports": [
+        {
+          "byte_size": 2542660,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 19895274,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.skill_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 64
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "frontend/src/data/skillTrees/index.ts",
+          "planner_finding": ""
+        }
+      ],
+      "label": "Skill Nodes",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 625024,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/classes/skill_tree_nodes.json"
+        },
+        {
+          "byte_size": 5015615,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/classes/community_skill_trees.json"
+        }
+      ],
+      "system_id": "skill_nodes",
+      "unsupported_reports": [
+        {
+          "byte_size": 2542660,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 1350335,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_item_base_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.item_base_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 4188651,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_item_implicit_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.item_implicit_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/constants/base_type_id_to_item_type_id.py",
+          "planner_finding": ""
+        }
+      ],
+      "label": "Items",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 1292277,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/items.json"
+        },
+        {
+          "byte_size": 19584,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/base_items.json"
+        },
+        {
+          "byte_size": 1988,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/implicit_stats.json"
+        }
+      ],
+      "system_id": "items",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 5277038,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_unique_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.unique_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Uniques",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 340977,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/uniques.json"
+        }
+      ],
+      "system_id": "uniques",
+      "unsupported_reports": [
+        {
+          "byte_size": 121694,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_unique_set_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 919201,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_set_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.set_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Set Items",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 35659,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/set_items.json"
+        }
+      ],
+      "system_id": "set_items",
+      "unsupported_reports": [
+        {
+          "byte_size": 121694,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_unique_set_unsupported_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 7534548,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_affix_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.affix_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/constants/cache.py",
+          "planner_finding": ""
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/routes/ref.py",
+          "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+        }
+      ],
+      "label": "Affixes",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 1191694,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/items/affixes.json"
+        }
+      ],
+      "system_id": "affixes",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 155194,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_idol_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.idol_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 3123496,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_idol_affix_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.idol_affix_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Idols",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 1292277,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/items.json"
+        },
+        {
+          "byte_size": 1191694,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/items/affixes.json"
+        }
+      ],
+      "system_id": "idols",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Blessings",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 48402,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/progression/blessings.json"
+        }
+      ],
+      "system_id": "blessings",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/engines/craft_engine.py",
+          "planner_finding": ""
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/engines/fp_engine.py",
+          "planner_finding": ""
+        }
+      ],
+      "label": "Crafting Materials",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 1123,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/crafting_rules.json"
+        },
+        {
+          "byte_size": 371,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/items/forging_potential_ranges.json"
+        }
+      ],
+      "system_id": "crafting_materials",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Monolith Systems",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 13129,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/world/timelines.json"
+        },
+        {
+          "byte_size": 48402,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/progression/blessings.json"
+        },
+        {
+          "byte_size": 22785,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/localization/monolith_objective_strings.json"
+        }
+      ],
+      "system_id": "monolith_systems",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Echo Systems",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 80534,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/progression/weaver_tree.json"
+        },
+        {
+          "byte_size": 13129,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/world/timelines.json"
+        },
+        {
+          "byte_size": 22785,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/localization/monolith_objective_strings.json"
+        }
+      ],
+      "system_id": "echo_systems",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Bosses",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 3701,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/entities/enemy_profiles.json"
+        },
+        {
+          "byte_size": 126198,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/entities/actors.json"
+        }
+      ],
+      "system_id": "bosses",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_backend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Ailments",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 3020,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/combat/ailments.json"
+        },
+        {
+          "byte_size": 65127,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/localization/ailment_strings.json"
+        }
+      ],
+      "system_id": "ailments",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "missing_frontend_visibility",
+        "missing_generated_asset",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [],
+      "hardcoded_references": [],
+      "label": "Damage Types",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 1944,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/combat/damage_types.json"
+        }
+      ],
+      "system_id": "damage_types",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 37321193,
+          "exists": true,
+          "generated_on": "2026-05-13T01:43:33.429693+00:00",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_modifier_registry.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.modifier_registry.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 2668383,
+          "exists": true,
+          "generated_on": "2026-05-13T01:43:33.429693+00:00",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_stat_registry.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.stat_registry.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/constants/crafting.py",
+          "planner_finding": "Manual crafting constants."
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/engines/stat_engine.py",
+          "planner_finding": "Manual BuildStats field schema and stat aggregation mappings."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/engines/stat_resolution_pipeline.py",
+          "planner_finding": "Manual layer ordering and blessing stat conversion."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/classes.json",
+          "planner_finding": "Legacy class metadata source."
+        },
+        {
+          "domain_declared_hardcoded": true,
+          "exists": true,
+          "path": "backend/app/game_data/constants.json",
+          "planner_finding": "Legacy runtime constants consumed by stat and combat engines."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/game_data_loader.py",
+          "planner_finding": "Legacy JSON and DB loader for affixes, blessings, and reference data."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/skills.json",
+          "planner_finding": "Legacy skill metadata source."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/routes/ref.py",
+          "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/constants/statBenchmarks.ts",
+          "planner_finding": "Frontend stat benchmark constants."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/constants/statLabels.ts",
+          "planner_finding": "Frontend stat label map."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/lib/crafting.ts",
+          "planner_finding": "Frontend crafting helper logic."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/lib/simulation.ts",
+          "planner_finding": "Frontend simulation/stat mirror logic."
+        }
+      ],
+      "label": "Mechanics",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 177511,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/localization/game_guide_strings.json"
+        },
+        {
+          "byte_size": 117030,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/localization/descriptor_strings.json"
+        }
+      ],
+      "system_id": "mechanics",
+      "unsupported_reports": [
+        {
+          "byte_size": 18693,
+          "exists": true,
+          "generated_on": "2026-05-13T01:43:33.429693+00:00",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_modifier_blocked_reasons_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.modifier_blocked_reasons_report.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ]
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 7534548,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_affix_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.affix_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 1350335,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_item_base_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.item_base_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Tags",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 3411,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "non_object_json",
+          "path": "data/items/tags.json"
+        }
+      ],
+      "system_id": "tags",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 62220,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_api_contract_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 47988,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_backend_repository_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Gameplay Backend Payloads",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [],
+      "system_id": "gameplay_backend_payloads",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "frontend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 62220,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_api_contract_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Gameplay Frontend Payloads",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [],
+      "system_id": "gameplay_frontend_payloads",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 580606,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_source_inventory.json",
+          "production_consumed": null,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Trusted Extraction Manifests",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [
+        {
+          "byte_size": 141,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "data/version.json"
+        }
+      ],
+      "system_id": "trusted_extraction_manifests",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest",
+        "unsupported_states_visible",
+        "validation_warnings_present"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 43810,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_class_mastery_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.class_mastery_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 2701804,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_passive_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.passive_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 673814,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.skill_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 64
+        },
+        {
+          "byte_size": 19895274,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_skill_tree_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.skill_tree_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 64
+        },
+        {
+          "byte_size": 1350335,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_item_base_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.item_base_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 4188651,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_item_implicit_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.item_implicit_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 5277038,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_unique_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.unique_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 919201,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_set_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.set_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 7534548,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_affix_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.affix_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 155194,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_idol_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.idol_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 3123496,
+          "exists": true,
+          "generated_on": "2026-05-12",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_idol_affix_bundle.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.idol_affix_bundle.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 2668383,
+          "exists": true,
+          "generated_on": "2026-05-13T01:43:33.429693+00:00",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_stat_registry.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.stat_registry.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 37321193,
+          "exists": true,
+          "generated_on": "2026-05-13T01:43:33.429693+00:00",
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_modifier_registry.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "schema_version": "v2.modifier_registry.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Trusted Generated Assets",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [],
+      "system_id": "trusted_generated_assets",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 62220,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_api_contract_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 47988,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_backend_repository_report.json",
+          "production_consumed": false,
+          "production_safe": false,
+          "read_only": true,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [],
+      "label": "Schema Mappings",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [],
+      "system_id": "schema_mappings",
+      "unsupported_reports": []
+    },
+    {
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "generated",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "gap_reasons": [
+        "hardcoded_or_legacy_source_visible",
+        "missing_backend_visibility",
+        "planner_dependency_gap_visible",
+        "stale_or_unknown_source_manifest"
+      ],
+      "generated_assets": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 153240,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v3_production_remap_gate_audit_report.json",
+          "production_consumed": false,
+          "production_safe": null,
+          "read_only": null,
+          "schema_version": "v3.production_remap_gate_audit_report.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "hardcoded_references": [
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/constants/crafting.py",
+          "planner_finding": "Manual crafting constants."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/engines/stat_engine.py",
+          "planner_finding": "Manual BuildStats field schema and stat aggregation mappings."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/engines/stat_resolution_pipeline.py",
+          "planner_finding": "Manual layer ordering and blessing stat conversion."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/classes.json",
+          "planner_finding": "Legacy class metadata source."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/constants.json",
+          "planner_finding": "Legacy runtime constants consumed by stat and combat engines."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/game_data_loader.py",
+          "planner_finding": "Legacy JSON and DB loader for affixes, blessings, and reference data."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/game_data/skills.json",
+          "planner_finding": "Legacy skill metadata source."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "backend/app/routes/ref.py",
+          "planner_finding": "CLASS_META and slot aliases are hardcoded production reference metadata."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/constants/statBenchmarks.ts",
+          "planner_finding": "Frontend stat benchmark constants."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/constants/statLabels.ts",
+          "planner_finding": "Frontend stat label map."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/lib/crafting.ts",
+          "planner_finding": "Frontend crafting helper logic."
+        },
+        {
+          "domain_declared_hardcoded": false,
+          "exists": true,
+          "path": "frontend/src/lib/simulation.ts",
+          "planner_finding": "Frontend simulation/stat mirror logic."
+        }
+      ],
+      "label": "Planner-facing Gameplay Contracts",
+      "planner_contracts": [
+        {
+          "byte_size": 68852,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v2_planner_remap_readiness_report.json",
+          "production_consumed": null,
+          "production_safe": null,
+          "read_only": null,
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        },
+        {
+          "byte_size": 153240,
+          "exists": true,
+          "is_directory": false,
+          "json_status": "valid",
+          "path": "docs/generated/v3_production_remap_gate_audit_report.json",
+          "production_consumed": false,
+          "production_safe": null,
+          "read_only": null,
+          "schema_version": "v3.production_remap_gate_audit_report.1",
+          "validation_error_count": 0,
+          "validation_warning_count": 0
+        }
+      ],
+      "raw_sources": [],
+      "system_id": "planner_facing_gameplay_contracts",
+      "unsupported_reports": []
+    }
+  ],
+  "generated_at": "2026-05-19T00:00:00+00:00",
+  "hardcoded_and_legacy_data_sources": [
+    {
+      "finding": "CLASS_META and slot aliases are hardcoded production reference metadata.",
+      "path": "backend/app/routes/ref.py"
+    },
+    {
+      "finding": "Legacy runtime constants consumed by stat and combat engines.",
+      "path": "backend/app/game_data/constants.json"
+    },
+    {
+      "finding": "Legacy class metadata source.",
+      "path": "backend/app/game_data/classes.json"
+    },
+    {
+      "finding": "Legacy skill metadata source.",
+      "path": "backend/app/game_data/skills.json"
+    },
+    {
+      "finding": "Legacy JSON and DB loader for affixes, blessings, and reference data.",
+      "path": "backend/app/game_data/game_data_loader.py"
+    },
+    {
+      "finding": "Manual crafting constants.",
+      "path": "backend/app/constants/crafting.py"
+    },
+    {
+      "finding": "Manual BuildStats field schema and stat aggregation mappings.",
+      "path": "backend/app/engines/stat_engine.py"
+    },
+    {
+      "finding": "Manual layer ordering and blessing stat conversion.",
+      "path": "backend/app/engines/stat_resolution_pipeline.py"
+    },
+    {
+      "finding": "Frontend stat label map.",
+      "path": "frontend/src/constants/statLabels.ts"
+    },
+    {
+      "finding": "Frontend stat benchmark constants.",
+      "path": "frontend/src/constants/statBenchmarks.ts"
+    },
+    {
+      "finding": "Frontend simulation/stat mirror logic.",
+      "path": "frontend/src/lib/simulation.ts"
+    },
+    {
+      "finding": "Frontend crafting helper logic.",
+      "path": "frontend/src/lib/crafting.ts"
+    }
+  ],
+  "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+  "planner_dependency_classifications": [
+    {
+      "blockers": [
+        "needs non-calculating API adapter tests"
+      ],
+      "category": "item/base display metadata",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "must stay display-only until value policy is proven"
+      ],
+      "category": "affix display and provenance",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "affix modifier math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "item implicit modifier math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "unsupported/text-only report remains intentionally visible"
+      ],
+      "category": "unique and set mechanics",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "IDOL_ALTAR warnings remain display-only"
+      ],
+      "category": "idol base and idol affix math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "metadata can be inspected; planner skill ownership remains partially unresolved"
+      ],
+      "category": "class/mastery metadata",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "unresolved_refs=2",
+        "ambiguous_refs=1"
+      ],
+      "category": "skill ownership",
+      "classification": "blocked_by_identity_resolution"
+    },
+    {
+      "blockers": [
+        "scripted and unsupported passive records remain non-calculable"
+      ],
+      "category": "passive node behavior",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "scripted and unsupported skill records remain non-calculable"
+      ],
+      "category": "skill and skill tree behavior",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "unknown_value_scale=13150",
+        "source_units_value_scale=6248"
+      ],
+      "category": "stat/modifier adapter math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "production behavior depends on legacy craft engine and FP constants"
+      ],
+      "category": "crafting engine",
+      "classification": "blocked_by_behavioral_risk"
+    },
+    {
+      "blockers": [
+        "production behavior depends on legacy stat fields and combat formulas"
+      ],
+      "category": "simulation/combat engine",
+      "classification": "blocked_by_behavioral_risk"
+    },
+    {
+      "blockers": [
+        "routes expose legacy DB/static data and must not switch without compatibility tests"
+      ],
+      "category": "production reference routes",
+      "classification": "manual_only_currently"
+    },
+    {
+      "blockers": [
+        "needs adapter dry-run and UI compatibility tests before remap"
+      ],
+      "category": "frontend planner API clients",
+      "classification": "blocked_by_missing_tests"
+    }
+  ],
+  "planner_dependency_status": {
+    "audit_only": true,
+    "blocked_modifier_count": 19398,
+    "dependency_category_count": 15,
+    "dependency_classification_counts": {
+      "blocked_by_behavioral_risk": 2,
+      "blocked_by_identity_resolution": 1,
+      "blocked_by_missing_tests": 1,
+      "blocked_by_unsupported_mechanics": 3,
+      "blocked_by_value_normalization": 4,
+      "manual_only_currently": 1,
+      "ready_for_adapter_later": 3
+    },
+    "eligible_planner_calculable_count": 0,
+    "exists": true,
+    "legacy_or_hardcoded_source_count": 12,
+    "path": "docs/generated/v2_planner_remap_readiness_report.json",
+    "planner_remap_performed": false,
+    "production_routes_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "status": "ready_for_review",
+    "value_normalization_status": "audit_only"
+  },
+  "report_id": "gameplay_extraction_gap_report",
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "FAIL-VISIBLE",
+    "NON-operational",
+    "NON-mutating",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-orchestrating"
+  ],
+  "schema_version": "trusted_gameplay_data_coverage_audit.v1.extraction_gap",
+  "source_inventory_status": {
+    "checkpoint": "checkpoint_1",
+    "current_trust_status_counts": {
+      "partial": 90,
+      "text_only": 14,
+      "unknown": 724,
+      "unsupported": 62
+    },
+    "exists": true,
+    "generated_on": "2026-05-12",
+    "manual_source_count": 66,
+    "path": "docs/generated/v2_source_inventory.json",
+    "production_safe": false,
+    "read_only": true,
+    "replace_or_remap_count": 369,
+    "source_count": 890,
+    "source_kind_counts": {
+      "debug_demo": 39,
+      "extracted": 55,
+      "fallback": 1,
+      "fixture": 22,
+      "generated": 35,
+      "manual": 66,
+      "static_json": 18,
+      "unknown": 654
+    },
+    "unknown_source_kind_count": 654,
+    "unknown_trust_count": 724
+  },
+  "summary": {
+    "extraction_gap_status": "gameplay_extraction_gaps_visible_fail_visible",
+    "gap_record_count": 27,
+    "hardcoded_system_count": 10,
+    "missing_system_count": 9,
+    "partial_system_count": 27,
+    "planner_dependency_gap_system_count": 27,
+    "stale_system_count": 27
+  }
+}

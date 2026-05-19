@@ -1,0 +1,1006 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "845cc0696cafea4a04aa6deb7a718b4cef2d8bdb3d16ed40eefb085f98e1b57b",
+  "generated_at": "2026-05-19T00:00:00+00:00",
+  "phase_id": "diagnostics_trusted_game_data_coverage_audit",
+  "report_id": "gameplay_visibility_coverage_report",
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "FAIL-VISIBLE",
+    "NON-operational",
+    "NON-mutating",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-orchestrating"
+  ],
+  "schema_version": "trusted_gameplay_data_coverage_audit.v1.visibility",
+  "stabilized_route_expectations": [
+    {
+      "read_only_inspection": true,
+      "route": "/api/health",
+      "route_id": "backend_health",
+      "route_type": "backend",
+      "route_validation_type": "static_source_token",
+      "source_path": "backend/app/routes/health.py",
+      "token": "@health_bp.get(\"/health\")",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/api/trust/visibility",
+      "route_id": "backend_trust_visibility",
+      "route_type": "backend",
+      "route_validation_type": "static_source_token",
+      "source_path": "backend/app/routes/trust.py",
+      "token": "@trust_bp.get(\"/visibility\")",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/classes",
+      "route_id": "frontend_classes",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/classes\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/passives",
+      "route_id": "frontend_passives",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/passives\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/trusted-data",
+      "route_id": "frontend_trusted_data",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/trusted-data\"",
+      "visible": true
+    },
+    {
+      "read_only_inspection": true,
+      "route": "/trusted-data/frontend-trust",
+      "route_id": "frontend_trusted_data_frontend_trust",
+      "route_type": "frontend",
+      "route_validation_type": "static_source_token",
+      "source_path": "frontend/src/App.tsx",
+      "token": "path=\"/trusted-data/frontend-trust\"",
+      "visible": true
+    }
+  ],
+  "summary": {
+    "backend_visible_count": 20,
+    "frontend_backend_aligned_count": 18,
+    "frontend_visible_count": 23,
+    "visibility_record_count": 27,
+    "visibility_status": "frontend_backend_gameplay_visibility_partial_fail_visible"
+  },
+  "visibility_records": [
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/classes\"": true,
+          "@ref_bp.get(\"/classes\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-classes\"": true,
+          "fetchV2ClassMastery": true,
+          "path=\"/classes\"": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Classes",
+      "system_id": "classes"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/masteries\"": true,
+          "CLASS_MASTERIES": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-classes\"": true,
+          "fetchV2ClassMastery": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Masteries",
+      "system_id": "masteries"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/passives\"": true,
+          "@passives_bp.get(\"\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-passives\"": true,
+          "V2PassivesDebugPage": true,
+          "path=\"/passives\"": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Passive Trees",
+      "system_id": "passive_trees"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@passives_bp.get(\"\")": true,
+          "@ref_bp.get(\"/passives\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "PassiveTreePage": true,
+          "V2PassivesDebugPage": true,
+          "path=\"/passives\"": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Passives",
+      "system_id": "passives"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills\"": true,
+          "@ref_bp.get(\"/skills\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-skills\"": true,
+          "V2SkillsDebugPage": true,
+          "refApi.skills": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Skills",
+      "system_id": "skills"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills/trees/": true,
+          "@skills_bp.get(\"/skills/<skill_id>/tree\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "SkillTreeDebugPanel": true,
+          "V2SkillsDebugPage": true,
+          "skillTrees": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Skill Trees",
+      "system_id": "skill_trees"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/skills/trees/<path:tree_id>/nodes": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "CanonicalSkillTreeNode": true,
+          "SkillTreeDebugPanel": true,
+          "skillTrees": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Skill Nodes",
+      "system_id": "skill_nodes"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/items/bases\"": true,
+          "@ref_bp.get(\"/base-items\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-items\"": true,
+          "V2ItemsDebugPage": true,
+          "refApi.baseItems": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Items",
+      "system_id": "items"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/uniques\"": true,
+          "@ref_bp.get(\"/uniques\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-unique-sets\"": true,
+          "V2UniqueSetDebugPage": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Uniques",
+      "system_id": "uniques"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/sets\"": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-unique-sets\"": true,
+          "V2UniqueSetDebugPage": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Set Items",
+      "system_id": "set_items"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@affixes_bp.get(\"/catalog\"": true,
+          "@experimental_bp.route(\"/v2/affixes\"": true,
+          "@ref_bp.get(\"/affixes\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "ForgeSafeAffixesDebugPage": true,
+          "path=\"/affixes\"": true,
+          "refApi.affixes": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Affixes",
+      "system_id": "affixes"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/idols\"": true,
+          "@experimental_bp.route(\"/v2/idols/affixes\"": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-idols\"": true,
+          "V2IdolsDebugPage": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Idols",
+      "system_id": "idols"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/blessings\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "SelectedBlessing": true,
+          "getBlessings": true,
+          "types/blessings": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Blessings",
+      "system_id": "blessings"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@craft_bp": true,
+          "@ref_bp.get(\"/crafting-rules\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "CraftingPage": true,
+          "CraftingWorkspace": true,
+          "craftApi": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Crafting Materials",
+      "system_id": "crafting_materials"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/blessings\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "BlessingTimeline": true,
+          "blessings": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Monolith Systems",
+      "system_id": "monolith_systems"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {},
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {},
+        "visible": false
+      },
+      "frontend_visible": false,
+      "label": "Echo Systems",
+      "system_id": "echo_systems"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/enemy-profiles\")": true,
+          "BossAnalysisResponse": false
+        },
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "BossAnalysisResponse": true,
+          "SimulationPage": true,
+          "encounterApi": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Bosses",
+      "system_id": "bosses"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "ailment": false,
+          "get_ailments": false
+        },
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Ailment": true,
+          "ailment": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Ailments",
+      "system_id": "ailments"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get(\"/damage-types\")": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "extracted",
+        "untrusted",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Damage": true,
+          "damageTypes": false,
+          "damage_types": true
+        },
+        "visible": false
+      },
+      "frontend_visible": false,
+      "label": "Damage Types",
+      "system_id": "damage_types"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "combat_engine": false,
+          "modifier": true,
+          "stat_resolution_pipeline": false
+        },
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "unsupported",
+        "extracted",
+        "generated",
+        "hardcoded",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "\"/debug/v2-stats-modifiers\"": true,
+          "V2StatsModifiersDebugPage": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Mechanics",
+      "system_id": "mechanics"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@ref_bp.get": true,
+          "tags": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "tags": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Tags",
+      "system_id": "tags"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route": true,
+          "@health_bp.get": true,
+          "@ref_bp.get": true,
+          "@trust_bp.get": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "frontend_visible": false,
+      "label": "Gameplay Backend Payloads",
+      "system_id": "gameplay_backend_payloads"
+    },
+    {
+      "backend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "untrusted",
+        "frontend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "FrontendTrustSurface": true,
+          "V2EnvelopePanels": true,
+          "fetchV2": true,
+          "refApi": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Gameplay Frontend Payloads",
+      "system_id": "gameplay_frontend_payloads"
+    },
+    {
+      "backend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "extracted",
+        "generated",
+        "trusted",
+        "untrusted",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": false,
+        "token_presence": {},
+        "visible": false
+      },
+      "frontend_visible": false,
+      "label": "Trusted Extraction Manifests",
+      "system_id": "trusted_extraction_manifests"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "@experimental_bp.route(\"/v2/": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "unsupported",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "V2DebugNavigationPage": true,
+          "V2EnvelopePanels": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Trusted Generated Assets",
+      "system_id": "trusted_generated_assets"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "V2": true,
+          "standardize_v2_payload": true
+        },
+        "visible": true
+      },
+      "backend_visible": true,
+      "classifications": [
+        "present",
+        "partial",
+        "stale",
+        "generated",
+        "trusted",
+        "untrusted",
+        "frontend_visible",
+        "backend_visible",
+        "schema_mismatch",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "Canonical": true,
+          "V2ApiEnvelope": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Schema Mappings",
+      "system_id": "schema_mappings"
+    },
+    {
+      "backend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "planner_adapters": false,
+          "production_remap": false
+        },
+        "visible": false
+      },
+      "backend_visible": false,
+      "classifications": [
+        "present",
+        "partial",
+        "missing",
+        "stale",
+        "generated",
+        "hardcoded",
+        "untrusted",
+        "frontend_visible",
+        "planner_dependency_gap"
+      ],
+      "frontend_visibility": {
+        "expected": true,
+        "token_presence": {
+          "PreV3MechanicalReadinessPage": true,
+          "V2PlannerAdapterStatusPanel": true
+        },
+        "visible": true
+      },
+      "frontend_visible": true,
+      "label": "Planner-facing Gameplay Contracts",
+      "system_id": "planner_facing_gameplay_contracts"
+    }
+  ]
+}
