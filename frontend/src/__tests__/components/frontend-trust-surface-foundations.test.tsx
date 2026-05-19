@@ -41,8 +41,8 @@ const backendTrustSuccessPayload: BackendTrustVisibilityPayload = {
   },
   source_type: "backend_expanded_report_backed_visibility",
   report_reference: {
-    name: "v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report",
-    path: "docs/generated/v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report.json",
+    name: "v4_5d_3_backend_trust_payload_expansion_report",
+    path: "docs/generated/v4_5d_3_backend_trust_payload_expansion_report.json",
     hash: "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a",
     available: true,
     status: "report_available",
@@ -58,11 +58,125 @@ const backendTrustSuccessPayload: BackendTrustVisibilityPayload = {
     live_frontend_fetch: true,
     integration_readiness: "backend_payload_ready_frontend_rendering_pending",
   },
+  trust_visibility: {
+    summary_id: "backend_trust_visibility_summary",
+    status: "descriptive_visibility_available",
+    source_type: "backend_expanded_report_backed_visibility",
+    schema_version: "v4.5d.3",
+    report_reference_id: "v4_5d_3_backend_trust_payload_expansion_report",
+    description: "Read-only backend trust visibility payload.",
+  },
+  support_statuses: [
+    {
+      id: "support_status_supported",
+      status: "supported",
+      scope: "backend_trust_visibility_endpoint_contract",
+      description: "The backend endpoint remains read-only and descriptive-only.",
+    },
+    {
+      id: "support_status_partially_supported",
+      status: "partially_supported",
+      scope: "frontend_trust_surface",
+      description: "Expanded backend rendering is visible with fallback preserved.",
+    },
+  ],
+  explainability_references: [
+    {
+      id: "support_explanation_visibility",
+      status: "visible",
+      description: "Support explanations remain descriptive-only.",
+    },
+  ],
+  evidence_panel_references: [
+    {
+      id: "support_evidence_reference",
+      status: "visible",
+      description: "Support evidence remains grouped without scoring.",
+    },
+  ],
+  provenance_references: [
+    {
+      id: "source_reference_visibility",
+      status: "visible",
+      description: "Source references do not imply source authority.",
+    },
+    {
+      id: "unknown_provenance_reference",
+      status: "visible",
+      description: "Unknown provenance remains fail-visible.",
+    },
+  ],
+  lineage_references: [
+    {
+      id: "lineage_continuity_reference",
+      status: "visible",
+      description: "Lineage continuity remains visible.",
+    },
+  ],
+  coverage_references: [
+    {
+      id: "support_coverage_reference",
+      status: "visible",
+      description: "Support coverage remains descriptive-only.",
+    },
+    {
+      id: "incomplete_coverage_reference",
+      status: "visible",
+      description: "Incomplete coverage remains explicit.",
+    },
+  ],
+  confidence_references: [
+    {
+      id: "unknown_confidence_reference",
+      status: "visible",
+      description: "Unknown confidence remains non-scoring.",
+    },
+  ],
+  unsupported_states: [
+    {
+      id: "unsupported_planner_execution",
+      state: "planner_execution",
+      status: "unsupported",
+      fail_visible: true,
+    },
+    {
+      id: "unsupported_scoring",
+      state: "scoring",
+      status: "unsupported",
+      fail_visible: true,
+    },
+  ],
+  preserved_prohibitions: [
+    "planner_execution",
+    "planner_recommendations",
+    "planner_ranking",
+    "trust_scoring",
+    "evidence_scoring",
+    "confidence_scoring",
+    "authorization_semantics",
+    "approval_semantics",
+    "production_enablement",
+    "runtime_mutation",
+    "operational_behavior",
+    "mutable_trust_state",
+  ],
+  frontend_display_readiness: {
+    status: "backend_payload_ready_frontend_rendering_pending",
+    description: "Frontend renders expanded backend payload without launch authorization.",
+    frontend_route: "/trusted-data/frontend-trust",
+    expanded_rendering_authorized: false,
+    descriptive_only: true,
+  },
   diagnostics: [
     {
       id: "report_reference_available",
       severity: "informational",
       message: "Report-backed trust visibility metadata is available.",
+    },
+    {
+      id: "backend_payload_expanded",
+      severity: "informational",
+      message: "Backend trust visibility payload includes deterministic records.",
     },
   ],
   payload_hash: "d1-endpoint-payload-hash",
@@ -196,8 +310,11 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(state.schemaVersion).toBe("v4.5d.3");
     expect(state.backendReflectionStatus).toBe("backend_reflection_expanded_payload_defined");
     expect(state.frontendBackendAlignmentStatus).toBe(
-      "frontend_backend_alignment_endpoint_visible",
+      "frontend_backend_alignment_expanded_payload_visible",
     );
+    expect(state.expandedPayloadAvailable).toBe(true);
+    expect(state.supportStatuses.map((item) => item.id)).toContain("support_status_supported");
+    expect(state.preservedProhibitions).toContain("planner_execution");
     expect(state.reportReference.hash).toBe(
       "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a",
     );
@@ -251,15 +368,48 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
 
     expect(screen.getByText("Read-only backend trust endpoint")).toBeInTheDocument();
     expect(screen.getAllByText(BACKEND_TRUST_VISIBILITY_ENDPOINT).length).toBeGreaterThan(0);
-    expect(screen.getByText("v4.5d.3")).toBeInTheDocument();
+    expect(screen.getAllByText("v4.5d.3").length).toBeGreaterThan(0);
     expect(screen.getByText("backend_reflection_expanded_payload_defined")).toBeInTheDocument();
     expect(
-      screen.getAllByText("frontend_backend_alignment_endpoint_visible").length,
+      screen.getAllByText("frontend_backend_alignment_expanded_payload_visible").length,
     ).toBeGreaterThan(0);
     expect(
-      screen.getByText("v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report"),
-    ).toBeInTheDocument();
+      screen.getAllByText("v4_5d_3_backend_trust_payload_expansion_report").length,
+    ).toBeGreaterThan(0);
     expect(screen.getByText("backend_fallback_active=false")).toBeInTheDocument();
+  });
+
+  it("renders expanded backend trust payload sections from endpoint data", async () => {
+    render(<FrontendTrustSurface enableBackendFetch />);
+
+    await waitFor(() => {
+      expect(screen.getByText("Read-only backend payload sections")).toBeInTheDocument();
+    });
+
+    expect(screen.getByText("Backend trust summary")).toBeInTheDocument();
+    expect(screen.getAllByText("backend_trust_visibility_summary").length).toBeGreaterThan(0);
+    expect(screen.getByText("Backend support statuses")).toBeInTheDocument();
+    expect(screen.getByText("support_status_supported")).toBeInTheDocument();
+    expect(screen.getByText("Backend explainability references")).toBeInTheDocument();
+    expect(screen.getByText("support_explanation_visibility")).toBeInTheDocument();
+    expect(screen.getByText("Backend evidence panel references")).toBeInTheDocument();
+    expect(screen.getByText("support_evidence_reference")).toBeInTheDocument();
+    expect(screen.getByText("Backend provenance references")).toBeInTheDocument();
+    expect(screen.getByText("unknown_provenance_reference")).toBeInTheDocument();
+    expect(screen.getByText("Backend lineage references")).toBeInTheDocument();
+    expect(screen.getByText("lineage_continuity_reference")).toBeInTheDocument();
+    expect(screen.getByText("Backend coverage references")).toBeInTheDocument();
+    expect(screen.getByText("incomplete_coverage_reference")).toBeInTheDocument();
+    expect(screen.getByText("Backend confidence references")).toBeInTheDocument();
+    expect(screen.getByText("unknown_confidence_reference")).toBeInTheDocument();
+    expect(screen.getByText("Backend diagnostics")).toBeInTheDocument();
+    expect(screen.getAllByText("backend_payload_expanded").length).toBeGreaterThan(0);
+    expect(screen.getByText("Backend unsupported states")).toBeInTheDocument();
+    expect(screen.getByText("unsupported_planner_execution")).toBeInTheDocument();
+    expect(screen.getByText("Backend preserved prohibitions")).toBeInTheDocument();
+    expect(screen.getAllByText("planner_execution").length).toBeGreaterThan(0);
+    expect(screen.getByText("Frontend display readiness")).toBeInTheDocument();
+    expect(screen.getAllByText("backend_payload_ready_frontend_rendering_pending").length).toBeGreaterThan(0);
   });
 
   it("renders fail-visible backend fallback when the endpoint is unavailable", async () => {
@@ -282,6 +432,42 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getByText("backend_fallback_active=true")).toBeInTheDocument();
     expect(screen.getByText("Unsupported states")).toBeInTheDocument();
     expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
+  });
+
+  it("keeps expanded backend payload absence fail-visible when endpoint metadata is present", async () => {
+    mockBackendTrustFetch({
+      schema_version: "v4.5d.3",
+      status: "available",
+      endpoint_contract: {
+        endpoint_route: BACKEND_TRUST_VISIBILITY_ENDPOINT,
+        schema_version: "v4.5d.3",
+        methods: ["GET"],
+        read_only: true,
+        descriptive_only: true,
+        non_mutating: true,
+      },
+      source_type: "backend_expanded_report_backed_visibility",
+      backend_reflection: {
+        status: "backend_reflection_expanded_payload_defined",
+        trust_endpoint: BACKEND_TRUST_VISIBILITY_ENDPOINT,
+      },
+      diagnostics: [],
+      payload_hash: "endpoint-only-payload",
+    });
+
+    render(<FrontendTrustSurface enableBackendFetch />);
+
+    await waitFor(() => {
+      expect(
+        screen.getAllByText("Expanded backend payload unavailable").length,
+      ).toBeGreaterThan(0);
+    });
+
+    expect(
+      screen.getAllByText("frontend_backend_alignment_expanded_payload_partially_visible").length,
+    ).toBeGreaterThan(0);
+    expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
+    expect(screen.getByText("Unsupported states")).toBeInTheDocument();
   });
 
   it("renders evidence, provenance, lineage, coverage, confidence, and diagnostics surfaces", () => {

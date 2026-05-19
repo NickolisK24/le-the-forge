@@ -15,7 +15,10 @@ import type {
   FrontendTrustReportIntegrationData,
   TrustReportDiagnostic,
 } from "@/types/frontendTrustReportIntegration";
-import type { BackendTrustVisibilityState } from "@/types/frontendTrustBackendVisibility";
+import type {
+  BackendTrustVisibilityReference,
+  BackendTrustVisibilityState,
+} from "@/types/frontendTrustBackendVisibility";
 import {
   getFrontendTrustSurfaceData,
   getSupportBadgeDefinition,
@@ -297,6 +300,314 @@ export function BackendTrustVisibilityPanel({
           </article>
         ))}
       </div>
+    </section>
+  );
+}
+
+function backendReferenceTone(status: string): string {
+  const normalized = status.toLowerCase();
+  if (normalized.includes("unsupported") || normalized.includes("blocked")) {
+    return "border-rose-400/30 bg-rose-500/10 text-rose-100";
+  }
+  if (
+    normalized.includes("partial") ||
+    normalized.includes("experimental") ||
+    normalized.includes("deprecated") ||
+    normalized.includes("unknown") ||
+    normalized.includes("incomplete")
+  ) {
+    return "border-amber-400/30 bg-amber-500/10 text-amber-100";
+  }
+  if (normalized.includes("visible") || normalized.includes("supported")) {
+    return "border-emerald-400/30 bg-emerald-500/10 text-emerald-100";
+  }
+  return "border-sky-400/30 bg-sky-500/10 text-sky-100";
+}
+
+function BackendReferenceCard({
+  reference,
+}: {
+  reference: BackendTrustVisibilityReference;
+}) {
+  return (
+    <article
+      className="rounded border border-[#24304f] bg-[#0c1124] p-4"
+      data-read-only={reference.readOnly}
+      data-descriptive-only={reference.descriptiveOnly}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <h4 className="text-sm font-semibold text-gray-100">{reference.id}</h4>
+        <span className={`rounded border px-2 py-1 font-mono text-[11px] uppercase ${backendReferenceTone(reference.status)}`}>
+          {formatToken(reference.status)}
+        </span>
+      </div>
+      <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+        <div>
+          <dt className="font-semibold text-gray-100">Scope</dt>
+          <dd>{formatToken(reference.scope)}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-gray-100">State</dt>
+          <dd>{formatToken(reference.state)}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-gray-100">Description</dt>
+          <dd>{reference.description}</dd>
+        </div>
+        {reference.failVisible ? (
+          <div>
+            <dt className="font-semibold text-gray-100">Fail-visible</dt>
+            <dd>true</dd>
+          </div>
+        ) : null}
+      </dl>
+    </article>
+  );
+}
+
+function BackendReferenceGrid({
+  title,
+  description,
+  references,
+}: {
+  title: string;
+  description: string;
+  references: readonly BackendTrustVisibilityReference[];
+}) {
+  return (
+    <section className="space-y-3">
+      <div>
+        <h3 className="text-base font-semibold text-gray-100">{title}</h3>
+        <p className="mt-1 text-sm leading-6 text-gray-300">{description}</p>
+      </div>
+      {references.length > 0 ? (
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {references.map((reference) => (
+            <BackendReferenceCard key={reference.id} reference={reference} />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded border border-amber-400/20 bg-amber-500/5 p-4 text-sm leading-6 text-amber-100">
+          Expanded backend payload section unavailable; deterministic fallback context remains visible.
+        </div>
+      )}
+    </section>
+  );
+}
+
+export function BackendExpandedTrustPayloadPanel({
+  visibility,
+}: {
+  visibility: BackendTrustVisibilityState;
+}) {
+  const summary = visibility.trustVisibilitySummary;
+  const readiness = visibility.frontendDisplayReadiness;
+  const availabilityTone = visibility.expandedPayloadAvailable
+    ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100"
+    : "border-amber-400/30 bg-amber-500/10 text-amber-100";
+
+  return (
+    <section
+      className="space-y-5 rounded border border-[#2a3050] bg-[#10152a] p-5"
+      data-read-only="true"
+      data-descriptive-only="true"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wide text-[#22d3ee]">
+            Backend expanded payload
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-gray-100">
+            Read-only backend payload sections
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-300">
+            Backend-provided trust sections render as descriptive public context.
+            They do not replace fallback/report-backed visibility or imply backend
+            trust authority.
+          </p>
+        </div>
+        <span className={`rounded border px-2.5 py-1 font-mono text-[11px] uppercase ${availabilityTone}`}>
+          {visibility.expandedPayloadAvailabilityLabel}
+        </span>
+      </div>
+
+      {!visibility.expandedPayloadAvailable ? (
+        <div className="rounded border border-amber-400/20 bg-amber-500/5 p-4">
+          <p className="font-mono text-[11px] uppercase tracking-wide text-amber-100">
+            expanded backend payload unavailable
+          </p>
+          <p className="mt-2 text-sm leading-6 text-amber-100">
+            Static/report-backed trust visibility and backend endpoint metadata remain
+            visible while expanded backend sections are unavailable or incomplete.
+          </p>
+        </div>
+      ) : null}
+
+      <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+        <h3 className="text-base font-semibold text-gray-100">Backend trust summary</h3>
+        <dl className="mt-3 grid gap-3 text-xs leading-5 text-gray-300 sm:grid-cols-2 xl:grid-cols-3">
+          <div>
+            <dt className="font-semibold text-gray-100">Summary id</dt>
+            <dd>{summary.summaryId}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Status</dt>
+            <dd>{summary.status}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Source type</dt>
+            <dd>{summary.sourceType}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Schema version</dt>
+            <dd>{summary.schemaVersion}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Report reference id</dt>
+            <dd>{summary.reportReferenceId}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Description</dt>
+            <dd>{summary.description}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+        <h3 className="text-base font-semibold text-gray-100">Frontend display readiness</h3>
+        <dl className="mt-3 grid gap-3 text-xs leading-5 text-gray-300 sm:grid-cols-2">
+          <div>
+            <dt className="font-semibold text-gray-100">Status</dt>
+            <dd>{readiness.status}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Frontend route</dt>
+            <dd>{readiness.frontendRoute}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Descriptive-only</dt>
+            <dd>{String(readiness.descriptiveOnly)}</dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-gray-100">Frontend launch authorization</dt>
+            <dd>{String(readiness.expandedRenderingAuthorized)}</dd>
+          </div>
+          <div className="sm:col-span-2">
+            <dt className="font-semibold text-gray-100">Description</dt>
+            <dd>{readiness.description}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <BackendReferenceGrid
+        title="Backend support statuses"
+        description="Backend support records are descriptive-only labels, not approvals or operational signals."
+        references={visibility.supportStatuses}
+      />
+      <BackendReferenceGrid
+        title="Backend explainability references"
+        description="Backend explanation references remain read-only and non-recommending."
+        references={visibility.explainabilityReferences}
+      />
+      <BackendReferenceGrid
+        title="Backend evidence panel references"
+        description="Backend evidence references are grouped without evidence quality scoring."
+        references={visibility.evidencePanelReferences}
+      />
+      <BackendReferenceGrid
+        title="Backend provenance references"
+        description="Backend provenance references expose source context without source authority."
+        references={visibility.provenanceReferences}
+      />
+      <BackendReferenceGrid
+        title="Backend lineage references"
+        description="Backend lineage references expose continuity context without restoration behavior."
+        references={visibility.lineageReferences}
+      />
+      <BackendReferenceGrid
+        title="Backend coverage references"
+        description="Backend coverage references remain descriptive and non-ranking."
+        references={visibility.coverageReferences}
+      />
+      <BackendReferenceGrid
+        title="Backend confidence references"
+        description="Backend confidence references remain visible without confidence scoring."
+        references={visibility.confidenceReferences}
+      />
+      <section className="space-y-3">
+        <div>
+          <h3 className="text-base font-semibold text-gray-100">Backend diagnostics</h3>
+          <p className="mt-1 text-sm leading-6 text-gray-300">
+            Backend diagnostics stay visible as descriptive endpoint context, not
+            triage or remediation signals.
+          </p>
+        </div>
+        {visibility.diagnostics.length > 0 ? (
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {visibility.diagnostics.map((diagnostic) => (
+              <article
+                key={diagnostic.id}
+                className="rounded border border-[#33415f] bg-[#11172d] p-3"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <h4 className="text-sm font-semibold text-gray-100">
+                    {diagnostic.id}
+                  </h4>
+                  <span className={`rounded border px-2 py-1 font-mono text-[11px] uppercase ${backendReferenceTone(diagnostic.severity)}`}>
+                    {formatToken(diagnostic.severity)}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm leading-6 text-gray-300">
+                  {diagnostic.message}
+                </p>
+                <p className="mt-3 font-mono text-[11px] uppercase text-gray-500">
+                  read_only={String(diagnostic.readOnly)} descriptive_only=
+                  {String(diagnostic.descriptiveOnly)}
+                </p>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded border border-amber-400/20 bg-amber-500/5 p-4 text-sm leading-6 text-amber-100">
+            Backend diagnostics are unavailable; static diagnostics and fallback
+            context remain visible.
+          </div>
+        )}
+      </section>
+      <BackendReferenceGrid
+        title="Backend unsupported states"
+        description="Unsupported backend states remain visible and fail-visible."
+        references={visibility.unsupportedStates}
+      />
+
+      <section className="space-y-3">
+        <div>
+          <h3 className="text-base font-semibold text-gray-100">
+            Backend preserved prohibitions
+          </h3>
+          <p className="mt-1 text-sm leading-6 text-gray-300">
+            These prohibitions remain disabled and visible as descriptive backend
+            payload context.
+          </p>
+        </div>
+        {visibility.preservedProhibitions.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {visibility.preservedProhibitions.map((prohibition) => (
+              <span
+                key={prohibition}
+                className="rounded border border-[#33415f] px-2.5 py-1 font-mono text-[11px] uppercase text-gray-200"
+              >
+                {prohibition}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded border border-amber-400/20 bg-amber-500/5 p-4 text-sm leading-6 text-amber-100">
+            Backend preserved prohibitions are unavailable; static prohibitions and
+            fallback diagnostics remain visible.
+          </div>
+        )}
+      </section>
     </section>
   );
 }
@@ -705,6 +1016,8 @@ export function FrontendTrustSurface({
       <TrustReportIntegrationPanel integration={reportIntegration} />
 
       <BackendTrustVisibilityPanel visibility={backendTrustVisibility} />
+
+      <BackendExpandedTrustPayloadPanel visibility={backendTrustVisibility} />
 
       <section className="space-y-4">
         <SectionHeading

@@ -8,6 +8,8 @@ export type BackendTrustFetchStatus =
 
 export type FrontendBackendAlignmentStatus =
   | "frontend_backend_alignment_endpoint_visible"
+  | "frontend_backend_alignment_expanded_payload_visible"
+  | "frontend_backend_alignment_expanded_payload_partially_visible"
   | "frontend_backend_alignment_fetch_attempted_with_fail_visible_fallback";
 
 export interface BackendTrustEndpointContract {
@@ -111,6 +113,37 @@ export interface BackendTrustVisibilityDiagnostic {
   readonly descriptiveOnly: true;
 }
 
+export interface BackendTrustVisibilitySummary {
+  readonly summaryId: string;
+  readonly status: string;
+  readonly sourceType: string;
+  readonly schemaVersion: string;
+  readonly reportReferenceId: string;
+  readonly description: string;
+  readonly readOnly: true;
+  readonly descriptiveOnly: true;
+}
+
+export interface BackendTrustVisibilityReference {
+  readonly id: string;
+  readonly status: string;
+  readonly scope: string;
+  readonly state: string;
+  readonly description: string;
+  readonly failVisible: boolean;
+  readonly readOnly: true;
+  readonly descriptiveOnly: true;
+}
+
+export interface BackendTrustFrontendDisplayReadiness {
+  readonly status: string;
+  readonly description: string;
+  readonly frontendRoute: string;
+  readonly expandedRenderingAuthorized: boolean;
+  readonly descriptiveOnly: boolean;
+  readonly readOnly: true;
+}
+
 export interface BackendTrustVisibilityState {
   readonly endpointRoute: string;
   readonly endpointAvailable: boolean;
@@ -130,6 +163,19 @@ export interface BackendTrustVisibilityState {
     readonly status: string;
   };
   readonly diagnostics: readonly BackendTrustVisibilityDiagnostic[];
+  readonly expandedPayloadAvailable: boolean;
+  readonly expandedPayloadAvailabilityLabel: string;
+  readonly trustVisibilitySummary: BackendTrustVisibilitySummary;
+  readonly supportStatuses: readonly BackendTrustVisibilityReference[];
+  readonly explainabilityReferences: readonly BackendTrustVisibilityReference[];
+  readonly evidencePanelReferences: readonly BackendTrustVisibilityReference[];
+  readonly provenanceReferences: readonly BackendTrustVisibilityReference[];
+  readonly lineageReferences: readonly BackendTrustVisibilityReference[];
+  readonly coverageReferences: readonly BackendTrustVisibilityReference[];
+  readonly confidenceReferences: readonly BackendTrustVisibilityReference[];
+  readonly unsupportedStates: readonly BackendTrustVisibilityReference[];
+  readonly preservedProhibitions: readonly string[];
+  readonly frontendDisplayReadiness: BackendTrustFrontendDisplayReadiness;
   readonly fallbackActive: boolean;
   readonly fallbackLabel: string;
   readonly fallbackReason: string;
