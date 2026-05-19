@@ -1,0 +1,391 @@
+{
+  "api_client_audit": {
+    "base_url_resolution": [
+      "VITE_API_BASE_URL",
+      "VITE_API_URL",
+      "/api"
+    ],
+    "browser_facing_api_base_after_fix": "/api",
+    "error_normalization": "Fetch failures remain fail-visible as Network error - check your connection.",
+    "pre_fix_browser_facing_api_base": "http://backend:5000/api",
+    "pre_fix_failure": "Browser-side fetches attempted the Docker service hostname backend, which is not resolvable from the host browser.",
+    "scoped_config_fix": "VITE_API_BASE_URL remains browser-facing while VITE_API_PROXY_TARGET supplies the Vite container-to-backend target.",
+    "shared_client": "frontend/src/lib/api.ts"
+  },
+  "audit_status": "diagnostics_stabilized_with_scoped_api_base_fix",
+  "backend_route_inventory": [
+    {
+      "docker_accessible_status": "verified_http_200_after_backend_startup",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "health status JSON",
+      "route_path": "/api/health",
+      "router_module": "backend/app/routes/health.py"
+    },
+    {
+      "docker_accessible_status": "verified_http_200_after_backend_startup",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "expanded read-only trust visibility payload",
+      "route_path": "/api/trust/visibility",
+      "router_module": "backend/app/routes/trust.py"
+    },
+    {
+      "docker_accessible_status": "verified_http_200_direct_and_vite_proxy",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "{data: Record<className, classMeta>, meta, errors}",
+      "route_path": "/api/ref/classes",
+      "router_module": "backend/app/routes/ref.py"
+    },
+    {
+      "docker_accessible_status": "verified_http_200_via_backend_contract_tests",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "{data: {class, mastery, count, nodes, grouped}, meta, errors}",
+      "route_path": "/api/passives",
+      "router_module": "backend/app/routes/passives.py"
+    },
+    {
+      "docker_accessible_status": "verified_http_200_direct_and_vite_proxy",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "{data: {class, mastery, count, nodes, grouped}, meta, errors}",
+      "route_path": "/api/passives/Acolyte",
+      "router_module": "backend/app/routes/passives.py"
+    },
+    {
+      "docker_accessible_status": "mounted_not_browser_retested_before_fix",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "{data: BuildListItem[], meta, errors}",
+      "route_path": "/api/builds",
+      "router_module": "backend/app/routes/builds.py"
+    },
+    {
+      "docker_accessible_status": "mounted_user_action_endpoint_not_auto_invoked",
+      "http_method": "POST",
+      "mounted": true,
+      "response_shape": "{data: CraftPredictResult, meta, errors}",
+      "route_path": "/api/craft/predict",
+      "router_module": "backend/app/routes/craft.py"
+    },
+    {
+      "docker_accessible_status": "mounted_user_action_endpoint_not_auto_invoked",
+      "http_method": "POST",
+      "mounted": true,
+      "response_shape": "{data: BisSearchResponse, meta, errors}",
+      "route_path": "/api/bis/search",
+      "router_module": "backend/app/routes/bis.py"
+    },
+    {
+      "docker_accessible_status": "mounted_user_action_endpoint_not_auto_invoked",
+      "http_method": "POST",
+      "mounted": true,
+      "response_shape": "{data: EncounterResult, meta, errors}",
+      "route_path": "/api/simulate/encounter",
+      "router_module": "backend/app/routes/simulate.py"
+    },
+    {
+      "docker_accessible_status": "mounted_not_browser_retested_before_fix",
+      "http_method": "GET",
+      "mounted": true,
+      "response_shape": "{data: FullMetaSnapshot, meta, errors}",
+      "route_path": "/api/meta/snapshot",
+      "router_module": "backend/app/routes/meta.py"
+    }
+  ],
+  "browser_reproduction_results": {
+    "backend_direct_probe": {
+      "GET http://localhost:5050/api/passives/Acolyte": 200,
+      "GET http://localhost:5050/api/ref/classes": 200
+    },
+    "post_fix_browser_verification": {
+      "/builds": "community_builds_route_loaded_empty_state_no_browser_error_logs",
+      "/classes": "classes_loaded_count_5_no_browser_error_logs",
+      "/meta": "meta_snapshot_route_loaded_empty_state_no_browser_error_logs",
+      "/passives": "passive_tree_loaded_acolyte_base_nodes_no_browser_error_logs",
+      "/trusted-data/frontend-trust": "trust_surface_loaded_no_browser_error_logs"
+    },
+    "pre_fix_classes": {
+      "document_status": 200,
+      "root_observation": "client_fetch_failed_after_spa_loaded",
+      "route": "http://localhost:5173/classes",
+      "visible_failure": "Error loading classes / Network error - check your connection"
+    },
+    "pre_fix_passives": {
+      "document_status": 200,
+      "root_observation": "client_fetch_failed_after_spa_loaded",
+      "route": "http://localhost:5173/passives",
+      "visible_failure": "Loading passive tree persisted until network failure state"
+    },
+    "vite_proxy_probe": {
+      "GET http://localhost:5173/api/passives/Acolyte": 200,
+      "GET http://localhost:5173/api/ref/classes": 200
+    }
+  },
+  "docker_networking_audit": {
+    "backend_port": "5050:5000",
+    "backend_service": "backend",
+    "correct_browser_facing_api_path": "/api",
+    "correct_container_proxy_target": "http://backend:5000",
+    "frontend_port": "5173:5173",
+    "frontend_service": "frontend",
+    "nginx_proxy_path": "/api/",
+    "post_fix_status": "Docker Compose now uses /api for browser requests and VITE_API_PROXY_TARGET for container-internal proxying.",
+    "pre_fix_mismatch": "Docker Compose configured VITE_API_BASE_URL to http://backend:5000/api, bypassing the Vite proxy from the browser.",
+    "vite_proxy_paths": [
+      "/api",
+      "/experimental"
+    ]
+  },
+  "fixes_applied": [
+    {
+      "description": "Changed frontend VITE_API_BASE_URL to /api for browser-facing requests.",
+      "files": [
+        "docker-compose.yml"
+      ],
+      "id": "docker_browser_api_base_path_corrected"
+    },
+    {
+      "description": "Added VITE_API_PROXY_TARGET support so the Vite dev server can proxy /api to http://backend:5000 inside Docker.",
+      "files": [
+        "frontend/vite.config.ts"
+      ],
+      "id": "vite_proxy_target_split"
+    },
+    {
+      "description": "Added coverage for the separated browser base path and proxy target.",
+      "files": [
+        "frontend/src/__tests__/config/vite-proxy-routing.test.ts"
+      ],
+      "id": "focused_proxy_test_added"
+    }
+  ],
+  "frontend_route_inventory": [
+    {
+      "backend_calls_made": [
+        "GET /api/ref/classes"
+      ],
+      "current_browser_visible_status": "pre_fix_reproduced_network_error_post_fix_expected_loaded_classes",
+      "expected_response_shape": "{data: Record<className, classMeta>, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/pages/classes/ClassesPage.tsx",
+      "route_path": "/classes"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/passives/<class>"
+      ],
+      "current_browser_visible_status": "pre_fix_reproduced_loading_network_failure_post_fix_expected_loaded_tree",
+      "expected_response_shape": "{data: {class, mastery, count, nodes, grouped}, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/pages/PassiveTreePage.tsx",
+      "route_path": "/passives"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/builds"
+      ],
+      "current_browser_visible_status": "affected_by_same_browser_api_base_url_mismatch",
+      "expected_response_shape": "{data: BuildListItem[], meta: pagination, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/components/features/builds/BuildsPage.tsx",
+      "route_path": "/builds"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/version",
+        "GET /api/builds/<slug>",
+        "POST /api/builds/<slug>/simulate",
+        "GET /api/builds/<slug>/optimize",
+        "POST /api/builds/<slug>/view"
+      ],
+      "current_browser_visible_status": "route_exists_build_planner_aliases_documented",
+      "expected_response_shape": "route-dependent API envelopes",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": "partial_client_side_defaults",
+      "page_component": "frontend/src/components/features/build/BuildPlannerPage.tsx",
+      "route_path": "/build"
+    },
+    {
+      "backend_calls_made": [],
+      "current_browser_visible_status": "not_registered_real_route_is_/build",
+      "expected_response_shape": null,
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": null,
+      "route_path": "/build-planner"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/ref/affixes",
+        "GET /api/ref/base-items",
+        "GET /api/ref/fp-ranges",
+        "POST /api/craft",
+        "GET /api/craft/<slug>",
+        "POST /api/craft/<slug>/action",
+        "GET /api/craft/<slug>/summary"
+      ],
+      "current_browser_visible_status": "affected_by_same_browser_api_base_url_mismatch",
+      "expected_response_shape": "route-dependent API envelopes",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": "client_side_crafting_preview_only",
+      "page_component": "frontend/src/components/features/craft/CraftSimulatorPage.tsx",
+      "route_path": "/craft"
+    },
+    {
+      "backend_calls_made": [],
+      "current_browser_visible_status": "not_registered_real_routes_are_/craft_and_/crafting",
+      "expected_response_shape": null,
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": null,
+      "route_path": "/crafting-lab"
+    },
+    {
+      "backend_calls_made": [
+        "POST /api/craft/predict",
+        "GET /api/ref/affixes"
+      ],
+      "current_browser_visible_status": "route_exists_backend_fetch_user_triggered",
+      "expected_response_shape": "{data: CraftPredictResponse, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/pages/crafting/CraftingPage.tsx",
+      "route_path": "/crafting"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/ref/affixes",
+        "POST /api/bis/search"
+      ],
+      "current_browser_visible_status": "route_exists_backend_fetch_user_triggered",
+      "expected_response_shape": "{data: BisSearchResponse, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/pages/bis/BisSearchPage.tsx",
+      "route_path": "/bis-search"
+    },
+    {
+      "backend_calls_made": [],
+      "current_browser_visible_status": "registered_alias_to_/encounter",
+      "expected_response_shape": "redirects_to_/encounter",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/App.tsx",
+      "route_path": "/simulation"
+    },
+    {
+      "backend_calls_made": [
+        "POST /api/simulate/encounter",
+        "POST /api/simulate/encounter-build"
+      ],
+      "current_browser_visible_status": "route_exists_backend_fetch_user_triggered",
+      "expected_response_shape": "{data: EncounterResult, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/pages/simulation/SimulationPage.tsx",
+      "route_path": "/encounter"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/meta/snapshot",
+        "GET /api/meta/trending"
+      ],
+      "current_browser_visible_status": "affected_by_same_browser_api_base_url_mismatch",
+      "expected_response_shape": "{data: meta payload, meta, errors}",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": false,
+      "page_component": "frontend/src/components/features/builds/MetaSnapshotPage.tsx",
+      "route_path": "/meta"
+    },
+    {
+      "backend_calls_made": [],
+      "current_browser_visible_status": "static_route_http_200",
+      "expected_response_shape": null,
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": "static_explanation",
+      "page_component": "frontend/src/pages/TrustedDataExplanationPage.tsx",
+      "route_path": "/trusted-data"
+    },
+    {
+      "backend_calls_made": [
+        "GET /api/trust/visibility"
+      ],
+      "current_browser_visible_status": "route_exists_trust_endpoint_healthy",
+      "expected_response_shape": "backend trust visibility payload",
+      "failure_is_fail_visible": true,
+      "fallback_behavior_exists": true,
+      "page_component": "frontend/src/pages/FrontendTrustSurfaceFoundationsPage.tsx",
+      "route_path": "/trusted-data/frontend-trust"
+    }
+  ],
+  "gameplay_data_source_audit": {
+    "affixes_source": {
+      "fake_data_introduced": false,
+      "fallback_file": {
+        "available": true,
+        "path": "data/items/affixes.json",
+        "sha256": "6960d35787e54decb0a2bd58299e929e23379109ee53aac643d7a254ce572fc4"
+      }
+    },
+    "base_items_source": {
+      "fake_data_introduced": false,
+      "module": "backend/app/engines/base_engine.py"
+    },
+    "classes_source": {
+      "expected_count": 5,
+      "fake_data_introduced": false,
+      "module": "backend/app/routes/ref.py",
+      "source_type": "static backend CLASS_META"
+    },
+    "missing_data_classification": "no_missing_classes_or_passives_data_detected",
+    "passives_source": {
+      "db_seed_command": "flask seed-passives",
+      "fake_data_introduced": false,
+      "fallback_file": {
+        "available": true,
+        "path": "data/classes/passives.json",
+        "sha256": "964e6a5b38859b9c8626cf5cbabff096bb0ced4aed27a04c56d807350d3ff70f"
+      },
+      "module": "backend/app/routes/passives.py"
+    }
+  },
+  "prohibitions_preserved": [
+    "planner_execution",
+    "build_recommendations",
+    "ranking",
+    "scoring",
+    "automatic_optimization",
+    "production_enablement",
+    "runtime_mutation",
+    "mutable_trust_state",
+    "fake_gameplay_data",
+    "broad_frontend_redesign",
+    "broad_backend_rewrite"
+  ],
+  "remaining_limitations": [
+    "POST-backed gameplay routes are mounted but require user action or payload-specific tests.",
+    "/build-planner and /crafting-lab are not registered routes; current routes are /build and /craft or /crafting.",
+    "No fake gameplay data was introduced to mask unavailable or empty backend data."
+  ],
+  "report_hash": "1e3f67b168f1f698c5f1fd1640541cea548a2cdaaf82e7d9fdf8c6a5b9b6f63a",
+  "required_followup_actions": [
+    "If additional page-specific errors appear after connectivity is restored, audit response shapes for that page.",
+    "Keep gameplay route diagnostics separate from v4.6 governance aggregation work."
+  ],
+  "root_cause_classification": [
+    "api_base_url_mismatch"
+  ],
+  "schema_version": "frontend_backend_gameplay_route_audit.v1",
+  "trust_visibility_regression_guard": {
+    "frontend_trust_route": "/trusted-data/frontend-trust",
+    "health_endpoint": "/api/health",
+    "status": "preserved",
+    "trust_endpoint": "/api/trust/visibility"
+  }
+}
