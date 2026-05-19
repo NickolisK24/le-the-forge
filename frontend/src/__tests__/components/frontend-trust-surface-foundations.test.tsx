@@ -1,6 +1,6 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Sidebar from "@/components/navigation/Sidebar";
 import { FrontendTrustSurface } from "@/components/trust/FrontendTrustSurface";
@@ -17,10 +17,77 @@ import {
   buildFallbackTrustReportIntegration,
   isFrontendTrustReportIntegrationReadOnly,
 } from "@/lib/frontendTrustReportIntegration";
+import {
+  BACKEND_TRUST_VISIBILITY_ENDPOINT,
+  buildBackendTrustFetchFallback,
+  fetchBackendTrustVisibility,
+  isBackendTrustVisibilityReadOnly,
+} from "@/lib/frontendTrustBackendVisibility";
 import FrontendTrustSurfaceFoundationsPage from "@/pages/FrontendTrustSurfaceFoundationsPage";
 import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
+import type { BackendTrustVisibilityPayload } from "@/types/frontendTrustBackendVisibility";
+
+const backendTrustSuccessPayload: BackendTrustVisibilityPayload = {
+  schema_version: "v4.5d.1",
+  status: "available",
+  endpoint_contract: {
+    endpoint_contract_id: "v4_5d_1_backend_trust_visibility_endpoint_contract",
+    endpoint_route: BACKEND_TRUST_VISIBILITY_ENDPOINT,
+    schema_version: "v4.5d.1",
+    methods: ["GET"],
+    read_only: true,
+    descriptive_only: true,
+    non_mutating: true,
+  },
+  source_type: "backend_report_backed_visibility",
+  report_reference: {
+    name: "v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report",
+    path: "docs/generated/v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report.json",
+    hash: "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a",
+    available: true,
+    status: "report_available",
+  },
+  backend_reflection: {
+    status: "backend_reflection_contract_defined",
+    health_endpoint: "/api/health",
+    trust_endpoint: BACKEND_TRUST_VISIBILITY_ENDPOINT,
+    alignment_status: "backend_contract_ready_frontend_fetch_deferred",
+  },
+  frontend_alignment: {
+    status: "backend_contract_ready_frontend_fetch_deferred",
+    live_frontend_fetch: false,
+    integration_readiness: "ready_for_v4_5d_2_frontend_fetch_integration",
+  },
+  diagnostics: [
+    {
+      id: "report_reference_available",
+      severity: "informational",
+      message: "Report-backed trust visibility metadata is available.",
+    },
+  ],
+  payload_hash: "d1-endpoint-payload-hash",
+};
+
+function mockBackendTrustFetch(payload: unknown = backendTrustSuccessPayload) {
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      json: async () => payload,
+    })),
+  );
+}
 
 describe("v4.5C.1 frontend trust surface foundations", () => {
+  beforeEach(() => {
+    mockBackendTrustFetch();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
   it("renders deterministic support badges for every public support state", () => {
     render(<FrontendTrustSurface />);
 
@@ -77,10 +144,10 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getAllByText("report backed").length).toBeGreaterThan(0);
     expect(screen.getByText("Report metadata present")).toBeInTheDocument();
     expect(screen.getByText("Report hash visible")).toBeInTheDocument();
-    expect(screen.getByText("Backend reflection not integrated")).toBeInTheDocument();
+    expect(screen.getByText("Backend endpoint context visible")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "This surface currently shows deterministic frontend/report-backed visibility, not live backend trust state.",
+        "This surface shows deterministic frontend/report-backed visibility alongside read-only backend endpoint metadata, not backend trust authority.",
       ),
     ).toBeInTheDocument();
   });
@@ -89,6 +156,11 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     render(
       <FrontendTrustSurface
         reportIntegration={buildFallbackTrustReportIntegration("report_unavailable")}
+        backendVisibility={buildBackendTrustFetchFallback(
+          "fetch_failed",
+          "Backend fetch unavailable - showing deterministic fallback.",
+        )}
+        enableBackendFetch={false}
       />,
     );
 
@@ -99,6 +171,115 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getByText("Unsupported states preserved")).toBeInTheDocument();
     expect(screen.getByText("Unsupported states")).toBeInTheDocument();
     expect(screen.getByText("Fail-visible diagnostics")).toBeInTheDocument();
+    expect(
+      screen.getByText("Backend fetch unavailable - showing deterministic fallback"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("backend_fallback_active=true")).toBeInTheDocument();
+  });
+
+  it("fetch client handles backend success payload with GET-only endpoint visibility", async () => {
+    const fetcher = vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      json: async () => backendTrustSuccessPayload,
+    }));
+
+    const state = await fetchBackendTrustVisibility(fetcher);
+
+    expect(fetcher).toHaveBeenCalledWith(BACKEND_TRUST_VISIBILITY_ENDPOINT, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    expect(state.endpointAvailable).toBe(true);
+    expect(state.schemaVersion).toBe("v4.5d.1");
+    expect(state.backendReflectionStatus).toBe("backend_reflection_contract_defined");
+    expect(state.frontendBackendAlignmentStatus).toBe(
+      "frontend_backend_alignment_endpoint_visible",
+    );
+    expect(state.reportReference.hash).toBe(
+      "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a",
+    );
+    expect(isBackendTrustVisibilityReadOnly(state)).toBe(true);
+  });
+
+  it("fetch client handles network failure with fail-visible fallback", async () => {
+    const fetcher = vi.fn(async () => {
+      throw new Error("network unavailable");
+    });
+
+    const state = await fetchBackendTrustVisibility(fetcher);
+
+    expect(state.endpointAvailable).toBe(false);
+    expect(state.fetchStatus).toBe("fetch_failed");
+    expect(state.frontendBackendAlignmentStatus).toBe(
+      "frontend_backend_alignment_fetch_attempted_with_fail_visible_fallback",
+    );
+    expect(state.fallbackActive).toBe(true);
+    expect(state.diagnostics.map((item) => item.id)).toContain("fetch_failed");
+  });
+
+  it("fetch client handles malformed payload and missing schema version", async () => {
+    const malformedState = await fetchBackendTrustVisibility(
+      vi.fn(async () => ({
+        ok: true,
+        status: 200,
+        json: async () => "not an object",
+      })),
+    );
+    const missingSchemaState = await fetchBackendTrustVisibility(
+      vi.fn(async () => ({
+        ok: true,
+        status: 200,
+        json: async () => ({ status: "available" }),
+      })),
+    );
+
+    expect(malformedState.fetchStatus).toBe("malformed_payload");
+    expect(malformedState.fallbackActive).toBe(true);
+    expect(missingSchemaState.fetchStatus).toBe("missing_schema_version");
+    expect(missingSchemaState.fallbackActive).toBe(true);
+  });
+
+  it("renders endpoint-backed backend visibility when fetch data is available", async () => {
+    render(<FrontendTrustSurface enableBackendFetch />);
+
+    await waitFor(() => {
+      expect(screen.getAllByText("Backend trust endpoint visible").length).toBeGreaterThan(0);
+    });
+
+    expect(screen.getByText("Read-only backend trust endpoint")).toBeInTheDocument();
+    expect(screen.getAllByText(BACKEND_TRUST_VISIBILITY_ENDPOINT).length).toBeGreaterThan(0);
+    expect(screen.getByText("v4.5d.1")).toBeInTheDocument();
+    expect(screen.getByText("backend_reflection_contract_defined")).toBeInTheDocument();
+    expect(screen.getByText("frontend_backend_alignment_endpoint_visible")).toBeInTheDocument();
+    expect(
+      screen.getByText("v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("backend_fallback_active=false")).toBeInTheDocument();
+  });
+
+  it("renders fail-visible backend fallback when the endpoint is unavailable", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => {
+        throw new Error("backend unavailable");
+      }),
+    );
+
+    render(<FrontendTrustSurface enableBackendFetch />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Backend fetch unavailable - showing deterministic fallback"),
+      ).toBeInTheDocument();
+    });
+
+    expect(screen.getByText("frontend_backend_alignment_fetch_attempted_with_fail_visible_fallback")).toBeInTheDocument();
+    expect(screen.getByText("backend_fallback_active=true")).toBeInTheDocument();
+    expect(screen.getByText("Unsupported states")).toBeInTheDocument();
+    expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
   });
 
   it("renders evidence, provenance, lineage, coverage, confidence, and diagnostics surfaces", () => {
@@ -159,7 +340,7 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     );
   });
 
-  it("renders the stable trust surface route content", () => {
+  it("renders the stable trust surface route content", async () => {
     render(
       <MemoryRouter initialEntries={[TRUST_SURFACE_ROUTE]}>
         <Routes>
@@ -171,6 +352,9 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getByText("Frontend trust surface foundations")).toBeInTheDocument();
     expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
     expect(screen.getByText("Fail-visible diagnostics")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getAllByText("Backend trust endpoint visible").length).toBeGreaterThan(0);
+    });
   });
 
   it("renders a trusted data explanation entry point to the trust surface", () => {
