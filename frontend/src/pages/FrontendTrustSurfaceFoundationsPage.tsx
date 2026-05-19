@@ -37,7 +37,7 @@ export default function FrontendTrustSurfaceFoundationsPage() {
         </div>
       </nav>
 
-      <FrontendTrustSurface />
+      <FrontendTrustSurface enableBackendFetch />
     </div>
   );
 }

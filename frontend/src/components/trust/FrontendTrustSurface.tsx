@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import type {
   FrontendTrustSurfaceData,
   TrustDiagnosticsSummaryData,
@@ -13,11 +15,16 @@ import type {
   FrontendTrustReportIntegrationData,
   TrustReportDiagnostic,
 } from "@/types/frontendTrustReportIntegration";
+import type { BackendTrustVisibilityState } from "@/types/frontendTrustBackendVisibility";
 import {
   getFrontendTrustSurfaceData,
   getSupportBadgeDefinition,
 } from "@/lib/frontendTrustSurfaceData";
 import { getFrontendTrustReportIntegrationData } from "@/lib/frontendTrustReportIntegration";
+import {
+  fetchBackendTrustVisibility,
+  getInitialBackendTrustVisibilityState,
+} from "@/lib/frontendTrustBackendVisibility";
 
 const badgeToneClasses: Record<TrustSurfaceBadgeDefinition["tone"], string> = {
   green: "border-emerald-400/40 bg-emerald-500/10 text-emerald-100",
@@ -102,9 +109,11 @@ function SectionHeading({
 function TrustSurfaceOverview({
   data,
   integration,
+  backendVisibility,
 }: {
   data: FrontendTrustSurfaceData;
   integration: FrontendTrustReportIntegrationData;
+  backendVisibility: BackendTrustVisibilityState;
 }) {
   const items = [
     {
@@ -127,6 +136,11 @@ function TrustSurfaceOverview({
       value: `${data.diagnosticsSummaries.length + integration.diagnostics.length} visible`,
       note: "Warnings, blockers, gaps, and fallback diagnostics stay fail-visible.",
     },
+    {
+      label: "Backend endpoint",
+      value: backendVisibility.endpointAvailable ? "endpoint visible" : "fallback visible",
+      note: "Backend endpoint status is shown without planner authority.",
+    },
   ];
 
   return (
@@ -145,6 +159,144 @@ function TrustSurfaceOverview({
           <p className="mt-2 text-xs leading-5 text-gray-300">{item.note}</p>
         </article>
       ))}
+    </section>
+  );
+}
+
+export function BackendTrustVisibilityPanel({
+  visibility,
+}: {
+  visibility: BackendTrustVisibilityState;
+}) {
+  const statusTone = visibility.endpointAvailable
+    ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-100"
+    : "border-amber-400/30 bg-amber-500/10 text-amber-100";
+
+  return (
+    <section
+      className="rounded border border-[#2a3050] bg-[#10152a] p-5"
+      data-read-only={visibility.readOnly}
+      data-descriptive-only={visibility.descriptiveOnly}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wide text-[#22d3ee]">
+            Backend trust visibility
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-gray-100">
+            Read-only backend trust endpoint
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-300">
+            Backend endpoint visibility is fetched with GET only. Frontend fallback
+            data remains available and visible if the endpoint is unavailable.
+          </p>
+        </div>
+        <span className={`rounded border px-2.5 py-1 font-mono text-[11px] uppercase ${statusTone}`}>
+          {visibility.endpointAvailable ? "Backend trust endpoint visible" : "Backend fallback visible"}
+        </span>
+      </div>
+
+      <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+        <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+          <h3 className="text-sm font-semibold text-gray-100">Endpoint metadata</h3>
+          <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+            <div>
+              <dt className="font-semibold text-gray-100">Backend endpoint route</dt>
+              <dd>{visibility.endpointRoute}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Endpoint availability</dt>
+              <dd>{visibility.endpointAvailable ? "available" : "unavailable"}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Fetch status</dt>
+              <dd>{formatToken(visibility.fetchStatus)}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Schema version</dt>
+              <dd>{visibility.schemaVersion}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Backend reflection status</dt>
+              <dd>{visibility.backendReflectionStatus}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Frontend/backend alignment status</dt>
+              <dd>{visibility.frontendBackendAlignmentStatus}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Endpoint payload alignment</dt>
+              <dd>{visibility.endpointAlignmentStatus}</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+          <h3 className="text-sm font-semibold text-gray-100">Backend report reference</h3>
+          <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+            <div>
+              <dt className="font-semibold text-gray-100">Report name</dt>
+              <dd>{visibility.reportReference.name}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report path</dt>
+              <dd>{visibility.reportReference.path}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report hash</dt>
+              <dd className="break-all font-mono">{visibility.reportReference.hash}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report availability</dt>
+              <dd>{String(visibility.reportReference.available)}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report status</dt>
+              <dd>{visibility.reportReference.status}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Payload hash</dt>
+              <dd className="break-all font-mono">{visibility.payloadHash}</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+
+      <div className="mt-4 rounded border border-amber-400/20 bg-amber-500/5 p-4">
+        <p className="font-mono text-[11px] uppercase tracking-wide text-amber-100">
+          fallback state
+        </p>
+        <h3 className="mt-2 text-sm font-semibold text-amber-100">
+          {visibility.fallbackLabel}
+        </h3>
+        <p className="mt-2 text-sm leading-6 text-amber-100/90">
+          {visibility.fallbackReason}
+        </p>
+        <p className="mt-2 font-mono text-xs uppercase text-amber-100">
+          backend_fallback_active={String(visibility.fallbackActive)}
+        </p>
+      </div>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {visibility.diagnostics.map((diagnostic) => (
+          <article
+            key={diagnostic.id}
+            className={`rounded border p-4 ${
+              diagnostic.severity === "blocker"
+                ? "border-rose-400/30 bg-rose-500/10 text-rose-100"
+                : diagnostic.severity === "warning"
+                  ? "border-amber-400/30 bg-amber-500/10 text-amber-100"
+                  : "border-sky-400/30 bg-sky-500/10 text-sky-100"
+            }`}
+            data-read-only={diagnostic.readOnly}
+            data-descriptive-only={diagnostic.descriptiveOnly}
+          >
+            <p className="font-mono text-xs uppercase">{diagnostic.severity}</p>
+            <h3 className="mt-2 text-sm font-semibold">{diagnostic.id}</h3>
+            <p className="mt-2 text-sm leading-6">{diagnostic.message}</p>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
@@ -477,10 +629,44 @@ export function TrustReportIntegrationPanel({
 export function FrontendTrustSurface({
   data = getFrontendTrustSurfaceData(),
   reportIntegration = getFrontendTrustReportIntegrationData(),
+  backendVisibility,
+  enableBackendFetch = false,
 }: {
   data?: FrontendTrustSurfaceData;
   reportIntegration?: FrontendTrustReportIntegrationData;
+  backendVisibility?: BackendTrustVisibilityState;
+  enableBackendFetch?: boolean;
 }) {
+  const [backendTrustVisibility, setBackendTrustVisibility] =
+    useState<BackendTrustVisibilityState>(
+      backendVisibility ?? getInitialBackendTrustVisibilityState(),
+    );
+
+  useEffect(() => {
+    if (backendVisibility) {
+      setBackendTrustVisibility(backendVisibility);
+    }
+  }, [backendVisibility]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!enableBackendFetch || backendVisibility) {
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    fetchBackendTrustVisibility().then((visibility) => {
+      if (!cancelled) {
+        setBackendTrustVisibility(visibility);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [backendVisibility, enableBackendFetch]);
+
   return (
     <div className="space-y-8">
       <section className="rounded border border-[#2a3050] bg-[#10152a] p-5">
@@ -510,9 +696,15 @@ export function FrontendTrustSurface({
         </div>
       </section>
 
-      <TrustSurfaceOverview data={data} integration={reportIntegration} />
+      <TrustSurfaceOverview
+        data={data}
+        integration={reportIntegration}
+        backendVisibility={backendTrustVisibility}
+      />
 
       <TrustReportIntegrationPanel integration={reportIntegration} />
+
+      <BackendTrustVisibilityPanel visibility={backendTrustVisibility} />
 
       <section className="space-y-4">
         <SectionHeading
