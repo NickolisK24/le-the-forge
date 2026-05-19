@@ -51,6 +51,32 @@ export interface BackendTrustDiagnosticPayload {
   readonly message?: string;
 }
 
+export interface BackendTrustVisibilitySummaryPayload {
+  readonly summary_id?: string;
+  readonly status?: string;
+  readonly source_type?: string;
+  readonly schema_version?: string;
+  readonly report_reference_id?: string;
+  readonly description?: string;
+}
+
+export interface BackendTrustVisibilityReferencePayload {
+  readonly id?: string;
+  readonly status?: string;
+  readonly scope?: string;
+  readonly state?: string;
+  readonly description?: string;
+  readonly fail_visible?: boolean;
+}
+
+export interface BackendTrustFrontendDisplayReadinessPayload {
+  readonly status?: string;
+  readonly description?: string;
+  readonly frontend_route?: string;
+  readonly expanded_rendering_authorized?: boolean;
+  readonly descriptive_only?: boolean;
+}
+
 export interface BackendTrustVisibilityPayload {
   readonly schema_version: string;
   readonly status?: string;
@@ -63,6 +89,17 @@ export interface BackendTrustVisibilityPayload {
   readonly guarantees?: readonly string[];
   readonly prohibitions?: readonly string[];
   readonly diagnostics?: readonly BackendTrustDiagnosticPayload[];
+  readonly trust_visibility?: BackendTrustVisibilitySummaryPayload;
+  readonly support_statuses?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly explainability_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly evidence_panel_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly provenance_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly lineage_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly coverage_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly confidence_references?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly unsupported_states?: readonly BackendTrustVisibilityReferencePayload[];
+  readonly preserved_prohibitions?: readonly string[];
+  readonly frontend_display_readiness?: BackendTrustFrontendDisplayReadinessPayload;
   readonly payload_hash?: string;
 }
 
