@@ -7,7 +7,7 @@ import type {
 } from "@/types/frontendTrustBackendVisibility";
 
 export const BACKEND_TRUST_VISIBILITY_ENDPOINT = "/api/trust/visibility";
-export const BACKEND_TRUST_VISIBILITY_SCHEMA_VERSION = "v4.5d.1";
+export const BACKEND_TRUST_VISIBILITY_SCHEMA_VERSION = "v4.5d.3";
 export const FRONTEND_BACKEND_ALIGNMENT_ENDPOINT_VISIBLE =
   "frontend_backend_alignment_endpoint_visible" as const;
 export const FRONTEND_BACKEND_ALIGNMENT_FETCH_FALLBACK =
@@ -20,7 +20,7 @@ type BackendTrustFetch = (
 
 const FALLBACK_REPORT_REFERENCE = {
   name: "backend_trust_visibility_report_unavailable",
-  path: "docs/generated/v4_5d_1_backend_trust_visibility_endpoint_contract_report.json",
+  path: "docs/generated/v4_5d_3_backend_trust_payload_expansion_report.json",
   hash: "missing",
   available: false,
   status: "unavailable",
@@ -135,14 +135,14 @@ export function buildBackendTrustVisibilityState(
     endpointAvailable: true,
     fetchStatus: "endpoint_visible",
     schemaVersion: payload.schema_version,
-    sourceType: payload.source_type || "backend_report_backed_visibility",
+    sourceType: payload.source_type || "backend_expanded_report_backed_visibility",
     backendReflectionStatus:
       reflection.status || reflection.backend_reflection_status_id || "backend_reflection_contract_defined",
     frontendBackendAlignmentStatus: FRONTEND_BACKEND_ALIGNMENT_ENDPOINT_VISIBLE,
     endpointAlignmentStatus:
       alignment.status ||
       reflection.alignment_status ||
-      "backend_contract_ready_frontend_fetch_deferred",
+      "frontend_backend_alignment_endpoint_visible",
     healthEndpoint: reflection.health_endpoint || "/api/health",
     trustEndpoint: reflection.trust_endpoint || BACKEND_TRUST_VISIBILITY_ENDPOINT,
     reportReference: {

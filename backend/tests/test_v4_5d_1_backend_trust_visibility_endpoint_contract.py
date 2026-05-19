@@ -26,7 +26,7 @@ def test_trust_visibility_endpoint_returns_deterministic_contract(client):
     assert first == second
     assert first["schema_version"] == SCHEMA_VERSION
     assert first["status"] == "available"
-    assert first["source_type"] == "backend_report_backed_visibility"
+    assert first["source_type"] == "backend_expanded_report_backed_visibility"
     assert first["payload_hash"] == second["payload_hash"]
 
     replay_payload = dict(first)
@@ -47,11 +47,11 @@ def test_trust_visibility_endpoint_includes_identity_and_report_metadata(client)
 
     report_reference = payload["report_reference"]
     assert report_reference["name"] == (
-        "v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report"
+        "v4_5d_2_frontend_trust_backend_fetch_integration_report"
     )
     assert report_reference["path"] == (
         "docs/generated/"
-        "v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report.json"
+        "v4_5d_2_frontend_trust_backend_fetch_integration_report.json"
     )
     assert report_reference["available"] is True
     assert report_reference["status"] == "report_available"
@@ -70,9 +70,9 @@ def test_trust_visibility_endpoint_includes_backend_reflection_and_frontend_alig
 
     frontend_alignment = payload["frontend_alignment"]
     assert frontend_alignment["status"] == FRONTEND_ALIGNMENT_STATUS_ID
-    assert frontend_alignment["live_frontend_fetch"] is False
+    assert frontend_alignment["live_frontend_fetch"] is True
     assert frontend_alignment["integration_readiness"] == (
-        "ready_for_v4_5d_2_frontend_fetch_integration"
+        "backend_payload_ready_frontend_rendering_pending"
     )
 
 
@@ -103,13 +103,12 @@ def test_trust_visibility_endpoint_preserves_guarantees_and_prohibitions(client)
         "runtime_mutation",
         "operational_behavior",
         "mutable_trust_state",
-        "frontend_live_fetch_integration",
     ]:
         assert prohibition in payload["prohibitions"]
 
     text = str(payload).lower()
-    assert "backend trust visibility endpoint contract does not imply" in text
-    assert "frontend live fetch integration" in text
+    assert "backend trust payload expansion does not imply" in text
+    assert "frontend expanded rendering" in text
 
 
 def test_trust_visibility_endpoint_missing_report_payload_is_fail_visible():
@@ -118,7 +117,7 @@ def test_trust_visibility_endpoint_missing_report_payload_is_fail_visible():
     payload = build_trust_visibility_payload(missing_report)
 
     assert payload["status"] == "degraded"
-    assert payload["source_type"] == "backend_report_reference_unavailable"
+    assert payload["source_type"] == "backend_expanded_report_reference_unavailable"
     assert payload["report_reference"]["available"] is False
     assert payload["report_reference"]["status"] == "report_missing"
     assert any(

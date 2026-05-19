@@ -28,18 +28,18 @@ import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
 import type { BackendTrustVisibilityPayload } from "@/types/frontendTrustBackendVisibility";
 
 const backendTrustSuccessPayload: BackendTrustVisibilityPayload = {
-  schema_version: "v4.5d.1",
+  schema_version: "v4.5d.3",
   status: "available",
   endpoint_contract: {
-    endpoint_contract_id: "v4_5d_1_backend_trust_visibility_endpoint_contract",
+    endpoint_contract_id: "v4_5d_3_backend_trust_visibility_payload_expansion",
     endpoint_route: BACKEND_TRUST_VISIBILITY_ENDPOINT,
-    schema_version: "v4.5d.1",
+    schema_version: "v4.5d.3",
     methods: ["GET"],
     read_only: true,
     descriptive_only: true,
     non_mutating: true,
   },
-  source_type: "backend_report_backed_visibility",
+  source_type: "backend_expanded_report_backed_visibility",
   report_reference: {
     name: "v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report",
     path: "docs/generated/v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report.json",
@@ -48,15 +48,15 @@ const backendTrustSuccessPayload: BackendTrustVisibilityPayload = {
     status: "report_available",
   },
   backend_reflection: {
-    status: "backend_reflection_contract_defined",
+    status: "backend_reflection_expanded_payload_defined",
     health_endpoint: "/api/health",
     trust_endpoint: BACKEND_TRUST_VISIBILITY_ENDPOINT,
-    alignment_status: "backend_contract_ready_frontend_fetch_deferred",
+    alignment_status: "frontend_backend_alignment_endpoint_visible",
   },
   frontend_alignment: {
-    status: "backend_contract_ready_frontend_fetch_deferred",
-    live_frontend_fetch: false,
-    integration_readiness: "ready_for_v4_5d_2_frontend_fetch_integration",
+    status: "frontend_backend_alignment_endpoint_visible",
+    live_frontend_fetch: true,
+    integration_readiness: "backend_payload_ready_frontend_rendering_pending",
   },
   diagnostics: [
     {
@@ -193,8 +193,8 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
       },
     });
     expect(state.endpointAvailable).toBe(true);
-    expect(state.schemaVersion).toBe("v4.5d.1");
-    expect(state.backendReflectionStatus).toBe("backend_reflection_contract_defined");
+    expect(state.schemaVersion).toBe("v4.5d.3");
+    expect(state.backendReflectionStatus).toBe("backend_reflection_expanded_payload_defined");
     expect(state.frontendBackendAlignmentStatus).toBe(
       "frontend_backend_alignment_endpoint_visible",
     );
@@ -251,9 +251,11 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
 
     expect(screen.getByText("Read-only backend trust endpoint")).toBeInTheDocument();
     expect(screen.getAllByText(BACKEND_TRUST_VISIBILITY_ENDPOINT).length).toBeGreaterThan(0);
-    expect(screen.getByText("v4.5d.1")).toBeInTheDocument();
-    expect(screen.getByText("backend_reflection_contract_defined")).toBeInTheDocument();
-    expect(screen.getByText("frontend_backend_alignment_endpoint_visible")).toBeInTheDocument();
+    expect(screen.getByText("v4.5d.3")).toBeInTheDocument();
+    expect(screen.getByText("backend_reflection_expanded_payload_defined")).toBeInTheDocument();
+    expect(
+      screen.getAllByText("frontend_backend_alignment_endpoint_visible").length,
+    ).toBeGreaterThan(0);
     expect(
       screen.getByText("v4_5c_5_frontend_trust_closeout_backend_reflection_audit_report"),
     ).toBeInTheDocument();
