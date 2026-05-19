@@ -22,9 +22,11 @@ export default defineConfig(({ mode }) => {
   // server proxy below forwards /api to the local Flask backend.
   // VITE_API_URL is kept as a legacy alias for local workflows.
   const apiBaseUrl = env.VITE_API_BASE_URL || env.VITE_API_URL || "";
-  const devProxyTarget = apiBaseUrl.startsWith("http")
-    ? apiBaseUrl.replace(/\/api\/?$/, "")
-    : "http://localhost:5050";
+  const devProxyTarget =
+    env.VITE_API_PROXY_TARGET ||
+    (apiBaseUrl.startsWith("http")
+      ? apiBaseUrl.replace(/\/api\/?$/, "")
+      : "http://localhost:5050");
 
   return {
     plugins: [react()],
