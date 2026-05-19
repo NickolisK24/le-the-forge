@@ -1,0 +1,1779 @@
+{
+  "audit_scope_boundaries": [
+    "read_only",
+    "descriptive_only",
+    "fail_visible",
+    "no_runtime_behavior_change",
+    "no_planner_execution",
+    "no_production_consumption"
+  ],
+  "audit_status": "read_only_descriptive_transition_audit",
+  "blockers": [],
+  "case_sensitive_filename_scan": {
+    "case_collision_count": 0,
+    "case_collisions": [],
+    "classification": "no_case_sensitive_filename_collisions_detected"
+  },
+  "docker_and_proxy_compatibility": {
+    "backend_runtime_uses_container_venv_volume": true,
+    "browser_api_base_is_relative_in_docker": true,
+    "classification": "docker_and_proxy_paths_cross_platform_ready",
+    "docker_compose_files_present": {
+      "docker-compose.prod.yml": true,
+      "docker-compose.yml": true
+    },
+    "docker_platform_pins": [],
+    "frontend_node_modules_is_named_volume": true,
+    "has_apple_silicon_blocking_platform_pin": false,
+    "relative_volume_markers_present": {
+      "./backend/src/constants:/backend/src/constants:ro": true,
+      "./backend:/app": true,
+      "./data:/data": true,
+      "./docs/generated:/docs/generated:ro": true,
+      "./frontend:/app": true
+    },
+    "vite_local_default_backend_target": true,
+    "vite_proxy_target_env_supported": true,
+    "vite_proxy_target_is_container_internal_in_docker": true
+  },
+  "documentation_and_dependency_readiness": {
+    "active_workflow_path_assumption_count": 5,
+    "apple_silicon_sensitive_python_dependencies": [
+      "psycopg2-binary==2.9.10",
+      "numpy>=1.26.0",
+      "pyyaml>=6.0"
+    ],
+    "classification": "macos_setup_documentation_partial",
+    "electron_mac_targets": [
+      {
+        "arch": [
+          "x64",
+          "arm64"
+        ],
+        "target": "dmg"
+      }
+    ],
+    "frontend_electron_dependency": "^41.0.3",
+    "local_development_doc_has_macos_equivalents": false,
+    "local_development_doc_is_windows_first": true,
+    "readme_backend_setup_uses_backend_local_venv": true,
+    "readme_has_macos_style_backend_setup": true,
+    "root_npm_posix_backend_script": "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. ../.venv/bin/python -m flask run --port=5050 --debug",
+    "root_npm_posix_script_expects_root_venv": true,
+    "root_npm_windows_backend_script": "cd backend && set FLASK_ENV=development&& set PYTHONPATH=.&& .\\.venv\\Scripts\\python.exe -m flask --app wsgi.py run --port=5050 --debug"
+  },
+  "files_needing_path_normalization": [
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv",
+          "backend\\.venv\\Scripts\\Activate.ps1",
+          "backend\\requirements.txt",
+          "frontend\\.env.local"
+        ],
+        "powershell_only": [
+          ".ps1",
+          "Copy-Item",
+          "Invoke-RestMethod",
+          "PowerShell",
+          "Select-String"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge",
+          "D:\\Forge\\le-the-forge\\backend",
+          "D:\\Forge\\le-the-forge\\frontend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe",
+          "backend\\.venv\\Scripts"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 5,
+        "powershell_only": 31,
+        "windows_absolute_path": 6,
+        "windows_python_venv": 5
+      },
+      "normalization_needed": true,
+      "path": "docs/LOCAL_DEVELOPMENT.md",
+      "scope": "active_workflow"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\app\\game_data\\bundle_compat.py",
+          "backend\\app\\game_data\\bundle_item_adapter_report.py",
+          "backend\\app\\game_data\\bundle_item_diff.py",
+          "backend\\app\\game_data\\bundle_item_type_context_report.py",
+          "backend\\app\\game_data\\bundle_item_type_dry_run_resolver.py"
+        ],
+        "powershell_only": [
+          ".ps1"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data",
+          "D:\\Forge\\last-epoch-data\\FIRST_CANONICAL_MIGRATION_PLAN.md",
+          "D:\\Forge\\last-epoch-data\\FULL_REPO_AUDIT.md",
+          "D:\\Forge\\last-epoch-data\\ITEM_TYPES_BASE_ITEMS_SOURCE_AUDIT.md",
+          "D:\\Forge\\last-epoch-data\\data_bundle\\families\\base_items.json"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 40,
+        "powershell_only": 1,
+        "windows_absolute_path": 42
+      },
+      "normalization_needed": true,
+      "path": "docs/BUNDLE_ITEM_MIGRATION_MILESTONE_SUMMARY.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv",
+          "backend\\requirements.txt",
+          "frontend\\node_modules",
+          "frontend\\package.json",
+          "frontend\\tsconfig.json"
+        ],
+        "powershell_only": [
+          ".ps1",
+          "Get-ChildItem",
+          "Remove-Item",
+          "Select-String",
+          "Test-Path"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge",
+          "D:\\LastEpochTools",
+          "D:\\Programming\\the-forge"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 5,
+        "powershell_only": 19,
+        "windows_absolute_path": 3,
+        "windows_python_venv": 5
+      },
+      "normalization_needed": true,
+      "path": "scripts/check_forge_workspace.ps1",
+      "scope": "active_workflow"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "frontend\\node_modules",
+          "scripts\\check_forge_workspace.ps1"
+        ],
+        "powershell_only": [
+          ".ps1",
+          "PowerShell",
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge",
+          "D:\\Forge\\",
+          "D:\\Forge\\last-epoch-data",
+          "D:\\Forge\\le-the-forge",
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 2,
+        "powershell_only": 8,
+        "windows_absolute_path": 13,
+        "windows_python_venv": 1
+      },
+      "normalization_needed": true,
+      "path": "docs/WORKSPACE_HEALTHCHECK.md",
+      "scope": "active_workflow"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "docs\\generated\\le_tools_import_context_fixture_report.md",
+          "docs\\generated\\le_tools_import_context_report.md",
+          "docs\\generated\\le_tools_import_context_sidecar_report.md",
+          "scripts\\build_le_tools_import_context_sidecar.py",
+          "scripts\\report_le_tools_import_context.py"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge\\backend",
+          "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_report.md"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 22,
+        "powershell_only": 15,
+        "windows_absolute_path": 2,
+        "windows_python_venv": 15
+      },
+      "normalization_needed": true,
+      "path": "docs/LE_TOOLS_IMPORT_CONTEXT_DRY_RUN.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\data_bundle",
+          "docs\\generated\\bundle_item_adapter_map_report.md",
+          "docs\\generated\\bundle_item_type_context_report.md",
+          "scripts\\dry_run_bundle_item_type_resolver.py",
+          "scripts\\report_bundle_item_adapter_map.py"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data\\data_bundle",
+          "D:\\Forge\\last-epoch-data\\data_bundle --assert-current-report",
+          "D:\\Forge\\last-epoch-data\\data_bundle --assert-current-report --json",
+          "D:\\Forge\\last-epoch-data\\data_bundle --json",
+          "D:\\Forge\\last-epoch-data\\data_bundle --output ..\\docs\\generated\\bundle_item_adapter_map_report.md"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 24,
+        "powershell_only": 12,
+        "windows_absolute_path": 6,
+        "windows_python_venv": 12
+      },
+      "normalization_needed": true,
+      "path": "docs/BUNDLE_ITEM_ADAPTER_MAP_PROPOSAL.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "scripts\\check_data_bundle.py",
+          "scripts\\generate_data_bundle_skeleton.py",
+          "scripts\\validate_data_bundle.py"
+        ],
+        "powershell_only": [
+          "Test-Path"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge",
+          "s:\\s",
+          "t:\\s"
+        ],
+        "windows_python_venv": [
+          ".venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 6,
+        "powershell_only": 1,
+        "windows_absolute_path": 3,
+        "windows_python_venv": 1
+      },
+      "normalization_needed": true,
+      "path": "scripts/smoke_data_bundle_handoff.ps1",
+      "scope": "active_workflow"
+    },
+    {
+      "examples": {
+        "windows_python_venv": [
+          ".\\\\.venv\\\\Scripts\\\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "windows_python_venv": 3
+      },
+      "normalization_needed": true,
+      "path": "package.json",
+      "scope": "active_workflow"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "docs\\generated\\le_tools_import_context_sidecar_report.md",
+          "docs\\generated\\le_tools_import_context_sidecar_validation_report.md",
+          "scripts\\build_le_tools_import_context_sidecar.py",
+          "scripts\\validate_le_tools_import_context_sidecar.py",
+          "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge\\backend",
+          "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_report.md",
+          "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_validation_report.md"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 12,
+        "powershell_only": 8,
+        "windows_absolute_path": 5,
+        "windows_python_venv": 8
+      },
+      "normalization_needed": true,
+      "path": "docs/LE_TOOLS_IMPORT_CONTEXT_SIDECAR_DESIGN.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv\\Scripts\\python.exe",
+          "backend\\scripts\\compare_controlled_affix_resolver_prototype.py",
+          "backend\\scripts\\report_controlled_affix_per_affix_diagnostic.py",
+          "backend\\scripts\\report_controlled_affix_resolver_prototype.py",
+          "docs\\generated\\controlled_affix_per_affix_diagnostic_records.json"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge"
+        ],
+        "windows_python_venv": [
+          "backend\\.venv\\Scripts"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 30,
+        "powershell_only": 1,
+        "windows_absolute_path": 1,
+        "windows_python_venv": 12
+      },
+      "normalization_needed": false,
+      "path": "docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\scripts\\check_data_bundle.py",
+          "data\\data_bundle",
+          "scripts\\generate_data_bundle_skeleton.py",
+          "scripts\\smoke_data_bundle_handoff.ps1",
+          "scripts\\validate_data_bundle.py"
+        ],
+        "powershell_only": [
+          ".ps1",
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge",
+          "D:\\Forge\\last-epoch-data",
+          "D:\\Forge\\last-epoch-data\\data_bundle",
+          "D:\\Forge\\le-the-forge",
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 11,
+        "powershell_only": 11,
+        "windows_absolute_path": 7,
+        "windows_python_venv": 1
+      },
+      "normalization_needed": true,
+      "path": "docs/DATA_BUNDLE_COMPATIBILITY.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\data_bundle",
+          "scripts\\check_forge_workspace.ps1",
+          "tests\\test_bundle_item_adapter_report.py",
+          "tests\\test_bundle_item_adapter_translations.py",
+          "tests\\test_bundle_item_diff.py"
+        ],
+        "powershell_only": [
+          ".ps1",
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data",
+          "D:\\Forge\\last-epoch-data\\data_bundle",
+          "D:\\Forge\\le-the-forge",
+          "D:\\Forge\\le-the-forge\\backend",
+          "D:\\Forge\\le-the-forge\\frontend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 15,
+        "powershell_only": 9,
+        "windows_absolute_path": 6,
+        "windows_python_venv": 1
+      },
+      "normalization_needed": true,
+      "path": "docs/FULL_REPO_AUDIT.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\\\docs\\\\generated\\\\affix_source_shape_diagnostic_report.json",
+          "data\\docs\\generated",
+          "docs\\generated\\affix_diagnostic_consumer_report.json",
+          "docs\\generated\\affix_diagnostic_consumer_report.md",
+          "scripts\\report_affix_diagnostic_consumer.py"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data\\docs\\generated",
+          "D:\\Forge\\last-epoch-data\\docs\\generated --json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated --json --output ..\\docs\\generated\\affix_diagnostic_consumer_report.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated --output ..\\docs\\generated\\affix_diagnostic_consumer_report.md",
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 12,
+        "powershell_only": 4,
+        "windows_absolute_path": 6,
+        "windows_python_venv": 4
+      },
+      "normalization_needed": false,
+      "path": "docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv\\Scripts\\python.exe",
+          "backend\\scripts\\inspect_forge_safe_affixes.py",
+          "data\\docs\\generated\\forge_safe_affix_bundle.json",
+          "data\\docs\\generated\\forge_safe_canonical_affixes.json"
+        ],
+        "powershell_only": [
+          "Invoke-RestMethod",
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\forge_safe_affix_bundle.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\forge_safe_canonical_affixes.json",
+          "D:\\Forge\\le-the-forge\\backend\\.venv\\Scripts\\python.exe backend\\scripts\\inspect_forge_safe_affixes.py --input D"
+        ],
+        "windows_python_venv": [
+          "backend\\.venv\\Scripts"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 10,
+        "powershell_only": 6,
+        "windows_absolute_path": 6,
+        "windows_python_venv": 2
+      },
+      "normalization_needed": false,
+      "path": "docs/migration/FORGE_SAFE_AFFIX_LOADER.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv\\Scripts\\python.exe",
+          "backend\\scripts\\report_v2_api_contract.py",
+          "backend\\scripts\\report_v2_backend_repository_layer.py",
+          "backend\\scripts\\validate_v2_trusted_data.py",
+          "backend\\tests\\test_forge_safe_production_non_consumption.py"
+        ],
+        "powershell_only": [
+          "PowerShell",
+          "powershell"
+        ],
+        "windows_python_venv": [
+          "backend\\.venv\\Scripts"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 15,
+        "powershell_only": 4,
+        "windows_python_venv": 6
+      },
+      "normalization_needed": false,
+      "path": "docs/migration/V2_VALIDATION_CI_HARDENING.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\docs\\generated"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\FORGE_ECOSYSTEM_PROGRAM_SUMMARY.md",
+          "D:\\Forge\\last-epoch-data",
+          "D:\\Forge\\last-epoch-data\\docs\\generated",
+          "D:\\Forge\\le-the-forge"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 2,
+        "windows_absolute_path": 12
+      },
+      "normalization_needed": true,
+      "path": "docs/FORGE_MIGRATION_TRACKER.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\data_bundle",
+          "scripts\\diff_bundle_items.py"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data\\data_bundle",
+          "D:\\Forge\\last-epoch-data\\data_bundle --json",
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 7,
+        "powershell_only": 3,
+        "windows_absolute_path": 5,
+        "windows_python_venv": 3
+      },
+      "normalization_needed": true,
+      "path": "docs/BUNDLE_ITEM_DIFF_DIAGNOSTIC.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "scripts\\build_le_tools_import_context_sidecar.py",
+          "scripts\\report_le_tools_import_stage_context.py",
+          "scripts\\validate_le_tools_import_context_sidecar.py",
+          "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 5,
+        "powershell_only": 4,
+        "windows_absolute_path": 2,
+        "windows_python_venv": 4
+      },
+      "normalization_needed": true,
+      "path": "docs/LE_TOOLS_IMPORTER_FIXTURE_CONTEXT_AUDIT.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "windows_absolute_path": [
+          "d:\\n-100 Damage is dealt to health",
+          "d:\\n\\n\\n(40 x 6) ",
+          "e:\\n - WW matches any Weaver",
+          "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+          "e:\\nSummons a {Falcon} that fights with you.\\n\\nActive"
+        ]
+      },
+      "hit_counts": {
+        "windows_absolute_path": 10
+      },
+      "normalization_needed": true,
+      "path": "data/localization/en.json",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "windows_absolute_path": [
+          "d:\\n-100 Damage is dealt to health",
+          "d:\\n\\n\\n(40 x 6) ",
+          "e:\\n - WW matches any Weaver",
+          "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+          "e:\\nSummons a {Falcon} that fights with you.\\n\\nActive"
+        ]
+      },
+      "hit_counts": {
+        "windows_absolute_path": 10
+      },
+      "normalization_needed": true,
+      "path": "data/localization/id_lookup.json",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "data\\docs\\generated\\affix_eligibility_diagnostic_report.json",
+          "data\\docs\\generated\\affix_identity_provenance_diagnostic_report.json",
+          "data\\docs\\generated\\affix_saved_vs_fresh_diagnostic_comparison_report.json",
+          "data\\docs\\generated\\affix_source_shape_diagnostic_report.json",
+          "data\\docs\\generated\\affix_tag_category_diagnostic_report.json"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_eligibility_diagnostic_report.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_identity_provenance_diagnostic_report.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_saved_vs_fresh_diagnostic_comparison_report.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_source_shape_diagnostic_report.json",
+          "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_tag_category_diagnostic_report.json"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 8,
+        "windows_absolute_path": 8
+      },
+      "normalization_needed": false,
+      "path": "docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "windows_absolute_path": [
+          "d:\\n-100 Damage is dealt to health",
+          "d:\\n\\n\\n(40 x 6) ",
+          "e:\\n - WW matches any Weaver",
+          "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+          "m:\\n\\n"
+        ]
+      },
+      "hit_counts": {
+        "windows_absolute_path": 8
+      },
+      "normalization_needed": true,
+      "path": "data/localization/game_guide_strings.json",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "docs\\generated\\le_tools_sidecar_diagnostic_consumer_report.md",
+          "scripts\\consume_le_tools_sidecar_diagnostic.py",
+          "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_absolute_path": [
+          "D:\\Forge\\le-the-forge\\backend"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 7,
+        "powershell_only": 3,
+        "windows_absolute_path": 1,
+        "windows_python_venv": 3
+      },
+      "normalization_needed": true,
+      "path": "docs/SIDECAR_BACKED_ITEM_DIAGNOSTIC_CONSUMER_DESIGN.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "scripts\\dry_run_bundle_item_type_resolver.py",
+          "scripts\\report_bundle_item_type_context.py",
+          "tests\\test_bundle_item_adapter_report.py",
+          "tests\\test_bundle_item_adapter_translations.py",
+          "tests\\test_bundle_item_diff.py"
+        ],
+        "powershell_only": [
+          "powershell"
+        ],
+        "windows_python_venv": [
+          ".\\.venv\\Scripts\\python.exe"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 7,
+        "powershell_only": 3,
+        "windows_python_venv": 3
+      },
+      "normalization_needed": true,
+      "path": "docs/BUNDLE_ITEM_NEEDS_ADAPTER_REVIEW.md",
+      "scope": "historical_or_supporting"
+    },
+    {
+      "examples": {
+        "backslash_repo_path": [
+          "backend\\.venv\\Scripts\\python.exe",
+          "backend\\scripts\\report_v2_api_contract.py",
+          "backend\\scripts\\report_v2_backend_repository_layer.py",
+          "backend\\tests\\test_forge_safe_production_non_consumption.py",
+          "backend\\tests\\test_v2_"
+        ],
+        "windows_python_venv": [
+          "backend\\.venv\\Scripts"
+        ]
+      },
+      "hit_counts": {
+        "backslash_repo_path": 10,
+        "windows_python_venv": 4
+      },
+      "normalization_needed": true,
+      "path": "backend/scripts/validate_v2_trusted_data.py",
+      "scope": "historical_or_supporting"
+    }
+  ],
+  "generated_at": "2026-05-19T00:00:00Z",
+  "generated_report_reproducibility_risks": {
+    "classification": "generated_reports_contain_historical_windows_source_paths",
+    "deterministic_report_hashing_required": true,
+    "report_reproducibility_validation": "run_generator_twice_and_compare_report_hash",
+    "windows_source_path_hit_count": 4
+  },
+  "line_ending_sensitivity": {
+    "classification": "line_endings_guarded_by_gitattributes",
+    "crlf_files": [
+      ".gitignore",
+      "backend/app/routes/profile.py",
+      "data/combat/ailments.json",
+      "data/combat/monster_mods.json",
+      "data/entities/actors.json",
+      "data/items/items.json",
+      "data/items/set_items.json",
+      "data/items/uniques.json",
+      "data/localization/ability_strings.json",
+      "data/localization/affix_id_to_name.json",
+      "data/localization/affix_strings.json",
+      "data/localization/ailment_strings.json",
+      "data/localization/descriptor_strings.json",
+      "data/localization/property_strings.json",
+      "data/localization/vault_mod_strings.json",
+      "data/world/dungeons.json",
+      "data/world/loot_tables.json",
+      "data/world/quests.json",
+      "data/world/timelines.json",
+      "data/world/zones.json",
+      "frontend/postcss.config.js",
+      "frontend/src/components/features/UserProfilePage.tsx"
+    ],
+    "gitattributes_enforces_lf": true,
+    "gitattributes_present": true,
+    "line_ending_counts": {
+      "crlf": 22,
+      "lf": 3065,
+      "no_newlines": 100
+    },
+    "mixed_line_ending_files": [],
+    "skipped_large_text_files": 19
+  },
+  "path_assumption_scan": {
+    "active_workflow_files_with_path_assumptions": [
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv",
+            "backend\\.venv\\Scripts\\Activate.ps1",
+            "backend\\requirements.txt",
+            "frontend\\.env.local"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "Copy-Item",
+            "Invoke-RestMethod",
+            "PowerShell",
+            "Select-String"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend",
+            "D:\\Forge\\le-the-forge\\frontend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe",
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 5,
+          "powershell_only": 31,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 5
+        },
+        "normalization_needed": true,
+        "path": "docs/LOCAL_DEVELOPMENT.md",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv",
+            "backend\\requirements.txt",
+            "frontend\\node_modules",
+            "frontend\\package.json",
+            "frontend\\tsconfig.json"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "Get-ChildItem",
+            "Remove-Item",
+            "Select-String",
+            "Test-Path"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "D:\\LastEpochTools",
+            "D:\\Programming\\the-forge"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 5,
+          "powershell_only": 19,
+          "windows_absolute_path": 3,
+          "windows_python_venv": 5
+        },
+        "normalization_needed": true,
+        "path": "scripts/check_forge_workspace.ps1",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "frontend\\node_modules",
+            "scripts\\check_forge_workspace.ps1"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "PowerShell",
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "D:\\Forge\\",
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 2,
+          "powershell_only": 8,
+          "windows_absolute_path": 13,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "docs/WORKSPACE_HEALTHCHECK.md",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "scripts\\check_data_bundle.py",
+            "scripts\\generate_data_bundle_skeleton.py",
+            "scripts\\validate_data_bundle.py"
+          ],
+          "powershell_only": [
+            "Test-Path"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "s:\\s",
+            "t:\\s"
+          ],
+          "windows_python_venv": [
+            ".venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 6,
+          "powershell_only": 1,
+          "windows_absolute_path": 3,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "scripts/smoke_data_bundle_handoff.ps1",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "windows_python_venv": [
+            ".\\\\.venv\\\\Scripts\\\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "windows_python_venv": 3
+        },
+        "normalization_needed": true,
+        "path": "package.json",
+        "scope": "active_workflow"
+      }
+    ],
+    "files_with_path_assumptions_count": 94,
+    "generated_report_windows_source_path_hits": 4,
+    "historical_or_supporting_files_with_path_assumptions_count": 89,
+    "hit_counts_by_type": {
+      "backslash_repo_path": 499,
+      "powershell_only": 190,
+      "windows_absolute_path": 190,
+      "windows_python_venv": 130
+    },
+    "scan_exclusions": [
+      "backend/scripts/report_macbook_transition_safety_audit.py",
+      "backend/tests/test_macbook_transition_safety_audit.py",
+      "docs/generated/macbook_transition_safety_audit.json",
+      "docs/migration/MACBOOK_TRANSITION_SAFETY_AUDIT.md"
+    ],
+    "top_files_needing_path_normalization": [
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv",
+            "backend\\.venv\\Scripts\\Activate.ps1",
+            "backend\\requirements.txt",
+            "frontend\\.env.local"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "Copy-Item",
+            "Invoke-RestMethod",
+            "PowerShell",
+            "Select-String"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend",
+            "D:\\Forge\\le-the-forge\\frontend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe",
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 5,
+          "powershell_only": 31,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 5
+        },
+        "normalization_needed": true,
+        "path": "docs/LOCAL_DEVELOPMENT.md",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\app\\game_data\\bundle_compat.py",
+            "backend\\app\\game_data\\bundle_item_adapter_report.py",
+            "backend\\app\\game_data\\bundle_item_diff.py",
+            "backend\\app\\game_data\\bundle_item_type_context_report.py",
+            "backend\\app\\game_data\\bundle_item_type_dry_run_resolver.py"
+          ],
+          "powershell_only": [
+            ".ps1"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\last-epoch-data\\FIRST_CANONICAL_MIGRATION_PLAN.md",
+            "D:\\Forge\\last-epoch-data\\FULL_REPO_AUDIT.md",
+            "D:\\Forge\\last-epoch-data\\ITEM_TYPES_BASE_ITEMS_SOURCE_AUDIT.md",
+            "D:\\Forge\\last-epoch-data\\data_bundle\\families\\base_items.json"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 40,
+          "powershell_only": 1,
+          "windows_absolute_path": 42
+        },
+        "normalization_needed": true,
+        "path": "docs/BUNDLE_ITEM_MIGRATION_MILESTONE_SUMMARY.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv",
+            "backend\\requirements.txt",
+            "frontend\\node_modules",
+            "frontend\\package.json",
+            "frontend\\tsconfig.json"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "Get-ChildItem",
+            "Remove-Item",
+            "Select-String",
+            "Test-Path"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "D:\\LastEpochTools",
+            "D:\\Programming\\the-forge"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 5,
+          "powershell_only": 19,
+          "windows_absolute_path": 3,
+          "windows_python_venv": 5
+        },
+        "normalization_needed": true,
+        "path": "scripts/check_forge_workspace.ps1",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "frontend\\node_modules",
+            "scripts\\check_forge_workspace.ps1"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "PowerShell",
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "D:\\Forge\\",
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 2,
+          "powershell_only": 8,
+          "windows_absolute_path": 13,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "docs/WORKSPACE_HEALTHCHECK.md",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "docs\\generated\\le_tools_import_context_fixture_report.md",
+            "docs\\generated\\le_tools_import_context_report.md",
+            "docs\\generated\\le_tools_import_context_sidecar_report.md",
+            "scripts\\build_le_tools_import_context_sidecar.py",
+            "scripts\\report_le_tools_import_context.py"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge\\backend",
+            "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_report.md"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 22,
+          "powershell_only": 15,
+          "windows_absolute_path": 2,
+          "windows_python_venv": 15
+        },
+        "normalization_needed": true,
+        "path": "docs/LE_TOOLS_IMPORT_CONTEXT_DRY_RUN.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\data_bundle",
+            "docs\\generated\\bundle_item_adapter_map_report.md",
+            "docs\\generated\\bundle_item_type_context_report.md",
+            "scripts\\dry_run_bundle_item_type_resolver.py",
+            "scripts\\report_bundle_item_adapter_map.py"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data\\data_bundle",
+            "D:\\Forge\\last-epoch-data\\data_bundle --assert-current-report",
+            "D:\\Forge\\last-epoch-data\\data_bundle --assert-current-report --json",
+            "D:\\Forge\\last-epoch-data\\data_bundle --json",
+            "D:\\Forge\\last-epoch-data\\data_bundle --output ..\\docs\\generated\\bundle_item_adapter_map_report.md"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 24,
+          "powershell_only": 12,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 12
+        },
+        "normalization_needed": true,
+        "path": "docs/BUNDLE_ITEM_ADAPTER_MAP_PROPOSAL.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "scripts\\check_data_bundle.py",
+            "scripts\\generate_data_bundle_skeleton.py",
+            "scripts\\validate_data_bundle.py"
+          ],
+          "powershell_only": [
+            "Test-Path"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "s:\\s",
+            "t:\\s"
+          ],
+          "windows_python_venv": [
+            ".venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 6,
+          "powershell_only": 1,
+          "windows_absolute_path": 3,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "scripts/smoke_data_bundle_handoff.ps1",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "windows_python_venv": [
+            ".\\\\.venv\\\\Scripts\\\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "windows_python_venv": 3
+        },
+        "normalization_needed": true,
+        "path": "package.json",
+        "scope": "active_workflow"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "docs\\generated\\le_tools_import_context_sidecar_report.md",
+            "docs\\generated\\le_tools_import_context_sidecar_validation_report.md",
+            "scripts\\build_le_tools_import_context_sidecar.py",
+            "scripts\\validate_le_tools_import_context_sidecar.py",
+            "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge\\backend",
+            "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_report.md",
+            "D:\\Forge\\le-the-forge\\docs\\generated\\le_tools_import_context_sidecar_validation_report.md"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 12,
+          "powershell_only": 8,
+          "windows_absolute_path": 5,
+          "windows_python_venv": 8
+        },
+        "normalization_needed": true,
+        "path": "docs/LE_TOOLS_IMPORT_CONTEXT_SIDECAR_DESIGN.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv\\Scripts\\python.exe",
+            "backend\\scripts\\compare_controlled_affix_resolver_prototype.py",
+            "backend\\scripts\\report_controlled_affix_per_affix_diagnostic.py",
+            "backend\\scripts\\report_controlled_affix_resolver_prototype.py",
+            "docs\\generated\\controlled_affix_per_affix_diagnostic_records.json"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge"
+          ],
+          "windows_python_venv": [
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 30,
+          "powershell_only": 1,
+          "windows_absolute_path": 1,
+          "windows_python_venv": 12
+        },
+        "normalization_needed": false,
+        "path": "docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\scripts\\check_data_bundle.py",
+            "data\\data_bundle",
+            "scripts\\generate_data_bundle_skeleton.py",
+            "scripts\\smoke_data_bundle_handoff.ps1",
+            "scripts\\validate_data_bundle.py"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge",
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\last-epoch-data\\data_bundle",
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 11,
+          "powershell_only": 11,
+          "windows_absolute_path": 7,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "docs/DATA_BUNDLE_COMPATIBILITY.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\data_bundle",
+            "scripts\\check_forge_workspace.ps1",
+            "tests\\test_bundle_item_adapter_report.py",
+            "tests\\test_bundle_item_adapter_translations.py",
+            "tests\\test_bundle_item_diff.py"
+          ],
+          "powershell_only": [
+            ".ps1",
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\last-epoch-data\\data_bundle",
+            "D:\\Forge\\le-the-forge",
+            "D:\\Forge\\le-the-forge\\backend",
+            "D:\\Forge\\le-the-forge\\frontend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 15,
+          "powershell_only": 9,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 1
+        },
+        "normalization_needed": true,
+        "path": "docs/FULL_REPO_AUDIT.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\\\docs\\\\generated\\\\affix_source_shape_diagnostic_report.json",
+            "data\\docs\\generated",
+            "docs\\generated\\affix_diagnostic_consumer_report.json",
+            "docs\\generated\\affix_diagnostic_consumer_report.md",
+            "scripts\\report_affix_diagnostic_consumer.py"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data\\docs\\generated",
+            "D:\\Forge\\last-epoch-data\\docs\\generated --json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated --json --output ..\\docs\\generated\\affix_diagnostic_consumer_report.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated --output ..\\docs\\generated\\affix_diagnostic_consumer_report.md",
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 12,
+          "powershell_only": 4,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 4
+        },
+        "normalization_needed": false,
+        "path": "docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv\\Scripts\\python.exe",
+            "backend\\scripts\\inspect_forge_safe_affixes.py",
+            "data\\docs\\generated\\forge_safe_affix_bundle.json",
+            "data\\docs\\generated\\forge_safe_canonical_affixes.json"
+          ],
+          "powershell_only": [
+            "Invoke-RestMethod",
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\forge_safe_affix_bundle.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\forge_safe_canonical_affixes.json",
+            "D:\\Forge\\le-the-forge\\backend\\.venv\\Scripts\\python.exe backend\\scripts\\inspect_forge_safe_affixes.py --input D"
+          ],
+          "windows_python_venv": [
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 10,
+          "powershell_only": 6,
+          "windows_absolute_path": 6,
+          "windows_python_venv": 2
+        },
+        "normalization_needed": false,
+        "path": "docs/migration/FORGE_SAFE_AFFIX_LOADER.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv\\Scripts\\python.exe",
+            "backend\\scripts\\report_v2_api_contract.py",
+            "backend\\scripts\\report_v2_backend_repository_layer.py",
+            "backend\\scripts\\validate_v2_trusted_data.py",
+            "backend\\tests\\test_forge_safe_production_non_consumption.py"
+          ],
+          "powershell_only": [
+            "PowerShell",
+            "powershell"
+          ],
+          "windows_python_venv": [
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 15,
+          "powershell_only": 4,
+          "windows_python_venv": 6
+        },
+        "normalization_needed": false,
+        "path": "docs/migration/V2_VALIDATION_CI_HARDENING.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\docs\\generated"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\FORGE_ECOSYSTEM_PROGRAM_SUMMARY.md",
+            "D:\\Forge\\last-epoch-data",
+            "D:\\Forge\\last-epoch-data\\docs\\generated",
+            "D:\\Forge\\le-the-forge"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 2,
+          "windows_absolute_path": 12
+        },
+        "normalization_needed": true,
+        "path": "docs/FORGE_MIGRATION_TRACKER.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\data_bundle",
+            "scripts\\diff_bundle_items.py"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data\\data_bundle",
+            "D:\\Forge\\last-epoch-data\\data_bundle --json",
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 7,
+          "powershell_only": 3,
+          "windows_absolute_path": 5,
+          "windows_python_venv": 3
+        },
+        "normalization_needed": true,
+        "path": "docs/BUNDLE_ITEM_DIFF_DIAGNOSTIC.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "scripts\\build_le_tools_import_context_sidecar.py",
+            "scripts\\report_le_tools_import_stage_context.py",
+            "scripts\\validate_le_tools_import_context_sidecar.py",
+            "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 5,
+          "powershell_only": 4,
+          "windows_absolute_path": 2,
+          "windows_python_venv": 4
+        },
+        "normalization_needed": true,
+        "path": "docs/LE_TOOLS_IMPORTER_FIXTURE_CONTEXT_AUDIT.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "windows_absolute_path": [
+            "d:\\n-100 Damage is dealt to health",
+            "d:\\n\\n\\n(40 x 6) ",
+            "e:\\n - WW matches any Weaver",
+            "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+            "e:\\nSummons a {Falcon} that fights with you.\\n\\nActive"
+          ]
+        },
+        "hit_counts": {
+          "windows_absolute_path": 10
+        },
+        "normalization_needed": true,
+        "path": "data/localization/en.json",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "windows_absolute_path": [
+            "d:\\n-100 Damage is dealt to health",
+            "d:\\n\\n\\n(40 x 6) ",
+            "e:\\n - WW matches any Weaver",
+            "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+            "e:\\nSummons a {Falcon} that fights with you.\\n\\nActive"
+          ]
+        },
+        "hit_counts": {
+          "windows_absolute_path": 10
+        },
+        "normalization_needed": true,
+        "path": "data/localization/id_lookup.json",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "data\\docs\\generated\\affix_eligibility_diagnostic_report.json",
+            "data\\docs\\generated\\affix_identity_provenance_diagnostic_report.json",
+            "data\\docs\\generated\\affix_saved_vs_fresh_diagnostic_comparison_report.json",
+            "data\\docs\\generated\\affix_source_shape_diagnostic_report.json",
+            "data\\docs\\generated\\affix_tag_category_diagnostic_report.json"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_eligibility_diagnostic_report.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_identity_provenance_diagnostic_report.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_saved_vs_fresh_diagnostic_comparison_report.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_source_shape_diagnostic_report.json",
+            "D:\\Forge\\last-epoch-data\\docs\\generated\\affix_tag_category_diagnostic_report.json"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 8,
+          "windows_absolute_path": 8
+        },
+        "normalization_needed": false,
+        "path": "docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "windows_absolute_path": [
+            "d:\\n-100 Damage is dealt to health",
+            "d:\\n\\n\\n(40 x 6) ",
+            "e:\\n - WW matches any Weaver",
+            "e:\\n- Passive Skill Point from 3 to 100 (total 98).\\n- Skill Specialization unlocks at levels 4",
+            "m:\\n\\n"
+          ]
+        },
+        "hit_counts": {
+          "windows_absolute_path": 8
+        },
+        "normalization_needed": true,
+        "path": "data/localization/game_guide_strings.json",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "docs\\generated\\le_tools_sidecar_diagnostic_consumer_report.md",
+            "scripts\\consume_le_tools_sidecar_diagnostic.py",
+            "tests\\fixtures\\le_tools_import_context_sidecar_current.json"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_absolute_path": [
+            "D:\\Forge\\le-the-forge\\backend"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 7,
+          "powershell_only": 3,
+          "windows_absolute_path": 1,
+          "windows_python_venv": 3
+        },
+        "normalization_needed": true,
+        "path": "docs/SIDECAR_BACKED_ITEM_DIAGNOSTIC_CONSUMER_DESIGN.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "scripts\\dry_run_bundle_item_type_resolver.py",
+            "scripts\\report_bundle_item_type_context.py",
+            "tests\\test_bundle_item_adapter_report.py",
+            "tests\\test_bundle_item_adapter_translations.py",
+            "tests\\test_bundle_item_diff.py"
+          ],
+          "powershell_only": [
+            "powershell"
+          ],
+          "windows_python_venv": [
+            ".\\.venv\\Scripts\\python.exe"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 7,
+          "powershell_only": 3,
+          "windows_python_venv": 3
+        },
+        "normalization_needed": true,
+        "path": "docs/BUNDLE_ITEM_NEEDS_ADAPTER_REVIEW.md",
+        "scope": "historical_or_supporting"
+      },
+      {
+        "examples": {
+          "backslash_repo_path": [
+            "backend\\.venv\\Scripts\\python.exe",
+            "backend\\scripts\\report_v2_api_contract.py",
+            "backend\\scripts\\report_v2_backend_repository_layer.py",
+            "backend\\tests\\test_forge_safe_production_non_consumption.py",
+            "backend\\tests\\test_v2_"
+          ],
+          "windows_python_venv": [
+            "backend\\.venv\\Scripts"
+          ]
+        },
+        "hit_counts": {
+          "backslash_repo_path": 10,
+          "windows_python_venv": 4
+        },
+        "normalization_needed": true,
+        "path": "backend/scripts/validate_v2_trusted_data.py",
+        "scope": "historical_or_supporting"
+      }
+    ]
+  },
+  "prohibitions_preserved": {
+    "orchestration_execution_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_consumption_enabled": false,
+    "ranking_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scoring_enabled": false
+  },
+  "recommended_macos_commands": [
+    "git switch dev",
+    "git pull origin dev",
+    "python3.11 -m venv backend/.venv",
+    "source backend/.venv/bin/activate",
+    "python -m pip install --upgrade pip",
+    "python -m pip install -r backend/requirements.txt",
+    "npm ci",
+    "npm --prefix frontend ci",
+    "docker compose config",
+    "docker compose up -d db redis",
+    "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. .venv/bin/python -m flask db upgrade",
+    "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. .venv/bin/python -m flask seed",
+    "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. .venv/bin/python -m flask seed-passives",
+    "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. .venv/bin/python -m flask run --port=5050 --debug",
+    "npm --prefix frontend run dev"
+  ],
+  "report_hash": "b237ffc97e807e89203408206a3ea3ea2b055f10a967ec4e172776b2a30b0c8c",
+  "required_setup_steps": [
+    {
+      "command": "xcode-select --install",
+      "reason": "Provides compiler and git tooling expected by Python and Node dependency installation.",
+      "step": "install_platform_tools"
+    },
+    {
+      "command": "brew install python@3.11 node@20",
+      "reason": "Keeps Python and Node aligned with the repository's documented local versions.",
+      "step": "install_runtime_dependencies"
+    },
+    {
+      "command": "Install Docker Desktop for Mac with Apple Silicon support, then start Docker.",
+      "reason": "PostgreSQL, Redis, and Compose validation depend on Docker Desktop locally.",
+      "step": "install_docker_desktop"
+    },
+    {
+      "command": "python3.11 -m venv backend/.venv && source backend/.venv/bin/activate",
+      "reason": "Avoids Windows-only .venv\\Scripts paths and keeps backend dependencies under backend/.venv.",
+      "step": "create_backend_virtualenv"
+    },
+    {
+      "command": "python -m pip install --upgrade pip && python -m pip install -r backend/requirements.txt",
+      "reason": "Installs Flask, pytest, psycopg2-binary, numpy, and other backend dependencies on macOS.",
+      "step": "install_backend_dependencies"
+    },
+    {
+      "command": "npm ci && npm --prefix frontend ci",
+      "reason": "Uses lockfiles for root Electron tooling and frontend Vite tooling.",
+      "step": "install_node_dependencies"
+    },
+    {
+      "command": "docker compose config",
+      "reason": "Confirms Compose files render on the MacBook before starting services.",
+      "step": "validate_compose"
+    }
+  ],
+  "schema_version": "macbook_transition_safety_audit.v1",
+  "transition_classification": "macbook_transition_safe_with_setup_required",
+  "validation_commands_to_run_on_macbook": [
+    "git status --short",
+    "python3 -m py_compile backend/scripts/report_macbook_transition_safety_audit.py",
+    "python3 backend/scripts/report_macbook_transition_safety_audit.py",
+    "python3 -m json.tool docs/generated/macbook_transition_safety_audit.json",
+    "python3 -m pytest backend/tests/test_macbook_transition_safety_audit.py -q",
+    "npm --prefix frontend test -- src/__tests__/config/vite-proxy-routing.test.ts",
+    "docker compose config",
+    "git diff --check"
+  ],
+  "warnings": [
+    {
+      "classification": "setup_documentation_gap",
+      "details": "Active local setup and health-check docs still center PowerShell, D:\\Forge, and Windows venv commands. macOS equivalents are needed before the workflow is self-serve on a MacBook.",
+      "files": [
+        "docs/LOCAL_DEVELOPMENT.md",
+        "docs/WORKSPACE_HEALTHCHECK.md"
+      ],
+      "id": "active_docs_are_windows_first"
+    },
+    {
+      "classification": "path_normalization_required",
+      "details": "The README creates backend/.venv from inside backend, while root npm POSIX backend scripts call ../.venv/bin/python from backend. Pick one venv location or document the split explicitly for macOS.",
+      "files": [
+        "package.json",
+        "README.md"
+      ],
+      "id": "root_npm_backend_venv_path_mismatch"
+    },
+    {
+      "classification": "script_portability_gap",
+      "details": "PowerShell diagnostics remain useful on Windows but do not provide a native macOS/Linux equivalent.",
+      "files": [
+        "scripts/check_forge_workspace.ps1",
+        "scripts/smoke_data_bundle_handoff.ps1"
+      ],
+      "id": "powershell_healthcheck_is_windows_only"
+    },
+    {
+      "classification": "historical_command_translation_required",
+      "details": "Older migration and data-bundle docs contain D:\\Forge paths and Windows interpreter examples. Treat them as historical evidence unless translated.",
+      "files": [
+        "docs/BUNDLE_ITEM_MIGRATION_MILESTONE_SUMMARY.md",
+        "docs/LE_TOOLS_IMPORT_CONTEXT_DRY_RUN.md",
+        "docs/BUNDLE_ITEM_ADAPTER_MAP_PROPOSAL.md",
+        "docs/LE_TOOLS_IMPORT_CONTEXT_SIDECAR_DESIGN.md",
+        "docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md",
+        "docs/DATA_BUNDLE_COMPATIBILITY.md",
+        "docs/FULL_REPO_AUDIT.md",
+        "docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md",
+        "docs/migration/FORGE_SAFE_AFFIX_LOADER.md",
+        "docs/migration/V2_VALIDATION_CI_HARDENING.md"
+      ],
+      "id": "historical_docs_contain_windows_absolute_paths"
+    },
+    {
+      "classification": "dependency_install_validation_required",
+      "details": "Python native-wheel packages and Electron download architecture should be validated on Apple Silicon with the chosen Python and Node versions.",
+      "files": [
+        "backend/requirements.txt",
+        "package.json",
+        "frontend/package.json"
+      ],
+      "id": "apple_silicon_dependency_install_must_be_validated",
+      "sensitive_dependencies": [
+        "psycopg2-binary==2.9.10",
+        "numpy>=1.26.0",
+        "pyyaml>=6.0"
+      ]
+    }
+  ],
+  "windows_pc_still_required": {
+    "classification": "not_required_after_macbook_setup_and_validation",
+    "conditions": [
+      "Clone both repositories on macOS if last-epoch-data artifacts are needed.",
+      "Create macOS-local .env values and data-bundle paths instead of reusing D:\\Forge paths.",
+      "Complete Docker, backend, frontend, and report reproducibility validation on the MacBook."
+    ],
+    "required": false
+  }
+}
