@@ -82,7 +82,7 @@ Ordered by impact on simulation accuracy and user-visible behaviour.
 > consumption certification. They must not be presented as complete or certified
 > capability until that evidence exists — see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md).
 
-- **Trusted-data foundation (prerequisite track)** -- complete the V2.5 → V4.5 upstream trusted-data rebuild, schema/provenance governance, and downstream consumption certification that gate the capability work below
+- **Trusted-data foundation (prerequisite track)** -- complete the V2.5 → V4.5 upstream trusted-data rebuild, schema/provenance governance, and downstream consumption certification that gate the capability work below. No data domain is promoted to trusted until it clears the upstream + downstream evidence gates defined in [`docs/migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md`](docs/migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md) (currently zero domains are promotion-ready)
 - **Native desktop packaging** -- Electron wrapper already scaffolded in `electron/`, needs production bundling with PyInstaller for the backend
 - **Advanced crafting prediction models** *(gated on trusted crafting data)* -- machine learning or probabilistic models for craft outcome prediction beyond Monte Carlo
 - **Encounter-specific optimization** *(gated on trusted data + consumption certification)* -- advisory stat-change suggestions targeting specific boss fights
