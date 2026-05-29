@@ -13,7 +13,7 @@
 - **Live at** [epochforge.gg](https://epochforge.gg) since 2026-04-21
 - **Game data synced to:** patch 1.4.3, Season 4 (last sync 2026-04-21)
 - **Tests:** 10,865 passing / 377 skipped
-- **Upstream data foundation:** trusted Last Epoch game data is sourced from the companion `last-epoch-data` extraction/compiler repo (the canonical source of truth). The Forge is a downstream consumer — see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md) for the dependency chain, and [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md) for the current (partial) coverage state.
+- **Upstream data foundation:** trusted Last Epoch game data is sourced from the companion `last-epoch-data` extraction/compiler repo (the canonical source of truth). The Forge is a downstream consumer — see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md) for the dependency chain, [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md) for the current (partial) coverage state, and [`docs/migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md`](docs/migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md) for what would be required before any domain is promoted to trusted (none currently are).
 - **Version signals:** the product release version (`v0.8.0`, above) is separate from the Node package version (`package.json`), the internal roadmap phases, the V2.5→V4.x governance phases, and historical git tags (e.g. `v2.5.0`). They describe different things and are not meant to match — see [`docs/VERSIONING_POLICY.md`](docs/VERSIONING_POLICY.md). A version number does not imply data trust or capability completion.
 - **[See known limitations →](docs/KNOWN_LIMITATIONS.md)**
 

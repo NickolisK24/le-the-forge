@@ -170,6 +170,10 @@ and links to the existing trust/governance material:
   — the follow-up record of corrections made in response to the audit.
 - [`migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md)
   — current trusted gameplay data coverage state and what remains blocked.
+- [`migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md`](migration/TRUSTED_DATA_PROMOTION_READINESS_AUDIT.md)
+  — the upstream + downstream evidence and universal gates required before any
+  domain may be promoted from advisory/partial/diagnostic to trusted (no domain is
+  currently promotion-ready).
 - [`FORGE_SYSTEM_PILLARS.md`](FORGE_SYSTEM_PILLARS.md) — product/system direction
   and why upstream extraction priorities matter.
 - [`FORGE_DATA_CONSUMER_AUDIT.md`](FORGE_DATA_CONSUMER_AUDIT.md) — how this repo
