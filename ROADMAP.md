@@ -13,6 +13,12 @@
 > See [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md) and
 > [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md).
 
+> **Phase labels are not version numbers.** Roadmap phases ("Phase 9", etc.) are
+> internal product planning/governance labels — they are **not** the package
+> version (`package.json`), the public product release version (`VERSION`), or the
+> V2.5→V4.x governance phases under `docs/migration/`. These signals are allowed to
+> differ; see [`docs/VERSIONING_POLICY.md`](docs/VERSIONING_POLICY.md).
+
 ## Completed (feature implementation)
 
 ### Phase 1 -- Core Foundation (v0.1.0)
