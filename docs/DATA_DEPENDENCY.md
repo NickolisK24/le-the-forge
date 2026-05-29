@@ -151,6 +151,12 @@ Public wording — README, UI copy, and anything on
 Honest disclosure of approximations and limitations (e.g.
 [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md)) is required and must be preserved.
 
+**Version labels do not override trust state.** A product, package, git-tag, or
+governance-phase version number never implies more trusted data, more mechanical
+coverage, or any certification. If a version label and the certified trust state
+appear to disagree, the trust state wins and public wording follows it. See
+[`VERSIONING_POLICY.md`](VERSIONING_POLICY.md).
+
 ---
 
 ## 7. Relationship to Existing Trust Docs
