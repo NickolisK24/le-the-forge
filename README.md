@@ -13,6 +13,7 @@
 - **Live at** [epochforge.gg](https://epochforge.gg) since 2026-04-21
 - **Game data synced to:** patch 1.4.3, Season 4 (last sync 2026-04-21)
 - **Tests:** 10,865 passing / 377 skipped
+- **Upstream data foundation:** trusted Last Epoch game data is sourced from the companion `last-epoch-data` extraction/compiler repo (the canonical source of truth). The trusted-data rebuild and its current coverage state are tracked in [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md).
 - **[See known limitations →](docs/KNOWN_LIMITATIONS.md)**
 
 <p align="center">
