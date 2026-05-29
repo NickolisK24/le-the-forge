@@ -23,6 +23,13 @@ The Forge is a simulation-driven analysis platform for Last Epoch, designed to e
 - [rollback.md](rollback.md) -- Emergency rollback procedures: Render service rollback, Postgres backup restore, CORS bypass
 - [deployment_readiness.md](deployment_readiness.md) -- 2026-04-21 deployment readiness audit (backend, frontend, CI/CD, docs checklist)
 
+**Data & Trust**
+
+- [FORGE_SYSTEM_PILLARS.md](FORGE_SYSTEM_PILLARS.md) -- Product/system direction and why The Forge depends on the upstream `last-epoch-data` extraction repo (where `FORGE_DATA_CONTRACT.md` and `DATA_BUNDLE_SPEC.md` live)
+- [FORGE_DATA_CONSUMER_AUDIT.md](FORGE_DATA_CONSUMER_AUDIT.md) -- How `le-the-forge` consumes game data, with `last-epoch-data` treated as the canonical extraction/compiler/source-of-truth repo
+- [migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md](migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md) -- Current trusted gameplay data coverage state (partial / fail-visible) and what remains blocked
+- [migration/](migration/) -- Trusted-data rebuild, schema/provenance governance, and dependency-chain migration series
+
 **Transparency**
 
 - [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) -- Public-facing disclosure of verified, approximate, and incomplete systems
@@ -44,7 +51,7 @@ The Forge is built around:
 
 ## Key Architectural Rule
 
-The backend is the **single source of truth**.
+The backend is the **single source of truth** for *calculation*. (For *game data*, the canonical source of truth is the upstream `last-epoch-data` extraction repo — see **Data & Trust** above.)
 
 The frontend:
 - Sends input
