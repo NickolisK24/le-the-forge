@@ -13,7 +13,7 @@
 - **Live at** [epochforge.gg](https://epochforge.gg) since 2026-04-21
 - **Game data synced to:** patch 1.4.3, Season 4 (last sync 2026-04-21)
 - **Tests:** 10,865 passing / 377 skipped
-- **Upstream data foundation:** trusted Last Epoch game data is sourced from the companion `last-epoch-data` extraction/compiler repo (the canonical source of truth). The trusted-data rebuild and its current coverage state are tracked in [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md).
+- **Upstream data foundation:** trusted Last Epoch game data is sourced from the companion `last-epoch-data` extraction/compiler repo (the canonical source of truth). The Forge is a downstream consumer — see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md) for the dependency chain, and [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md) for the current (partial) coverage state.
 - **[See known limitations →](docs/KNOWN_LIMITATIONS.md)**
 
 <p align="center">
@@ -24,15 +24,22 @@
 
 ## What Is The Forge
 
-The Forge is a build analysis platform for Last Epoch. It takes a character build — class, mastery, passive tree, skill specializations, and gear — and runs it through a deterministic simulation engine to produce DPS numbers, survivability scores, crafting probability curves, and upgrade recommendations. If you have ever wondered whether swapping an affix or reallocating a passive node actually makes your build stronger, The Forge gives you a concrete answer.
+The Forge is a build analysis platform for Last Epoch. It takes a character build — class, mastery, passive tree, skill specializations, and gear — and runs it through a deterministic simulation engine to produce DPS numbers, survivability scores, crafting probability curves, and upgrade suggestions. If you have ever wondered whether swapping an affix or reallocating a passive node actually makes your build stronger, The Forge gives you a deterministic, inspectable answer for the game data it currently has.
 
-Unlike build planners that stop at showing stat totals, The Forge simulates the full combat loop: skill execution, crit weighting, Monte Carlo damage variance, boss encounter phases, mana gating, and enemy-specific resistance and armour mitigation. The goal is mechanical accuracy — every number traces back to a formula you can inspect, and the engine runs the same calculation every time for the same inputs.
+Unlike build planners that stop at showing stat totals, The Forge simulates the full combat loop: skill execution, crit weighting, Monte Carlo damage variance, boss encounter phases, mana gating, and enemy-specific resistance and armour mitigation. The engine is deterministic — every number traces back to a formula you can inspect, and the same inputs always produce the same result. Accuracy, however, is bounded by the trust of the underlying game data, which is **partial** and is being rebuilt upstream in `last-epoch-data` (see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)).
 
-The project is currently at **v0.8.0** and went live at [epochforge.gg](https://epochforge.gg) on 2026-04-21. The core simulation pipeline is stable and backed by 10,865 tests, but some input data — particularly skill base damage values and enemy armour profiles — are benchmarked approximations rather than verified game extracts. These are noted honestly throughout the tool, in the [Known Limitations](#known-limitations-beta) section below, and in the dedicated [transparency document](docs/KNOWN_LIMITATIONS.md). Community validation of these values is actively sought and is one of the most impactful ways to contribute.
+The project is currently at **v0.8.0** and went live at [epochforge.gg](https://epochforge.gg) on 2026-04-21. The simulation pipeline is deterministic and backed by 10,865 tests, but mechanical coverage is **not complete** and trusted-data certification is in progress: some input data — particularly skill base damage values and enemy armour profiles — are benchmarked approximations rather than verified game extracts. Optimization, upgrade, and ranking outputs are **advisory** and bounded by that data confidence; they are not yet certified against trusted upstream data. These limits are noted honestly throughout the tool, in the [Known Limitations](#known-limitations-beta) section below, and in the dedicated [transparency document](docs/KNOWN_LIMITATIONS.md). The full dependency and trust model lives in [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md). Community validation of these values is actively sought and is one of the most impactful ways to contribute.
 
 ---
 
 ## Features
+
+> The features below describe the deterministic engine surface. Their accuracy is
+> bounded by the confidence of the underlying game data (see [Data Confidence](#data-confidence)
+> and [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)). Optimization, upgrade,
+> ranking, and recommendation outputs are **advisory** and are not yet certified
+> against trusted upstream `last-epoch-data` artifacts. Mechanical coverage across
+> Last Epoch systems is **partial** — see [Known Limitations](#known-limitations-beta).
 
 ### Core Analysis
 
@@ -215,7 +222,7 @@ le-the-forge/
 
 ### Data Sources
 
-The `data/` directory contains canonical game data extracted from Last Epoch and normalized into JSON:
+Game data originates upstream in the `last-epoch-data` extraction/compiler repo (the canonical source of truth); The Forge **ingests** it rather than being the authoritative extractor. The local `data/` directory holds the synced, normalized JSON consumed by the backend (see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)):
 
 - **`data/classes/`** — class definitions with base stats, passive tree nodes with layout coordinates, skill metadata, and skill specialization trees
 - **`data/items/`** — 1,160+ affixes with tier ranges, base items, uniques, crafting rules, implicit stats, and rarity definitions
@@ -224,7 +231,7 @@ The `data/` directory contains canonical game data extracted from Last Epoch and
 
 ### Versioning and Updates
 
-Game data is synced from Last Epoch exports using `scripts/sync_game_data.py`, which normalizes raw data into the `/data/` JSON schema. The current data tracks **patch 1.4.3, Season 4**. After a game patch, re-run the sync script and validate:
+Game data is synced from upstream `last-epoch-data` exports using `scripts/sync_game_data.py`, which normalizes the upstream-generated data into the `/data/` JSON schema. The current data tracks **patch 1.4.3, Season 4**. After a game patch, re-sync from upstream and validate:
 
 ```bash
 cd backend
@@ -338,7 +345,7 @@ The Forge is live in beta and is honest about what is not yet complete. The full
 
 ## Roadmap
 
-Phases 1–9 are complete. Phase 9 (Deploy & Launch) landed on 2026-04-21 with production live at [epochforge.gg](https://epochforge.gg) on Render + Cloudflare.
+Phases 1–9 (engine and feature **implementation**) are complete; Phase 9 (Deploy & Launch) landed on 2026-04-21 with production live at [epochforge.gg](https://epochforge.gg) on Render + Cloudflare. Implementation-complete is distinct from **trusted mechanical coverage**, which is a separate in-progress track gated on upstream `last-epoch-data` certification (see [`ROADMAP.md`](ROADMAP.md) and [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)). The optimization, encounter-optimization, and AI recommendation phases below are gated behind upstream trusted data and downstream consumption certification.
 
 **Post-launch priorities:**
 

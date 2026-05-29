@@ -25,6 +25,7 @@ The Forge is a simulation-driven analysis platform for Last Epoch, designed to e
 
 **Data & Trust**
 
+- [DATA_DEPENDENCY.md](DATA_DEPENDENCY.md) -- **Canonical** explanation of how `le-the-forge` depends on the upstream `last-epoch-data` repo: dependency chain, data trust rules, required upstream domains, downstream behavior, and public-claims policy (start here)
 - [FORGE_SYSTEM_PILLARS.md](FORGE_SYSTEM_PILLARS.md) -- Product/system direction and why The Forge depends on the upstream `last-epoch-data` extraction repo (where `FORGE_DATA_CONTRACT.md` and `DATA_BUNDLE_SPEC.md` live)
 - [FORGE_DATA_CONSUMER_AUDIT.md](FORGE_DATA_CONSUMER_AUDIT.md) -- How `le-the-forge` consumes game data, with `last-epoch-data` treated as the canonical extraction/compiler/source-of-truth repo
 - [migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md](migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md) -- Current trusted gameplay data coverage state (partial / fail-visible) and what remains blocked
@@ -45,7 +46,7 @@ The Forge is built around:
 
 - **Deterministic calculations** -- reproducible results for any given input
 - **Monte Carlo simulations** -- statistical analysis across thousands of runs
-- **Data-driven recommendations** -- insights derived from game data, not opinions
+- **Data-driven, advisory insights** -- derived from available game data, not opinions; scoped to proven trusted coverage and bounded by upstream data confidence (see **Data & Trust**)
 
 ---
 
