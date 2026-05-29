@@ -2,7 +2,18 @@
 
 ---
 
-## Completed
+> **Trust-first framing.** The "Completed" phases below describe **engine and
+> feature implementation** in the deployed v0.8 build. Implementation-complete is
+> distinct from **trusted mechanical coverage**: game data originates upstream in
+> the `last-epoch-data` extraction repo, and trusted/certified coverage is a
+> separate in-progress track (the V2.5 → V4.5 trusted-data rebuild). Optimization,
+> recommendation, ranking, scoring, and simulation outputs are **advisory** and
+> bounded by upstream data confidence — they are not certified ground truth until
+> upstream trusted data **and** downstream consumption certification support them.
+> See [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md) and
+> [`docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md`](docs/migration/TRUSTED_GAMEPLAY_DATA_COVERAGE_AUDIT.md).
+
+## Completed (feature implementation)
 
 ### Phase 1 -- Core Foundation (v0.1.0)
 Character data model, stat calculation engine, base damage simulation, defensive stat modeling, crafting simulator with Monte Carlo, community builds browser, Discord OAuth2, Docker Compose environment.
@@ -60,8 +71,14 @@ Ordered by impact on simulation accuracy and user-visible behaviour.
 
 ## Future Phases
 
+> The optimization, recommendation, and AI phases below are **gated** behind
+> upstream trusted data (`last-epoch-data` certification) and downstream
+> consumption certification. They must not be presented as complete or certified
+> capability until that evidence exists — see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md).
+
+- **Trusted-data foundation (prerequisite track)** -- complete the V2.5 → V4.5 upstream trusted-data rebuild, schema/provenance governance, and downstream consumption certification that gate the capability work below
 - **Native desktop packaging** -- Electron wrapper already scaffolded in `electron/`, needs production bundling with PyInstaller for the backend
-- **Advanced crafting prediction models** -- machine learning or probabilistic models for craft outcome prediction beyond Monte Carlo
-- **Encounter-specific optimization** -- recommend stat changes targeting specific boss fights
-- **Patch auto-sync pipeline** -- GitHub Actions workflow to automatically sync game data when new patches release
-- **"Ask The Forge" AI-powered build Q&A** -- natural language build analysis and recommendations
+- **Advanced crafting prediction models** *(gated on trusted crafting data)* -- machine learning or probabilistic models for craft outcome prediction beyond Monte Carlo
+- **Encounter-specific optimization** *(gated on trusted data + consumption certification)* -- advisory stat-change suggestions targeting specific boss fights
+- **Patch auto-sync pipeline** -- GitHub Actions workflow to automatically sync game data from `last-epoch-data` when new patches release
+- **"Ask The Forge" AI-powered build Q&A** *(gated on trusted data + consumption certification)* -- natural language build analysis and advisory suggestions

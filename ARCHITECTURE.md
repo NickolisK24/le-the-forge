@@ -4,7 +4,7 @@
 
 ## System Overview
 
-The Forge is a simulation-driven analysis platform for Last Epoch. The backend is the single source of truth for all calculations -- the frontend sends input, receives results, and renders UI.
+The Forge is a simulation-driven analysis platform for Last Epoch. The backend is the single source of truth for all **calculations** -- the frontend sends input, receives results, and renders UI. For **game data**, the canonical source of truth is the upstream `last-epoch-data` extraction repo, which The Forge consumes (see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)).
 
 The system follows a layered architecture:
 
@@ -105,12 +105,15 @@ Services orchestrate between engines, database, and external systems.
 
 ### Data Pipeline
 
-Game data flows from extraction to engines:
+Game data is **extracted upstream** in the `last-epoch-data` repo (the canonical
+source of truth); The Forge ingests and normalizes the upstream-generated exports
+rather than being the authoritative extractor (see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)).
+Data then flows to engines:
 
 ```
-Last Epoch game files
-  --> scripts/sync_game_data.py (extraction + normalization)
-    --> /data/ directory (canonical JSON files)
+last-epoch-data (upstream extraction / generation — source of truth)
+  --> scripts/sync_game_data.py (ingest + normalization in le-the-forge)
+    --> /data/ directory (synced JSON files)
       --> app/game_data/ loader (startup)
         --> AffixRegistry, SkillRegistry, EnemyRegistry
           --> Engines (pure calculation)
@@ -250,7 +253,11 @@ data/
 
 ### Data Sync Pipeline
 
-`scripts/sync_game_data.py` transforms raw exports from `last-epoch-data/` into normalized JSON files in `/data/`. It handles:
+`last-epoch-data` is the upstream extraction/generation source of truth.
+`scripts/sync_game_data.py` **ingests** its generated exports and normalizes them
+into JSON files in `/data/` — The Forge consumes trusted generated artifacts
+rather than authoring the extraction (see [`docs/DATA_DEPENDENCY.md`](docs/DATA_DEPENDENCY.md)).
+It handles:
 - Affix normalization (1,160+ equipment + idol affixes with tier conversion)
 - Passive tree node generation with namespaced IDs and layout coordinates
 - Skill metadata extraction
