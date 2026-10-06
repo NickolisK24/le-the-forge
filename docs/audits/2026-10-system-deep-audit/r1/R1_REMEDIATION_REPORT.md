@@ -30,6 +30,8 @@ Production `main` is untouched. `dev` was not used and was not reconciled. Nothi
 | R1.15 P6 contracts | `5bd8272` | 581 extraction contracts drive TypeTree dumps across every manifested file |
 | R1.15 P7/P8 operator | `9519c79`, `308cf2f` | 22 resumable stages, freshness checks, handoff bundle |
 | R1.15 P9 evidence | `5b4510d`, `c38c6bf` | Regenerated evidence and docs |
+| R1 contract fix (found in R2 prep) | `7dc1ad6` | Run manifest: the run's own outputs no longer make the extractor dirty (C7 was unpassable); canonical exports inventoried and bound to the snapshot (C8 was unpassable) |
+| R1 contract fix (found in R2 prep) | `0111f1e` | `SkillTree.ability` carried into raw and canonical trees (`ability_ref`; `NOT_IN_RAW_DUMP` for the 1.4.6 dump) |
 
 ## Packages delivered (le-the-forge)
 
@@ -86,6 +88,6 @@ No finding status changed: nothing is fixed in production, and no current-patch 
 
 | Suite | Result |
 | --- | --- |
-| last-epoch-data R1 tests (`tools/scripts/test_r1_*.py`) | 221 passed (R1.15) |
+| last-epoch-data R1 tests (`tools/scripts/test_r1_*.py`) | 226 passed (after the R2-prep contract fixes) |
 | le-the-forge R1 tests (`test_r1_forge_consumption_inventory.py`, `test_r1_sync_trust_contract.py`) | 15 passed |
 | Regeneration gate (last-epoch-data) | All R1 artifacts `match`; the 7 pre-existing drifts are unrelated (OPS-9) |

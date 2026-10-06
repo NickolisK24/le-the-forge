@@ -1,5 +1,5 @@
 {
- "denominator_report_hash": "d4179d0f52962035af1bf26f6ffe14818c607fb9632cd1ed46c0826179399a21",
+ "denominator_report_hash": "50f732dcb95b144e980cf15b9b807ab5c8425171c739ecb5e87fc8a1edb1ba08",
  "denominator_unknown_entries": 399,
  "entity_coverage": {
   "REQUIRED_FUTURE": {
@@ -1636,7 +1636,7 @@
   "resolved": 12603,
   "resolved_ratio": 0.798872
  },
- "report_hash": "8457a1ef4b1a38288ef558633f6c642f1d5a81b0c374f6515299a6257fa5d7fc",
+ "report_hash": "9c4a5d69d2da22af6a2c171e0966522d6dc4db371a95cc755cb55d03a41015e9",
  "report_id": "r1_coverage_metrics",
  "semantic_coverage": {
   "basis": "no ground-truth fixtures (in-game tooltips or combat logs) exist; R1 certifies extraction, not mechanics. Consumers must gate calculations on semantic status (R1_TRUST_CONTRACT.md).",

@@ -2,7 +2,7 @@
 
 **Status: R1 PRE-EXTRACTION READY — OPERATOR RUN REQUIRED.** Not certified, not verified, nothing deployed or merged.
 
-All work below uses only the committed 1.4.6 evidence. Source: last-epoch-data `fix/audit-r1-extraction-truth` @ `308cf2f`.
+All work below uses only the committed 1.4.6 evidence. Source: last-epoch-data `fix/audit-r1-extraction-truth` @ `308cf2f`. Later R1 contract fixes found during R2 preparation: `7dc1ad6` (C7/C8 were unpassable by construction) and `0111f1e` (tree → ability reference); branch head `0111f1e`.
 
 ## Before → after (committed 1.4.6 snapshot)
 

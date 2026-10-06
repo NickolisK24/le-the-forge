@@ -1,6 +1,6 @@
 # AUDIT-R1 deliverables
 
-Hand-written reports live here. Generated artifacts are copies from last-epoch-data `fix/audit-r1-extraction-truth` @ `308cf2f` and are regenerated there, never edited here:
+Hand-written reports live here. Generated artifacts are copies from last-epoch-data `fix/audit-r1-extraction-truth` @ `0111f1e` and are regenerated there, never edited here:
 
 - EXTRACTION_DENOMINATOR.json, R1_EXTRACTION_DENOMINATOR.md (docs/generated/r1_extraction_denominator.json)
 - FIELD_SURVIVAL_REPORT.json, R1_FIELD_SURVIVAL_REPORT.md
