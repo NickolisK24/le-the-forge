@@ -4,7 +4,8 @@ Admin Blueprint — /api/admin
 Endpoints for managing game data files and monitoring.
 
 GET   /api/admin/affixes            → all affixes from affixes.json
-PATCH /api/admin/affixes/<id>       → update one affix by id
+PATCH /api/admin/affixes/<id>       → update one affix by id (admin only; disabled
+                                      unless GAME_DATA_MUTATION_ENABLED, never in production)
 GET   /api/admin/import-failures    → paginated import failure log (admin only)
 """
 
@@ -16,7 +17,7 @@ from flask import Blueprint, request
 
 from app import db, limiter
 from app.models import ImportFailure
-from app.utils.auth import login_required, get_current_user
+from app.utils.auth import login_required, get_current_user, game_data_mutation_required
 from app.utils.responses import ok, error, not_found, forbidden, paginate_meta
 
 admin_bp = Blueprint("admin", __name__)
@@ -67,6 +68,7 @@ def list_affixes():
 
 @admin_bp.patch("/affixes/<affix_id>")
 @limiter.limit("30 per minute")
+@game_data_mutation_required
 def update_affix(affix_id: str):
     """Update a single affix by its id field. Writes directly to affixes.json."""
     payload = request.get_json(force=True, silent=True) or {}
@@ -126,6 +128,7 @@ def list_import_failures():
             "partial_data": f.partial_data,
             "user_id": f.user_id,
             "error_message": f.error_message,
+            "diagnostics": f.diagnostics,
             "created_at": f.created_at.isoformat() if f.created_at else None,
         }
         for f in pagination.items

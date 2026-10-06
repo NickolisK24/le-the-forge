@@ -7,7 +7,7 @@ POST   /api/craft/simulate         → Monte Carlo path simulation with random F
 GET    /api/craft/<slug>           → Get session with step log
 POST   /api/craft/<slug>/action    → Apply a forge action
 GET    /api/craft/<slug>/summary   → Get session summary + optimal path + simulation
-DELETE /api/craft/<slug>           → Delete session (owner only)
+DELETE /api/craft/<slug>           → Delete session (owner only; ownerless sessions cannot be deleted)
 
 Sessions can be created without auth (anonymous simulation).
 Auth is required only to persist and share sessions.
@@ -205,8 +205,10 @@ def delete_session(slug: str):
     if not session:
         return not_found("Craft session")
 
+    # Only the owner may delete. Sessions without an owner cannot be deleted
+    # through the API: anyone holding the link could otherwise destroy them.
     user = get_current_user()
-    if session.user_id and (not user or session.user_id != user.id):
+    if not session.user_id or not user or session.user_id != user.id:
         return forbidden()
 
     from app import db

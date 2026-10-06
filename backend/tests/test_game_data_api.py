@@ -1,6 +1,27 @@
-"""J14 — Tests for POST /api/load/game-data"""
+"""J14 — Tests for POST /api/load/game-data
+
+The reload endpoint is admin-only and disabled unless GAME_DATA_MUTATION_ENABLED
+is set (see test_r0_game_data_mutation.py for the denial cases). These tests
+exercise the authorized operator path.
+"""
 
 import pytest
+from flask_jwt_extended import create_access_token
+
+from app.models import User
+
+
+@pytest.fixture
+def client(app, db, monkeypatch):
+    monkeypatch.setitem(app.config, "GAME_DATA_MUTATION_ENABLED", True)
+    admin = User(discord_id="j14-admin", username="J14Admin", is_admin=True)
+    db.session.add(admin)
+    db.session.commit()
+    with app.app_context():
+        token = create_access_token(identity=admin.id)
+    test_client = app.test_client()
+    test_client.environ_base["HTTP_AUTHORIZATION"] = f"Bearer {token}"
+    return test_client
 
 
 class TestDataLoadingRequestValidation:

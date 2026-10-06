@@ -2,6 +2,22 @@ import os
 from datetime import timedelta
 
 
+def normalize_database_url(url: str) -> str:
+    """Pin PostgreSQL URLs to the installed psycopg2 driver.
+
+    A bare ``postgresql://`` (or legacy ``postgres://``) URL lets SQLAlchemy
+    pick its default DBAPI, which changed to psycopg v3 in SQLAlchemy 2.1.
+    Only psycopg2 is a declared dependency, so the driver is made explicit.
+    URLs that already name a driver, and non-PostgreSQL URLs, are unchanged.
+    """
+    if not url:
+        return url
+    for prefix in ("postgresql://", "postgres://"):
+        if url.startswith(prefix):
+            return "postgresql+psycopg2://" + url[len(prefix):]
+    return url
+
+
 class Config:
     """Base configuration shared across all environments."""
 
@@ -11,9 +27,9 @@ class Config:
         seconds=int(os.environ.get("JWT_ACCESS_TOKEN_EXPIRES", 3600))
     )
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
+    SQLALCHEMY_DATABASE_URI = normalize_database_url(os.environ.get(
         "DATABASE_URL", "postgresql://forge:forgedev@127.0.0.1:5432/the_forge"
-    )
+    ))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         "pool_pre_ping": True,
@@ -43,6 +59,13 @@ class Config:
     FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED", "false").lower() == "true"
     FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
     FORGE_SAFE_AFFIX_CONSUMPTION_MODE = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_MODE", "shadow")
+
+    # Remote mutation of on-disk game data (affix editor PATCH, pipeline
+    # reload). Off unless explicitly enabled, and always admin-only.
+    GAME_DATA_MUTATION_ENABLED = (
+        os.environ.get("GAME_DATA_MUTATION_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
 
     # Pagination defaults
     DEFAULT_PAGE_SIZE = 20
@@ -104,6 +127,9 @@ class ProductionConfig(Config):
         "pool_size": 10,
         "max_overflow": 20,
     }
+
+    # Production game data is read-only over HTTP; this is not env-overridable.
+    GAME_DATA_MUTATION_ENABLED = False
 
     # Tighter rate limits for production
     RATELIMIT_DEFAULT = "1000 per day;200 per hour;30 per minute"

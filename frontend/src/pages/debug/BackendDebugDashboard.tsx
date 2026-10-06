@@ -5,6 +5,7 @@
  * field schemas, and error visibility. No complex UI — just data truth.
  */
 
+import { API_BASE } from "@/lib/apiBase";
 import { useState, useEffect, useCallback } from "react";
 
 interface EndpointResult {
@@ -43,7 +44,7 @@ const GET_ENDPOINTS = [
   "/api/version",
 ];
 
-const BASE = import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api";
+const BASE = API_BASE;
 
 function resolveUrl(ep: string): string {
   // If endpoint starts with /api/, replace with BASE

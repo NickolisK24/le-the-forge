@@ -4,7 +4,7 @@ Builds Blueprint — /api/builds
 GET    /api/builds                 → Paginated list with filters
 POST   /api/builds                 → Create build (auth optional — anon builds allowed)
 GET    /api/builds/<slug>          → Get single build (increments view_count)
-PATCH  /api/builds/<slug>          → Update build (owner only)
+PATCH  /api/builds/<slug>          → Update build (owner only; anonymous builds are read-only)
 DELETE /api/builds/<slug>          → Delete build (owner only)
 POST   /api/builds/<slug>/vote     → Cast or toggle vote (auth required)
 GET    /api/builds/meta/snapshot   → Aggregate meta stats
@@ -26,6 +26,7 @@ from app.schemas import (
     VoteSchema,
 )
 from app.services import build_service
+from app.services.build_access import load_modifiable_build, load_readable_build
 from app.utils.auth import login_required, get_current_user
 from app.utils.responses import (
     ok, created, no_content, error,
@@ -177,9 +178,9 @@ def create_build():
 
 @builds_bp.get("/<slug>")
 def get_build(slug: str):
-    build = build_service.get_build(slug, increment_views=True)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug, increment_views=True)
+    if denied:
+        return denied
 
     result = build_schema.dump(build)
 
@@ -199,18 +200,10 @@ def get_build(slug: str):
 @builds_bp.patch("/<slug>")
 @limiter.limit("20 per minute")
 def update_build(slug: str):
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
-
-    user = get_current_user()
-    # Anonymous builds (no author) can be updated by anyone.
-    # Owned builds require the owner to be authenticated.
-    if build.author_id:
-        if not user:
-            return unauthorized()
-        if build.author_id != user.id:
-            return forbidden()
+    # Only the owner may update. Anonymous builds are read-only.
+    build, denied = load_modifiable_build(slug)
+    if denied:
+        return denied
 
     try:
         data = build_update_schema.load(request.get_json() or {})
@@ -231,13 +224,9 @@ def update_build(slug: str):
 @limiter.limit("10 per minute")
 @login_required
 def delete_build(slug: str):
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
-
-    user = get_current_user()
-    if build.author_id and build.author_id != user.id:
-        return forbidden()
+    build, denied = load_modifiable_build(slug)
+    if denied:
+        return denied
 
     build_service.delete_build(build)
     _invalidate_builds_cache()
@@ -255,11 +244,11 @@ def simulate_build(slug: str):
     """
     Run the full simulation pipeline for a build.
     Returns DPS, defense, stat aggregation, and upgrade recommendations.
-    No authentication required.
+    No authentication required for builds the requester can read.
     """
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
     result = build_service.simulate_build(build)
     return ok(data=result)
 
@@ -271,9 +260,9 @@ def optimize_build(slug: str):
     Dedicated optimization endpoint for a saved build.
     Returns ranked stat upgrades with DPS/EHP gain percentages and explanations.
     """
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     result = build_service.simulate_build(build)
     return ok(data={
@@ -305,6 +294,12 @@ def optimize_build_v2(slug: str):
     if mode not in VALID_MODES:
         return error(f"Invalid mode '{mode}'. Must be one of: {', '.join(sorted(VALID_MODES))}")
 
+    # Visibility is checked before the cache so a cached result is never
+    # served for a build the requester cannot read.
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
+
     # Check cache
     cache_key = f"{_OPTIMIZE_CACHE_KEY}:{slug}:{mode}"
     cached = get(cache_key)
@@ -312,10 +307,6 @@ def optimize_build_v2(slug: str):
         resp = ok(data=cached)
         resp[0].headers["X-Cache"] = "HIT"
         return resp
-
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
 
     # Run the simulation pipeline to get resolved stats
     sim = build_service.simulate_build(build)
@@ -364,9 +355,9 @@ def optimize_build_v2(slug: str):
 @login_required
 @limiter.limit("30 per minute")
 def vote(slug: str):
-    build = Build.query.filter_by(slug=slug).first()
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     try:
         data = vote_schema.load(request.get_json() or {})

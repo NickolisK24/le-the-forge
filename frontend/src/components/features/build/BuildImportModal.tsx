@@ -2,7 +2,9 @@
  * BuildImportModal
  *
  * Three-tab import UI:
- *   - "URL Import" — paste a Maxroll planner URL, creates build directly
+ *   - "URL Import" — paste a Maxroll planner URL, creates build directly.
+ *     Last Epoch Tools URLs are never sent to the server (LET blocks
+ *     server-side fetches); the user is routed to the JSON tab instead.
  *   - "Quick Fetch" — legacy: fetch and preview before applying to form
  *   - "JSON" — paste Forge export JSON, or raw LET window.buildInfo captured
  *     via the bookmarklet (auto-detected)
@@ -17,6 +19,11 @@ import { useNavigate } from "react-router-dom";
 import { importApi, type ImportedBuild } from "@/lib/api";
 import type { ImportBuildResponse } from "@/types";
 import { Button, Spinner } from "@/components/ui";
+import {
+  decideUrlImport,
+  detectImportSource,
+  LET_SERVER_FETCH_UNSUPPORTED,
+} from "@/lib/importRouting";
 
 type Tab = "import" | "fetch" | "json";
 
@@ -46,12 +53,6 @@ const inputCls =
   "w-full rounded-sm border border-forge-border bg-forge-surface2 px-3 py-2 font-body text-sm text-forge-text outline-none focus:border-forge-amber/60 disabled:opacity-50";
 const labelCls = "font-mono text-[11px] uppercase tracking-widest text-forge-dim";
 
-function detectSource(url: string): "lastepochtools" | "maxroll" | null {
-  if (/lastepochtools\.com\/planner\//i.test(url)) return "lastepochtools";
-  if (/maxroll\.gg\/last-epoch\/planner\//i.test(url)) return "maxroll";
-  return null;
-}
-
 const SOURCE_LABELS: Record<string, string> = {
   lastepochtools: "Last Epoch Tools",
   maxroll: "Maxroll",
@@ -66,6 +67,8 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
   const [importLoading, setImportLoading] = useState(false);
   const [importError, setImportError] = useState("");
   const [importResult, setImportResult] = useState<ImportBuildResponse | null>(null);
+  // LET planner URL the user pasted; it must be captured via the JSON tab.
+  const [letUrl, setLetUrl] = useState("");
 
   // Fetch tab state (legacy preview)
   const [fetchUrl, setFetchUrl] = useState("");
@@ -78,25 +81,35 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
   const [jsonError, setJsonError] = useState("");
   const [jsonLoading, setJsonLoading] = useState(false);
 
-  const importSource = detectSource(importUrl);
-  const fetchSource = detectSource(fetchUrl);
+  const importSource = detectImportSource(importUrl);
+  const fetchSource = detectImportSource(fetchUrl);
 
   // ---- Full import (URL → save build) ------------------------------------
 
   async function handleFullImport() {
     setImportError("");
-    if (!importUrl.trim()) {
+    const decision = decideUrlImport(importUrl);
+    if (decision.kind === "empty") {
       setImportError("Paste a build URL first.");
       return;
     }
-    if (!importSource) {
+    if (decision.kind === "unsupported") {
       setImportError("Unsupported URL. Supported: lastepochtools.com/planner/... or maxroll.gg/last-epoch/planner/...");
+      return;
+    }
+    if (decision.kind === "let_json_required") {
+      // Never send LET URLs to the server-side importer.
+      setLetUrl(decision.url);
       return;
     }
 
     setImportLoading(true);
     try {
-      const res = await importApi.importBuild(importUrl.trim());
+      const res = await importApi.importBuild(decision.url);
+      if (res.errors?.[0]?.code === LET_SERVER_FETCH_UNSUPPORTED) {
+        setLetUrl(decision.url);
+        return;
+      }
       const errMsg = res.errors?.[0]?.message;
       if (errMsg || !res.data) {
         setImportError(errMsg ?? "Import failed — check the URL and try again.");
@@ -283,7 +296,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   <SourceBadge source={importSource} />
                   {importSource === "lastepochtools" && (
                     <span className="font-mono text-[10px] text-yellow-400/70">
-                      Use JSON tab for LET
+                      Captured in your browser — see below
                     </span>
                   )}
                 </div>
@@ -292,7 +305,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   type="url"
                   placeholder="https://maxroll.gg/last-epoch/planner/zge0t60e"
                   value={importUrl}
-                  onChange={(e) => { setImportUrl(e.target.value); setImportError(""); }}
+                  onChange={(e) => { setImportUrl(e.target.value); setImportError(""); setLetUrl(""); }}
                   onKeyDown={(e) => e.key === "Enter" && handleFullImport()}
                   autoFocus
                 />
@@ -300,6 +313,38 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   <p className="mt-1.5 font-mono text-[11px] text-red-400">{importError}</p>
                 )}
               </div>
+
+              {letUrl && (
+                <div
+                  className="rounded border border-forge-amber/40 bg-forge-amber/5 px-3 py-3"
+                  data-testid="let-json-required"
+                  role="status"
+                >
+                  <div className="font-display text-sm text-forge-amber">
+                    One more step for Last Epoch Tools builds
+                  </div>
+                  <p className="mt-1 font-body text-[12px] text-forge-text/80 leading-relaxed">
+                    Your link looks right. Last Epoch Tools loads builds inside your
+                    browser and blocks requests from our server, so The Forge can't
+                    fetch this page directly. Instead, copy the build from the open
+                    planner with our bookmarklet and paste it in the JSON tab — it
+                    takes a few seconds.
+                  </p>
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <Button variant="primary" size="sm" onClick={() => setTab("json")}>
+                      Continue with Last Epoch Tools import →
+                    </Button>
+                    <a
+                      href={letUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[10px] text-forge-amber underline"
+                    >
+                      Open your planner
+                    </a>
+                  </div>
+                </div>
+              )}
 
               <div className="flex justify-end gap-2">
                 <Button variant="outline" size="sm" onClick={onClose}>Cancel</Button>
@@ -313,7 +358,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                     <span className="flex items-center gap-2">
                       <Spinner size={14} /> Fetching and parsing build...
                     </span>
-                  ) : "Import Build"}
+                  ) : importSource === "lastepochtools" ? "Next: capture from browser" : "Import Build"}
                 </Button>
               </div>
             </div>
@@ -508,8 +553,26 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                     </a>
                   </li>
                   <li>
-                    Open a planner on{" "}
-                    <span className="font-mono text-[11px] text-forge-amber">lastepochtools.com/planner/…</span>
+                    {letUrl ? (
+                      <>
+                        Open{" "}
+                        <a
+                          href={letUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-mono text-[11px] text-forge-amber underline"
+                          data-testid="let-original-url"
+                        >
+                          your planner
+                        </a>{" "}
+                        in a new tab
+                      </>
+                    ) : (
+                      <>
+                        Open a planner on{" "}
+                        <span className="font-mono text-[11px] text-forge-amber">lastepochtools.com/planner/…</span>
+                      </>
+                    )}
                   </li>
                   <li>Click the bookmark — it copies the build JSON to your clipboard.</li>
                   <li>Paste it below and hit Import.</li>

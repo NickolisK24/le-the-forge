@@ -1,5 +1,9 @@
 flask==3.0.3
 flask-sqlalchemy==3.1.1
+# SQLAlchemy is pinned to the 2.0 line on purpose: SQLAlchemy 2.1 changed the
+# default driver for postgresql:// URLs to psycopg (v3), which is not installed.
+# config.normalize_database_url() also selects psycopg2 explicitly.
+SQLAlchemy==2.0.54
 flask-migrate==4.0.7
 flask-cors==4.0.1
 flask-dance==7.1.0

@@ -92,6 +92,11 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "20"
+      # API origin. The frontend appends /api when the value does not end in
+      # /api (frontend/src/lib/apiBase.ts), so this and
+      # https://api.epochforge.gg/api produce the same request URLs.
+      # Operators: confirm the Render dashboard value matches before applying
+      # this blueprint (see R0_IMPLEMENTATION_REPORT.md).
       - key: VITE_API_BASE_URL
         value: https://api.epochforge.gg
     routes:

@@ -282,11 +282,11 @@ class TestBuildReport:
             assert "og_description" in data
             assert "og_url" in data
 
-    def test_private_build_403_for_non_owner(self, client, db, user):
+    def test_private_build_hidden_for_non_owner(self, client, db, user):
         build = _make_build(db, user, "Private Build", "Mage", "Runemaster", is_public=False)
-        # Request without auth → 403
+        # Request without auth → 404 (private builds are not confirmed to exist)
         resp = client.get(f"/api/builds/{build.slug}/report")
-        assert resp.status_code == 403
+        assert resp.status_code == 404
 
     def test_private_build_ok_for_owner(self, client, db, user, auth_headers):
         build = _make_build(db, user, "My Private", "Mage", "Runemaster", is_public=False)

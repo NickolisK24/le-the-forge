@@ -8,6 +8,7 @@
  * The auth store manages the token lifecycle.
  */
 
+import { API_BASE } from "@/lib/apiBase";
 import type {
   ApiResponse,
   Build,
@@ -44,14 +45,11 @@ import type {
 } from "@/types";
 import type { BlessingTimeline } from "@/types/blessings";
 
-// VITE_API_BASE_URL is the canonical production variable (e.g.
-// https://api.epochforge.gg). VITE_API_URL is kept as a legacy fallback for
-// existing local dev configs. In dev with no env set, "/api" hits the Vite
-// proxy which forwards to the local Flask backend.
-const BASE_URL =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
-  (import.meta.env.VITE_API_URL as string | undefined) ??
-  "/api";
+// VITE_API_BASE_URL is the canonical production variable (the API origin,
+// e.g. https://api.epochforge.gg, or the same with /api). VITE_API_URL is kept
+// as a legacy fallback. resolveApiBase() always yields a base ending in /api;
+// with no env set it is "/api", which the Vite dev proxy forwards to Flask.
+const BASE_URL = API_BASE;
 
 // Token stored in memory — survives page navigation but not hard refresh.
 // For "remember me" you'd also persist to sessionStorage.
