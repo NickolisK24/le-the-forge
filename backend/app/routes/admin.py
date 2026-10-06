@@ -128,6 +128,7 @@ def list_import_failures():
             "partial_data": f.partial_data,
             "user_id": f.user_id,
             "error_message": f.error_message,
+            "diagnostics": f.diagnostics,
             "created_at": f.created_at.isoformat() if f.created_at else None,
         }
         for f in pagination.items

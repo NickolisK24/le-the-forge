@@ -338,6 +338,9 @@ class ImportFailure(TimestampMixin, db.Model):
     partial_data = db.Column(db.JSON, nullable=True)
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True)
     error_message = db.Column(db.String(1024), nullable=True)
+    # Structured failure record (stage, HTTP status, safe upstream headers,
+    # missing-field state, versions). See app/services/import_diagnostics.py.
+    diagnostics = db.Column(db.JSON, nullable=True)
 
     user = db.relationship("User", backref="import_failures")
 

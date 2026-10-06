@@ -26,6 +26,14 @@ from app.models import ImportFailure
 from app.services import build_service
 from app.services.importers import get_importer, detect_source, ImportResult
 from app.services.discord_notifier import send_import_failure_alert
+from app.services.import_diagnostics import (
+    STAGE_MAP,
+    STAGE_PARTIAL,
+    STAGE_PERSIST,
+    STAGE_UNHANDLED,
+    STAGE_UNKNOWN,
+    build_failure_diagnostics,
+)
 from app.utils.auth import get_current_user
 from app.utils.responses import ok, error as err_response
 
@@ -317,22 +325,50 @@ def _let_server_fetch_unsupported(url: str):
 def _record_and_alert(source: str, url: str, user_id: str | None,
                       error_message: str, severity: str = "hard",
                       missing_fields: list | None = None,
-                      partial_data: dict | None = None) -> None:
-    """Create an ImportFailure record and fire the Discord alert."""
+                      partial_data: dict | None = None,
+                      failure_stage: str = STAGE_UNHANDLED,
+                      importer_diagnostics: dict | None = None,
+                      parsing_started: bool | None = None,
+                      error_category: str | None = None) -> None:
+    """Create an ImportFailure record with structured diagnostics and fire the
+    Discord alert. The alert is sent even if the record cannot be stored."""
+    diagnostics = build_failure_diagnostics(
+        source=source,
+        url=url,
+        user_id=user_id,
+        failure_stage=failure_stage,
+        missing_fields=missing_fields,
+        partial_data=partial_data,
+        importer_diagnostics=importer_diagnostics,
+        parsing_started=parsing_started,
+        error_category=error_category,
+    )
+    failure = ImportFailure(
+        source=source,
+        raw_url=url,
+        missing_fields=missing_fields or [],
+        partial_data=partial_data,
+        user_id=user_id,
+        error_message=(error_message or "")[:1024],
+        diagnostics=diagnostics,
+    )
+    logger.warning(
+        "import_failure source=%s stage=%s category=%s http_status=%s "
+        "missing_field_state=%s upstream=%s",
+        source, diagnostics["failure_stage"], diagnostics["error_category"],
+        diagnostics["http_status"], diagnostics["missing_field_state"],
+        diagnostics["upstream_headers"],
+    )
     try:
-        failure = ImportFailure(
-            source=source,
-            raw_url=url,
-            missing_fields=missing_fields or [],
-            partial_data=partial_data,
-            user_id=user_id,
-            error_message=error_message,
-        )
         db.session.add(failure)
         db.session.commit()
+    except Exception as exc:
+        db.session.rollback()
+        logger.error("import: failed to store import failure record: %s", exc)
+    try:
         send_import_failure_alert(failure, severity=severity)
     except Exception as exc:
-        logger.error("import: failed to record import failure: %s", exc)
+        logger.error("import: failed to send import failure alert: %s", exc)
 
 
 # ---------------------------------------------------------------------------
@@ -422,6 +458,9 @@ def import_let_from_json():
             user_id=user.id if user else None,
             error_message=f"LET JSON import mapping failed: {exc}",
             partial_data={"keys": list(build_info.keys())},
+            failure_stage=STAGE_MAP,
+            parsing_started=True,
+            error_category="mapping_error",
         )
         return err_response(f"Could not map build: {exc}", 422)
 
@@ -499,6 +538,8 @@ def import_build():
             user_id=user_id,
             error_message=f"Unhandled error: {exc}\n{traceback.format_exc()[-500:]}",
             partial_data={"traceback": traceback.format_exc()[-500:]},
+            failure_stage=STAGE_UNHANDLED,
+            error_category="unhandled_exception",
         )
         return err_response(f"Import failed unexpectedly: {exc}", 422)
 
@@ -517,10 +558,14 @@ def _do_import(url: str, source: str, user_id: str | None):
             url=url,
             user_id=user_id,
             error_message=f"Importer crashed: {exc}",
+            failure_stage=STAGE_UNHANDLED,
+            error_category="importer_exception",
         )
         return err_response(f"Import failed: {exc}", 422)
 
-    # Hard failure — class/mastery unmappable
+    # Hard failure — fetch refused, page unparseable, or class/mastery unmappable.
+    # Forward what the importer actually captured (partial_data), not
+    # build_data, which is always empty on failure.
     if not result.success:
         _record_and_alert(
             source=result.source or source,
@@ -528,7 +573,11 @@ def _do_import(url: str, source: str, user_id: str | None):
             user_id=user_id,
             error_message=result.error_message or "Unknown parse failure",
             missing_fields=result.missing_fields,
-            partial_data=result.build_data,
+            partial_data=result.partial_data,
+            # Without importer diagnostics we only know mapping ran if it
+            # reported missing fields; otherwise completeness was not evaluated.
+            failure_stage=STAGE_MAP if result.missing_fields else STAGE_UNKNOWN,
+            importer_diagnostics=result.diagnostics,
         )
         return err_response(
             result.error_message or "Import failed — could not parse the build.",
@@ -541,6 +590,9 @@ def _do_import(url: str, source: str, user_id: str | None):
         _record_and_alert(
             source=source, url=url, user_id=user_id,
             error_message="Importer returned success=True but build_data is None",
+            failure_stage=STAGE_MAP,
+            parsing_started=True,
+            error_category="empty_build_data",
         )
         return err_response("Import returned no data despite reporting success.", 422)
 
@@ -555,6 +607,10 @@ def _do_import(url: str, source: str, user_id: str | None):
             source=source, url=url, user_id=user_id,
             error_message=f"Build parsed but save failed: {exc}",
             partial_data={"build_data_keys": list(build_data.keys())},
+            failure_stage=STAGE_PERSIST,
+            parsing_started=True,
+            missing_fields=result.missing_fields,
+            error_category="persist_error",
         )
         return err_response(f"Build parsed but could not be saved: {exc}", 422)
 
@@ -599,6 +655,9 @@ def _do_import(url: str, source: str, user_id: str | None):
             severity="partial",
             missing_fields=warnings,
             partial_data=alert_partial,
+            failure_stage=STAGE_PARTIAL,
+            parsing_started=True,
+            error_category="partial_mapping",
         )
 
     imported_fields = []

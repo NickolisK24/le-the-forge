@@ -73,6 +73,7 @@ def test_migration_chain_has_single_head_with_cascade_migration():
     cfg = AlembicConfig()
     cfg.set_main_option("script_location", str(MIGRATIONS))
     script = ScriptDirectory.from_config(cfg)
-    assert script.get_heads() == ["a7c3e91f4d20"]
+    assert "a7c3e91f4d20" in {r.revision for r in script.walk_revisions()}
+    assert len(script.get_heads()) == 1
     rev = script.get_revision("a7c3e91f4d20")
     assert rev.down_revision == "dd1840cac963"

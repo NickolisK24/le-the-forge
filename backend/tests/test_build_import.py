@@ -567,8 +567,9 @@ class TestDiscordNotifier:
 
     @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
     @patch("app.services.discord_notifier.requests.post")
-    def test_embed_includes_raw_gear_data(self, mock_post):
-        """Verify raw gear entries appear in the embed for debugging."""
+    def test_embed_summarises_gear_without_raw_payload(self, mock_post):
+        """Gear is summarised by slot for debugging; the imported build's raw
+        gear payload (IDs, affix data) is not copied into Discord."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
         mock_failure = {
@@ -592,14 +593,16 @@ class TestDiscordNotifier:
         payload = mock_post.call_args[1]["json"]
         embed = payload["embeds"][0]
         gear_field = next(f for f in embed["fields"] if "Gear" in f["name"])
-        # Should contain the first 3 entries as JSON
+        # First 3 slots are named, the rest counted
         assert "weapon" in gear_field["value"]
         assert "body" in gear_field["value"]
         assert "helmet" in gear_field["value"]
-        # 4th entry should be noted but not shown in full
         assert "+1 more" in gear_field["value"]
-        # Should be in a code block
-        assert "```json" in gear_field["value"]
+        # No raw payload in the alert
+        all_values = " ".join(f["value"] for f in embed["fields"])
+        assert "```json" not in all_values
+        assert "1042" not in all_values
+        assert "base_type_id" not in all_values
 
     @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
     @patch("app.services.discord_notifier.requests.post")

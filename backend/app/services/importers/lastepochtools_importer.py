@@ -25,6 +25,10 @@ from typing import Dict, List, Optional, Tuple
 import requests as _requests
 
 from app.services.importers.base_importer import BaseImporter, ImportResult
+from app.services.import_diagnostics import (
+    STAGE_PARSE,
+    http_failure_diagnostics,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -712,24 +716,36 @@ class LastEpochToolsImporter(BaseImporter):
             return ImportResult(
                 success=False, source=self.source_name,
                 error_message="Timed out fetching the build page — try again.",
+                diagnostics=http_failure_diagnostics(None, error_category="upstream_timeout"),
             )
         except _requests.HTTPError as exc:
-            status = exc.response.status_code if exc.response is not None else 502
-            logger.warning("LET importer: HTTP %d for code=%s", status, code)
+            response = exc.response
+            status = response.status_code if response is not None else None
+            headers = response.headers if response is not None else None
+            diagnostics = http_failure_diagnostics(status, headers)
+            logger.warning(
+                "LET importer: HTTP %s for code=%s category=%s upstream=%s",
+                status, code, diagnostics["error_category"], diagnostics["upstream_headers"],
+            )
             if status == 404:
                 return ImportResult(
                     success=False, source=self.source_name,
                     error_message="Build not found — the link may be expired or invalid.",
+                    diagnostics=diagnostics,
                 )
             return ImportResult(
                 success=False, source=self.source_name,
-                error_message=f"Last Epoch Tools returned HTTP {status}.",
+                error_message=f"Last Epoch Tools returned HTTP {status if status is not None else 'error'}.",
+                diagnostics=diagnostics,
             )
         except _requests.RequestException as exc:
             logger.warning("LET importer: network error for code=%s: %s", code, exc)
             return ImportResult(
                 success=False, source=self.source_name,
                 error_message=f"Network error fetching build: {exc}",
+                diagnostics=http_failure_diagnostics(
+                    None, error_category="network_error", exception=type(exc).__name__,
+                ),
             )
 
         html = resp.text
@@ -749,6 +765,10 @@ class LastEpochToolsImporter(BaseImporter):
                     "The build code may be invalid, or Last Epoch Tools may have updated their format."
                 ),
                 partial_data={"html_length": len(html), "code": code},
+                diagnostics={
+                    "failure_stage": STAGE_PARSE, "parsing_started": True,
+                    "http_status": resp.status_code, "error_category": "build_data_not_found",
+                },
             )
 
         if build_info.get("buildLoadError"):
@@ -772,6 +792,10 @@ class LastEpochToolsImporter(BaseImporter):
                 success=False, source=self.source_name,
                 error_message="Build data is incomplete or in an unexpected format.",
                 partial_data={"keys": list(build_info.keys()), "code": code},
+                diagnostics={
+                    "failure_stage": STAGE_PARSE, "parsing_started": True,
+                    "http_status": resp.status_code, "error_category": "unexpected_format",
+                },
             )
 
         logger.info(
