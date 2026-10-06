@@ -9,7 +9,7 @@ from flask import Blueprint
 from app import limiter
 from app.models import Build
 from app.services import build_report_service
-from app.utils.auth import get_current_user
+from app.services.build_access import load_readable_build
 from app.utils.responses import ok, error, not_found, forbidden
 from app.utils.cache import get as cache_get, set as cache_set
 
@@ -21,15 +21,11 @@ _REPORT_CACHE_TTL = 3600  # 1 hour
 @report_bp.get("/<slug>/report")
 @limiter.limit("20 per minute")
 def get_report(slug: str):
-    build = Build.query.filter_by(slug=slug).first()
-    if not build:
-        return not_found("Build")
-
-    # Access control: public builds only, unless requester is the owner
-    if not build.is_public:
-        user = get_current_user()
-        if not user or user.id != build.author_id:
-            return forbidden()
+    # Access control (public, owner, or anonymous-link build) runs before the
+    # cache lookup so cached reports never bypass visibility.
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     # Check cache
     cache_key = f"forge:report:{slug}"

@@ -11,6 +11,7 @@ from flask import Blueprint, request
 
 from app import limiter
 from app.services import build_service
+from app.services.build_access import load_readable_build
 from app.services.build_analysis_service import analyze_build
 from app.engines.boss_encounter import simulate_boss_encounter
 from app.engines.corruption_scaler import scale_corruption
@@ -90,9 +91,9 @@ def _resolve_build_stats(build) -> tuple[BuildStats | None, dict | None, str, in
 @limiter.limit("10 per minute")
 def boss_analysis(slug: str, boss_id: str):
     """Run boss encounter simulation for a build against a specific boss."""
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     boss = _load_boss(boss_id)
     if not boss:
@@ -146,9 +147,9 @@ def boss_analysis(slug: str, boss_id: str):
 @limiter.limit("10 per minute")
 def corruption_analysis(slug: str):
     """Run corruption scaling analysis across standard breakpoints."""
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     boss_id = request.args.get("boss_id", _default_boss_id())
     boss = _load_boss(boss_id)
@@ -182,9 +183,9 @@ def corruption_analysis(slug: str):
 @limiter.limit("10 per minute")
 def gear_upgrades(slug: str):
     """Rank gear upgrade candidates for a build."""
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     slot = request.args.get("slot")
 
