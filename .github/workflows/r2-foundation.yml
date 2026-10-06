@@ -1,0 +1,97 @@
+name: R2 Foundation
+
+# AUDIT-R2 foundation gates: canonical data contracts (P17/P01/P02/P03/P09),
+# migrations on real PostgreSQL (P15) and the dangerous-fallback ratchet (P16).
+# None of these touch production configuration or data.
+
+on:
+  push:
+    branches:
+      - dev
+      - "feat/audit-r2-**"
+  pull_request:
+    branches:
+      - dev
+      - main
+
+permissions:
+  contents: read
+
+env:
+  FLASK_ENV: testing
+  JWT_SECRET_KEY: ci-test-secret-key-minimum-length
+  SECRET_KEY: ci-test-secret-key-minimum-length
+
+jobs:
+  canonical-foundation:
+    name: Canonical data foundation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt mypy
+      - name: Contract, importer, store, identity and relationship tests
+        working-directory: backend
+        run: python -m pytest tests/canonical_data -q
+      - name: Type check canonical_data
+        working-directory: backend
+        run: python -m mypy app/canonical_data --config-file mypy.ini --follow-imports=silent
+
+  postgres-migrations:
+    name: Migrations on PostgreSQL 16
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: forge
+          POSTGRES_PASSWORD: forge
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U forge"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+      - name: Install dependencies
+        working-directory: backend
+        run: pip install -r requirements.txt
+      - name: Alembic chain, drift, FK and round-trip tests
+        working-directory: backend
+        env:
+          FORGE_PG_TEST_URL: postgresql://forge:forge@localhost:5432/postgres
+        run: python -m pytest tests/postgres -q -rs
+
+  fallback-gate:
+    name: Dangerous fallback ratchet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Gate
+        run: python scripts/fallback_gate/gate.py check
+      - name: Report
+        if: always()
+        run: |
+          {
+            echo "### Dangerous fallback ratchet"
+            echo '```json'
+            python scripts/fallback_gate/gate.py report
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
