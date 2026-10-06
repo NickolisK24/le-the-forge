@@ -29,8 +29,12 @@ def _slugify(text: str) -> str:
     return slug[:40]
 
 
-def _unique_slug(base: str) -> str:
+def _unique_slug(base: str, unguessable: bool = False) -> str:
     slug = _slugify(base)
+    if unguessable:
+        # Private builds without an owner are reachable only by their link,
+        # so the link must not be derivable from the build name.
+        return f"{slug}-{secrets.token_urlsafe(12)}"
     if not Build.query.filter_by(slug=slug).first():
         return slug
     suffix = secrets.token_urlsafe(4)
@@ -42,7 +46,8 @@ def _unique_slug(base: str) -> str:
 # ---------------------------------------------------------------------------
 
 def create_build(data: dict, user_id: Optional[str] = None) -> Build:
-    slug = _unique_slug(data["name"])
+    is_public = data.get("is_public", True)
+    slug = _unique_slug(data["name"], unguessable=(user_id is None and not is_public))
 
     build = Build(
         author_id=user_id,
@@ -61,7 +66,7 @@ def create_build(data: dict, user_id: Optional[str] = None) -> Build:
         is_budget=data.get("is_budget", False),
         patch_version=data.get("patch_version", "1.2.1"),
         cycle=data.get("cycle", "1.2"),
-        is_public=data.get("is_public", True),
+        is_public=is_public,
         tier="C",
     )
     db.session.add(build)
@@ -86,9 +91,13 @@ def get_build(build_id_or_slug: str, increment_views: bool = False) -> Optional[
         (Build.id == build_id_or_slug) | (Build.slug == build_id_or_slug)
     ).first()
     if build and increment_views:
-        build.view_count = (build.view_count or 0) + 1
-        db.session.commit()
+        increment_view_count(build)
     return build
+
+
+def increment_view_count(build: Build) -> None:
+    build.view_count = (build.view_count or 0) + 1
+    db.session.commit()
 
 
 def update_build(build: Build, data: dict) -> Build:

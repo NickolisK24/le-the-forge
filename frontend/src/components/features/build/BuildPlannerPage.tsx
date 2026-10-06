@@ -1,3 +1,4 @@
+import { apiUrl } from "@/lib/apiBase";
 import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -1184,7 +1185,7 @@ export default function BuildPlannerPage() {
               </Button>
             )}
             <a
-              href={`${import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}
+              href={apiUrl("/auth/discord")}
               onClick={() => sessionStorage.setItem("forge_login_attempted", "1")}
             >
               <Button variant="primary" size="sm">Sign In</Button>

@@ -1,0 +1,4726 @@
+{
+  "audit": "2026-10 System Deep Audit — The Forge / EpochForge + last-epoch-data extraction ecosystem",
+  "audit_date": "2026-10-06",
+  "scope": {
+    "le-the-forge": {
+      "branch": "main",
+      "head": "1efcef76ba03f82711b5d6f11eedbc48d5ccbefa",
+      "head_date": "2026-05-14",
+      "working_tree": "clean before audit (only this audit directory added)"
+    },
+    "last-epoch-data": {
+      "branch": "main",
+      "head": "73e2ab0fbe612b6dbe99ff0e37c83cad06315580",
+      "head_date": "2026-05-31"
+    },
+    "le-parser": {
+      "head": "5135ce4e3b35ccf433edf19aeffced91c3225268",
+      "head_date": "2026-03-26",
+      "status": "archived; referenced only by a dangling gitlink"
+    },
+    "not_in_scope": [
+      "dev branch (413 commits ahead of main) except where noted",
+      "live production (egress from the audit environment to epochforge.gg, api.epochforge.gg and lastepochtools.com was blocked by the audit environment's proxy)",
+      "Render dashboard configuration"
+    ]
+  },
+  "verdict": "D",
+  "verdict_label": "FOUNDATION UNTRUSTWORTHY / REBUILD CORE AREAS",
+  "severity_counts": {
+    "P0": 8,
+    "P1": 64,
+    "P2": 54,
+    "P3": 13,
+    "INFO": 1
+  },
+  "finding_count": 140,
+  "status_values": {
+    "OPEN": "not remediated (or only partially; see r0_notes)",
+    "FIXED_LOCAL": "fixed on fix/audit-r0-emergency-production and proven by local tests; not yet verified in production",
+    "VERIFIED": "verified in the appropriate (production) environment",
+    "DEFERRED_WITH_REASON": "intentionally deferred; reason in notes",
+    "INFO": "checked; no defect found"
+  },
+  "notes": [
+    "Duplicate findings raised by multiple investigators were folded into one canonical ID; folded IDs are listed in related_findings.",
+    "FE-1 was reclassified from P0 to P1: the committed config is defective, but the production 403 alert proves the live frontend reached /api/import/build, so live config differs from render.yaml.",
+    "INFRA-1 (SQLAlchemy) was raised to P0 because it was reproduced independently three times, including on Python 3.11, and it blocks deploying any remediation.",
+    "Confidence 'high' means reproduced or directly read in code/data; web-sourced game-version facts are 'medium' because official sites could not be fetched from the audit environment.",
+    "Folded exact duplicates: API-1->SYS-1, FE-6->SYS-1, SYS-18->INFRA-1, DB-2->INFRA-1, SEC-2->API-4, SYS-8->INFRA-2",
+    "2026-10-06 AUDIT-R0: statuses updated on branch fix/audit-r0-emergency-production (base 1efcef7). See R0_IMPLEMENTATION_REPORT.md. No finding is VERIFIED; production verification is still required."
+  ],
+  "findings": [
+    {
+      "id": "CALC-1",
+      "severity": "P0",
+      "domain": "calculation/skill base damage",
+      "title": "Skill base damage and level scaling are unsourced and contradict extracted data",
+      "description": "backend/app/game_data/skills.json and SKILL_STATS (179 skills each) are hand-calibrated. 53/54 comparable skills differ by more than 25% from the 1.4.6 extracted hit damage (median 24.6x). A per-level coefficient is applied that has no basis in the game data (150/184 skills have empty levelScaling).",
+      "evidence": "Fireball: forge base_damage 110 (skills.json:412-413) vs 1.4.6 extract damageSources fire 25, addedDamageScaling 1.25 (independently re-verified)",
+      "files": [
+        "backend/app/game_data/skills.json",
+        "backend/app/engines/combat_engine.py",
+        "backend/app/domain/calculators/skill_calculator.py"
+      ],
+      "line_numbers": [
+        412,
+        56,
+        353,
+        83
+      ],
+      "commands_used": [
+        "python3 comparison of forge skills.json vs last-epoch-data/exports_json/skills.json damageSources"
+      ],
+      "affected_components": [
+        "calculate_dps",
+        "monte_carlo_dps",
+        "optimizer",
+        "boss",
+        "encounter"
+      ],
+      "user_impact": "Every displayed DPS number is unreliable",
+      "confidence": "high",
+      "recommended_action": "Source base damage and scaling from extracted damageSources behind provenance; label DPS as an estimate until then",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-1",
+      "severity": "P0",
+      "domain": "patch currency",
+      "title": "Data is a full season behind the live game",
+      "description": "Live game is 1.5.x Season 5 (launched ~2026-10-01, 1.5.1 on 10-02). The newest extraction is 1.4.6 (2026-05-06). Forge runtime data matches the ~1.4.3-era snapshot (synced 2026-04-26). 1.4.7 and 1.5 were never extracted; 1.5 skills (e.g. Radiant Lance) have 0 hits in the exports.",
+      "evidence": "last-epoch-data/exports_json/metadata.json; data/version.json; web patch-note search (medium confidence; official site blocked by local proxy)",
+      "files": [
+        "last-epoch-data/exports_json/metadata.json",
+        "data/version.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "cat metadata.json",
+        "grep -il 'radiant lance' exports_json/*",
+        "WebSearch"
+      ],
+      "affected_components": [
+        "planner",
+        "simulator",
+        "affix catalog",
+        "importer mapping"
+      ],
+      "user_impact": "Season 5 builds cannot be represented; values outdated",
+      "confidence": "high (versions) / medium (live patch)",
+      "recommended_action": "1.5.x extraction on the operator machine, then a provenance-stamped sync",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-1",
+      "severity": "P0",
+      "domain": "extraction/sync",
+      "title": "Production data/ is pre-1.4.6 and cannot be reproduced by its own sync job",
+      "description": "Re-running scripts/sync_game_data.py against the current 1.4.6 exports in a scratch copy: 37 of 52 data/ files differ and 15 are identical. Ailments 11->143; quests 2->147; blessings change shape (pipeline.py:128-140 cannot index the new shape); passives.json has 6 Acolyte nodes absent in 1.4.6; 9 uniques and 15 set items are missing. version.json says patch unknown, synced 2026-04-26.",
+      "evidence": "scratch re-run diff",
+      "files": [
+        "scripts/sync_game_data.py",
+        "data/version.json",
+        "backend/app/game_data/pipeline.py"
+      ],
+      "line_numbers": [
+        21,
+        128,
+        140
+      ],
+      "commands_used": [
+        "python3 -I repro_root/scripts/sync_game_data.py",
+        "python3 -I diffdata.py"
+      ],
+      "affected_components": [
+        "data/**",
+        "pipeline.py"
+      ],
+      "user_impact": "Planner serves stale, unversioned, non-reproducible game data",
+      "confidence": "high",
+      "recommended_action": "Sync manifest (source commit + hashes) and idempotency check; resync",
+      "source_report": "03/04",
+      "related_findings": [
+        "DRIFT-2",
+        "SYS-3"
+      ],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-2",
+      "severity": "P0",
+      "domain": "extraction/affixes",
+      "title": "Affix tier values are stored at 100x scale and multi-property affixes are flattened to one stat",
+      "description": "Every tier value is multiplied by 100; only 32 of 387 flat-value affixes are divided back by the stat_engine heuristic. All 534 multi-property affixes keep one stat key and lose the secondary property's rolls.",
+      "evidence": "Added Health T1: game 5-15 vs data/items/affixes.json 500-1500 (independently re-verified); stat_engine.py:590-631 _FLAT_SCALE_STAT_KEYS heuristic",
+      "files": [
+        "scripts/sync_game_data.py",
+        "data/items/affixes.json",
+        "backend/app/engines/stat_engine.py"
+      ],
+      "line_numbers": [
+        159,
+        590,
+        631
+      ],
+      "commands_used": [
+        "python3 compare export tiers vs data/items/affixes.json"
+      ],
+      "affected_components": [
+        "stat_engine",
+        "crafting",
+        "importer",
+        "affix catalog"
+      ],
+      "user_impact": "Wrong or missing affix stats feed every calculation",
+      "confidence": "high (data) / medium (runtime magnitude per affix)",
+      "recommended_action": "Explicit value-scale contract per property/modifier type; carry all affix properties",
+      "source_report": "03/04",
+      "related_findings": [
+        "LOSS-1"
+      ],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "INFRA-1",
+      "severity": "P0",
+      "domain": "infra/deploy",
+      "title": "Next deploy will most likely fail: unpinned SQLAlchemy resolves 2.1.x, whose postgresql:// driver (psycopg 3) is not installed",
+      "description": "requirements.txt pins flask-sqlalchemy and psycopg2-binary but not SQLAlchemy. A fresh install on Python 3.11 gets SQLAlchemy 2.1.3; create_app('production') and 'flask db upgrade' raise ModuleNotFoundError: psycopg. Render reinstalls on each build, so any forward deploy (including an importer hotfix) is blocked. Reproduced independently in three environments (consolidates SYS-18 and DB-2).",
+      "evidence": "py3.11 venv: SQLAlchemy 2.1.3; create_engine('postgresql://..') -> ModuleNotFoundError; requirements.txt has no SQLAlchemy line | also via SYS-18: scratch venv: SQLAlchemy 2.1.3, dialect driver 'psycopg'; 6 test errors ModuleNotFoundError psycopg; requirements.txt has no SQLAlchemy line (re-verified); config.py:15 default URL postgresql:// | also via DB-2: flask db heads with a postgresql:// URL",
+      "files": [
+        "backend/config.py",
+        "backend/requirements.txt",
+        "render.yaml"
+      ],
+      "line_numbers": [
+        15
+      ],
+      "commands_used": [
+        "python3.11 -m venv; pip install -r backend/requirements.txt; pip list",
+        "pytest tests/test_deployment_readiness.py",
+        "pip list",
+        "pytest tests/ -q",
+        "cat backend/requirements.txt",
+        "flask db heads"
+      ],
+      "affected_components": [
+        "epochforge-api build/preDeploy/boot",
+        "CI backend-test"
+      ],
+      "user_impact": "Every remediation deploy is blocked; the currently running instance is probably unaffected (UNKNOWN)",
+      "confidence": "high",
+      "recommended_action": "Pin SQLAlchemy<2.1 or use postgresql+psycopg2://, plus a lock/constraints file; verify on a Render preview before anything else",
+      "source_report": "16",
+      "related_findings": [
+        "SYS-18",
+        "DB-2",
+        "RT-1 (02)"
+      ],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "58d4448",
+      "r0_notes": "SQLAlchemy pinned to 2.0.54 and postgresql:// URLs pinned to psycopg2 (config + create_app). Verified: fresh Python 3.11 venv, production config boot, flask db heads/upgrade on PostgreSQL 16. Not yet verified on Render."
+    },
+    {
+      "id": "LOSS-1",
+      "severity": "P0",
+      "domain": "field-loss/affixes",
+      "title": "Attribute and other flat affixes reach the stat engine at 100x",
+      "description": "Sync multiplies all tiers by 100. get_affix_value divides back only if the stat_key is in _FLAT_SCALE_STAT_KEYS AND the T1 midpoint is >100. Strength, Intelligence, Dexterity, Attunement, Vitality and 'Level of All Skills and Added Mana' slip through. 187 affixes have a top tier >= 1000.",
+      "evidence": "data/items/affixes.json Strength T1 100-100, T8 2400-2800 (re-verified); stat_engine.py:609-631 threshold logic",
+      "files": [
+        "scripts/sync_game_data.py",
+        "backend/app/engines/stat_engine.py",
+        "data/items/affixes.json"
+      ],
+      "line_numbers": [
+        161,
+        609,
+        631,
+        736
+      ],
+      "commands_used": [
+        "python3 inflated-flat check",
+        "sed -n 605,632p backend/app/engines/stat_engine.py"
+      ],
+      "affected_components": [
+        "aggregate_stats",
+        "crafting UI",
+        "/api/ref/affixes"
+      ],
+      "user_impact": "Attribute affixes inflated ~100x in stat calculations and display",
+      "confidence": "high",
+      "recommended_action": "Scale per modifier type from the export; remove the heuristic; golden tests",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-1",
+      "severity": "P0",
+      "domain": "relationships/passives",
+      "title": "Sync mislabels the mastery on 190 of 541 passive nodes (index-to-name map swapped)",
+      "description": "MASTERY_MAP assumes Mage [Sorcerer, Runemaster, Spellblade], Primalist [Shaman, Beastmaster, Druid] and Sentinel [Paladin, Forge Guard, Void Knight]. The 1.4.6 export orders them Mage [Sorcerer, Spellblade, Runemaster], Primalist [Beastmaster, Shaman, Druid] and Sentinel [Void Knight, Forge Guard, Paladin]. /api/passives filtered by mastery returns the wrong nodes for 6 of 15 masteries. The v2 bundle and the frontend tree data are correct.",
+      "evidence": "scripts/sync_game_data.py:324-330 vs exports_json/classes.json masteryNames (re-verified); data/classes/passives.json mg_32 'Arcane Warden' labelled Runemaster",
+      "files": [
+        "scripts/sync_game_data.py",
+        "data/classes/passives.json",
+        "backend/app/routes/passives.py"
+      ],
+      "line_numbers": [
+        324,
+        330,
+        122,
+        168
+      ],
+      "commands_used": [
+        "sed -n 320,332p scripts/sync_game_data.py",
+        "python3 compare passives mastery vs export masteryNames"
+      ],
+      "affected_components": [
+        "PassiveNode DB",
+        "/api/passives",
+        "/api/ref/passives",
+        "stat engine passive resolution"
+      ],
+      "user_impact": "Wrong passive nodes and bonuses per mastery",
+      "confidence": "high",
+      "recommended_action": "Derive mastery names from the export; regenerate and reseed; add a mastery-label test",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-1",
+      "severity": "P0",
+      "domain": "api/data-integrity",
+      "title": "Unauthenticated PATCH rewrites the production affix data file",
+      "description": "PATCH /api/admin/affixes/<id> is decorated only with a rate limit (30/min) and writes data/items/affixes.json via _save_affixes. The SPA route /affixes (AffixEditorPage) calls it. Anyone can change affix tiers/stat keys used by calculations on that instance until the next deploy. Additionally, POST /api/load/game-data (no auth) hot-reloads the tampered file into the live pipeline; reproduced with the Flask test client against a scratch copy (anonymous PATCH -> 200).",
+      "evidence": "backend/app/routes/admin.py:68-90 (independently re-verified: no auth decorator, json.dump to AFFIXES_PATH); App.tsx:232; AffixEditorPage.tsx:363 | also via API-1: Test client: anonymous PATCH -> 200, scratch copy renamed to AUDIT-TAMPER | also via FE-6: AffixEditorPage.tsx:363",
+      "files": [
+        "backend/app/game_data/pipeline.py",
+        "backend/app/routes/admin.py",
+        "backend/app/routes/load.py",
+        "frontend/src/App.tsx",
+        "frontend/src/components/features/affixes/AffixEditorPage.tsx"
+      ],
+      "line_numbers": [
+        36,
+        68,
+        69,
+        70,
+        90,
+        232,
+        363
+      ],
+      "commands_used": [
+        "sed -n 25,110p backend/app/routes/admin.py",
+        "scratchpad admin_test.py (Flask test client, scratch data copy)",
+        "grep"
+      ],
+      "affected_components": [
+        "admin_bp",
+        "affix data",
+        "crafting/planner/stat engine"
+      ],
+      "user_impact": "Anonymous tampering with game data served to all users",
+      "confidence": "high",
+      "recommended_action": "Require admin auth or disable in production; treat runtime data as read-only",
+      "source_report": "01",
+      "related_findings": [
+        "API-1",
+        "FE-6",
+        "INFRA-3",
+        "SEC-1 (02/17)"
+      ],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "77e8a83",
+      "r0_notes": "PATCH /api/admin/affixes/<id> returns 404 unless GAME_DATA_MUTATION_ENABLED (hard-coded off in ProductionConfig), then 401/403 for non-admins. Tests assert file hash and in-memory pipeline unchanged."
+    },
+    {
+      "id": "API-2",
+      "severity": "P1",
+      "domain": "availability",
+      "title": "Unbounded multi-target simulation allows a single-request memory DoS",
+      "description": "No upper bounds on max_duration, tick_size or target count; every damage event is returned.",
+      "evidence": "3600s / 0.01 tick / 10 targets: 17.3s and 1.66GB RSS; a larger input was SIGKILLed",
+      "files": [
+        "backend/app/routes/multi_target.py"
+      ],
+      "line_numbers": [
+        40,
+        80
+      ],
+      "commands_used": [
+        "scratchpad cpu.py mt"
+      ],
+      "affected_components": [
+        "/api/simulate/multi-target"
+      ],
+      "user_impact": "One anonymous request can OOM an instance",
+      "confidence": "high",
+      "recommended_action": "Schema bounds and a response size cap",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "337fbd0",
+      "r0_notes": "Schema bounds (duration <=300 s, tick 0.01-10 s, <=20 targets, step budget 120,000) checked before simulation; response capped at 5,000 events with explicit truncation fields. Audit payload rejected before the engine runs."
+    },
+    {
+      "id": "API-3",
+      "severity": "P1",
+      "domain": "performance",
+      "title": "v2 endpoints re-parse multi-MB bundles on every request and are now linked from public pages",
+      "description": "76 ungated, unauthenticated rules (41 duplicated by a double mount) reload JSON from disk on each call.",
+      "evidence": "modifiers/debug ~2.6s and +135MB per call; 2 concurrent calls peaked at 384MB",
+      "files": [
+        "backend/app/routes/experimental.py"
+      ],
+      "line_numbers": [
+        1304
+      ],
+      "commands_used": [
+        "scratchpad v2_timing.py",
+        "scratchpad rss.py"
+      ],
+      "affected_components": [
+        "/api/experimental/v2/*"
+      ],
+      "user_impact": "Slow pages; memory pressure on starter instances",
+      "confidence": "high",
+      "recommended_action": "Per-process caching or env gate; remove the duplicate mount",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-4",
+      "severity": "P1",
+      "domain": "security",
+      "title": "IDOR: anyone can change skill node allocations on any build",
+      "description": "PATCH /api/builds/<slug>/skills/<id>/nodes/<n> has no auth and no owner check.",
+      "evidence": "backend/app/routes/skills.py:281-296 (re-verified: only @limiter); anonymous PATCH on another user's private build -> 200 | also via SEC-2: backend/app/routes/skills.py:281-360",
+      "files": [
+        "backend/app/routes/skills.py"
+      ],
+      "line_numbers": [
+        281,
+        282,
+        283
+      ],
+      "commands_used": [
+        "scratchpad poison.py",
+        "sed -n 272,300p backend/app/routes/skills.py",
+        "route auth enumeration"
+      ],
+      "affected_components": [
+        "skills_bp"
+      ],
+      "user_impact": "Anyone can alter anyone's build",
+      "confidence": "high",
+      "recommended_action": "Require owner auth",
+      "source_report": "11",
+      "related_findings": [
+        "SEC-2"
+      ],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "9016ddd",
+      "r0_notes": "Skill-node PATCH requires the build owner via app/services/build_access.py."
+    },
+    {
+      "id": "API-5",
+      "severity": "P1",
+      "domain": "security",
+      "title": "Anonymous builds and craft sessions can be modified or deleted by others",
+      "description": "Anyone can PATCH anonymous builds; any logged-in user can DELETE them. The same applies to anonymous craft sessions.",
+      "evidence": "another user's DELETE -> 204; anonymous PATCH -> 200",
+      "files": [
+        "backend/app/routes/builds.py",
+        "backend/app/routes/craft.py"
+      ],
+      "line_numbers": [
+        209,
+        239,
+        139
+      ],
+      "commands_used": [
+        "scratchpad poison.py"
+      ],
+      "affected_components": [
+        "builds_bp",
+        "craft_bp"
+      ],
+      "user_impact": "Vandalism or loss of builds",
+      "confidence": "high",
+      "recommended_action": "Edit token or immutable anonymous records",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "9016ddd",
+      "r0_notes": "Builds: only owners may update/delete; ownerless builds are read-only. Craft sessions: owned sessions owner-only (unchanged), ownerless sessions can no longer be deleted. Residual by design: ownerless craft-session action/undo still works for whoever holds the 64-bit random slug (the anonymous crafting feature depends on it); permanent anonymous lifecycle deferred to AUDIT-R4."
+    },
+    {
+      "id": "API-6",
+      "severity": "P1",
+      "domain": "privacy",
+      "title": "Private builds readable by guessable slug",
+      "description": "get, simulate, skills, optimize, analysis and compare ignore is_public (only /report checks it). Imported builds are forced private, and slugs derive from the build name.",
+      "evidence": "anonymous GET, simulate and skills -> 200; report -> 403",
+      "files": [
+        "backend/app/services/build_service.py",
+        "backend/app/routes/builds.py"
+      ],
+      "line_numbers": [
+        84,
+        26,
+        178
+      ],
+      "commands_used": [
+        "scratchpad poison.py"
+      ],
+      "affected_components": [
+        "builds, analysis, compare, skills"
+      ],
+      "user_impact": "Private builds exposed",
+      "confidence": "high",
+      "recommended_action": "Central visibility check; random slugs",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "9016ddd",
+      "r0_notes": "Private owned builds readable only by the owner on every build-by-slug route (404 otherwise), checked before caches. Residual by design: ownerless builds are readable by link; new private ownerless builds get an unguessable slug, existing ones keep their slugs (AUDIT-R4)."
+    },
+    {
+      "id": "API-7",
+      "severity": "P1",
+      "domain": "security/availability",
+      "title": "No ProxyFix: rate limits are likely keyed on the Render proxy IP",
+      "description": "remote_addr is used everywhere with no X-Forwarded-For handling.",
+      "evidence": "grep finds no ProxyFix or X-Forwarded",
+      "files": [
+        "backend/app/__init__.py",
+        "backend/app/routes/views.py",
+        "backend/app/routes/import_route.py"
+      ],
+      "line_numbers": [
+        16,
+        34,
+        493
+      ],
+      "commands_used": [
+        "grep -rn ProxyFix"
+      ],
+      "affected_components": [
+        "flask-limiter"
+      ],
+      "user_impact": "Possible sitewide shared 429s; per-client limits ineffective",
+      "confidence": "medium (Render header behaviour UNKNOWN)",
+      "recommended_action": "Verify with production logs; ProxyFix(x_for=1)",
+      "source_report": "11",
+      "related_findings": [
+        "IMP-9",
+        "SEC-5 (17)"
+      ],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-11",
+      "severity": "P1",
+      "domain": "calculation/minions",
+      "title": "Minion DPS computed from player stats while docs claim 0",
+      "description": "Summon Wolf shows 343 DPS; minion_* stats are unused.",
+      "evidence": "venv probe",
+      "files": [
+        "backend/app/engines/combat_engine.py",
+        "docs/KNOWN_LIMITATIONS.md"
+      ],
+      "line_numbers": [
+        314
+      ],
+      "commands_used": [
+        "venv probe"
+      ],
+      "affected_components": [
+        "minion builds"
+      ],
+      "user_impact": "Misleading minion DPS",
+      "confidence": "high",
+      "recommended_action": "Return an unsupported status for minion skills",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-12",
+      "severity": "P1",
+      "domain": "calculation/encounter",
+      "title": "Encounter-build damage treats 'more' as additive",
+      "description": "build_stats_engine.to_encounter_params sums the more multipliers and all damage-type pools.",
+      "evidence": "lines 151-158",
+      "files": [
+        "backend/builds/build_stats_engine.py"
+      ],
+      "line_numbers": [
+        151
+      ],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "/simulate/encounter-build"
+      ],
+      "user_impact": "Encounter DPS inconsistent with main DPS",
+      "confidence": "high",
+      "recommended_action": "Reuse a single DPS pipeline",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-14",
+      "severity": "P1",
+      "domain": "calculation/wiring",
+      "title": "Specialization-tree modifiers and conversions dropped on user-facing paths",
+      "description": "SimulateBuildSchema has no spec_tree; analyze_build passes no conversions.",
+      "evidence": "schemas/simulate.py:310-318; build_analysis_service.py:229-238",
+      "files": [
+        "backend/app/schemas/simulate.py",
+        "backend/app/services/build_analysis_service.py"
+      ],
+      "line_numbers": [
+        310,
+        229
+      ],
+      "commands_used": [
+        "grep spec_tree"
+      ],
+      "affected_components": [
+        "/simulate/build",
+        "/builds/<slug>/simulate"
+      ],
+      "user_impact": "Skill tree investment is ignored",
+      "confidence": "high",
+      "recommended_action": "Wire spec_tree and conversions; add a route-level test",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-15",
+      "severity": "P1",
+      "domain": "calculation/trust labels",
+      "title": "DPS and EHP outputs carry no trust or provenance labels",
+      "description": "Responses have no trust, provenance or confidence fields; trust badges appear only on informational pages.",
+      "evidence": "simulation_service.py:274-286",
+      "files": [
+        "backend/app/services/simulation_service.py",
+        "frontend/src/components/features/build-workspace/analysis/OffenseCard.tsx"
+      ],
+      "line_numbers": [
+        274
+      ],
+      "commands_used": [
+        "grep trust|provenance"
+      ],
+      "affected_components": [
+        "analysis UI"
+      ],
+      "user_impact": "Users read estimates as fact",
+      "confidence": "high",
+      "recommended_action": "Add a per-metric trust label and render it",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-2",
+      "severity": "P1",
+      "domain": "calculation",
+      "title": "Added damage effectiveness defaults to 1.0 for 175/179 skills",
+      "description": "34/56 comparable skills disagree with extracted addedDamageScaling.",
+      "evidence": "Earthquake 1.0 vs 6.0",
+      "files": [
+        "backend/app/engines/combat_engine.py"
+      ],
+      "line_numbers": [
+        359
+      ],
+      "commands_used": [
+        "python3 extract comparison"
+      ],
+      "affected_components": [
+        "calculate_dps"
+      ],
+      "user_impact": "Flat-damage gear value is mis-ranked",
+      "confidence": "high",
+      "recommended_action": "Load addedDamageScaling from extracted data",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-3",
+      "severity": "P1",
+      "domain": "calculation/ailments",
+      "title": "Bleed and Ignite constants contradict the extract; data/combat/ailments.json is never read",
+      "description": "Bleed 43/4s vs extract 53/3s; Ignite 3.0s vs 2.5s. Electrify, Frostbite, Damned and Time Rot are excluded.",
+      "evidence": "exports_json/ailments.json (1.4.6) vs constants/combat.py",
+      "files": [
+        "backend/app/constants/combat.py",
+        "backend/app/domain/calculators/ailment_calculator.py"
+      ],
+      "line_numbers": [
+        22,
+        27,
+        28,
+        62
+      ],
+      "commands_used": [
+        "python3 read exports_json/ailments.json"
+      ],
+      "affected_components": [
+        "ailment_dps"
+      ],
+      "user_impact": "DoT build DPS is wrong",
+      "confidence": "high",
+      "recommended_action": "Source ailment constants from extracted data",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-4",
+      "severity": "P1",
+      "domain": "calculation/armor",
+      "title": "Nine divergent armor mitigation implementations",
+      "description": "Divisors 300 / 1000 / 10*area level; caps 0.80 / 0.85 / 0.595; three different rules for non-physical damage.",
+      "evidence": "probe: defense_engine 50% vs calculator 41% for the same elemental hit",
+      "files": [
+        "backend/app/engines/defense_engine.py",
+        "backend/app/engines/boss_encounter.py",
+        "backend/app/domain/armor.py",
+        "backend/app/domain/combat_validation.py",
+        "backend/app/engines/combat_simulator.py",
+        "backend/stats/stat_data_integration.py"
+      ],
+      "line_numbers": [
+        101,
+        165,
+        62,
+        149,
+        64,
+        92
+      ],
+      "commands_used": [
+        "grep armor formulas",
+        "venv probe"
+      ],
+      "affected_components": [
+        "EHP",
+        "boss",
+        "encounter"
+      ],
+      "user_impact": "EHP overstated; numbers inconsistent between pages",
+      "confidence": "high",
+      "recommended_action": "Single authoritative implementation pinned to a sourced formula",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-5",
+      "severity": "P1",
+      "domain": "calculation/penetration",
+      "title": "Three incompatible penetration semantics; main DPS applies no enemy mitigation",
+      "description": "Penetration is subtracted before the cap in one implementation, floored at 0 in another; boss uses min(resistances). calculate_dps_vs_enemy has no caller.",
+      "evidence": "pen 30 vs res 20: calculator 0 vs domain -10",
+      "files": [
+        "backend/app/domain/penetration.py",
+        "backend/app/domain/calculators/enemy_mitigation_calculator.py",
+        "backend/app/engines/boss_encounter.py",
+        "backend/app/engines/combat_engine.py"
+      ],
+      "line_numbers": [
+        49,
+        66,
+        169,
+        589
+      ],
+      "commands_used": [
+        "venv probe",
+        "grep callers"
+      ],
+      "affected_components": [
+        "boss",
+        "penetration gear value"
+      ],
+      "user_impact": "Penetration affixes are worthless in main DPS",
+      "confidence": "high",
+      "recommended_action": "Unify semantics; verify against a sourced mechanic",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-6",
+      "severity": "P1",
+      "domain": "calculation/stats",
+      "title": "Fabricated mastery and keystone bonuses plus a modulo passive fallback",
+      "description": "Unknown keystones get spell +10 / hp +50; /simulate/build cycles stats by modulo when passive_tree is omitted.",
+      "evidence": "stat_engine KEYSTONE_BONUSES, _get_node_bonus",
+      "files": [
+        "backend/app/engines/stat_engine.py",
+        "backend/app/schemas/simulate.py"
+      ],
+      "line_numbers": [
+        264,
+        273,
+        559,
+        310
+      ],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "all stats"
+      ],
+      "user_impact": "Invented stats inflate DPS and EHP",
+      "confidence": "high",
+      "recommended_action": "Remove or flag fallbacks; surface a data-gap field",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-7",
+      "severity": "P1",
+      "domain": "calculation/affixes",
+      "title": "'Increased Armor' affix is added as flat armour",
+      "description": "stat_key 'armour': a T5 roll gives +29 flat instead of +29%.",
+      "evidence": "probe: armour 0->29, armour_pct unchanged",
+      "files": [
+        "backend/app/engines/stat_engine.py"
+      ],
+      "line_numbers": [
+        609
+      ],
+      "commands_used": [
+        "venv aggregate_stats probe"
+      ],
+      "affected_components": [
+        "defense",
+        "upgrade ranking"
+      ],
+      "user_impact": "Armor gear badly undervalued",
+      "confidence": "high",
+      "recommended_action": "Map to armour_pct; add a test",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-8",
+      "severity": "P1",
+      "domain": "calculation/ward",
+      "title": "Ward decay formula appears outdated",
+      "description": "Uses 0.4W/(1+0.5R); community/dev-notes formula is (0.2W+0.00005W^2)/(1+0.5R). The INT retention constant differs between modules (4 vs 2).",
+      "evidence": "web search (community-sourced; official page blocked)",
+      "files": [
+        "backend/app/engines/defense_engine.py",
+        "backend/app/constants/defense.py",
+        "backend/app/domain/ward.py"
+      ],
+      "line_numbers": [
+        183,
+        13,
+        16,
+        56
+      ],
+      "commands_used": [
+        "WebSearch"
+      ],
+      "affected_components": [
+        "ward sustain"
+      ],
+      "user_impact": "Ward builds misjudged",
+      "confidence": "medium",
+      "recommended_action": "Verify against an official source; pin to patch",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DB-1",
+      "severity": "P1",
+      "domain": "data-integrity",
+      "title": "Deleting any build that has been viewed fails with HTTP 500",
+      "description": "The BuildView backref has no cascade, so the ORM nulls a NOT NULL foreign key on delete.",
+      "evidence": "models/__init__.py:361 backref('views') with no cascade (re-verified); IntegrityError NOT NULL build_views.build_id in a scratch DB",
+      "files": [
+        "backend/app/models/__init__.py",
+        "backend/app/services/build_service.py"
+      ],
+      "line_numbers": [
+        352,
+        361,
+        121
+      ],
+      "commands_used": [
+        "scratchpad del_test.py",
+        "grep -n cascade models/__init__.py"
+      ],
+      "affected_components": [
+        "DELETE /api/builds/<slug>"
+      ],
+      "user_impact": "Users cannot delete most builds",
+      "confidence": "high",
+      "recommended_action": "cascade + ON DELETE CASCADE via a new migration",
+      "source_report": "10",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "c6ed5e4",
+      "r0_notes": "ORM cascade + ON DELETE CASCADE (migration a7c3e91f4d20). Reproduced 500 on PostgreSQL 16 before; 204 after; raw SQL cascade verified."
+    },
+    {
+      "id": "DB-3",
+      "severity": "P1",
+      "domain": "provenance",
+      "title": "Saved builds carry no data-version stamp; patch_version is stale client-supplied text",
+      "description": "patch_version defaults to 1.2.1; the pipeline version is 'unknown'; passive IDs were recreated (int to str) and are pruned on reseed.",
+      "evidence": "schemas/__init__.py:90; cli.py:256",
+      "files": [
+        "backend/app/models/__init__.py",
+        "backend/app/schemas/__init__.py",
+        "backend/app/utils/cli.py"
+      ],
+      "line_numbers": [
+        105,
+        90,
+        256
+      ],
+      "commands_used": [
+        "static review"
+      ],
+      "affected_components": [
+        "builds.passive_tree",
+        "builds.gear"
+      ],
+      "user_impact": "Saved builds cannot be reliably reinterpreted after a patch",
+      "confidence": "high",
+      "recommended_action": "Server-set data_version and patch columns",
+      "source_report": "10",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-1",
+      "severity": "P1",
+      "domain": "simulation",
+      "title": "Several non-runtime combat simulators exist beside the live path",
+      "description": "The live path is simulation_service + stat/combat/defense engines. Others (app/engines/combat_simulator, app/combat, app/domain/fight_simulator, backend/combat, backend/simulation) are test-only or orphaned.",
+      "evidence": "AST module graph",
+      "files": [
+        "backend/app/services/simulation_service.py",
+        "backend/app/engines/combat_simulator.py",
+        "backend/app/domain/fight_simulator.py",
+        "backend/simulation/"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 modgraph.py"
+      ],
+      "affected_components": [
+        "simulator"
+      ],
+      "user_impact": "Fixes and validation may target the wrong engine",
+      "confidence": "high",
+      "recommended_action": "Declare the canonical engine; label the rest",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-3",
+      "severity": "P1",
+      "domain": "affix data",
+      "title": "Four affix data paths; the legacy file is read directly by multiple modules",
+      "description": "Legacy affixes.json is read by affix_engine, the pipeline, stat_engine, the importer and others; the forge-safe and v2 paths are off by default.",
+      "evidence": "grep + config defaults",
+      "files": [
+        "backend/app/engines/affix_engine.py",
+        "backend/app/game_data/pipeline.py",
+        "backend/app/services/importers/lastepochtools_importer.py",
+        "backend/app/repositories/v2/paths.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep affixes.json"
+      ],
+      "affected_components": [
+        "affix catalog",
+        "importer",
+        "stats"
+      ],
+      "user_impact": "Ambiguous source of truth",
+      "confidence": "high",
+      "recommended_action": "One selection service",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-2",
+      "severity": "P1",
+      "domain": "docs/testing",
+      "title": "Release readiness claims omit a red frontend suite",
+      "description": "17 vitest failures; the release doc reports only focused subsets.",
+      "evidence": "npx vitest run; docs/release/V2_5_MAIN_RELEASE_READINESS.md:85-88",
+      "files": [
+        "docs/release/V2_5_MAIN_RELEASE_READINESS.md"
+      ],
+      "line_numbers": [
+        85,
+        118
+      ],
+      "commands_used": [
+        "npx vitest run"
+      ],
+      "affected_components": [
+        "frontend"
+      ],
+      "user_impact": "Regressions shipped",
+      "confidence": "high",
+      "recommended_action": "Report the full suite in release gates",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-3",
+      "severity": "P1",
+      "domain": "docs/provenance",
+      "title": "Docs claim patch 1.4.3 from version.json, which says 'unknown'",
+      "description": "KNOWN_LIMITATIONS cites data/version.json as the source of the 1.4.3 claim.",
+      "evidence": "docs/KNOWN_LIMITATIONS.md:45-46; README.md:14,226",
+      "files": [
+        "docs/KNOWN_LIMITATIONS.md",
+        "README.md",
+        "data/version.json"
+      ],
+      "line_numbers": [
+        45,
+        46,
+        14,
+        226
+      ],
+      "commands_used": [
+        "cat data/version.json"
+      ],
+      "affected_components": [
+        "docs"
+      ],
+      "user_impact": "Wrong patch shown",
+      "confidence": "high",
+      "recommended_action": "Single version source",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-5",
+      "severity": "P1",
+      "domain": "governance/docs",
+      "title": "'Users can rely on trusted data' contradicts upstream trusted_public_visibility_ready=false",
+      "description": "The trust vocabularies in the two repos conflict.",
+      "evidence": "frontend/src/pages/TrustedDataExplanationPage.tsx; last-epoch-data/README.md",
+      "files": [
+        "frontend/src/pages/TrustedDataExplanationPage.tsx"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep trusted"
+      ],
+      "affected_components": [
+        "trust UI"
+      ],
+      "user_impact": "Overstated trust",
+      "confidence": "high",
+      "recommended_action": "Shared glossary plus an explicit exposure decision",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-9",
+      "severity": "P1",
+      "domain": "docs/api",
+      "title": "API reference labels unauthenticated writes as 'Admin'; 89 routes undocumented",
+      "description": "All 77 documented paths exist; 6 stable and 83 experimental rules are missing from the reference.",
+      "evidence": "docs/api_reference.md:3,371-376; url_map diff",
+      "files": [
+        "docs/api_reference.md"
+      ],
+      "line_numbers": [
+        3,
+        371,
+        376
+      ],
+      "commands_used": [
+        "comm doc vs url_map"
+      ],
+      "affected_components": [
+        "API docs"
+      ],
+      "user_impact": "Implies protection that does not exist",
+      "confidence": "high",
+      "recommended_action": "Document actual auth",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-2",
+      "severity": "P1",
+      "domain": "forge data",
+      "title": "Forge runtime data was never synced to 1.4.6",
+      "description": "A replay of the sync transform shows the Forge affixes match 1.4.3-era extractor commits. 1.4.6 adds 3 affixes and changes 16 tier records (e.g. idol minion penetration T1 1-2 vs 3-4). Uniques 403 vs 409; set items 47 vs 59.",
+      "evidence": "scratch sync replay + id/tier diff",
+      "files": [
+        "data/items/affixes.json",
+        "data/items/uniques.json",
+        "scripts/sync_game_data.py"
+      ],
+      "line_numbers": [
+        21
+      ],
+      "commands_used": [
+        "python3 -I sync_game_data.py --affixes (scratch root, per extractor commit)"
+      ],
+      "affected_components": [
+        "affix engine",
+        "stat engine",
+        "crafting"
+      ],
+      "user_impact": "Wrong values; missing affixes and uniques",
+      "confidence": "high",
+      "recommended_action": "Re-sync with source commit and hash recorded",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-3",
+      "severity": "P1",
+      "domain": "provenance",
+      "title": "Patch identity inconsistent across surfaces",
+      "description": "/api/health returns 'unknown'; /api/version hard-codes 1.4.3 / season 4; builds default to patch 1.2.1; seed builds are 1.4.3 with cycle 1.2; v2 bundles carry a SHA only.",
+      "evidence": "code defaults + VersionedLoader run",
+      "files": [
+        "backend/config.py",
+        "backend/app/routes/version.py",
+        "backend/app/routes/health.py",
+        "backend/app/models/__init__.py",
+        "backend/app/services/build_service.py",
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep patch/version strings",
+        "python3 VersionedLoader().detect_version()"
+      ],
+      "affected_components": [
+        "API",
+        "dashboard",
+        "saved builds"
+      ],
+      "user_impact": "Users told 1.4.3/S4; saved builds mislabeled",
+      "confidence": "high",
+      "recommended_action": "Single provenance source from extractor metadata",
+      "source_report": "07",
+      "related_findings": [
+        "DB-3",
+        "DOC-3",
+        "SYS-3"
+      ],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-4",
+      "severity": "P1",
+      "domain": "extraction",
+      "title": "Fresh extraction is only possible on one Windows operator machine",
+      "description": "Requires the game install (D:\\, Steam registry), Il2CppDumper/AssetRipper .exe, .NET, UnityPy and pythonnet. There is no 1.4.6 or 1.5 snapshot in patch_versions.",
+      "evidence": "validate_bootstrap FileNotFoundError; UnityPy/clr imports fail",
+      "files": [
+        "last-epoch-data/tools/scripts/game_paths.py",
+        "last-epoch-data/tools/external.lock",
+        "last-epoch-data/scripts/setup.ps1",
+        "last-epoch-data/patch_update_guide.md"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 validate_bootstrap.py (scratch copy)"
+      ],
+      "affected_components": [
+        "extractor"
+      ],
+      "user_impact": "Patch response depends on one machine and one operator",
+      "confidence": "high",
+      "recommended_action": "Document and archive per-patch snapshots; CI-runnable post-processing subset",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-5",
+      "severity": "P1",
+      "domain": "change detection",
+      "title": "No gating patch-diff, schema-drift or unknown-enum detection",
+      "description": "validate_exports checks shrinkage, minimum counts, top-level keys and duplicate IDs only; additions and value changes pass. The unknown-value validator (148 unknowns) is not wired into run_all.",
+      "evidence": "validate_exports exit 0; tag validator reports 148 unknowns",
+      "files": [
+        "last-epoch-data/tools/scripts/validate_exports.py",
+        "last-epoch-data/tools/scripts/run_all.py",
+        "last-epoch-data/tools/scripts/affix_tag_category_validator.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 validate_exports.py",
+        "python3 validate_affix_tag_categories.py"
+      ],
+      "affected_components": [
+        "extractor"
+      ],
+      "user_impact": "New patch fields/enums ship silently",
+      "confidence": "high",
+      "recommended_action": "Gating patch-diff and unknown-field/enum report",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-10",
+      "severity": "P1",
+      "domain": "extraction/coverage",
+      "title": "Semantic coverage is 0%: no v2 record is stable-calculable, and there are no ground-truth fixtures",
+      "description": "Of 8,711 records across the v2 bundles, 0 are classified as stable-calculable. Skill nodes reaching the production resolver: 2,186 of 3,783 allocatable (57.8%). Actors: 239 of 1,020 (23.4%). Skill-to-class: 60 of 184 (32.6%).",
+      "evidence": "04_EXTRACTION_COVERAGE_MATRIX.md coverage table",
+      "files": [
+        "docs/generated/v2_*_bundle.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 -I coverage scripts"
+      ],
+      "affected_components": [
+        "all calculation consumers"
+      ],
+      "user_impact": "No calculation can claim game-accuracy",
+      "confidence": "high",
+      "recommended_action": "Define semantic certification with in-game ground truth",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-3",
+      "severity": "P1",
+      "domain": "extraction/provenance",
+      "title": "Core simulation inputs are hand-authored or third-party, not extracted",
+      "description": "backend/app/game_data/{skills,classes,constants}.json, base_items, crafting rules, FP ranges, rarities and enemy_profiles are hand-authored. The weaver tree is scraped from a third-party planner (game 1.4.2). Only 17 of 115 curated base items exist in 1.4.6, and 17 of the 179 hand-authored skill entries match no 1.4.6 skill.",
+      "evidence": "name joins vs exports",
+      "files": [
+        "backend/app/game_data/pipeline.py",
+        "data/items/base_items.json",
+        "data/progression/weaver_tree.json",
+        "backend/app/game_data/skills.json"
+      ],
+      "line_numbers": [
+        47,
+        48
+      ],
+      "commands_used": [
+        "python3 -I joins"
+      ],
+      "affected_components": [
+        "simulation",
+        "crafting",
+        "importer"
+      ],
+      "user_impact": "Unverified data presented as game data",
+      "confidence": "high",
+      "recommended_action": "Provenance label per family; replace with extracted data",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-4",
+      "severity": "P1",
+      "domain": "extraction/coverage",
+      "title": "19 game data tables present in the 1.4.6 resources manifest are never extracted; weaver tree decoded then dropped",
+      "description": "Never extracted: factions, constellations/prophecies, woven echoes, champions, arena, shrines, memories, harbingers/tombs/omens, corruption config, idol altar properties, crafting materials, property definitions, caches/rewards. The 77-node weaver tree is decoded and then dropped.",
+      "evidence": "extracted_raw/resources_manifest.json by_script vs grep of exports",
+      "files": [
+        "last-epoch-data/extracted_raw/resources_manifest.json",
+        "last-epoch-data/extracted_raw/raw_skill_trees_from_game.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 -I by_script scan",
+        "grep -l"
+      ],
+      "affected_components": [
+        "exports_json"
+      ],
+      "user_impact": "Whole systems unmodelled; completeness claims overstated",
+      "confidence": "high",
+      "recommended_action": "Enumeration-based coverage gate against the game's own table manifest",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-5",
+      "severity": "P1",
+      "domain": "extraction/raw preservation",
+      "title": "1.4.6 raw inputs are absent and some exports have no writer",
+      "description": "No 1.4.6 game files or raw_bundles are in the repo. actors.json has had no writer since commit 66c6498. Loot and monster-mod processors read uncommitted inputs.",
+      "evidence": ".gitignore; git log --diff-filter=D",
+      "files": [
+        "last-epoch-data/tools/scripts/game_paths.py",
+        "last-epoch-data/tools/scripts/process_loot.py",
+        "last-epoch-data/tools/scripts/process_monster_mods.py",
+        "last-epoch-data/exports_json/actors.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "git log --diff-filter=D"
+      ],
+      "affected_components": [
+        "exports_json"
+      ],
+      "user_impact": "Exports cannot be regenerated or audited",
+      "confidence": "high",
+      "recommended_action": "Hashed raw snapshot archive (outside git if needed) plus a run manifest",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-1",
+      "severity": "P1",
+      "domain": "deploy/config",
+      "title": "Committed render.yaml sets VITE_API_BASE_URL without /api; a build from the blueprint would 404 every API call and break Discord login",
+      "description": "lib/api.ts composes `${BASE_URL}${path}` with /api-relative paths (/builds, /auth/me). render.yaml:95-96 sets https://api.epochforge.gg, while every backend blueprint is mounted under /api. A build with that value contains https://api.epochforge.gg/auth/discord. However, the 403 incident proves production reached /api/import/build, so production's actual value must differ from the blueprint (likely a dashboard override). This is undocumented config drift: re-applying the blueprint would break the whole app.",
+      "evidence": "frontend/src/lib/api.ts:51-54,88 (re-verified); render.yaml:95-96; prod-config scratch build + Playwright logged un-prefixed requests; the Discord alert proves the live backend received /api/import/build",
+      "files": [
+        "render.yaml",
+        "frontend/src/lib/api.ts",
+        "frontend/src/components/navigation/TopBar.tsx",
+        "frontend/src/components/features/build/BuildPlannerPage.tsx",
+        "docs/production_setup.md"
+      ],
+      "line_numbers": [
+        95,
+        96,
+        51,
+        54,
+        88,
+        69,
+        1187,
+        94
+      ],
+      "commands_used": [
+        "VITE_API_BASE_URL=https://api.epochforge.gg npx vite build --outDir scratch/dist",
+        "node scratch/fe/pw.cjs",
+        "sed -n 40,100p frontend/src/lib/api.ts"
+      ],
+      "affected_components": [
+        "all API-backed pages",
+        "auth",
+        "import",
+        "save"
+      ],
+      "user_impact": "Latent full outage on the next blueprint sync; live value UNKNOWN",
+      "confidence": "high (repo) / unknown (live)",
+      "recommended_action": "Read the live Render env value; make render.yaml match it; add a URL-composition test",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "b996038",
+      "r0_notes": "Repository is internally correct: any VITE_API_BASE_URL form composes to /api/... (verified in Chromium with the committed render.yaml value). The live Render dashboard value was not readable from this environment and requires operator verification; not VERIFIED."
+    },
+    {
+      "id": "FE-3",
+      "severity": "P1",
+      "domain": "trust UI",
+      "title": "v2 trust/debug pages fetch root-relative paths that cannot work on the static host",
+      "description": "Eight public routes fetch /experimental/v2/* or /api/experimental/* from the frontend origin. The static SPA rewrite returns index.html, so the page shows 'Backend returned an unreadable response (200)'.",
+      "evidence": "Observed on /debug/v2-skills and /debug/v2-stats-modifiers in a local prod-config build",
+      "files": [
+        "frontend/src/pages/debug/V2SkillsDebugPage.tsx",
+        "frontend/src/pages/debug/V2StatsModifiersDebugPage.tsx",
+        "frontend/src/pages/debug/ForgeSafeAffixesDebugPage.tsx",
+        "frontend/src/App.tsx",
+        "render.yaml"
+      ],
+      "line_numbers": [
+        36,
+        40,
+        33,
+        267,
+        276,
+        101
+      ],
+      "commands_used": [
+        "grep fetch pages/debug",
+        "node scratch/fe/pw.cjs"
+      ],
+      "affected_components": [
+        "v2.5 trust/debug pages"
+      ],
+      "user_impact": "Transparency surfaces fail in production",
+      "confidence": "high",
+      "recommended_action": "Route through the API base; test",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-4",
+      "severity": "P1",
+      "domain": "importer UX",
+      "title": "Importer dead ends: Maxroll 403 shown as expiry, LET URL accepted in URL tab, Quick Fetch permanently disabled, 'issue reported' footer never renders",
+      "description": "The 403 message blames expiry or format. The JSON tab cannot take Maxroll data. The footer checks for the string '422', which backend messages never contain.",
+      "evidence": "Playwright with simulated 403; BuildImportModal.tsx",
+      "files": [
+        "frontend/src/components/features/build/BuildImportModal.tsx",
+        "backend/app/services/importers/maxroll_importer.py"
+      ],
+      "line_numbers": [
+        92,
+        95,
+        299,
+        419,
+        432,
+        560,
+        716
+      ],
+      "commands_used": [
+        "node scratch/fe/pw2.cjs"
+      ],
+      "affected_components": [
+        "BuildImportModal"
+      ],
+      "user_impact": "Users hit unexplained dead ends",
+      "confidence": "high",
+      "recommended_action": "Detect 403s and route users to the paste/bookmarklet path",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN",
+      "r0_commits": "e61429b, 79aeb15",
+      "r0_notes": "Partially addressed in R0: LET URLs routed to the JSON flow; Maxroll 403 no longer described as an expired build. Remaining for AUDIT-R4: Quick Fetch tab still shown (disabled), the '422' issue-reported footer never renders, no paste fallback for Maxroll."
+    },
+    {
+      "id": "FE-5",
+      "severity": "P1",
+      "domain": "build lifecycle",
+      "title": "Anonymous and imported builds cannot be edited, published or shared in the UI",
+      "description": "isOwner requires an author; there is no is_public control; imports are forced private; there is no share button; /workspace has no save path. The backend allows anyone to PATCH an anonymous build (an ownership-model gap).",
+      "evidence": "BuildPlannerPage isOwner logic; import_route forces is_public=False",
+      "files": [
+        "frontend/src/components/features/build/BuildPlannerPage.tsx",
+        "backend/app/routes/import_route.py",
+        "backend/app/routes/builds.py",
+        "frontend/src/components/features/build-workspace/UnifiedBuildPage.tsx"
+      ],
+      "line_numbers": [
+        257,
+        495,
+        592,
+        206
+      ],
+      "commands_used": [
+        "grep isOwner|is_public"
+      ],
+      "affected_components": [
+        "planner",
+        "workspace",
+        "import"
+      ],
+      "user_impact": "Import -> edit -> share journey dead-ends",
+      "confidence": "high",
+      "recommended_action": "Define an anonymous ownership model; add publish and share controls",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-1",
+      "severity": "P1",
+      "domain": "import/frontend",
+      "title": "Default Import URL tab still routes LE Tools URLs to the dead server-side fetch",
+      "description": "handleFullImport rejects only unknown sources. The LE Tools 'use JSON tab' text is just a hint and the button stays enabled, so the backend fetches, gets a 403 and fires a hard alert every time.",
+      "evidence": "BuildImportModal.tsx:86-95,263-289,304-317; the repo itself says the server-side fetch is dead (import_route.py:432-434)",
+      "files": [
+        "frontend/src/components/features/build/BuildImportModal.tsx",
+        "backend/app/routes/import_route.py"
+      ],
+      "line_numbers": [
+        86,
+        95,
+        284,
+        309,
+        432
+      ],
+      "commands_used": [
+        "sed -n",
+        "scratchpad/imp_route403.py"
+      ],
+      "affected_components": [
+        "BuildImportModal",
+        "/api/import/build"
+      ],
+      "user_impact": "Users see a raw 'HTTP 403' with no pointer to the bookmarklet; the alert channel fills with noise",
+      "confidence": "high",
+      "recommended_action": "Send LE Tools URLs to the JSON/bookmarklet flow and show that guidance in the 403 error",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "e61429b",
+      "r0_notes": "LET planner URLs are never submitted to the server importer; the modal routes to the JSON/bookmarklet flow with the original URL preserved."
+    },
+    {
+      "id": "IMP-2",
+      "severity": "P1",
+      "domain": "import/fetch",
+      "title": "Server-side LE Tools fetch gets HTTP 403 from production, and nothing is logged that would identify the source",
+      "description": "A single requests.get with a hard-coded Chrome/120 User-Agent and no retries. Only the status integer is logged. No server, cf-ray or cf-mitigated header and no body snippet is captured, so a Cloudflare 403 cannot be told apart from an origin 403.",
+      "evidence": "lastepochtools_importer.py:693-727; the local egress proxy blocked live observation",
+      "files": [
+        "backend/app/services/importers/lastepochtools_importer.py"
+      ],
+      "line_numbers": [
+        693,
+        704,
+        718,
+        726
+      ],
+      "commands_used": [
+        "curl robots.txt (blocked by local proxy)",
+        "egress proxy status query"
+      ],
+      "affected_components": [
+        "LastEpochToolsImporter"
+      ],
+      "user_impact": "LE Tools URL import is non-functional in production (per incident)",
+      "confidence": "high (failure) / unknown (origin)",
+      "recommended_action": "Treat server-side fetch as unsupported; if it is kept, capture upstream diagnostic headers. Do not evade upstream protection",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "e61429b, 79aeb15",
+      "r0_notes": "Server-side LET fetch retired (/api/import/build and /api/import/url return 422 LET_SERVER_FETCH_UNSUPPORTED, no fetch, no alert). Importers now record HTTP status and safe upstream headers. Upstream LE Tools behaviour itself is unchanged and not bypassed."
+    },
+    {
+      "id": "IMP-4",
+      "severity": "P1",
+      "domain": "import/mapping",
+      "title": "Integer baseTypeID is mapped by sequential index into base_items.json, producing wrong items silently",
+      "description": "_get_base_item_map enumerates base_items.json by position, so chest maps to 'Iron Helm' and idol to 'Imperial Boots'. missing_fields stays empty, and the golden sidecar fixture records these as resolved.",
+      "evidence": "lastepochtools_importer.py:105-126 ('keyed by sequential index'),1056-1061; le_tools_import_context_sidecar_current.json",
+      "files": [
+        "backend/app/services/importers/lastepochtools_importer.py",
+        "backend/tests/fixtures/le_tools_import_context_sidecar_current.json"
+      ],
+      "line_numbers": [
+        105,
+        126,
+        1056,
+        1061
+      ],
+      "commands_used": [
+        "scratchpad/imp_repro.py"
+      ],
+      "affected_components": [
+        "_parse_gear",
+        "/api/import/let/json",
+        "build analysis"
+      ],
+      "user_impact": "Imported gear is wrong and feeds analysis/simulation",
+      "confidence": "high",
+      "recommended_action": "Map via the (baseTypeID, subTypeID) items.json map or report the item unresolved; correct the golden fixture",
+      "source_report": "08/09",
+      "related_findings": [
+        "LOSS-4"
+      ],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "INFRA-2",
+      "severity": "P1",
+      "domain": "infra/ci",
+      "title": "main deploys without CI; release PR #371 was merged and deployed while its CI was failing",
+      "description": "CI does not trigger on push to main, and deploy.yml has no CI dependency. Deploy ran 34s after CI started; that CI run then failed.",
+      "evidence": "CI run #655 failed 23:43:30-23:49:24Z; deploy succeeded 23:44:04Z | also via SYS-8: .github/workflows/deploy.yml; .github/workflows/ci.yml",
+      "files": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/deploy.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "GitHub actions_list for ci.yml and deploy.yml",
+        "cat workflows"
+      ],
+      "affected_components": [
+        "release process"
+      ],
+      "user_impact": "Untested code reaches production",
+      "confidence": "high",
+      "recommended_action": "Required status checks on main; deploy depends on CI",
+      "source_report": "16",
+      "related_findings": [
+        "SYS-8",
+        "RT-3 (02)",
+        "DOC-14"
+      ],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "LOSS-2",
+      "severity": "P1",
+      "domain": "field-loss/affixes",
+      "title": "Affix property IDs and the second property of hybrid affixes are dropped; 981 of 1,113 affixes map to no BuildStats field",
+      "description": "property (578), affixProperties (534), tiers[].extraRolls (534) and idol tiers2 (115) are not carried. stat_key is a name slug. specialAffixType is collapsed from 7 values to 0/1.",
+      "evidence": "field-path diff exports_json -> data/items/affixes.json",
+      "files": [
+        "scripts/sync_game_data.py",
+        "backend/app/domain/item.py"
+      ],
+      "line_numbers": [
+        161,
+        213,
+        236,
+        88
+      ],
+      "commands_used": [
+        "scratchpad/fl/probe.py affixes",
+        "scratchpad/fl/aff.py"
+      ],
+      "affected_components": [
+        "affix engine",
+        "stat engine"
+      ],
+      "user_impact": "Hybrid and idol affixes calculate incompletely or not at all, silently",
+      "confidence": "high",
+      "recommended_action": "Carry property, modifierType and extraRolls into the canonical affix model",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "LOSS-3",
+      "severity": "P1",
+      "domain": "field-loss/passives",
+      "title": "Passive structured stat fields are dropped",
+      "description": "property, tags, downside, noScaling and pointBonusDescription are dropped; the label map covers 39.2% of stat rows. A resync would drop requires on 190 nodes.",
+      "evidence": "1,335 non-zero property rows; 34 downside; 324 noScaling",
+      "files": [
+        "scripts/sync_game_data.py",
+        "backend/app/services/passive_stat_resolver.py"
+      ],
+      "line_numbers": [
+        479,
+        482,
+        466,
+        476
+      ],
+      "commands_used": [
+        "scratchpad/fl/cov.py"
+      ],
+      "affected_components": [
+        "passive stat resolver"
+      ],
+      "user_impact": "Passive bonuses missing or with the wrong sign",
+      "confidence": "high",
+      "recommended_action": "Carry structured stats",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "LOSS-4",
+      "severity": "P1",
+      "domain": "field-loss/items",
+      "title": "98 of 115 curated base item names do not exist in game data; implicits are free text",
+      "description": "Per-subtype class requirement, level and attack rate are lost.",
+      "evidence": "e.g. 'Rusted Coif' vs export 'Refuge Helmet'",
+      "files": [
+        "data/items/base_items.json",
+        "backend/app/engines/base_engine.py"
+      ],
+      "line_numbers": [
+        32
+      ],
+      "commands_used": [
+        "python3 name match"
+      ],
+      "affected_components": [
+        "item engine",
+        "importer base mapping"
+      ],
+      "user_impact": "Wrong bases and implicits",
+      "confidence": "high",
+      "recommended_action": "Use extracted base items with structured implicits",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "LOSS-5",
+      "severity": "P1",
+      "domain": "field-loss/uniques-sets",
+      "title": "Unique and set numeric mods are dropped",
+      "description": "Uniques keep curated strings; variants collapse by slug; 27 of 45 set bonuses are dropped; effectiveLevelForLP is absent from the v2 bundle and the TS types.",
+      "evidence": "11 of 18 Forge sets have empty bonuses",
+      "files": [
+        "scripts/sync_game_data.py",
+        "data/items/uniques.json",
+        "data/items/set_items.json"
+      ],
+      "line_numbers": [
+        901,
+        929,
+        1040
+      ],
+      "commands_used": [
+        "scratchpad/fl/uq.py",
+        "scratchpad/fl/sets.py"
+      ],
+      "affected_components": [
+        "unique/set calculation",
+        "LP"
+      ],
+      "user_impact": "Uniques and sets not calculable",
+      "confidence": "high",
+      "recommended_action": "Import mods structurally, keyed by numeric ID",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "OBS-1",
+      "severity": "P1",
+      "domain": "observability",
+      "title": "Import failure alert lacks version, upstream metadata, aggregation and replay data",
+      "description": "The Discord embed has source, URL, missing_fields, a parsed summary, error and user. It has no app version/commit, data/extractor version, upstream status headers or body snippet, failure stage, dedupe or replay payload. No alert fires if the DB commit fails.",
+      "evidence": "backend/app/services/discord_notifier.py; backend/app/routes/import_route.py",
+      "files": [
+        "backend/app/services/discord_notifier.py",
+        "backend/app/routes/import_route.py",
+        "backend/app/models/__init__.py"
+      ],
+      "line_numbers": [
+        116,
+        286,
+        330
+      ],
+      "commands_used": [
+        "sed -n discord_notifier.py"
+      ],
+      "affected_components": [
+        "import monitoring"
+      ],
+      "user_impact": "The 403 incident could not be diagnosed from the alert",
+      "confidence": "high",
+      "recommended_action": "Structured failure record + enriched alert",
+      "source_report": "15",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN",
+      "r0_commits": "79aeb15",
+      "r0_notes": "Partially addressed in R0: structured diagnostics record (stage, status, category, safe upstream headers, versions, replay status), alert sent even if the DB write fails. Remaining for AUDIT-R7: dedupe/aggregation, isolated-vs-systemic detection, stored replay payloads for JSON imports, extractor version (data/ has none yet)."
+    },
+    {
+      "id": "REL-10",
+      "severity": "P1",
+      "domain": "relationships/frontend trees",
+      "title": "Frontend name-to-tree mapping points some skills at tree-less variants",
+      "description": "Anomaly and Cinder Strike show an empty tree; 3 export trees are missing; a single parentId field cannot represent the 675 nodes with multiple prerequisites.",
+      "evidence": "getSkillTree('Anomaly') returns []",
+      "files": [
+        "frontend/src/data/skillTrees/index.ts",
+        "frontend/src/lib/gameData.ts"
+      ],
+      "line_numbers": [
+        16,
+        291
+      ],
+      "commands_used": [
+        "scratchpad/fl/fe.py"
+      ],
+      "affected_components": [
+        "SkillTreePanel"
+      ],
+      "user_impact": "Some skill trees not shown",
+      "confidence": "high",
+      "recommended_action": "Regenerate from tree-bearing skills; support multiple parents",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-2",
+      "severity": "P1",
+      "domain": "extraction/passives",
+      "title": "Export has 19 garbage passive prerequisite IDs and is missing 6 Warlock nodes",
+      "description": "19 of 254 edges are dangling; Acolyte nodes 86, 88, 97, 98, 101 and 103 are absent from the export and the v2 bundle.",
+      "evidence": "e.g. a requirement pointing at 1684808296038400",
+      "files": [
+        "last-epoch-data/exports_json/passive_trees.json",
+        "docs/generated/v2_passive_tree_bundle.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "scratchpad/fl/pas.py"
+      ],
+      "affected_components": [
+        "extractor",
+        "v2 passive bundle"
+      ],
+      "user_impact": "Broken Warlock tree if the export is adopted",
+      "confidence": "high",
+      "recommended_action": "Fix the decode; dangling-edge gate",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-23",
+      "severity": "P1",
+      "domain": "relationships/affix API",
+      "title": "Seeded affix rows always have empty class_requirement and tags",
+      "description": "Seeding uses AffixDefinition.to_dict(), which omits these fields, so /api/ref/affixes offers class-specific affixes to every class and tag filters return nothing.",
+      "evidence": "backend/app/utils/cli.py; backend/app/domain/item.py to_dict",
+      "files": [
+        "backend/app/utils/cli.py",
+        "backend/app/domain/item.py",
+        "backend/app/routes/ref.py"
+      ],
+      "line_numbers": [
+        19,
+        37,
+        88,
+        99
+      ],
+      "commands_used": [
+        "code read"
+      ],
+      "affected_components": [
+        "/api/ref/affixes",
+        "crafting UI"
+      ],
+      "user_impact": "Class-specific affixes offered to all classes",
+      "confidence": "high (assuming the DB was seeded via these commands)",
+      "recommended_action": "Seed from source fields; API test",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-4",
+      "severity": "P1",
+      "domain": "relationships/skill trees",
+      "title": "Backend skill-tree resolver data is incomplete and partly name-mismatched",
+      "description": "skill_tree_nodes.json covers 2,190 of 3,693 nodes; only 1 of 132 trees is complete. 9 trees cannot be found by skill name (e.g. Anomaly, Firebrand, Bladestorm) and 4 are absent. Unknown nodes are skipped at debug log level. 906 of 3,034 stat fragments map.",
+      "evidence": "an0my skill_name 'an0my'; sw42ih 4% coverage",
+      "files": [
+        "data/classes/skill_tree_nodes.json",
+        "backend/app/services/skill_tree_resolver.py"
+      ],
+      "line_numbers": [
+        159,
+        166,
+        334,
+        350
+      ],
+      "commands_used": [
+        "scratchpad/fl/stn.py"
+      ],
+      "affected_components": [
+        "skill DPS",
+        "conversions"
+      ],
+      "user_impact": "Spec-tree bonuses silently missing",
+      "confidence": "high",
+      "recommended_action": "Generate resolver data from structured stats keyed by tree ID",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-6",
+      "severity": "P1",
+      "domain": "relationships/skills",
+      "title": "skills_metadata is keyed by name, so 184 skills collapse to 161 and tree-less variants win",
+      "description": "Anomaly resolves to an0mz; class is empty for all entries; the LE Tools importer cannot map 7 tree IDs.",
+      "evidence": "Teleport fl45 vs te44",
+      "files": [
+        "scripts/sync_game_data.py",
+        "data/classes/skills_metadata.json",
+        "backend/app/services/importers/lastepochtools_importer.py"
+      ],
+      "line_numbers": [
+        296,
+        306,
+        83,
+        876
+      ],
+      "commands_used": [
+        "python3 collision check"
+      ],
+      "affected_components": [
+        "importers",
+        "skills_meta"
+      ],
+      "user_impact": "Imported builds keep raw codes for 7 skills",
+      "confidence": "high",
+      "recommended_action": "Key by ID",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-7",
+      "severity": "P1",
+      "domain": "relationships/v2 modifiers",
+      "title": "v2 modifier registry gives secondary properties the primary property's ranges",
+      "description": "366 of 384 second-property modifiers are affected.",
+      "evidence": "affix 14 Cold Resistance 0.2-7.0 vs extraRolls 0.05-0.36",
+      "files": [
+        "docs/generated/v2_modifier_registry.json",
+        "docs/generated/v2_affix_bundle.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 -I registry vs extraRolls"
+      ],
+      "affected_components": [
+        "experimental planner adapters"
+      ],
+      "user_impact": "Experimental only; wrong values if promoted",
+      "confidence": "high",
+      "recommended_action": "Per-property tier groups; block promotion",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "RT-2",
+      "severity": "P1",
+      "domain": "ci",
+      "title": "dev is 413 commits ahead of main and has 12 real local test failures",
+      "description": "9 of the 12 failures are the production-boundary guards that keep experimental v2 data out of production modules. There is no releasable integration branch.",
+      "evidence": "pytest on a dev archive; GitHub actions runs",
+      "files": [
+        ".github/workflows/ci.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "pytest (dev archive)",
+        "GitHub actions runs"
+      ],
+      "affected_components": [
+        "release flow"
+      ],
+      "user_impact": "Remediation cannot simply ship from dev",
+      "confidence": "high",
+      "recommended_action": "Decide the remediation base branch (main vs dev) first",
+      "source_report": "02",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "RT-4",
+      "severity": "P1",
+      "domain": "runtime",
+      "title": "Node 20 is EOL; the locked toolchain already requires Node >=22.12",
+      "description": "CI, Render and Docker declare Node 20, and npm ci emits EBADENGINE. GitHub Actions majors in CI also target Node 20 runners.",
+      "evidence": "npm ci log; render.yaml NODE_VERSION 20",
+      "files": [
+        "render.yaml",
+        ".github/workflows/ci.yml",
+        "frontend/Dockerfile"
+      ],
+      "line_numbers": [
+        93
+      ],
+      "commands_used": [
+        "npm ci"
+      ],
+      "affected_components": [
+        "frontend build",
+        "CI"
+      ],
+      "user_impact": "Unsupported runtime; future build breakage",
+      "confidence": "high",
+      "recommended_action": "Move to an LTS Node version supported by the lockfile",
+      "source_report": "02",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-3",
+      "severity": "P1",
+      "domain": "security/auth",
+      "title": "Discord OAuth has no state or PKCE",
+      "description": "The authorize URL carries only client_id, redirect_uri and scope; the callback accepts any code.",
+      "evidence": "backend/app/routes/auth.py:48-59",
+      "files": [
+        "backend/app/routes/auth.py"
+      ],
+      "line_numbers": [
+        48,
+        59
+      ],
+      "commands_used": [
+        "code review"
+      ],
+      "affected_components": [
+        "login"
+      ],
+      "user_impact": "Login CSRF / account swap",
+      "confidence": "high",
+      "recommended_action": "Signed state (+PKCE)",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-4",
+      "severity": "P1",
+      "domain": "dependencies",
+      "title": "Known advisories in pinned backend dependencies",
+      "description": "pip-audit: 10 distinct advisories across 6 packages: flask-cors 4.0.1 (x4), requests 2.32.3 (x2), flask 3.0.3, marshmallow 3.21.3, python-dotenv 1.0.1, pytest.",
+      "evidence": "pip-audit -r backend/requirements.txt",
+      "files": [
+        "backend/requirements.txt"
+      ],
+      "line_numbers": [
+        1,
+        4,
+        8,
+        11,
+        17
+      ],
+      "commands_used": [
+        "pip-audit -r backend/requirements.txt"
+      ],
+      "affected_components": [
+        "backend"
+      ],
+      "user_impact": "Exposure to known vulnerabilities",
+      "confidence": "high",
+      "recommended_action": "Patch/minor upgrades with tests (security-critical only)",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-2",
+      "severity": "P1",
+      "domain": "api",
+      "title": "Unauthenticated POST /api/load/game-data reloads the pipeline",
+      "description": "Reloads game data in a single gunicorn worker; reachable from /data-manager.",
+      "evidence": "backend/app/routes/load.py:21-23",
+      "files": [
+        "backend/app/routes/load.py",
+        "frontend/src/App.tsx"
+      ],
+      "line_numbers": [
+        21,
+        22,
+        244
+      ],
+      "commands_used": [
+        "sed load.py"
+      ],
+      "affected_components": [
+        "GameDataPipeline"
+      ],
+      "user_impact": "Workers can diverge; anonymous CPU trigger",
+      "confidence": "high",
+      "recommended_action": "Admin-gate or dev-only",
+      "source_report": "01",
+      "related_findings": [
+        "SEC-7 (17)"
+      ],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "77e8a83",
+      "r0_notes": "POST /api/load/game-data gated the same way as SYS-1."
+    },
+    {
+      "id": "SYS-3",
+      "severity": "P1",
+      "domain": "data-provenance",
+      "title": "Production math runs on pre-1.4.6 data stamped patch 'unknown' while v2 pages show 1.4.6",
+      "description": "data/ last synced 2026-04-26 (affixes only); upstream 1.4.6 since 2026-05-05; v2 bundles are 1.4.6.",
+      "evidence": "data/version.json; last-epoch-data/exports_json/metadata.json",
+      "files": [
+        "data/version.json",
+        "backend/app/routes/health.py",
+        "backend/config.py"
+      ],
+      "line_numbers": [
+        28,
+        37,
+        46
+      ],
+      "commands_used": [
+        "cat data/version.json",
+        "git log -1 -- data/"
+      ],
+      "affected_components": [
+        "planner",
+        "/api/health",
+        "/api/version"
+      ],
+      "user_impact": "Two different patches presented in one product",
+      "confidence": "high",
+      "recommended_action": "Single provenance source; validate-data fails on unknown patch",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-4",
+      "severity": "P1",
+      "domain": "governance",
+      "title": "Legacy sync drops upstream quarantine/trust status",
+      "description": "The extractor manifest BLOCKs affixes and degrades skills/passives; the Forge runtime consumes these families as authoritative with no gate.",
+      "evidence": "last-epoch-data/data_bundle/manifest.json action_summary; backend/app/game_data/pipeline.py:45-57; FORGE_DATA_CONTRACT.md:283",
+      "files": [
+        "scripts/sync_game_data.py",
+        "backend/app/game_data/pipeline.py"
+      ],
+      "line_numbers": [
+        21,
+        45,
+        57
+      ],
+      "commands_used": [
+        "cat manifest.json"
+      ],
+      "affected_components": [
+        "sync",
+        "validate-data"
+      ],
+      "user_impact": "Families the data owner has not cleared drive user results",
+      "confidence": "high",
+      "recommended_action": "Enforce manifest block/degrade in validate-data and at load",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-5",
+      "severity": "P1",
+      "domain": "governance/exposure",
+      "title": "v2 'trusted data' API and debug pages exposed in production without a gate",
+      "description": "41 v2 GET routes x2 prefixes have no config gate; commit 9f38e8e moved /debug/v2* out of IS_DEV; the upstream trusted_public_visibility_ready flag is false.",
+      "evidence": "backend/app/routes/experimental.py:197-1035; frontend/src/App.tsx:263-276",
+      "files": [
+        "backend/app/routes/experimental.py",
+        "frontend/src/App.tsx"
+      ],
+      "line_numbers": [
+        197,
+        264,
+        276
+      ],
+      "commands_used": [
+        "url_map dump",
+        "git show 9f38e8e --stat"
+      ],
+      "affected_components": [
+        "experimental_bp",
+        "debug pages"
+      ],
+      "user_impact": "Public sees data labeled trusted that the data owner has not released",
+      "confidence": "high",
+      "recommended_action": "Gate by config or record an explicit exposure decision",
+      "source_report": "01",
+      "related_findings": [
+        "SEC-10 (17)",
+        "DOC-6",
+        "API-3"
+      ],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-6",
+      "severity": "P1",
+      "domain": "pipeline-reproducibility",
+      "title": "Manual cross-repo hand-off with three path conventions and D:\\Forge defaults",
+      "description": "sync_game_data.py expects a nested clone; affix_diagnostic_consumer expects a sibling; 13 tracked code files hard-code D:\\Forge.",
+      "evidence": "scripts/sync_game_data.py:21; backend/app/game_data/bundle_compat.py:19; backend/app/game_data/affix_diagnostic_consumer.py:16",
+      "files": [
+        "scripts/sync_game_data.py",
+        "backend/app/game_data/bundle_compat.py",
+        "backend/scripts/report_v2_affix_bundle.py"
+      ],
+      "line_numbers": [
+        21,
+        19,
+        23
+      ],
+      "commands_used": [
+        "git grep -l 'D:\\\\Forge'"
+      ],
+      "affected_components": [
+        "patch refresh"
+      ],
+      "user_impact": "Patch updates are tied to one workstation",
+      "confidence": "high",
+      "recommended_action": "One env-configured data root",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "TEST-1",
+      "severity": "P1",
+      "domain": "ci",
+      "title": "dev CI red for 261 consecutive pushes; last-epoch-data regeneration gate red for 62",
+      "description": "Persistently red CI in both repos means CI is not functioning as a gate.",
+      "evidence": "dev last green #525 on 2026-05-09; last-epoch-data last green 2026-05-29; local gate drift=7",
+      "files": [
+        ".github/workflows/ci.yml",
+        "last-epoch-data/.github/workflows/regeneration-gate.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "GitHub actions_list (300 dev runs)",
+        "regeneration_gate.py --strict on a clean clone"
+      ],
+      "affected_components": [
+        "CI"
+      ],
+      "user_impact": "Regressions ship undetected",
+      "confidence": "high",
+      "recommended_action": "Restore green, then enforce; remove -x",
+      "source_report": "14",
+      "related_findings": [
+        "RT-2",
+        "RT-7"
+      ],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "TEST-2",
+      "severity": "P1",
+      "domain": "tests",
+      "title": "A green backend suite does not validate extraction completeness",
+      "description": "Local main: 11,415 passed, 379 skipped, 7 errors. 321 of 379 skips target deleted data files. Real-bundle tests always skip (D:\\ path / FORGE_DATA_BUNDLE_DIR). 56 Postgres contract tests never run. pytest.ini ignores 6 files (147 tests), including the calculation snapshot. Golden baselines only check that their paths exist.",
+      "evidence": "junit.xml skip reasons; pytest.ini addopts",
+      "files": [
+        "backend/pytest.ini",
+        "backend/tests/test_game_data_completeness.py",
+        "backend/tests/test_forge_safe_affix_bundle_loader.py",
+        "backend/tests/test_bundle_item_adapter_report.py",
+        "backend/tests/test_api_contracts.py"
+      ],
+      "line_numbers": [
+        13,
+        95,
+        12,
+        169,
+        34
+      ],
+      "commands_used": [
+        "pytest tests/ --junitxml"
+      ],
+      "affected_components": [
+        "data completeness",
+        "API contracts"
+      ],
+      "user_impact": "False confidence",
+      "confidence": "high",
+      "recommended_action": "CI-runnable completeness tests against a committed upstream bundle; Postgres service in CI",
+      "source_report": "14",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "TEST-3",
+      "severity": "P1",
+      "domain": "tests/import",
+      "title": "Importer tests fully mock HTTP with synthetic HTML; no real-page fixture or live canary",
+      "description": "Tests pass even if the LE Tools format changes, fields are dropped, or every request returns 403.",
+      "evidence": "test_importers.py:159-171 asserts only class, mastery and skill count; 76 patch sites in test_build_import.py",
+      "files": [
+        "backend/tests/test_importers.py",
+        "backend/tests/test_build_import.py"
+      ],
+      "line_numbers": [
+        159
+      ],
+      "commands_used": [
+        "grep patch/requests"
+      ],
+      "affected_components": [
+        "importers"
+      ],
+      "user_impact": "Users find import breakage before tests do",
+      "confidence": "high",
+      "recommended_action": "Consented real captures; field-level assertions; scheduled canary",
+      "source_report": "14",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-10",
+      "severity": "P2",
+      "domain": "auth",
+      "title": "OAuth has no state parameter; JWT delivered in the URL; no revocation; is_active ignored",
+      "description": "Login CSRF is possible; the token can leak through history, logs and Referer.",
+      "evidence": "backend/app/routes/auth.py",
+      "files": [
+        "backend/app/routes/auth.py",
+        "backend/app/utils/auth.py"
+      ],
+      "line_numbers": [
+        49,
+        144,
+        78
+      ],
+      "commands_used": [
+        "static review"
+      ],
+      "affected_components": [
+        "auth"
+      ],
+      "user_impact": "Account and session risk",
+      "confidence": "high",
+      "recommended_action": "OAuth state; code exchange or fragment delivery",
+      "source_report": "11",
+      "related_findings": [
+        "SEC-3",
+        "SEC-6"
+      ],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-11",
+      "severity": "P2",
+      "domain": "availability",
+      "title": "Heavy anonymous compute, unbounded async queue, and Maxroll import that can exceed the 120s gunicorn timeout",
+      "description": "Worst cases: encounter 11.7s, optimize 8.3s, rotation 7.6s. The ThreadPoolExecutor queue is unbounded. Maxroll import makes 8 sequential fetches with a 15s timeout each.",
+      "evidence": "scratchpad cpu.py timings",
+      "files": [
+        "backend/app/utils/jobs.py",
+        "backend/app/services/importers/maxroll_importer.py"
+      ],
+      "line_numbers": [
+        24,
+        749
+      ],
+      "commands_used": [
+        "scratchpad cpu.py"
+      ],
+      "affected_components": [
+        "simulate",
+        "import"
+      ],
+      "user_impact": "Worker starvation",
+      "confidence": "medium",
+      "recommended_action": "Compute budgets, total import deadline, bounded queue",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-8",
+      "severity": "P2",
+      "domain": "validation",
+      "title": "One malformed anonymous gear payload breaks /api/meta/snapshot sitewide",
+      "description": "Inner gear affixes are not validated.",
+      "evidence": "snapshot 200 -> 500 after one anonymous create",
+      "files": [
+        "backend/app/services/meta_analytics_service.py",
+        "backend/app/schemas/__init__.py"
+      ],
+      "line_numbers": [
+        85,
+        83
+      ],
+      "commands_used": [
+        "scratchpad poison.py"
+      ],
+      "affected_components": [
+        "meta"
+      ],
+      "user_impact": "Meta page outage",
+      "confidence": "high",
+      "recommended_action": "Nested schemas; defensive readers",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-9",
+      "severity": "P2",
+      "domain": "errors",
+      "title": "HTTP 400/405 errors converted to 500",
+      "description": "errorhandler(Exception) also catches HTTPException.",
+      "evidence": "POST /api/health -> 500; bad JSON -> 500",
+      "files": [
+        "backend/app/__init__.py"
+      ],
+      "line_numbers": [
+        260
+      ],
+      "commands_used": [
+        "scratchpad err.py"
+      ],
+      "affected_components": [
+        "all routes"
+      ],
+      "user_impact": "Misleading errors; noisy logs; alerting noise",
+      "confidence": "high",
+      "recommended_action": "Pass HTTPException through",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-10",
+      "severity": "P2",
+      "domain": "calculation/block",
+      "title": "Block mitigation is unsourced and uncapped",
+      "description": "BE/(BE+1000) with no cap; domain/block.py uses different semantics.",
+      "evidence": "defense_engine.py:130",
+      "files": [
+        "backend/app/engines/defense_engine.py",
+        "backend/app/domain/block.py"
+      ],
+      "line_numbers": [
+        130,
+        33
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "EHP"
+      ],
+      "user_impact": "Block builds misjudged",
+      "confidence": "medium",
+      "recommended_action": "Source the formula; apply the cap",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-13",
+      "severity": "P2",
+      "domain": "calculation/conditional",
+      "title": "Conditional sim collapses 'more' into the increased pool",
+      "description": "Multiplicative deltas are added to the increased pool.",
+      "evidence": "state_encounter_integration.py:76-83",
+      "files": [
+        "backend/app/services/state_encounter_integration.py"
+      ],
+      "line_numbers": [
+        76
+      ],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "/simulate/conditional"
+      ],
+      "user_impact": "Wrong conditional gains",
+      "confidence": "high",
+      "recommended_action": "Keep separate buckets",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-16",
+      "severity": "P2",
+      "domain": "calculation/tests",
+      "title": "Calculation tests are self-referential; one fails",
+      "description": "Snapshot and formula-restatement tests only; the ailment cap test fails.",
+      "evidence": "25 calc test files: 607 passed, 1 failed (test_combat_engine.py:398)",
+      "files": [
+        "backend/tests/test_regression_suite.py",
+        "backend/tests/test_combat_engine.py"
+      ],
+      "line_numbers": [
+        123,
+        398
+      ],
+      "commands_used": [
+        "pytest 25 calc files"
+      ],
+      "affected_components": [
+        "CI"
+      ],
+      "user_impact": "Regressions vs the game are undetectable",
+      "confidence": "high",
+      "recommended_action": "Golden tests from extracted data and in-game captures",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-17",
+      "severity": "P2",
+      "domain": "calculation/docs",
+      "title": "Accuracy and limitation docs are stale or false",
+      "description": "KNOWN_LIMITATIONS and ACCURACY_AUDIT contain stale or false claims (ailment ratios, minion=0, ward formula).",
+      "evidence": "13_CALCULATION_TRUST_MATRIX.md section 7",
+      "files": [
+        "docs/KNOWN_LIMITATIONS.md",
+        "ACCURACY_AUDIT.md"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "public disclosure"
+      ],
+      "user_impact": "Misleading accuracy statements",
+      "confidence": "high",
+      "recommended_action": "Correct the docs",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-18",
+      "severity": "P2",
+      "domain": "calculation",
+      "title": "Area level fixed at 100; boss ailment reduction never applied",
+      "description": "Defense divisors are fixed; is_boss is never passed.",
+      "evidence": "constants/defense.py:42-47; ailment_calculator.py:67",
+      "files": [
+        "backend/app/constants/defense.py",
+        "backend/app/domain/calculators/ailment_calculator.py"
+      ],
+      "line_numbers": [
+        42,
+        67
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "defense",
+        "boss DPS"
+      ],
+      "user_impact": "Leveling and boss numbers wrong",
+      "confidence": "high",
+      "recommended_action": "Thread area_level and is_boss through",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "CALC-9",
+      "severity": "P2",
+      "domain": "calculation/defense",
+      "title": "Glancing blow and crit avoidance modeled with invented constants",
+      "description": "Enemy crit 35% and x1.5 are invented.",
+      "evidence": "constants/defense.py:51-52",
+      "files": [
+        "backend/app/constants/defense.py"
+      ],
+      "line_numbers": [
+        51
+      ],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "EHP"
+      ],
+      "user_impact": "EHP distorted",
+      "confidence": "medium",
+      "recommended_action": "Source or label experimental",
+      "source_report": "13",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DB-4",
+      "severity": "P2",
+      "domain": "deploy",
+      "title": "Render runs migrations only, never seeds reference tables",
+      "description": "Seeding happens only in entrypoint.sh, which Render does not use. create_build validates passive IDs against passive_nodes.",
+      "evidence": "render.yaml preDeployCommand",
+      "files": [
+        "render.yaml",
+        "backend/entrypoint.sh"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "static review"
+      ],
+      "affected_components": [
+        "passive_nodes",
+        "affix_defs"
+      ],
+      "user_impact": "A rebuilt DB rejects builds",
+      "confidence": "medium",
+      "recommended_action": "Idempotent seed step",
+      "source_report": "10",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DB-5",
+      "severity": "P2",
+      "domain": "migrations",
+      "title": "Migration chain is Postgres-only, untested in CI, with broken downgrades",
+      "description": "15 migrations, single head dd1840cac963; models match migrations except 5 server defaults. '::json' casts and a named FK drop; CI never runs db upgrade.",
+      "evidence": "unmodified SQLite replay fails at 3ffd55fa24ac; offline --sql render succeeds",
+      "files": [
+        "backend/migrations/versions/3ffd55fa24ac_remove_loot_filters.py",
+        ".github/workflows/ci.yml"
+      ],
+      "line_numbers": [
+        26
+      ],
+      "commands_used": [
+        "flask db upgrade --sql",
+        "flask db upgrade -d scratch/migrations_copy"
+      ],
+      "affected_components": [
+        "alembic"
+      ],
+      "user_impact": "Rollback and recovery risk",
+      "confidence": "high",
+      "recommended_action": "CI Postgres migration job",
+      "source_report": "10",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-2",
+      "severity": "P2",
+      "domain": "frontend",
+      "title": "/monte-carlo page presents client-side mock results as simulation",
+      "description": "It uses Box-Muller with unseeded Math.random.",
+      "evidence": "frontend/src/pages/MonteCarloPage.tsx header",
+      "files": [
+        "frontend/src/pages/MonteCarloPage.tsx"
+      ],
+      "line_numbers": [
+        6
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "UI"
+      ],
+      "user_impact": "Fabricated numbers",
+      "confidence": "high",
+      "recommended_action": "Label as mock or hide",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-4",
+      "severity": "P2",
+      "domain": "backend packages",
+      "title": "283 runtime / 237 test-only / 33 unreferenced backend modules",
+      "description": "Including all of planner_adapters/v2 and 25 game_data diagnostics, which are test/script-only.",
+      "evidence": "mod_class.json",
+      "files": [
+        "backend/"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 modgraph.py"
+      ],
+      "affected_components": [
+        "backend"
+      ],
+      "user_impact": "Maintenance and ambiguity cost",
+      "confidence": "high (static)",
+      "recommended_action": "Classify live/experimental/archived",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-5",
+      "severity": "P2",
+      "domain": "config",
+      "title": "Duplicate feature-flag definitions in Config",
+      "description": "FORGE_SAFE_* flags are defined twice with different truthiness semantics.",
+      "evidence": "backend/config.py:42,44,61,65",
+      "files": [
+        "backend/config.py"
+      ],
+      "line_numbers": [
+        42,
+        44,
+        61,
+        65
+      ],
+      "commands_used": [
+        "grep -n"
+      ],
+      "affected_components": [
+        "flags"
+      ],
+      "user_impact": "Surprising flag behaviour",
+      "confidence": "high",
+      "recommended_action": "Keep one definition",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-6",
+      "severity": "P2",
+      "domain": "constants",
+      "title": "Constants maintained in three trees",
+      "description": "backend/src/constants (TS), backend/app/constants (Python) and frontend/src/constants.",
+      "evidence": "vite/tsconfig aliases",
+      "files": [
+        "frontend/vite.config.ts",
+        "backend/app/constants/__init__.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "item typing"
+      ],
+      "user_impact": "Drift",
+      "confidence": "high",
+      "recommended_action": "Generate one from the other",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-1",
+      "severity": "P2",
+      "domain": "docs",
+      "title": "Stale test counts in docs",
+      "description": "README states 10,865 tests; actual collection is 11,800.",
+      "evidence": "README.md:6,15,183; backend/ARCHITECTURE.md:56",
+      "files": [
+        "README.md",
+        "backend/ARCHITECTURE.md"
+      ],
+      "line_numbers": [
+        6,
+        15,
+        183,
+        56
+      ],
+      "commands_used": [
+        "pytest --collect-only"
+      ],
+      "affected_components": [
+        "docs"
+      ],
+      "user_impact": "Misleading quality signal",
+      "confidence": "high",
+      "recommended_action": "Generate counts from CI",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-10",
+      "severity": "P2",
+      "domain": "docs/pipeline",
+      "title": "Patch guide 'git pull' consumer sync is a no-op",
+      "description": "The docs assume three different workspace layouts.",
+      "evidence": "last-epoch-data/patch_update_guide.md:238-246",
+      "files": [
+        "last-epoch-data/patch_update_guide.md",
+        "docs/WORKSPACE_HEALTHCHECK.md"
+      ],
+      "line_numbers": [
+        238,
+        246
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "patch refresh"
+      ],
+      "user_impact": "Refresh not reproducible",
+      "confidence": "high",
+      "recommended_action": "Rewrite with real commands",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-11",
+      "severity": "P2",
+      "domain": "docs/trust",
+      "title": "'VERIFIED' constants trace to an owner-provided spec, not extraction",
+      "description": "ACCURACY_AUDIT's VERIFIED tags cite a prose spec rather than extracted game data.",
+      "evidence": "ACCURACY_AUDIT.md:7-10,176",
+      "files": [
+        "ACCURACY_AUDIT.md",
+        "backend/app/constants/combat.py"
+      ],
+      "line_numbers": [
+        13
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "engines"
+      ],
+      "user_impact": "Overstated verification",
+      "confidence": "high",
+      "recommended_action": "Relabel as spec-sourced",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-14",
+      "severity": "P2",
+      "domain": "docs/deploy",
+      "title": "'CI-driven deploys' are push-driven; frontend deploy undefined",
+      "description": "Deploy has no CI dependency, uses a single hook, and render.yaml sets autoDeploy false.",
+      "evidence": "docs/deployment.md:122-129; deploy.yml",
+      "files": [
+        "docs/deployment.md"
+      ],
+      "line_numbers": [
+        122,
+        129
+      ],
+      "commands_used": [
+        "cat"
+      ],
+      "affected_components": [
+        "deploy"
+      ],
+      "user_impact": "Frontend/API drift",
+      "confidence": "high",
+      "recommended_action": "Gate on CI; document frontend deploy",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-4",
+      "severity": "P2",
+      "domain": "docs/versioning",
+      "title": "Five different version values; v2.5 absent from CHANGELOG",
+      "description": "VERSION 0.8.0, CHANGELOG 0.8.1, package.json 0.3.0, frontend 0.1.0, release name v2.5.",
+      "evidence": "cat VERSION CHANGELOG.md package.json",
+      "files": [
+        "VERSION",
+        "CHANGELOG.md",
+        "package.json",
+        "frontend/package.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "cat"
+      ],
+      "affected_components": [
+        "release"
+      ],
+      "user_impact": "Cannot tell what is deployed",
+      "confidence": "high",
+      "recommended_action": "Version policy",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DOC-6",
+      "severity": "P2",
+      "domain": "docs",
+      "title": "Readiness doc and tracker say v2 is not exposed; commit 9f38e8e exposed it",
+      "description": "The readiness sign-off predates the hotfix.",
+      "evidence": "docs/release/V2_5_MAIN_RELEASE_READINESS.md:109; docs/FORGE_MIGRATION_TRACKER.md",
+      "files": [
+        "docs/release/V2_5_MAIN_RELEASE_READINESS.md",
+        "docs/FORGE_MIGRATION_TRACKER.md"
+      ],
+      "line_numbers": [
+        109
+      ],
+      "commands_used": [
+        "git log"
+      ],
+      "affected_components": [
+        "governance docs"
+      ],
+      "user_impact": "Sign-off invalid",
+      "confidence": "high",
+      "recommended_action": "Re-issue readiness",
+      "source_report": "19",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-6",
+      "severity": "P2",
+      "domain": "enums",
+      "title": "specialAffixType 6 undecoded on 134 affixes while _meta reports 0 unknowns",
+      "description": "enums.json was last committed 2026-04-10 (1.4.3 era).",
+      "evidence": "Counter over exports_json/affixes.json",
+      "files": [
+        "last-epoch-data/exports_json/affixes.json",
+        "last-epoch-data/extracted_raw/enums/enums.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 Counter(specialAffixType)"
+      ],
+      "affected_components": [
+        "affix classification"
+      ],
+      "user_impact": "Possible misclassification",
+      "confidence": "high (fact) / unknown (meaning)",
+      "recommended_action": "Decode from game enums; make unknown counts truthful",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-7",
+      "severity": "P2",
+      "domain": "hard-coded IDs",
+      "title": "Patch-tied magic numbers and maps",
+      "description": "BASE_TYPE_ID map stops at 33 (IDs 40/41 missing); a pinned build number; MAX_PASSIVE_POINTS 113; a 1.4.3-verified binary skill-tree layout; report filenames fixed to 1.4.6.",
+      "evidence": "key diff vs extractor items.json baseTypeIDs 0-41",
+      "files": [
+        "backend/src/constants/BASE_TYPE_ID_TO_ITEM_TYPE_ID.ts",
+        "frontend/src/logic/validatePassiveBuild.ts",
+        "last-epoch-data/tools/scripts/extract_skill_trees_fast.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 key diff"
+      ],
+      "affected_components": [
+        "item typing",
+        "extractor"
+      ],
+      "user_impact": "Silent failures on new item types or layouts",
+      "confidence": "high",
+      "recommended_action": "Derive from extracted enums; fail loudly on unknown IDs",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DRIFT-8",
+      "severity": "P2",
+      "domain": "new systems",
+      "title": "Season 5 domains likely unsupported",
+      "description": "New skills and trees, Ice/Blood forging potential, variant unique affixes and faction changes per patch notes; unverified against game files.",
+      "evidence": "web snippets; 0 grep hits in exports",
+      "files": [
+        "docs/audits/2026-10-system-deep-audit/07_PATCH_DRIFT_REPORT.md"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "WebSearch",
+        "grep -il"
+      ],
+      "affected_components": [
+        "extractor",
+        "planner"
+      ],
+      "user_impact": "S5 builds cannot be modeled",
+      "confidence": "medium",
+      "recommended_action": "1.5 extraction gap review",
+      "source_report": "07",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-6",
+      "severity": "P2",
+      "domain": "extraction/relationships",
+      "title": "Broken references pass extractor validation",
+      "description": "Monster mods: 4/31 timeline keys resolve. 23 requirement edges point at non-existent nodes. Mastery abilityPathIds are empty for 20/20 masteries. Dungeon mods 0/3. Ignite appears 3 times.",
+      "evidence": "coverage scripts; validate_exports.py passes",
+      "files": [
+        "last-epoch-data/tools/scripts/validate_exports.py",
+        "last-epoch-data/tools/verification/export_baselines.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 -I validate_exports.py",
+        "python3 -I coverage.py"
+      ],
+      "affected_components": [
+        "exports_json"
+      ],
+      "user_impact": "Silent gaps",
+      "confidence": "high",
+      "recommended_action": "Referential-integrity validator as a gate",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-7",
+      "severity": "P2",
+      "domain": "extraction/affixes",
+      "title": "Unmapped specialAffixType '6' on 134 records; idol records double-counted in the completeness audit",
+      "description": "115 idol records duplicate equipment IDs, so the audit's 1227 affixes is really 1112 distinct.",
+      "evidence": "ID overlap 115/115",
+      "files": [
+        "last-epoch-data/tools/scripts/process_affixes.py",
+        "last-epoch-data/reports/pipeline_completeness_audit_1.4.6.json"
+      ],
+      "line_numbers": [
+        74,
+        226
+      ],
+      "commands_used": [
+        "python3 -I overlap check"
+      ],
+      "affected_components": [
+        "affixes"
+      ],
+      "user_impact": "Misclassification; overstated coverage",
+      "confidence": "high",
+      "recommended_action": "Decode the enum; dedupe",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-8",
+      "severity": "P2",
+      "domain": "extraction/tooling",
+      "title": "v2 bundle generators hard-code D:\\ paths; patch_version comes out wrong on Linux",
+      "description": "The 11 v2 bundles reproduce record-for-record from 1.4.6, but generation depends on Windows paths; report_v2_class_mastery_bundle.py:514 derives the patch from a Windows path.",
+      "evidence": "v2 regeneration diff",
+      "files": [
+        "backend/scripts/report_v2_class_mastery_bundle.py",
+        "backend/app/game_data/bundle_compat.py"
+      ],
+      "line_numbers": [
+        514,
+        19
+      ],
+      "commands_used": [
+        "git grep -l 'D:\\\\'",
+        "python runv2.py"
+      ],
+      "affected_components": [
+        "docs/generated/v2_*"
+      ],
+      "user_impact": "Single-machine tooling",
+      "confidence": "high",
+      "recommended_action": "Env-configured roots; PureWindowsPath",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R3",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-10",
+      "severity": "P2",
+      "domain": "data",
+      "title": "Frontend tree data diverges from backend data/",
+      "description": "Skill trees 133 vs 137 (3,863 vs 3,875 nodes); 55 passive names differ; there is no version stamp.",
+      "evidence": "python3 -I comparison script",
+      "files": [
+        "frontend/src/data/skillTrees/index.ts",
+        "frontend/src/data/passiveTrees/index.ts",
+        "data/classes/skills_with_trees.json",
+        "data/classes/passives.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 -I compare script"
+      ],
+      "affected_components": [
+        "tree UI",
+        "import mapping"
+      ],
+      "user_impact": "Missing/misnamed nodes",
+      "confidence": "medium-high",
+      "recommended_action": "Generate frontend trees from backend data with a version stamp and a parity test",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-11",
+      "severity": "P2",
+      "domain": "tests",
+      "title": "Frontend suite red (17 failed / 899 passed) and never run in CI; no tests for importer, save or URL composition",
+      "description": "Failures are stale nav and search tests; critical flows are untested.",
+      "evidence": "npx vitest run",
+      "files": [
+        "frontend/src/__tests__/components/navigation.test.tsx",
+        "frontend/src/__tests__/integration/layout.test.tsx",
+        ".github/workflows/ci.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "npx vitest run"
+      ],
+      "affected_components": [
+        "CI"
+      ],
+      "user_impact": "Regressions undetected",
+      "confidence": "high",
+      "recommended_action": "Fix; add to CI; add critical-flow tests",
+      "source_report": "12",
+      "related_findings": [
+        "RT-5 (02)",
+        "DOC-2",
+        "TEST-4"
+      ],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-7",
+      "severity": "P2",
+      "domain": "trust labeling",
+      "title": "DPS, EHP and grades displayed without trust labels; some values fabricated",
+      "description": "The letter grade comes from hardcoded caps (20k DPS / 8k EHP); DPS/EHP use '?? 0'; the Monte Carlo page is a client-side toy model; the crafting ±5% confidence interval is invented.",
+      "evidence": "Trust components are imported only by trust/debug pages",
+      "files": [
+        "frontend/src/components/features/build/simulation/BuildScoreCard.tsx",
+        "frontend/src/pages/crafting/CraftingPage.tsx",
+        "frontend/src/pages/MonteCarloPage.tsx"
+      ],
+      "line_numbers": [
+        43,
+        63,
+        100
+      ],
+      "commands_used": [
+        "grep TrustBadge",
+        "grep '?? 0'"
+      ],
+      "affected_components": [
+        "analysis UI"
+      ],
+      "user_impact": "Users trust unverified numbers",
+      "confidence": "high",
+      "recommended_action": "Label every computed number; show 'unavailable' instead of 0",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-8",
+      "severity": "P2",
+      "domain": "fallback display",
+      "title": "API failures render as empty data and a hardcoded 'Patch 1.4.3 / Season 4'",
+      "description": "The dashboard shows 0 builds / 0 skills / 0 affixes and a hardcoded patch when the API fails.",
+      "evidence": "frontend/src/pages/DashboardPage.tsx:159,192-193",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "line_numbers": [
+        159,
+        192,
+        193
+      ],
+      "commands_used": [
+        "node scratch/fe/pw.cjs"
+      ],
+      "affected_components": [
+        "dashboard"
+      ],
+      "user_impact": "Outage looks like an empty site; wrong patch shown",
+      "confidence": "high",
+      "recommended_action": "Explicit error states",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "FE-9",
+      "severity": "P2",
+      "domain": "navigation",
+      "title": "GlobalSearch links to non-existent /builds/:slug; 17 unlinked routes",
+      "description": "Search result links land on the 404 page; 17 routes are not reachable from navigation.",
+      "evidence": "/builds/some-slug renders NotFound",
+      "files": [
+        "frontend/src/components/search/GlobalSearch.tsx",
+        "frontend/src/App.tsx"
+      ],
+      "line_numbers": [
+        155
+      ],
+      "commands_used": [
+        "node scratch/fe/pw.cjs"
+      ],
+      "affected_components": [
+        "search"
+      ],
+      "user_impact": "Broken clicks",
+      "confidence": "high",
+      "recommended_action": "Fix the link target",
+      "source_report": "12",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R6",
+      "dependencies": [
+        "AUDIT-R1",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-3",
+      "severity": "P2",
+      "domain": "observability",
+      "title": "Failure alerts discard partial_data, and 'Missing Fields: None' is misleading",
+      "description": "_do_import passes result.build_data (always None on failure) instead of result.partial_data. Missing Fields 'None' on a transport failure means 'not attempted', not 'complete'. The alert has no status-code field and no dedupe.",
+      "evidence": "import_route.py:575; discord_notifier.py:70-71,116-134; reproduced",
+      "files": [
+        "backend/app/routes/import_route.py",
+        "backend/app/services/discord_notifier.py"
+      ],
+      "line_numbers": [
+        575,
+        70,
+        121
+      ],
+      "commands_used": [
+        "scratchpad/imp_route403.py"
+      ],
+      "affected_components": [
+        "ImportFailure",
+        "Discord alert"
+      ],
+      "user_impact": "Operators cannot triage failures",
+      "confidence": "high",
+      "recommended_action": "Forward partial_data; add failure stage, HTTP status and upstream headers to the alert; throttle alerts for known-dead paths",
+      "source_report": "08/09",
+      "related_findings": [
+        "OBS-1"
+      ],
+      "remediation_package": "AUDIT-R0",
+      "dependencies": [],
+      "status": "FIXED_LOCAL",
+      "r0_commits": "79aeb15",
+      "r0_notes": "partial_data forwarded; missing-field state NOT_EVALUATED / NONE_MISSING / MISSING_FIELDS_PRESENT; incident replay test."
+    },
+    {
+      "id": "IMP-5",
+      "severity": "P2",
+      "domain": "import/mapping",
+      "title": "Importer invents defaults and inferred mechanics without reporting them",
+      "description": "A missing bio becomes Primalist L70. An unknown mastery is replaced by the first mastery. Rarity is inferred from affix count. Affix IDs are guessed from varints with a slot-agnostic fallback. A unique resolves to the first unique on the same base.",
+      "evidence": "lastepochtools_importer.py:832-834,922,1076,1121-1131; import_route.py:583-587",
+      "files": [
+        "backend/app/services/importers/lastepochtools_importer.py",
+        "backend/app/routes/import_route.py"
+      ],
+      "line_numbers": [
+        832,
+        922,
+        1076,
+        1121,
+        583
+      ],
+      "commands_used": [
+        "scratchpad/imp_repro.py"
+      ],
+      "affected_components": [
+        "importer",
+        "planner"
+      ],
+      "user_impact": "Builds look complete but are wrong",
+      "confidence": "high",
+      "recommended_action": "Label guessed values as experimental and surface them in missing_fields/warnings",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-6",
+      "severity": "P2",
+      "domain": "import/contract",
+      "title": "Persistence drops skill slot, provenance and patch, and truncates skills",
+      "description": "create_build ignores the skill slot (uses idx+1), silently truncates to 5 skills, drops _source_code and defaults patch_version to 1.2.1. There are no provenance columns, and import skips schema validation.",
+      "evidence": "build_service.py:44-81",
+      "files": [
+        "backend/app/services/build_service.py",
+        "backend/app/models/__init__.py"
+      ],
+      "line_numbers": [
+        62,
+        70,
+        73
+      ],
+      "commands_used": [
+        "grep/sed"
+      ],
+      "affected_components": [
+        "Build",
+        "BuildSkill"
+      ],
+      "user_impact": "Wrong patch tag; an import cannot be traced back to its source",
+      "confidence": "high",
+      "recommended_action": "Persist an import provenance record and the real patch; validate the payload",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-7",
+      "severity": "P2",
+      "domain": "import/contract",
+      "title": "Most of a build's state is never imported, and the user is not told",
+      "description": "Blessings, implicits, roll values, sealed/experimental affixes, forging/legendary potential, the idol grid, weaver, attributes and config are never read. The JSON/bookmarklet path shows only a success toast.",
+      "evidence": "09_BUILD_IMPORT_CONTRACT.md matrix; BuildImportModal.tsx:167-185",
+      "files": [
+        "frontend/src/components/features/build/BuildImportModal.tsx",
+        "backend/app/routes/import_route.py"
+      ],
+      "line_numbers": [
+        167,
+        185
+      ],
+      "commands_used": [
+        "sed"
+      ],
+      "affected_components": [
+        "JSON import"
+      ],
+      "user_impact": "Users believe the import is exact; it is lossy at best",
+      "confidence": "high",
+      "recommended_action": "Emit and display a per-field EXACT/LOSSY/PARTIAL/UNSUPPORTED import coverage report",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-8",
+      "severity": "P2",
+      "domain": "testing",
+      "title": "No live-captured LE Tools payload; tests prove only assumed formats",
+      "description": "All LE Tools fixtures are synthetic (committed 2026-05-11) and HTTP is mocked. No test covers a 403, a challenge page, or alert content.",
+      "evidence": "pytest importer tests: 232 passed; fixture 'source' fields state they were not captured from live LET",
+      "files": [
+        "backend/tests/test_importers.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "pytest",
+        "git log --format=%ci"
+      ],
+      "affected_components": [
+        "test suite"
+      ],
+      "user_impact": "Regressions against the real site go undetected",
+      "confidence": "high",
+      "recommended_action": "Add a consented, user-captured buildInfo fixture plus 403/challenge tests",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "INFRA-4",
+      "severity": "P2",
+      "domain": "infra",
+      "title": "One deploy hook for two autoDeploy:false services; 4 gunicorn workers on a 512MB starter plan",
+      "description": "One service deploys only manually (which one is UNKNOWN). Measured ~105MB RSS per worker locally, so out-of-memory restarts are plausible.",
+      "evidence": "deploy.yml single secret; local maxrss",
+      "files": [
+        "render.yaml",
+        ".github/workflows/deploy.yml"
+      ],
+      "line_numbers": [
+        44
+      ],
+      "commands_used": [
+        "resource.getrusage after create_app"
+      ],
+      "affected_components": [
+        "api",
+        "frontend"
+      ],
+      "user_impact": "Version skew; OOM restarts",
+      "confidence": "medium",
+      "recommended_action": "Per-service hooks; check memory graphs",
+      "source_report": "16",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "LOSS-6",
+      "severity": "P2",
+      "domain": "field-loss/classes-blessings-ailments",
+      "title": "Class per-level and minion scaling, blessing implicits and ailment damage fields are absent",
+      "description": "The engine uses hand-authored level-1 class values. 74 of 112 blessings have no stat_key. data/ has 11 of 143 ailments and none of their damage fields.",
+      "evidence": "healthPerLevel and minionScaling absent",
+      "files": [
+        "backend/app/game_data/classes.json",
+        "data/progression/blessings.json",
+        "backend/app/game_data/pipeline.py"
+      ],
+      "line_numbers": [
+        125,
+        135
+      ],
+      "commands_used": [
+        "scratchpad/fl/cmp.py"
+      ],
+      "affected_components": [
+        "stat/combat engines"
+      ],
+      "user_impact": "Level, minion, blessing and ailment calculations approximate",
+      "confidence": "medium-high",
+      "recommended_action": "Source from the export",
+      "source_report": "05",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "OBS-2",
+      "severity": "P2",
+      "domain": "observability",
+      "title": "Liveness-only health check; no error tracking, metrics or uptime monitoring",
+      "description": "/api/health always returns 200 and checks neither DB, Redis nor data. If Redis is lost, rate limits silently fall back to per-process.",
+      "evidence": "health.py:49-58; app/__init__.py:31-45",
+      "files": [
+        "backend/app/routes/health.py",
+        "backend/app/__init__.py"
+      ],
+      "line_numbers": [
+        49,
+        31
+      ],
+      "commands_used": [
+        "cat"
+      ],
+      "affected_components": [
+        "ops"
+      ],
+      "user_impact": "Outages go unnoticed",
+      "confidence": "high",
+      "recommended_action": "Readiness endpoint, error tracker, external uptime monitor",
+      "source_report": "15",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-16",
+      "severity": "P2",
+      "domain": "relationships/items",
+      "title": "Four incompatible slot vocabularies and duplicate affix IDs",
+      "description": "116 duplicate affix_id values (first match wins); 98 duplicate names across 222 rows in name-keyed dicts.",
+      "evidence": "'helm' vs 'helmet'",
+      "files": [
+        "data/items/",
+        "backend/app/game_data/game_data_loader.py",
+        "backend/app/game_data/pipeline.py"
+      ],
+      "line_numbers": [
+        83,
+        163,
+        171
+      ],
+      "commands_used": [
+        "python3 vocab diff"
+      ],
+      "affected_components": [
+        "eligibility",
+        "lookups"
+      ],
+      "user_impact": "Silent mismatches",
+      "confidence": "high",
+      "recommended_action": "Canonical item-type ID; composite affix key",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-24",
+      "severity": "P2",
+      "domain": "relationships/fallbacks",
+      "title": "Fallback patterns hide failures across the stack",
+      "description": "Backend: 21 .get(...,'Unknown'), 34 'or 0', 18 except/pass. Frontend: 11 '?? \"Unknown\"' and 186 '?? 0' / '|| 0'. DB errors return 200 with []; data_version is always 'unknown'.",
+      "evidence": "ref.py:206-215; pipeline.py:467-471",
+      "files": [
+        "backend/app/routes/ref.py",
+        "backend/app/game_data/pipeline.py"
+      ],
+      "line_numbers": [
+        206,
+        215,
+        467,
+        471
+      ],
+      "commands_used": [
+        "grep fallback patterns"
+      ],
+      "affected_components": [
+        "API",
+        "engines",
+        "UI"
+      ],
+      "user_impact": "Silent partial results",
+      "confidence": "high",
+      "recommended_action": "Surface degraded status in responses",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "REL-9",
+      "severity": "P2",
+      "domain": "relationships/class-skill",
+      "title": "v2 class-to-skill links reported unresolved but are resolvable",
+      "description": "All 63 links are reported unresolved; 60 resolve via source_ability_path_id.",
+      "evidence": "path-id join",
+      "files": [
+        "docs/generated/v2_skill_bundle.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python3 path-id join"
+      ],
+      "affected_components": [
+        "v2 skill repository"
+      ],
+      "user_impact": "No data-driven class-to-skill mapping",
+      "confidence": "high",
+      "recommended_action": "Join on path ID",
+      "source_report": "06",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R2",
+      "dependencies": [
+        "AUDIT-R1"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "RT-6",
+      "severity": "P2",
+      "domain": "tests",
+      "title": "Order-dependent SQLite teardown error aborts CI under -x",
+      "description": "A closed-DB error at teardown of the weaver test; it passes when run alone.",
+      "evidence": "both full runs",
+      "files": [
+        "backend/tests/test_weaver_tree_scaffold.py"
+      ],
+      "line_numbers": [
+        175
+      ],
+      "commands_used": [
+        "pytest tests/"
+      ],
+      "affected_components": [
+        "CI"
+      ],
+      "user_impact": "Flaky CI",
+      "confidence": "medium",
+      "recommended_action": "Find the leaking connection",
+      "source_report": "02",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "RT-7",
+      "severity": "P2",
+      "domain": "extractor",
+      "title": "last-epoch-data committed reports no longer match their generators",
+      "description": "23 of 2,319 extractor tests fail; the strict regeneration gate reports 88 of 185 artifacts drifted.",
+      "evidence": "pytest in clone; regeneration_gate.py --strict",
+      "files": [
+        "last-epoch-data/tools/scripts/regeneration_gate.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "pytest tools/scripts",
+        "regeneration_gate.py --strict"
+      ],
+      "affected_components": [
+        "extractor governance reports"
+      ],
+      "user_impact": "Old governance reports cannot be trusted as current",
+      "confidence": "high",
+      "recommended_action": "Regenerate or fix generators",
+      "source_report": "02",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-6",
+      "severity": "P2",
+      "domain": "security/tokens",
+      "title": "JWT passed in the redirect URL and stored in sessionStorage; no CSP; no revocation",
+      "description": "The token can leak via browser history, server logs and Referer; there is no Content-Security-Policy.",
+      "evidence": "backend/app/routes/auth.py:153; frontend AuthCallbackPage",
+      "files": [
+        "backend/app/routes/auth.py",
+        "frontend/src/components/features/AuthCallbackPage.tsx"
+      ],
+      "line_numbers": [
+        153,
+        28
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "auth"
+      ],
+      "user_impact": "Token theft on XSS or history leak",
+      "confidence": "high",
+      "recommended_action": "Code exchange or URL fragment; add a CSP",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-8",
+      "severity": "P2",
+      "domain": "dependencies",
+      "title": "Toolchain advisories and unsupported Electron",
+      "description": "npm audit: frontend 55 (5 critical / 37 high, mostly dev toolchain); root 31 (0 production). The shipped react-router-dom 6.30.3 has 3 moderate advisories.",
+      "evidence": "npm audit --json",
+      "files": [
+        "frontend/package-lock.json",
+        "package-lock.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "npm audit",
+        "npm outdated"
+      ],
+      "affected_components": [
+        "dev/CI/desktop"
+      ],
+      "user_impact": "Dev-machine risk; open-redirect class in the shipped router",
+      "confidence": "high",
+      "recommended_action": "Patch react-router-dom; schedule toolchain upgrades separately",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-10",
+      "severity": "P2",
+      "domain": "workers",
+      "title": "Background jobs run in in-process threads with Redis-only state",
+      "description": "Jobs are lost on restart or deploy.",
+      "evidence": "backend/app/utils/jobs.py:25,65,118",
+      "files": [
+        "backend/app/utils/jobs.py"
+      ],
+      "line_numbers": [
+        25,
+        65,
+        118
+      ],
+      "commands_used": [
+        "sed jobs.py"
+      ],
+      "affected_components": [
+        "async simulate"
+      ],
+      "user_impact": "Jobs vanish during deploys",
+      "confidence": "high",
+      "recommended_action": "Document the limitation or use a durable queue",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-11",
+      "severity": "P2",
+      "domain": "deploy",
+      "title": "Render does not seed the database",
+      "description": "preDeploy runs only db upgrade; the seeded-table state in production is UNKNOWN.",
+      "evidence": "render.yaml:44 vs backend/entrypoint.sh:13-14",
+      "files": [
+        "render.yaml",
+        "backend/entrypoint.sh"
+      ],
+      "line_numbers": [
+        44,
+        13,
+        14
+      ],
+      "commands_used": [
+        "cat"
+      ],
+      "affected_components": [
+        "affix_defs",
+        "passive_nodes"
+      ],
+      "user_impact": "Behaviour depends on fallbacks",
+      "confidence": "medium",
+      "recommended_action": "Document or automate seeding",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-12",
+      "severity": "P2",
+      "domain": "raw-preservation",
+      "title": "No preserved 1.4.6 raw snapshot",
+      "description": "patch_versions holds only 1.3.7.1 and 1.4.3 binaries; the current exports cannot be regenerated from preserved raw.",
+      "evidence": "git ls-files patch_versions",
+      "files": [
+        "last-epoch-data/patch_versions"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "git ls-files patch_versions"
+      ],
+      "affected_components": [
+        "extractor"
+      ],
+      "user_impact": "Current dataset not reproducible",
+      "confidence": "high",
+      "recommended_action": "Snapshot policy per patch (review licensing of committed binaries)",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-7",
+      "severity": "P2",
+      "domain": "release",
+      "title": "main is 413 commits behind dev",
+      "description": "The production baseline is stale relative to active development; this audit covers main.",
+      "evidence": "GitHub compare main...dev ahead_by 413",
+      "files": [],
+      "line_numbers": [],
+      "commands_used": [
+        "GitHub compare API"
+      ],
+      "affected_components": [
+        "release"
+      ],
+      "user_impact": "Fixes on dev are not live",
+      "confidence": "high",
+      "recommended_action": "Reconcile dev vs main before remediation",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-9",
+      "severity": "P2",
+      "domain": "cache",
+      "title": "Reference-data cache neither versioned nor invalidated",
+      "description": "ref:* cache entries have a 86400s TTL with no invalidation on deploy, reload or admin edit.",
+      "evidence": "backend/app/utils/cache.py",
+      "files": [
+        "backend/app/utils/cache.py",
+        "backend/app/routes/ref.py"
+      ],
+      "line_numbers": [
+        86
+      ],
+      "commands_used": [
+        "grep delete_pattern"
+      ],
+      "affected_components": [
+        "Redis"
+      ],
+      "user_impact": "Stale reference data up to 24h",
+      "confidence": "medium",
+      "recommended_action": "Key cache by data version",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "TEST-4",
+      "severity": "P2",
+      "domain": "tests",
+      "title": "Frontend vitest/build not in CI; last-epoch-data CI runs 16 of ~2,319 tests",
+      "description": "Locally the extractor suite has 9 failures and 5 collection errors.",
+      "evidence": "ci.yml; regeneration-gate.yml",
+      "files": [
+        ".github/workflows/ci.yml"
+      ],
+      "line_numbers": [
+        81
+      ],
+      "commands_used": [
+        "pytest tools/scripts --continue-on-collection-errors"
+      ],
+      "affected_components": [
+        "frontend",
+        "extractor"
+      ],
+      "user_impact": "Undetected regressions",
+      "confidence": "high",
+      "recommended_action": "Add jobs",
+      "source_report": "14",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "API-12",
+      "severity": "P3",
+      "domain": "hygiene",
+      "title": "Redis KEYS usage, per-call git subprocess in /version, shallow health check, duplicate/dead routes",
+      "description": "See 11_API_BACKEND_AUDIT.md sections 3-4.",
+      "evidence": "cache.py:72; version.py:47",
+      "files": [
+        "backend/app/utils/cache.py",
+        "backend/app/routes/version.py"
+      ],
+      "line_numbers": [
+        72,
+        47
+      ],
+      "commands_used": [
+        "static review"
+      ],
+      "affected_components": [
+        "misc"
+      ],
+      "user_impact": "Minor",
+      "confidence": "high",
+      "recommended_action": "Clean up",
+      "source_report": "11",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-7",
+      "severity": "P3",
+      "domain": "repo hygiene",
+      "title": "Orphan le-parser gitlink, tracked error_log.txt, mismatched versions",
+      "description": "The le-parser.worktrees gitlink has no .gitmodules; backend/error_log.txt is tracked; VERSION 0.8.0 vs package.json 0.3.0 vs frontend 0.1.0.",
+      "evidence": "git ls-files -s le-parser.worktrees",
+      "files": [
+        "le-parser.worktrees",
+        "backend/error_log.txt",
+        "VERSION",
+        "package.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "git ls-files -s"
+      ],
+      "affected_components": [
+        "repo"
+      ],
+      "user_impact": "Confusion",
+      "confidence": "high",
+      "recommended_action": "Resolve",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "DEAD-9",
+      "severity": "P3",
+      "domain": "extractor repo",
+      "title": "Governance scripts dwarf extraction logic in last-epoch-data",
+      "description": "596 scripts: about 338 governance/review, about 31 extract/process, plus legacy duplicates.",
+      "evidence": "ls tools/scripts",
+      "files": [
+        "last-epoch-data/tools/scripts/"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "ls | grep -c"
+      ],
+      "affected_components": [
+        "extractor"
+      ],
+      "user_impact": "Slower patch response",
+      "confidence": "high",
+      "recommended_action": "Separate pipeline core from governance artifacts",
+      "source_report": "18",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "EXT-9",
+      "severity": "P3",
+      "domain": "extraction/consumption",
+      "title": "Large synced domains are never consumed",
+      "description": "Localization (21 files), quests, zones, timelines, actors, loot, set_items and ailments are synced into data/ but not read by production code.",
+      "evidence": "grep consumers",
+      "files": [
+        "data/localization",
+        "data/world"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep -rl basename backend/app frontend/src"
+      ],
+      "affected_components": [
+        "data/"
+      ],
+      "user_impact": "False sense of coverage",
+      "confidence": "medium",
+      "recommended_action": "Consume or mark unconsumed",
+      "source_report": "03/04",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [
+        "AUDIT-R0 (INFRA-1 deploy unblock)"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-10",
+      "severity": "P3",
+      "domain": "import/maxroll",
+      "title": "Maxroll importer relies on guessed, undocumented endpoints",
+      "description": "Seven guessed endpoints with spoofed headers. It has the same fragility as the LE Tools importer, with better diagnostics. Live status is unknown.",
+      "evidence": "maxroll_importer.py:275-281,735-744",
+      "files": [
+        "backend/app/services/importers/maxroll_importer.py"
+      ],
+      "line_numbers": [
+        275,
+        735
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "MaxrollImporter"
+      ],
+      "user_impact": "May break the same way",
+      "confidence": "medium",
+      "recommended_action": "Monitor failure rate; document endpoint provenance",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "IMP-9",
+      "severity": "P3",
+      "domain": "maintainability/security",
+      "title": "Duplicated fetch/extract code, unanchored URL regex, and the rate-limit key may be the proxy IP",
+      "description": "Extraction/fetch code is duplicated between the route and the importer. The URL regex is unanchored. There is no ProxyFix, so the limiter keys on remote_addr.",
+      "evidence": "import_route.py:90-168,336-348,488-499; lastepochtools_importer.py:593",
+      "files": [
+        "backend/app/routes/import_route.py",
+        "backend/app/services/importers/lastepochtools_importer.py"
+      ],
+      "line_numbers": [
+        90,
+        336,
+        493,
+        593
+      ],
+      "commands_used": [
+        "grep ProxyFix"
+      ],
+      "affected_components": [
+        "import routes",
+        "limiter"
+      ],
+      "user_impact": "Drift risk; anonymous users may share one rate limit",
+      "confidence": "medium",
+      "recommended_action": "Consolidate; anchor host validation; verify client-IP handling on Render",
+      "source_report": "08/09",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R4",
+      "dependencies": [
+        "AUDIT-R0",
+        "AUDIT-R2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "INFRA-5",
+      "severity": "P3",
+      "domain": "config",
+      "title": "Env-var contract mismatches",
+      "description": ".env.example says DATA_BUNDLE_DIR but the code reads FORGE_DATA_BUNDLE_DIR. Also: duplicate FORGE_SAFE_* definitions; DISCORD_REDIRECT_URI not validated in production (falls back to localhost); VITE_API_URL vs VITE_API_BASE_URL.",
+      "evidence": "config.py:42/61; bundle_compat.py:20",
+      "files": [
+        "backend/config.py",
+        ".env.example",
+        "backend/app/game_data/bundle_compat.py"
+      ],
+      "line_numbers": [
+        42,
+        61,
+        20
+      ],
+      "commands_used": [
+        "grep os.environ"
+      ],
+      "affected_components": [
+        "config"
+      ],
+      "user_impact": "Misconfiguration risk",
+      "confidence": "high",
+      "recommended_action": "Single env contract table",
+      "source_report": "16",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "RT-8",
+      "severity": "P3",
+      "domain": "quality",
+      "title": "ESLint (8 errors / 255 warnings) and mypy (169 errors) red and not in CI",
+      "description": "The react-hooks ESLint plugin is missing; mypy is configured for Python 3.12.",
+      "evidence": "npm run lint; mypy app",
+      "files": [
+        "frontend/.eslintrc.cjs",
+        "backend/mypy.ini"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "npm run lint",
+        "mypy app"
+      ],
+      "affected_components": [
+        "tooling"
+      ],
+      "user_impact": "None direct",
+      "confidence": "high",
+      "recommended_action": "Fix config; add to CI",
+      "source_report": "02",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R5",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-11",
+      "severity": "P3",
+      "domain": "hygiene",
+      "title": "Local artifacts committed",
+      "description": "backend/error_log.txt and a local editor/tool settings file are committed; no secrets were found in them.",
+      "evidence": "git ls-files",
+      "files": [
+        "backend/error_log.txt",
+        ".claude/settings.local.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "git ls-files",
+        "secret-pattern grep"
+      ],
+      "affected_components": [
+        "repo"
+      ],
+      "user_impact": "None",
+      "confidence": "high",
+      "recommended_action": "Remove and gitignore",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-9",
+      "severity": "P3",
+      "domain": "config",
+      "title": "Weak production config validation",
+      "description": "Only literal default values are rejected; the 127.0.0.1 default DB URL bypasses the localhost check.",
+      "evidence": "backend/config.py:15,107,119",
+      "files": [
+        "backend/config.py"
+      ],
+      "line_numbers": [
+        15,
+        107,
+        119
+      ],
+      "commands_used": [
+        "code review"
+      ],
+      "affected_components": [
+        "startup"
+      ],
+      "user_impact": "Misconfiguration could pass",
+      "confidence": "high",
+      "recommended_action": "Stronger checks",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-13",
+      "severity": "P3",
+      "domain": "code-hygiene",
+      "title": "11 backend packages unreachable from runtime",
+      "description": "buffs, build, combat, integration, movement, projectiles, simulation, spatial, stats, status and visualization are unreachable.",
+      "evidence": "AST reachability walk",
+      "files": [
+        "backend/"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "python AST walk"
+      ],
+      "affected_components": [
+        "backend"
+      ],
+      "user_impact": "Maintenance load; inflated test counts",
+      "confidence": "medium",
+      "recommended_action": "Classify live/experimental/archived",
+      "source_report": "01",
+      "related_findings": [
+        "DEAD-4",
+        "DEAD-1"
+      ],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-14",
+      "severity": "P3",
+      "domain": "desktop",
+      "title": "Electron packaging non-functional",
+      "description": "The backend is not bundled.",
+      "evidence": "electron/main.js:60-65",
+      "files": [
+        "electron/main.js",
+        "package.json"
+      ],
+      "line_numbers": [
+        60
+      ],
+      "commands_used": [
+        "grep"
+      ],
+      "affected_components": [
+        "electron"
+      ],
+      "user_impact": "None (not shipped)",
+      "confidence": "high",
+      "recommended_action": "Mark experimental/abandoned",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SYS-16",
+      "severity": "P3",
+      "domain": "docker",
+      "title": "Docker production profile lacks docs/generated and VERSION",
+      "description": "v2 routes return 404 and the version reads 0.0.0 under docker-compose.prod.yml.",
+      "evidence": "docker-compose.prod.yml volumes",
+      "files": [
+        "docker-compose.prod.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "cat"
+      ],
+      "affected_components": [
+        "docker"
+      ],
+      "user_impact": "Docker prod differs from Render",
+      "confidence": "high",
+      "recommended_action": "Align or mark unsupported",
+      "source_report": "01",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [
+        "AUDIT-R0"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "SEC-12",
+      "severity": "INFO",
+      "domain": "security",
+      "title": "Checked and not found: SSRF, unsafe deserialization, eval/subprocess, SQL injection, Electron hardening, committed secrets",
+      "description": "Importer hosts are hard-coded (no SSRF). No pickle, yaml.load, eval or shell subprocess; no SQL injection found. The Electron window uses contextIsolation, no nodeIntegration and the sandbox. No real secrets are committed.",
+      "evidence": "17_SECURITY_AND_DEPENDENCY_AUDIT.md",
+      "files": [
+        "backend/app/services/importers/lastepochtools_importer.py",
+        "electron/main.js"
+      ],
+      "line_numbers": [],
+      "commands_used": [
+        "grep patterns",
+        "code review"
+      ],
+      "affected_components": [
+        "backend",
+        "electron"
+      ],
+      "user_impact": "None",
+      "confidence": "high",
+      "recommended_action": "None",
+      "source_report": "17",
+      "related_findings": [],
+      "remediation_package": "none",
+      "dependencies": [],
+      "status": "INFO"
+    }
+  ]
+}

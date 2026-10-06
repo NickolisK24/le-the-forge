@@ -4,11 +4,15 @@ J14 — POST /api/load/game-data
 Triggers a hot-reload of the game-data pipeline and runs a data-integrity
 pass on the freshly loaded data.  Returns counts, version info, and any
 integrity warnings/errors detected during loading.
+
+Admin only, and disabled unless GAME_DATA_MUTATION_ENABLED is set (never in
+production), because a reload replaces the data every request is served from.
 """
 
 from flask import Blueprint, current_app
 
 from app import limiter
+from app.utils.auth import game_data_mutation_required
 from app.utils.responses import ok, error
 from data.loaders.raw_data_loader import RawDataLoader
 from data.versioning.versioned_loader import VersionedLoader
@@ -20,6 +24,7 @@ load_bp = Blueprint("load", __name__)
 
 @load_bp.post("/game-data")
 @limiter.limit("5 per minute")
+@game_data_mutation_required
 def load_game_data():
     """
     Reload game data and run integrity checks.

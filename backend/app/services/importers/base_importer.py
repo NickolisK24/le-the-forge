@@ -89,6 +89,9 @@ class ImportResult:
     missing_fields: list = field(default_factory=list)
     error_message: Optional[str] = None
     partial_data: Optional[dict] = None
+    # Failure diagnostics (stage, HTTP status, safe upstream headers, ...);
+    # see app/services/import_diagnostics.py.
+    diagnostics: Optional[dict] = None
 
 
 class BaseImporter(ABC):

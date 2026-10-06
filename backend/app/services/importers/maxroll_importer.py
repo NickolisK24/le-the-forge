@@ -28,6 +28,7 @@ from typing import Dict, List, Optional, Tuple
 import requests as _requests
 
 from app.services.importers.base_importer import BaseImporter, ImportResult
+from app.services.import_diagnostics import classify_http_status, http_failure_diagnostics
 
 logger = logging.getLogger(__name__)
 
@@ -704,23 +705,53 @@ class MaxrollImporter(BaseImporter):
         if frag_match:
             variant = int(frag_match.group(1))
 
+        self._fetch_statuses: List[int] = []
+        self._fetch_last_headers = None
         build_data, fetch_diag = self._fetch_build_data(code, variant)
         if build_data is None:
             # Surface the last observed HTTP status (if any) so production
             # operators can tell whether Maxroll is rate-limiting, returning
             # 404s, or returning 200s with an unexpected body shape.
             diag_suffix = f" ({fetch_diag})" if fetch_diag else ""
+            statuses = self._fetch_statuses
+            last_status = statuses[-1] if statuses else None
+            diagnostics = http_failure_diagnostics(
+                last_status,
+                self._fetch_last_headers,
+                attempts=fetch_diag.split("; ")[-6:] if fetch_diag else [],
+            )
+            if statuses and all(classify_http_status(st) == "upstream_blocked" for st in statuses):
+                # Every attempt was refused — do not suggest the build expired.
+                reason = (
+                    "Could not fetch build data from Maxroll: Maxroll refused our "
+                    "server's requests. This does not mean the build link is invalid."
+                )
+            elif statuses and all(st == 404 for st in statuses):
+                reason = (
+                    "Could not fetch build data from Maxroll: the build was not found. "
+                    "The link may be expired or invalid."
+                )
+            else:
+                reason = (
+                    "Could not fetch build data from Maxroll. "
+                    "The build may be expired, or Maxroll may have changed their format."
+                )
             return ImportResult(
                 success=False,
                 source=self.source_name,
-                error_message=(
-                    "Could not fetch build data from Maxroll. "
-                    "The build may be expired, or Maxroll may have changed their format."
-                    + diag_suffix
-                ),
+                error_message=reason + diag_suffix,
+                diagnostics=diagnostics,
             )
 
         return self._map(build_data, code)
+
+    def _record_failed_status(self, status, resp) -> None:
+        """Remember a non-200 status and that response's headers for diagnostics."""
+        if not hasattr(self, "_fetch_statuses"):
+            self._fetch_statuses = []
+        if isinstance(status, int):
+            self._fetch_statuses.append(status)
+        self._fetch_last_headers = getattr(resp, "headers", None)
 
     def _fetch_build_data(
         self, code: str, variant: Optional[int] = None
@@ -772,6 +803,7 @@ class MaxrollImporter(BaseImporter):
                         attempts.append(f"{api_url}: 200 non-dict ({type(data).__name__})")
                 else:
                     attempts.append(f"{api_url}: HTTP {status}")
+                    self._record_failed_status(status, resp)
                     logger.debug("Maxroll: %s returned HTTP %d", api_url, status)
             except _requests.Timeout:
                 attempts.append(f"{api_url}: timeout")
@@ -806,6 +838,7 @@ class MaxrollImporter(BaseImporter):
                     attempts.append(f"{html_url}: 200 but no __NEXT_DATA__ found")
             else:
                 attempts.append(f"{html_url}: HTTP {html_status}")
+                self._record_failed_status(html_status, resp)
         except _requests.Timeout:
             attempts.append(f"{html_url}: timeout")
         except Exception as exc:

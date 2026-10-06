@@ -19,6 +19,7 @@ from app.schemas.skill_tree import (
     NodeAllocateRequestSchema,
 )
 from app.services import build_service
+from app.services.build_access import load_modifiable_build, load_readable_build
 from app.skills.skill_classifier import classify_skills, detect_primary_skill
 from app.utils.responses import ok, error, not_found, validation_error
 from app.utils.cache import get as cache_get, set as cache_set, delete_pattern
@@ -219,9 +220,9 @@ def get_skill_tree(skill_id: str):
 @limiter.limit("20 per minute")
 def get_build_skills(slug: str):
     """Return allocation state for all skills on a build, with classifications and primary detection."""
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     skills_data = []
     for skill in sorted(build.skills, key=lambda s: s.slot):
@@ -289,10 +290,10 @@ def allocate_skill_node(slug: str, skill_id: str, node_id: int):
 
     new_points = data["points"]
 
-    # Load build
-    build = build_service.get_build(slug)
-    if not build:
-        return not_found("Build")
+    # Only the build owner may change allocations; anonymous builds are read-only.
+    build, denied = load_modifiable_build(slug)
+    if denied:
+        return denied
 
     # Load tree data
     tree = _get_tree(skill_id)

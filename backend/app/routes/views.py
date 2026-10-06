@@ -10,7 +10,8 @@ from datetime import datetime, timezone
 from flask import Blueprint, request
 
 from app import db, limiter
-from app.models import Build, BuildView
+from app.models import BuildView
+from app.services.build_access import load_readable_build
 from app.utils.responses import error, not_found
 from app.utils.cache import get as cache_get, set as cache_set
 
@@ -27,9 +28,9 @@ def _hash_ip(ip: str) -> str:
 @views_bp.post("/<slug>/view")
 @limiter.limit("60 per minute")
 def track_view(slug: str):
-    build = Build.query.filter_by(slug=slug).first()
-    if not build:
-        return not_found("Build")
+    build, denied = load_readable_build(slug)
+    if denied:
+        return denied
 
     ip = request.remote_addr or "unknown"
     ip_hash = _hash_ip(ip)

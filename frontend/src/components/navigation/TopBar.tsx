@@ -1,3 +1,4 @@
+import { API_BASE } from "@/lib/apiBase";
 import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/store";
@@ -66,7 +67,7 @@ function SaveStatusIndicator({ status }: { status: TopBarProps["saveStatus"] }) 
 }
 
 export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buildName }: TopBarProps) {
-  const apiBase = import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api";
+  const apiBase = API_BASE;
   const authUrl = `${apiBase}/auth/discord`;
   const devLoginUrl = `${apiBase}/auth/dev-login`;
   const isDev = import.meta.env.DEV;

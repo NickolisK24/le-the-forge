@@ -1,9 +1,15 @@
 """
 Import Blueprint — /api/import
 
-POST /api/import/url    → Proxy-fetch a Last Epoch Tools build URL and return
-                          a mapped build payload ready to be reviewed / saved.
-POST /api/import/build  → Parse URL (LET or Maxroll), validate, save build, track failures.
+POST /api/import/url       → Retired server-side Last Epoch Tools fetch. Returns
+                             a structured LET_SERVER_FETCH_UNSUPPORTED response.
+POST /api/import/let/json  → Map a client-captured LET window.buildInfo payload.
+POST /api/import/build     → Parse a Maxroll URL, validate, save build, track failures.
+                             LET URLs get LET_SERVER_FETCH_UNSUPPORTED (no fetch).
+
+Last Epoch Tools renders planners client-side and blocks server-side requests
+(production received HTTP 403), so the server never fetches LET pages. The
+supported LET path is the bookmarklet → /api/import/let/json flow.
 """
 
 import json as json_lib
@@ -13,14 +19,21 @@ import re
 import traceback
 from typing import Dict, List, Optional
 
-import requests as _requests
-from flask import Blueprint, current_app, request
+from flask import Blueprint, current_app, jsonify, request
 
 from app import db, limiter
 from app.models import ImportFailure
 from app.services import build_service
 from app.services.importers import get_importer, detect_source, ImportResult
 from app.services.discord_notifier import send_import_failure_alert
+from app.services.import_diagnostics import (
+    STAGE_MAP,
+    STAGE_PARTIAL,
+    STAGE_PERSIST,
+    STAGE_UNHANDLED,
+    STAGE_UNKNOWN,
+    build_failure_diagnostics,
+)
 from app.utils.auth import get_current_user
 from app.utils.responses import ok, error as err_response
 
@@ -275,28 +288,87 @@ def _map_let_build(build_info: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Retired server-side LET fetch
+# ---------------------------------------------------------------------------
+
+LET_SERVER_FETCH_UNSUPPORTED = "LET_SERVER_FETCH_UNSUPPORTED"
+LET_JSON_IMPORT_ENDPOINT = "/api/import/let/json"
+
+
+def _let_server_fetch_unsupported(url: str):
+    """Deterministic response for any request that would fetch a LET page
+    server-side. Nothing is fetched and no failure alert is sent: this is a
+    known unsupported path, not an upstream incident."""
+    logger.info("import: LET server fetch not attempted (unsupported path) url=%s", url)
+    message = (
+        "Last Epoch Tools builds can't be fetched by our server: the site loads "
+        "builds in your browser and blocks server requests. Your link is fine — "
+        "capture the build with the bookmarklet and import it as JSON instead."
+    )
+    return jsonify({
+        "data": None,
+        "meta": {
+            "import_status": "UNSUPPORTED_SERVER_FETCH",
+            "source": "lastepochtools",
+            "original_url": url,
+            "supported_flow": "let_json",
+            "supported_endpoint": LET_JSON_IMPORT_ENDPOINT,
+        },
+        "errors": [{"code": LET_SERVER_FETCH_UNSUPPORTED, "message": message}],
+    }), 422
+
+
+# ---------------------------------------------------------------------------
 # Helper: record failure + fire Discord alert
 # ---------------------------------------------------------------------------
 
 def _record_and_alert(source: str, url: str, user_id: str | None,
                       error_message: str, severity: str = "hard",
                       missing_fields: list | None = None,
-                      partial_data: dict | None = None) -> None:
-    """Create an ImportFailure record and fire the Discord alert."""
+                      partial_data: dict | None = None,
+                      failure_stage: str = STAGE_UNHANDLED,
+                      importer_diagnostics: dict | None = None,
+                      parsing_started: bool | None = None,
+                      error_category: str | None = None) -> None:
+    """Create an ImportFailure record with structured diagnostics and fire the
+    Discord alert. The alert is sent even if the record cannot be stored."""
+    diagnostics = build_failure_diagnostics(
+        source=source,
+        url=url,
+        user_id=user_id,
+        failure_stage=failure_stage,
+        missing_fields=missing_fields,
+        partial_data=partial_data,
+        importer_diagnostics=importer_diagnostics,
+        parsing_started=parsing_started,
+        error_category=error_category,
+    )
+    failure = ImportFailure(
+        source=source,
+        raw_url=url,
+        missing_fields=missing_fields or [],
+        partial_data=partial_data,
+        user_id=user_id,
+        error_message=(error_message or "")[:1024],
+        diagnostics=diagnostics,
+    )
+    logger.warning(
+        "import_failure source=%s stage=%s category=%s http_status=%s "
+        "missing_field_state=%s upstream=%s",
+        source, diagnostics["failure_stage"], diagnostics["error_category"],
+        diagnostics["http_status"], diagnostics["missing_field_state"],
+        diagnostics["upstream_headers"],
+    )
     try:
-        failure = ImportFailure(
-            source=source,
-            raw_url=url,
-            missing_fields=missing_fields or [],
-            partial_data=partial_data,
-            user_id=user_id,
-            error_message=error_message,
-        )
         db.session.add(failure)
         db.session.commit()
+    except Exception as exc:
+        db.session.rollback()
+        logger.error("import: failed to store import failure record: %s", exc)
+    try:
         send_import_failure_alert(failure, severity=severity)
     except Exception as exc:
-        logger.error("import: failed to record import failure: %s", exc)
+        logger.error("import: failed to send import failure alert: %s", exc)
 
 
 # ---------------------------------------------------------------------------
@@ -310,9 +382,9 @@ def import_from_url():
     POST /api/import/url
     Body: { "url": "https://www.lastepochtools.com/planner/kB5dyWvQ" }
 
-    Proxy-fetches the LE Tools page, extracts the embedded build JSON,
-    maps it to our format, and returns it for user review before saving.
-    Does NOT save the build — that is left to the caller.
+    Retired. Previously proxy-fetched the LE Tools page; LET now blocks
+    server-side requests. Validates the URL, then returns 422 with code
+    LET_SERVER_FETCH_UNSUPPORTED pointing at the JSON import flow.
     """
     body = request.get_json(silent=True) or {}
     url: str = body.get("url", "").strip()
@@ -327,91 +399,8 @@ def import_from_url():
             "Invalid URL — expected: https://www.lastepochtools.com/planner/[code]", 400
         )
 
-    code = match.group(1)
-
-    # Top-level try/except — never return a bare 500
-    try:
-        # Fetch the LE Tools planner page server-side (browser blocked by CORS)
-        try:
-            resp = _requests.get(
-                f"https://www.lastepochtools.com/planner/{code}",
-                headers={
-                    "User-Agent": (
-                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/120.0.0.0 Safari/537.36"
-                    ),
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                    "Accept-Language": "en-US,en;q=0.9",
-                },
-                timeout=15,
-            )
-            resp.raise_for_status()
-        except _requests.Timeout:
-            return err_response("Timed out fetching the build page — try again.", 504)
-        except _requests.HTTPError as exc:
-            status = exc.response.status_code if exc.response is not None else 502
-            if status == 404:
-                return err_response("Build not found — the link may be expired or invalid.", 404)
-            return err_response(f"Last Epoch Tools returned HTTP {status}.", 502)
-        except _requests.RequestException as exc:
-            return err_response(f"Network error fetching build: {exc}", 502)
-
-        html = resp.text
-        logger.info("import/url: fetched code=%s html_len=%d", code, len(html))
-
-        # Extract the embedded build JSON using structure-aware parsing
-        build_info = _extract_build_info(html)
-
-        if build_info is None:
-            logger.warning(
-                "import/url: could not find buildInfo for code=%s. HTML snippet: %.500s",
-                code, html[:500],
-            )
-            return err_response(
-                "Could not find build data in the page. "
-                "The build code may be invalid, or Last Epoch Tools may have updated their page format.",
-                422,
-            )
-
-        # LE Tools sets buildLoadError on invalid/deleted build codes
-        if build_info.get("buildLoadError"):
-            return err_response("Build not found or deleted on Last Epoch Tools.", 404)
-
-        # LE Tools sometimes wraps the real payload in a "data" key
-        if "data" in build_info and isinstance(build_info["data"], dict):
-            build_info = build_info["data"]
-
-        # Sanity check — a valid build always has bio or charTree
-        if not build_info.get("bio") and not build_info.get("charTree"):
-            logger.warning(
-                "import/url: extracted JSON missing bio/charTree for code=%s: %s",
-                code, list(build_info.keys()),
-            )
-            return err_response("Build data is incomplete or in an unexpected format.", 422)
-
-        mapped = _map_let_build(build_info)
-        logger.info(
-            "import/url: mapped code=%s class=%s mastery=%s passives=%d skills=%d",
-            code, mapped["character_class"], mapped["mastery"],
-            len(mapped["passive_tree"]), len(mapped["skills"]),
-        )
-        return ok({"build": mapped, "source_code": code})
-
-    except Exception as exc:
-        logger.error(
-            "import/url: unhandled exception for url=%s: %s\n%s",
-            url, exc, traceback.format_exc(),
-        )
-        user = get_current_user()
-        _record_and_alert(
-            source="lastepochtools",
-            url=url,
-            user_id=user.id if user else None,
-            error_message=f"Unhandled error in import/url: {exc}",
-            partial_data={"traceback": traceback.format_exc()[-500:]},
-        )
-        return err_response(f"Import failed unexpectedly: {exc}", 422)
+    # Server-side fetching of LET planner pages is retired; never fetch.
+    return _let_server_fetch_unsupported(url)
 
 
 # ---------------------------------------------------------------------------
@@ -469,6 +458,9 @@ def import_let_from_json():
             user_id=user.id if user else None,
             error_message=f"LET JSON import mapping failed: {exc}",
             partial_data={"keys": list(build_info.keys())},
+            failure_stage=STAGE_MAP,
+            parsing_started=True,
+            error_category="mapping_error",
         )
         return err_response(f"Could not map build: {exc}", 422)
 
@@ -529,6 +521,9 @@ def import_build():
     except ValueError as exc:
         return err_response(str(exc), 400)
 
+    if source == "lastepochtools":
+        return _let_server_fetch_unsupported(url)
+
     # Top-level try/except — catch ANY unhandled error, record it, alert, return 422
     try:
         return _do_import(url, source, user_id)
@@ -543,6 +538,8 @@ def import_build():
             user_id=user_id,
             error_message=f"Unhandled error: {exc}\n{traceback.format_exc()[-500:]}",
             partial_data={"traceback": traceback.format_exc()[-500:]},
+            failure_stage=STAGE_UNHANDLED,
+            error_category="unhandled_exception",
         )
         return err_response(f"Import failed unexpectedly: {exc}", 422)
 
@@ -561,10 +558,14 @@ def _do_import(url: str, source: str, user_id: str | None):
             url=url,
             user_id=user_id,
             error_message=f"Importer crashed: {exc}",
+            failure_stage=STAGE_UNHANDLED,
+            error_category="importer_exception",
         )
         return err_response(f"Import failed: {exc}", 422)
 
-    # Hard failure — class/mastery unmappable
+    # Hard failure — fetch refused, page unparseable, or class/mastery unmappable.
+    # Forward what the importer actually captured (partial_data), not
+    # build_data, which is always empty on failure.
     if not result.success:
         _record_and_alert(
             source=result.source or source,
@@ -572,7 +573,11 @@ def _do_import(url: str, source: str, user_id: str | None):
             user_id=user_id,
             error_message=result.error_message or "Unknown parse failure",
             missing_fields=result.missing_fields,
-            partial_data=result.build_data,
+            partial_data=result.partial_data,
+            # Without importer diagnostics we only know mapping ran if it
+            # reported missing fields; otherwise completeness was not evaluated.
+            failure_stage=STAGE_MAP if result.missing_fields else STAGE_UNKNOWN,
+            importer_diagnostics=result.diagnostics,
         )
         return err_response(
             result.error_message or "Import failed — could not parse the build.",
@@ -585,6 +590,9 @@ def _do_import(url: str, source: str, user_id: str | None):
         _record_and_alert(
             source=source, url=url, user_id=user_id,
             error_message="Importer returned success=True but build_data is None",
+            failure_stage=STAGE_MAP,
+            parsing_started=True,
+            error_category="empty_build_data",
         )
         return err_response("Import returned no data despite reporting success.", 422)
 
@@ -599,6 +607,10 @@ def _do_import(url: str, source: str, user_id: str | None):
             source=source, url=url, user_id=user_id,
             error_message=f"Build parsed but save failed: {exc}",
             partial_data={"build_data_keys": list(build_data.keys())},
+            failure_stage=STAGE_PERSIST,
+            parsing_started=True,
+            missing_fields=result.missing_fields,
+            error_category="persist_error",
         )
         return err_response(f"Build parsed but could not be saved: {exc}", 422)
 
@@ -643,6 +655,9 @@ def _do_import(url: str, source: str, user_id: str | None):
             severity="partial",
             missing_fields=warnings,
             partial_data=alert_partial,
+            failure_stage=STAGE_PARTIAL,
+            parsing_started=True,
+            error_category="partial_mapping",
         )
 
     imported_fields = []
