@@ -22,12 +22,22 @@ POST /api/simulate/multi-target
         total_kills:      int,
         metrics:          { total_kills, time_to_clear, damage_per_target,
                             overkill_waste, kill_times },
-        damage_events:    [ { time, target_id, damage, overkill, killed } ]
+        damage_events:    [ { time, target_id, damage, overkill, killed } ],
+        damage_events_total:     int,   (events generated)
+        damage_events_truncated: bool,  (true when only the first
+                                         MAX_RETURNED_EVENTS are returned)
     }
+
+    Requests are bounded before any simulation state is built: duration,
+    tick size, target count, and the step budget (ticks x targets), so one
+    anonymous request cannot allocate unbounded memory.
 """
 
+import math
+
+
 from flask import Blueprint, request
-from marshmallow import Schema, fields, ValidationError, validates
+from marshmallow import Schema, fields, ValidationError, validate, validates, validates_schema
 
 from app import limiter
 from app.utils.responses import ok, validation_error, error
@@ -39,20 +49,63 @@ multi_target_bp = Blueprint("multi_target", __name__)
 # Schema
 # ---------------------------------------------------------------------------
 
+# Request bounds. The simulator UI allows tick 0.01–1 s and duration 1–300 s,
+# and the largest template has 10 targets. Measured cost is roughly linear in
+# steps (ticks x targets): 120k steps ≈ 0.4 s and ~110 MB peak; the audit's
+# 3.6M-step request took 17 s and 1.7 GB.
+MAX_DURATION_SECONDS = 300.0
+MIN_TICK_SECONDS = 0.01
+MAX_TICK_SECONDS = 10.0
+MAX_TARGETS = 20
+MAX_SIMULATION_STEPS = 120_000
+MAX_RETURNED_EVENTS = 5_000
+MAX_HEALTH = 1e12
+MAX_BASE_DAMAGE = 1e9
+
+
+def simulation_steps(max_duration: float, tick_size: float, target_count: int) -> int:
+    return math.ceil(max_duration / tick_size) * max(target_count, 1)
+
+
 class _TargetSpec(Schema):
-    target_id      = fields.Str(required=True)
-    max_health     = fields.Float(required=True)
-    position_index = fields.Int(load_default=0)
+    target_id      = fields.Str(required=True, validate=validate.Length(min=1, max=64))
+    max_health     = fields.Float(
+        required=True,
+        validate=validate.Range(min=0, max=MAX_HEALTH, min_inclusive=False),
+    )
+    position_index = fields.Int(load_default=0, validate=validate.Range(min=0, max=MAX_TARGETS))
 
 
 class MultiTargetSimulateSchema(Schema):
-    base_damage    = fields.Float(required=True)
+    base_damage    = fields.Float(required=True, validate=validate.Range(max=MAX_BASE_DAMAGE))
     distribution   = fields.Str(load_default="full_aoe")
     selection_mode = fields.Str(load_default="all_targets")
-    tick_size      = fields.Float(load_default=0.1)
-    max_duration   = fields.Float(load_default=60.0)
+    tick_size      = fields.Float(
+        load_default=0.1,
+        validate=validate.Range(min=MIN_TICK_SECONDS, max=MAX_TICK_SECONDS),
+    )
+    max_duration   = fields.Float(
+        load_default=60.0,
+        validate=validate.Range(max=MAX_DURATION_SECONDS),
+    )
     template       = fields.Str(load_default=None, allow_none=True)
-    targets        = fields.List(fields.Nested(_TargetSpec), load_default=list)
+    targets        = fields.List(
+        fields.Nested(_TargetSpec), load_default=list,
+        validate=validate.Length(max=MAX_TARGETS),
+    )
+
+    @validates_schema
+    def _validate_step_budget(self, data, **kwargs):
+        targets = data.get("targets") or []
+        if data.get("template") or not targets:
+            return  # template sizes are checked in the route
+        steps = simulation_steps(data["max_duration"], data["tick_size"], len(targets))
+        if steps > MAX_SIMULATION_STEPS:
+            raise ValidationError(
+                f"Simulation too large: {steps} steps (duration / tick_size x targets); "
+                f"the limit is {MAX_SIMULATION_STEPS}. Increase tick_size or shorten max_duration.",
+                field_name="max_duration",
+            )
 
     @validates("base_damage")
     def _validate_damage(self, value, **kwargs):
@@ -116,6 +169,15 @@ def simulate_multi_target():
         except (ValueError, KeyError) as exc:
             return error(str(exc), 422)
 
+    target_count = len(manager.all_targets())
+    steps = simulation_steps(data["max_duration"], data["tick_size"], target_count)
+    if target_count > MAX_TARGETS or steps > MAX_SIMULATION_STEPS:
+        return error(
+            f"Simulation too large: {steps} steps for {target_count} targets; "
+            f"the limit is {MAX_SIMULATION_STEPS} steps and {MAX_TARGETS} targets.",
+            422,
+        )
+
     state = MultiTargetState(manager=manager)
     result = MultiTargetEncounterEngine().run(
         state=state,
@@ -126,10 +188,13 @@ def simulate_multi_target():
         max_duration=data["max_duration"],
     )
 
+    events = result.damage_events
     return ok(data={
         "cleared":       result.cleared,
         "time_to_clear": result.time_to_clear,
         "total_kills":   result.total_kills,
         "metrics":       result.metrics,
-        "damage_events": result.damage_events,
+        "damage_events": events[:MAX_RETURNED_EVENTS],
+        "damage_events_total": len(events),
+        "damage_events_truncated": len(events) > MAX_RETURNED_EVENTS,
     })
