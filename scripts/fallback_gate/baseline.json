@@ -1,0 +1,18 @@
+{
+ "dangerous_open_by_owner": {
+  "R2-P05": 111,
+  "R2-P06": 56,
+  "R2-P07": 23,
+  "R2-P08": 139,
+  "R2-P09": 8,
+  "R2-P11": 116,
+  "R2-P13": 43,
+  "R2-P16": 6,
+  "R2-P19": 10,
+  "R6": 69,
+  "archived (R2-P18)": 7,
+  "deleted with its module (R2-P18)": 156
+ },
+ "measured_at": "R2 census (R2_FALLBACK_CENSUS.jsonl)",
+ "schema": "forge_fallback_baseline/1"
+}
