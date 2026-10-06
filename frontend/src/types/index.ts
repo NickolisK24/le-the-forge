@@ -16,6 +16,8 @@ export interface ApiResponse<T> {
 export interface ApiError {
   field?: string;
   message: string;
+  /** Machine-readable error code, when the endpoint provides one. */
+  code?: string;
 }
 
 export interface PaginationMeta {

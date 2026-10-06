@@ -283,7 +283,7 @@ class TestImportEndpoint:
         mock_importer = MagicMock()
         mock_importer.parse.return_value = ImportResult(
             success=True,
-            source="lastepochtools",
+            source="maxroll",
             build_data={
                 "name": "Test Import",
                 "character_class": "Sentinel",
@@ -299,14 +299,14 @@ class TestImportEndpoint:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/TEST1234"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/TEST1234"},
             content_type="application/json",
         )
 
         assert resp.status_code == 201
         data = resp.get_json()
         assert data["data"]["slug"] is not None
-        assert data["data"]["source"] == "lastepochtools"
+        assert data["data"]["source"] == "maxroll"
         assert data["data"]["build_name"] == "Test Import"
         assert data["data"]["missing_fields"] == []
 
@@ -319,7 +319,7 @@ class TestImportEndpoint:
         mock_importer = MagicMock()
         mock_importer.parse.return_value = ImportResult(
             success=False,
-            source="lastepochtools",
+            source="maxroll",
             error_message="Could not parse class",
             missing_fields=["character_class"],
         )
@@ -327,7 +327,7 @@ class TestImportEndpoint:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/BAD"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/BAD"},
             content_type="application/json",
         )
 
@@ -335,7 +335,7 @@ class TestImportEndpoint:
         # Check ImportFailure was created
         failures = ImportFailure.query.all()
         assert len(failures) == 1
-        assert failures[0].source == "lastepochtools"
+        assert failures[0].source == "maxroll"
         assert failures[0].error_message == "Could not parse class"
         # Discord alert was fired
         mock_alert.assert_called_once()
@@ -742,7 +742,7 @@ class TestImportNever500:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/CRASH"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/CRASH"},
             content_type="application/json",
         )
 
@@ -770,7 +770,7 @@ class TestImportNever500:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/SAVEFAIL"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/SAVEFAIL"},
             content_type="application/json",
         )
 
@@ -788,7 +788,7 @@ class TestImportNever500:
 
         client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/CRASH2"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/CRASH2"},
             content_type="application/json",
         )
 
@@ -809,7 +809,7 @@ class TestImportNever500:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/NULLDATA"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/NULLDATA"},
             content_type="application/json",
         )
 
@@ -1478,7 +1478,7 @@ class TestBaseItemDecoding:
 
         resp = client.post(
             "/api/import/build",
-            json={"url": "https://www.lastepochtools.com/planner/PARTDATA"},
+            json={"url": "https://maxroll.gg/last-epoch/planner/PARTDATA"},
             content_type="application/json",
         )
 
