@@ -23,6 +23,13 @@ Production `main` is untouched. `dev` was not used and was not reconciled. Nothi
 | R1.12–R1.14 metrics, trust, certification | `f175341` | Metrics, trust manifest, certification gate, CI workflow |
 | R1.3 operator command | `11e6e00` | `r1_operator_extract.py` + `scripts/r1_operator_extract.ps1` |
 | R1.12 docs | `77dafb0` | Trust contract, domain coverage |
+| R1.15 P1 classification | `f68d881` | Structural rules S01–S10; UNKNOWN 744 → 399 |
+| R1.15 P2/P3 property definitions | `5fad68f` | Canonical property definitions; validated reference encodings; 5,724 / 7,855 tree stat references resolved |
+| R1.15 P4 tree decoder | `02e4b34` | Strict layout-ordered decoder; field-shift root cause; six-Acolyte regression gate |
+| R1.15 P5 enum gate | `14a8230` | Enum coverage, C13; C10 counts declared or content-verified mappings only |
+| R1.15 P6 contracts | `5bd8272` | 581 extraction contracts drive TypeTree dumps across every manifested file |
+| R1.15 P7/P8 operator | `9519c79`, `308cf2f` | 22 resumable stages, freshness checks, handoff bundle |
+| R1.15 P9 evidence | `5b4510d`, `c38c6bf` | Regenerated evidence and docs |
 
 ## Packages delivered (le-the-forge)
 
@@ -63,7 +70,7 @@ No finding status changed: nothing is fixed in production, and no current-patch 
 | Finding | Description |
 | --- | --- |
 | EXT-11 | Raw affix dumper reads uint8 property ids as signed (corrected in canonical) |
-| EXT-12 | Tree walker misses 11 nodes (the 6 "Forge-only" Acolyte ids) and decodes garbage prerequisites; `nodeStats` and `propertiesForAltText` are never decoded |
+| EXT-12 | Tree walker misses 11 nodes (the 6 "Forge-only" Acolyte ids) and decodes garbage prerequisites. R1.15 root cause: `nodeStats` never read, which shifts fields on 185 nodes; replaced by a strict decoder |
 | EXT-13 | Raw tree inputs come from different runs; no build stamp |
 | EXT-14 | `run_all.py` never re-runs Il2CppDumper, so enums and layouts go stale on a new patch (the operator command fixes this) |
 | EXT-15 | The il2cpp layout index omits base classes and nested value types |
@@ -79,6 +86,6 @@ No finding status changed: nothing is fixed in production, and no current-patch 
 
 | Suite | Result |
 | --- | --- |
-| last-epoch-data R1 tests (`tools/scripts/test_r1_*.py`) | 176 passed |
+| last-epoch-data R1 tests (`tools/scripts/test_r1_*.py`) | 221 passed (R1.15) |
 | le-the-forge R1 tests (`test_r1_forge_consumption_inventory.py`, `test_r1_sync_trust_contract.py`) | 15 passed |
 | Regeneration gate (last-epoch-data) | All R1 artifacts `match`; the 7 pre-existing drifts are unrelated (OPS-9) |

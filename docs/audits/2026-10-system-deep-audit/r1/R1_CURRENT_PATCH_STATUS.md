@@ -38,10 +38,23 @@ One command, run on the Windows extraction host from the `last-epoch-data` check
 
 (Optional: `-Install "<Last Epoch dir>"` and `-DeclaredPatch "<version>_<build>"`.)
 
-What it does: preflight checks, then snapshot, verify, Il2CppDumper and layout parse, the pipeline, a fresh raw affix dump, class manifests for every serialized file, raw TypeTree dumps of every in-scope class, canonical exports, then all R1 evidence and certification. It then commits locally on `fix/audit-r1-extraction-truth`. It never pushes, never touches `le-the-forge` and never deploys.
+Re-run after a failure: the same command with `-Resume`.
 
-Prerequisites: `scripts\fetch_tools.ps1` (pinned Il2CppDumper), `pip install -r requirements.txt`, the game installed and updated, and a store directory outside the repo with room for the extraction inputs.
+What it does: 22 ordered stages. In order:
+1. environment, install, exact version/build, tools, free space and raw-store validation;
+2. raw acquisition, hashing and the snapshot manifest;
+3. all-domain extraction: Il2CppDumper, layouts, pipeline, raw affixes, manifests, and TypeTree dumps of every extraction contract;
+4. enums, property definitions, canonical exports, field survival and relationships;
+5. denominator, patch diff, reproducibility, coverage, trust and certification;
+6. the handoff bundle.
 
-**Send back:** the printed verdict block, the output of `git log -1 --stat`, and then push the branch.
+Any failed stage stops the run before certification, keeps the evidence, prints the stage, and still writes `RUN_VERDICT.txt`. Outputs must be fresh and build-stamped, so stale files stop the run. On resume, the raw snapshot is not reacquired. It commits locally on `fix/audit-r1-extraction-truth`. It never pushes, never touches `le-the-forge` and never deploys.
 
-Until that run lands and certifies, R1 is **R1 IMPLEMENTATION COMPLETE — OPERATOR EXTRACTION REQUIRED**.
+Prerequisites: `scripts\fetch_tools.ps1` (pinned Il2CppDumper), `pip install -r requirements.txt`, the game installed and updated, and a store directory outside the repo. Stage 5 measures the install and refuses to start without room for:
+- store: 1.05 × the extraction inputs, minus objects already stored;
+- repo: 1.5 × the serialized files, plus 3 GB;
+- temp: 1 × the extraction inputs.
+
+**Send back:** `snapshots/handoff/<snapshot>/RUN_VERDICT.txt` (or the `[STOPPED]` block), then push the branch. The whole bundle is committed and holds no raw game data.
+
+Until that run lands and certifies, R1 is **R1 PRE-EXTRACTION READY — OPERATOR RUN REQUIRED**.

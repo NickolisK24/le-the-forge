@@ -9,6 +9,38 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "AbilityCoroutineHandler.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/AbilityCoroutineHandler.json",
+   "source_class": "AbilityCoroutineHandler",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityCurveMovement.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AbilityCurveMovement.json",
+   "source_class": "AbilityCurveMovement",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityCurveRotation.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AbilityCurveRotation.json",
+   "source_class": "AbilityCurveRotation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityList.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AbilityList.json",
+   "source_class": "AbilityList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "AbilityManager.typetree",
    "domain_id": "skills",
@@ -17,11 +49,35 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "AbilityManagerInitialiser.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/AbilityManagerInitialiser.json",
+   "source_class": "AbilityManagerInitialiser",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityMutatorManager.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AbilityMutatorManager.json",
+   "source_class": "AbilityMutatorManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "AbilityObjectConstructor.typetree",
    "domain_id": "ability_stat_components",
    "expected_raw": "extracted_raw/typetree/AbilityObjectConstructor.json",
    "source_class": "AbilityObjectConstructor",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityObjectIndicator.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AbilityObjectIndicator.json",
+   "source_class": "AbilityObjectIndicator",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -34,10 +90,42 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "AbilitySync.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AbilitySync.json",
+   "source_class": "AbilitySync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AbilityVisuals.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AbilityVisuals.json",
+   "source_class": "AbilityVisuals",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "AbyssalEchoesMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/AbyssalEchoesMutator.json",
    "source_class": "AbyssalEchoesMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AbyssalEchoesTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AbyssalEchoesTree.json",
+   "source_class": "AbyssalEchoesTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AcceleratingHealthDrain.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AcceleratingHealthDrain.json",
+   "source_class": "AcceleratingHealthDrain",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -65,6 +153,46 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "AcidFlaskTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AcidFlaskTree.json",
+   "source_class": "AcidFlaskTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AcolyteTree.typetree",
+   "domain_id": "passive_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AcolyteTree.json",
+   "source_class": "AcolyteTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ActivateGameObjectInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ActivateGameObjectInteraction.json",
+   "source_class": "ActivateGameObjectInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "Actor.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/Actor.json",
+   "source_class": "Actor",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ActorAliveCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ActorAliveCondition.json",
+   "source_class": "ActorAliveCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ActorData.typetree",
    "domain_id": "enemies",
@@ -81,6 +209,78 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ActorDeathListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ActorDeathListener.json",
+   "source_class": "ActorDeathListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ActorModelIndicator.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ActorModelIndicator.json",
+   "source_class": "ActorModelIndicator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ActorStats.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ActorStats.json",
+   "source_class": "ActorStats",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ActorSync.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ActorSync.json",
+   "source_class": "ActorSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ActorVisuals.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ActorVisuals.json",
+   "source_class": "ActorVisuals",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ActorVisualsDeathListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ActorVisualsDeathListener.json",
+   "source_class": "ActorVisualsDeathListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AddStatsAfterDuration.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AddStatsAfterDuration.json",
+   "source_class": "AddStatsAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AdditionalActorPreloader.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AdditionalActorPreloader.json",
+   "source_class": "AdditionalActorPreloader",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AerialAssaultTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AerialAssaultTree.json",
+   "source_class": "AerialAssaultTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "Ailment.typetree",
    "domain_id": "ailments",
@@ -94,6 +294,30 @@
    "domain_id": "ailments",
    "expected_raw": "extracted_raw/typetree/AilmentList.json",
    "source_class": "AilmentList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AilmentReceiver.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AilmentReceiver.json",
+   "source_class": "AilmentReceiver",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "AilmentVFXPool.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/AilmentVFXPool.json",
+   "source_class": "AilmentVFXPool",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AnomalyTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AnomalyTree.json",
+   "source_class": "AnomalyTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -130,6 +354,22 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "ArcCollider.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ArcCollider.json",
+   "source_class": "ArcCollider",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ArcaneAscendanceTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ArcaneAscendanceTree.json",
+   "source_class": "ArcaneAscendanceTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "ArenaInformation.typetree",
    "domain_id": "arena",
    "expected_raw": "extracted_raw/typetree/ArenaInformation.json",
@@ -154,6 +394,22 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "AssembleAbominationAdapter.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AssembleAbominationAdapter.json",
+   "source_class": "AssembleAbominationAdapter",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AssembleAbominationTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AssembleAbominationTree.json",
+   "source_class": "AssembleAbominationTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "AterrothLingeringDamageMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/AterrothLingeringDamageMutator.json",
@@ -170,10 +426,66 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "AttachRefreshableVFXOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AttachRefreshableVFXOnHit.json",
+   "source_class": "AttachRefreshableVFXOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AttachToAllyOnCreation.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AttachToAllyOnCreation.json",
+   "source_class": "AttachToAllyOnCreation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AttachToNearestEnemyOnCreation.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AttachToNearestEnemyOnCreation.json",
+   "source_class": "AttachToNearestEnemyOnCreation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AttachToSpireGuardian.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/AttachToSpireGuardian.json",
+   "source_class": "AttachToSpireGuardian",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "AttachTransformToCreatorVisuals.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/AttachTransformToCreatorVisuals.json",
+   "source_class": "AttachTransformToCreatorVisuals",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AuraOfDecayTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AuraOfDecayTree.json",
+   "source_class": "AuraOfDecayTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "AvalancheMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/AvalancheMutator.json",
    "source_class": "AvalancheMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "AvalancheTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/AvalancheTree.json",
+   "source_class": "AvalancheTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -185,11 +497,59 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "BallistaTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/BallistaTree.json",
+   "source_class": "BallistaTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "BasicMeleeMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/BasicMeleeMutator.json",
    "source_class": "BasicMeleeMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "BattlePhaze_DisableOnEnable.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/BattlePhaze_DisableOnEnable.json",
+   "source_class": "BattlePhaze_DisableOnEnable",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "BeaconSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/BeaconSync.json",
+   "source_class": "BeaconSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BeamColliderScaler.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/BeamColliderScaler.json",
+   "source_class": "BeamColliderScaler",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BeamObjectScaler.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/BeamObjectScaler.json",
+   "source_class": "BeamObjectScaler",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BeamRotateToTargetLocation.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/BeamRotateToTargetLocation.json",
+   "source_class": "BeamRotateToTargetLocation",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -201,11 +561,27 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "BlackHoleTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/BlackHoleTree.json",
+   "source_class": "BlackHoleTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "BladestormMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/BladestormMutator.json",
    "source_class": "BladestormMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "BladestormTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/BladestormTree.json",
+   "source_class": "BladestormTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -222,6 +598,14 @@
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/BloodSplatterMutator.json",
    "source_class": "BloodSplatterMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "BoneCurseTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/BoneCurseTree.json",
+   "source_class": "BoneCurseTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -242,10 +626,146 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreator.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreator.json",
+   "source_class": "BuffCreator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreatorAfterDuration.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreatorAfterDuration.json",
+   "source_class": "BuffCreatorAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreatorOnCreation.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreatorOnCreation.json",
+   "source_class": "BuffCreatorOnCreation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreatorOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreatorOnDeath.json",
+   "source_class": "BuffCreatorOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreatorOnDeathPerHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreatorOnDeathPerHit.json",
+   "source_class": "BuffCreatorOnDeathPerHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffCreatorOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffCreatorOnHit.json",
+   "source_class": "BuffCreatorOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffOnAllyHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffOnAllyHit.json",
+   "source_class": "BuffOnAllyHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffOnEnemyHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffOnEnemyHit.json",
+   "source_class": "BuffOnEnemyHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "BuffParent.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/BuffParent.json",
+   "source_class": "BuffParent",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "Calamity.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Calamity.json",
    "source_class": "Calamity",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CanOnlyBeOnOneTarget.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CanOnlyBeOnOneTarget.json",
+   "source_class": "CanOnlyBeOnOneTarget",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "CanUseMovementAbilities.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/CanUseMovementAbilities.json",
+   "source_class": "CanUseMovementAbilities",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "CannotBePulled.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/CannotBePulled.json",
+   "source_class": "CannotBePulled",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "CannotBeResurrected.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/CannotBeResurrected.json",
+   "source_class": "CannotBeResurrected",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CastAfterDuration.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CastAfterDuration.json",
+   "source_class": "CastAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CastAtCorpseOnKill.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CastAtCorpseOnKill.json",
+   "source_class": "CastAtCorpseOnKill",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CastAtRandomPointAfterDuration.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CastAtRandomPointAfterDuration.json",
+   "source_class": "CastAtRandomPointAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CastPoint.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CastPoint.json",
+   "source_class": "CastPoint",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -282,6 +802,70 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "ChanceToCastOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ChanceToCastOnHit.json",
+   "source_class": "ChanceToCastOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChanceToCastOnKill.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ChanceToCastOnKill.json",
+   "source_class": "ChanceToCastOnKill",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChanceToCreateAbilityObjectOnNewEnemyHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ChanceToCreateAbilityObjectOnNewEnemyHit.json",
+   "source_class": "ChanceToCreateAbilityObjectOnNewEnemyHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChangeDamageModifierOverTime.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ChangeDamageModifierOverTime.json",
+   "source_class": "ChangeDamageModifierOverTime",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ChangeDisplayInfoHealthInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ChangeDisplayInfoHealthInteraction.json",
+   "source_class": "ChangeDisplayInfoHealthInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ChangeGameObjectInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ChangeGameObjectInteraction.json",
+   "source_class": "ChangeGameObjectInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChangeHealthMaterialDuringLifetime.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ChangeHealthMaterialDuringLifetime.json",
+   "source_class": "ChangeHealthMaterialDuringLifetime",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChangeManaMaterialDuringLifetime.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ChangeManaMaterialDuringLifetime.json",
+   "source_class": "ChangeManaMaterialDuringLifetime",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "ChaosBoltsDamageMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ChaosBoltsDamageMutator.json",
@@ -294,6 +878,14 @@
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ChaosBoltsSecondaryMissilesMutator.json",
    "source_class": "ChaosBoltsSecondaryMissilesMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ChaosBoltsSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ChaosBoltsSkillTree.json",
+   "source_class": "ChaosBoltsSkillTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -313,6 +905,22 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "CharacterStatusTracker.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/CharacterStatusTracker.json",
+   "source_class": "CharacterStatusTracker",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ChargeManager.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ChargeManager.json",
+   "source_class": "ChargeManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ChargedGroundMutator.typetree",
    "domain_id": "ability_mutators",
@@ -329,6 +937,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ChestSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/ChestSync.json",
+   "source_class": "ChestSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "Chimaeras_Essence.typetree",
    "domain_id": "unique_item_mechanics",
@@ -337,11 +953,99 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "ChthonicFissureTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ChthonicFissureTree.json",
+   "source_class": "ChthonicFissureTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "CinderStrikeExplosionMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/CinderStrikeExplosionMutator.json",
    "source_class": "CinderStrikeExplosionMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "CinderStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/CinderStrikeTree.json",
+   "source_class": "CinderStrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CleanseAilmentsOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CleanseAilmentsOnDeath.json",
+   "source_class": "CleanseAilmentsOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CleanseCreatorOnStart.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CleanseCreatorOnStart.json",
+   "source_class": "CleanseCreatorOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClearHitListAfterDuration.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ClearHitListAfterDuration.json",
+   "source_class": "ClearHitListAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientAbilityList.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ClientAbilityList.json",
+   "source_class": "ClientAbilityList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientAbilityMover.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ClientAbilityMover.json",
+   "source_class": "ClientAbilityMover",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientMoveToTargetLocation.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ClientMoveToTargetLocation.json",
+   "source_class": "ClientMoveToTargetLocation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientPlayerStats.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ClientPlayerStats.json",
+   "source_class": "ClientPlayerStats",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientResetComboOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ClientResetComboOnDeath.json",
+   "source_class": "ClientResetComboOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ClientUsingAbilityState.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ClientUsingAbilityState.json",
+   "source_class": "ClientUsingAbilityState",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -369,11 +1073,27 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ColliderEnterListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ColliderEnterListener.json",
+   "source_class": "ColliderEnterListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ComplexGenericMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ComplexGenericMutator.json",
    "source_class": "ComplexGenericMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ComplexSubObjectMotion.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ComplexSubObjectMotion.json",
+   "source_class": "ComplexSubObjectMotion",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -406,6 +1126,14 @@
    "domain_id": "prophecies",
    "expected_raw": "extracted_raw/typetree/ConstellationsList.json",
    "source_class": "ConstellationsList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ConsumeAllValeSpiritsOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ConsumeAllValeSpiritsOnDeath.json",
+   "source_class": "ConsumeAllValeSpiritsOnDeath",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -498,6 +1226,94 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAbilityObjectOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateAbilityObjectOnDeath.json",
+   "source_class": "CreateAbilityObjectOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAbilityObjectOnNewAllyHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateAbilityObjectOnNewAllyHit.json",
+   "source_class": "CreateAbilityObjectOnNewAllyHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAbilityObjectOnNewEnemtHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateAbilityObjectOnNewEnemtHit.json",
+   "source_class": "CreateAbilityObjectOnNewEnemtHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAbilityObjectOnRicochet.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateAbilityObjectOnRicochet.json",
+   "source_class": "CreateAbilityObjectOnRicochet",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAbilityObjectOnStart.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateAbilityObjectOnStart.json",
+   "source_class": "CreateAbilityObjectOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateAtTargetLocationOnCreation.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreateAtTargetLocationOnCreation.json",
+   "source_class": "CreateAtTargetLocationOnCreation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateEtheralReflectionsOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreateEtheralReflectionsOnHit.json",
+   "source_class": "CreateEtheralReflectionsOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "CreateItemInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/CreateItemInteraction.json",
+   "source_class": "CreateItemInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreateOnDeath.json",
+   "source_class": "CreateOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreateOnHit.json",
+   "source_class": "CreateOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreateRandomAbilityObjectOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreateRandomAbilityObjectOnDeath.json",
+   "source_class": "CreateRandomAbilityObjectOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "CreateResourceReturnAbilityObjectOnEnemyHit.typetree",
    "domain_id": "ability_stat_components",
    "expected_raw": "extracted_raw/typetree/CreateResourceReturnAbilityObjectOnEnemyHit.json",
@@ -514,10 +1330,50 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "CreateVfxOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreateVfxOnDeath.json",
+   "source_class": "CreateVfxOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "CreateVoidKnightEchoMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/CreateVoidKnightEchoMutator.json",
    "source_class": "CreateVoidKnightEchoMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreationReferences.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreationReferences.json",
+   "source_class": "CreationReferences",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreatorEnterFalconIdleState.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/CreatorEnterFalconIdleState.json",
+   "source_class": "CreatorEnterFalconIdleState",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CreatorSummonEnterFalconIdleState.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CreatorSummonEnterFalconIdleState.json",
+   "source_class": "CreatorSummonEnterFalconIdleState",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "CullFrozenTargetsOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/CullFrozenTargetsOnHit.json",
+   "source_class": "CullFrozenTargetsOnHit",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -585,11 +1441,51 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "DancingStrikesTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DancingStrikesTree.json",
+   "source_class": "DancingStrikesTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "DarkQuiverArrowMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/DarkQuiverArrowMutator.json",
    "source_class": "DarkQuiverArrowMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DarkQuiverTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DarkQuiverTree.json",
+   "source_class": "DarkQuiverTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DeActivateGameObjectInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DeActivateGameObjectInteraction.json",
+   "source_class": "DeActivateGameObjectInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DeathItemDrop.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/DeathItemDrop.json",
+   "source_class": "DeathItemDrop",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DeathSealTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DeathSealTree.json",
+   "source_class": "DeathSealTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -609,11 +1505,147 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DebugInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DebugInteraction.json",
+   "source_class": "DebugInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DecoyTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DecoyTree.json",
+   "source_class": "DecoyTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "DelayedLightningExplosionMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/DelayedLightningExplosionMutator.json",
    "source_class": "DelayedLightningExplosionMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyAfterDuration.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DestroyAfterDuration.json",
+   "source_class": "DestroyAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyAfterDurationScaledWithStat.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DestroyAfterDurationScaledWithStat.json",
+   "source_class": "DestroyAfterDurationScaledWithStat",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyAfterDurationWithoutAHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DestroyAfterDurationWithoutAHit.json",
+   "source_class": "DestroyAfterDurationWithoutAHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DestroyGameobjectInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DestroyGameobjectInteraction.json",
+   "source_class": "DestroyGameobjectInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyIfNotAbilityOfCaster.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DestroyIfNotAbilityOfCaster.json",
+   "source_class": "DestroyIfNotAbilityOfCaster",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyOnActorTypeDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/DestroyOnActorTypeDeath.json",
+   "source_class": "DestroyOnActorTypeDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyOnFailingToPierceEnemy.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DestroyOnFailingToPierceEnemy.json",
+   "source_class": "DestroyOnFailingToPierceEnemy",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DestroyOnInanimateCollison.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DestroyOnInanimateCollison.json",
+   "source_class": "DestroyOnInanimateCollison",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DestroyOnNewSceneLoaded.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DestroyOnNewSceneLoaded.json",
+   "source_class": "DestroyOnNewSceneLoaded",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DestroyOnReachingTargetLocation.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DestroyOnReachingTargetLocation.json",
+   "source_class": "DestroyOnReachingTargetLocation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DestroyOnSceneChanged.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DestroyOnSceneChanged.json",
+   "source_class": "DestroyOnSceneChanged",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DestroyWhenCasterUsesAbility.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/DestroyWhenCasterUsesAbility.json",
+   "source_class": "DestroyWhenCasterUsesAbility",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DetachFromParentOnParentSelfDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DetachFromParentOnParentSelfDeath.json",
+   "source_class": "DetachFromParentOnParentSelfDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DetachParticleSystemsOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DetachParticleSystemsOnDeath.json",
+   "source_class": "DetachParticleSystemsOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DetachParticleSystemsOnParentDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DetachParticleSystemsOnParentDeath.json",
+   "source_class": "DetachParticleSystemsOnParentDeath",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -641,6 +1673,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "DetonatingArrowTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DetonatingArrowTree.json",
+   "source_class": "DetonatingArrowTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "DetonatingChargeMutator.typetree",
    "domain_id": "ability_mutators",
@@ -657,11 +1697,91 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "DevouringOrbTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DevouringOrbTree.json",
+   "source_class": "DevouringOrbTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DialogueBlessingRespecEvent.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DialogueBlessingRespecEvent.json",
+   "source_class": "DialogueBlessingRespecEvent",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "PRESERVE_ONLY",
    "domain": "DialogueDatabase.typetree",
    "domain_id": "dialogue",
    "expected_raw": "extracted_raw/typetree/DialogueDatabase.json",
    "source_class": "DialogueDatabase",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DialogueMethodRelay.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/DialogueMethodRelay.json",
+   "source_class": "DialogueMethodRelay",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DisableActorsOfTypeInteraction.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/DisableActorsOfTypeInteraction.json",
+   "source_class": "DisableActorsOfTypeInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DisableAnimatorInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DisableAnimatorInteraction.json",
+   "source_class": "DisableAnimatorInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DisableComponentInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DisableComponentInteraction.json",
+   "source_class": "DisableComponentInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DisableDamageIndicatorOverlayIfEnabledForLocalPlayer.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DisableDamageIndicatorOverlayIfEnabledForLocalPlayer.json",
+   "source_class": "DisableDamageIndicatorOverlayIfEnabledForLocalPlayer",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "DisableOutlineInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/DisableOutlineInteraction.json",
+   "source_class": "DisableOutlineInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "DisableZoneAbilityTutorialOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/DisableZoneAbilityTutorialOnDeath.json",
+   "source_class": "DisableZoneAbilityTutorialOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DisintegrateTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DisintegrateTree.json",
+   "source_class": "DisintegrateTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -673,11 +1793,35 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "DiveBombTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DiveBombTree.json",
+   "source_class": "DiveBombTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "DivineFlareMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/DivineFlareMutator.json",
    "source_class": "DivineFlareMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DrainLifeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DrainLifeTree.json",
+   "source_class": "DrainLifeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "DreadShadeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/DreadShadeTree.json",
+   "source_class": "DreadShadeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -729,6 +1873,30 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "EarthquakeSlamTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/EarthquakeSlamTree.json",
+   "source_class": "EarthquakeSlamTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "EchoActorPreloadSet.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/EchoActorPreloadSet.json",
+   "source_class": "EchoActorPreloadSet",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EchoPortalInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/EchoPortalInteraction.json",
+   "source_class": "EchoPortalInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ElementalistScorchingGrasp.typetree",
    "domain_id": "unique_item_mechanics",
@@ -746,10 +1914,138 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "EnableActorsOfTypeInteraction.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/EnableActorsOfTypeInteraction.json",
+   "source_class": "EnableActorsOfTypeInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EnableAnimatorInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/EnableAnimatorInteraction.json",
+   "source_class": "EnableAnimatorInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "EnableCollidersAfterDuration.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/EnableCollidersAfterDuration.json",
+   "source_class": "EnableCollidersAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EnableComponentInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/EnableComponentInteraction.json",
+   "source_class": "EnableComponentInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "EnchantWeaponTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/EnchantWeaponTree.json",
+   "source_class": "EnchantWeaponTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "EntanglingRootsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/EntanglingRootsTree.json",
+   "source_class": "EntanglingRootsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EnterArenaManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/EnterArenaManager.json",
+   "source_class": "EnterArenaManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EquipedItemManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/EquipedItemManager.json",
+   "source_class": "EquipedItemManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ErasingStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ErasingStrikeTree.json",
+   "source_class": "ErasingStrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ErzaPortalIndicator.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ErzaPortalIndicator.json",
+   "source_class": "ErzaPortalIndicator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "EterrasBlessingTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/EterrasBlessingTree.json",
+   "source_class": "EterrasBlessingTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "Eterras_Path.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Eterras_Path.json",
    "source_class": "Eterras_Path",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EventListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/EventListener.json",
+   "source_class": "EventListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "EventListenerRelay.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/EventListenerRelay.json",
+   "source_class": "EventListenerRelay",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ExchangeParentAndCreatorLocationOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ExchangeParentAndCreatorLocationOnDeath.json",
+   "source_class": "ExchangeParentAndCreatorLocationOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ExistsWhileChannelling.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ExistsWhileChannelling.json",
+   "source_class": "ExistsWhileChannelling",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ExitStance.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ExitStance.json",
+   "source_class": "ExitStance",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -774,6 +2070,22 @@
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ExplosiveTrapOnGroundMutator.json",
    "source_class": "ExplosiveTrapOnGroundMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ExplosiveTrapTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ExplosiveTrapTree.json",
+   "source_class": "ExplosiveTrapTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ExtraProjectiles.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ExtraProjectiles.json",
+   "source_class": "ExtraProjectiles",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -841,11 +2153,67 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "FalconryTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FalconryTree.json",
+   "source_class": "FalconryTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "FearNearbyEnemies.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/FearNearbyEnemies.json",
+   "source_class": "FearNearbyEnemies",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "FearOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/FearOnHit.json",
+   "source_class": "FearOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FireShieldSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FireShieldSkillTree.json",
+   "source_class": "FireShieldSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "FireballMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/FireballMutator.json",
    "source_class": "FireballMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FireballSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FireballSkillTree.json",
+   "source_class": "FireballSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FirebrandTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FirebrandTree.json",
+   "source_class": "FirebrandTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FlameReaveTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FlameReaveTree.json",
+   "source_class": "FlameReaveTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -857,11 +2225,107 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "FlameRushSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FlameRushSkillTree.json",
+   "source_class": "FlameRushSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FlameWardTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FlameWardTree.json",
+   "source_class": "FlameWardTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FlayTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FlayTree.json",
+   "source_class": "FlayTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "FlurryIndividualAttackMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/FlurryIndividualAttackMutator.json",
    "source_class": "FlurryIndividualAttackMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FlurryTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FlurryTree.json",
+   "source_class": "FlurryTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FocusTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FocusTree.json",
+   "source_class": "FocusTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "FollowsPlayerSpawner.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/FollowsPlayerSpawner.json",
+   "source_class": "FollowsPlayerSpawner",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ForceCasterToWaitOnDeath.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ForceCasterToWaitOnDeath.json",
+   "source_class": "ForceCasterToWaitOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ForgeStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ForgeStrikeTree.json",
+   "source_class": "ForgeStrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ForgeSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/ForgeSync.json",
+   "source_class": "ForgeSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "FormChanger.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/FormChanger.json",
+   "source_class": "FormChanger",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "FreezeEnemyOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/FreezeEnemyOnHit.json",
+   "source_class": "FreezeEnemyOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FrenzyTotemTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FrenzyTotemTree.json",
+   "source_class": "FrenzyTotemTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -881,6 +2345,22 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "FrostClawTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FrostClawTree.json",
+   "source_class": "FrostClawTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FrostWallSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FrostWallSkillTree.json",
+   "source_class": "FrostWallSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "FrostboltMutator.typetree",
    "domain_id": "ability_mutators",
@@ -894,6 +2374,30 @@
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Frozen_Ire.json",
    "source_class": "Frozen_Ire",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "FuryLeapSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/FuryLeapSkillTree.json",
+   "source_class": "FuryLeapSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "GameStartManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/GameStartManager.json",
+   "source_class": "GameStartManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "GatheringStormTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/GatheringStormTree.json",
+   "source_class": "GatheringStormTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -937,6 +2441,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "GhostflameTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/GhostflameTree.json",
+   "source_class": "GhostflameTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "GiveCreatorResourcesOnCollisionWithCreator.typetree",
    "domain_id": "ability_stat_components",
@@ -977,6 +2489,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "GlacierSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/GlacierSkillTree.json",
+   "source_class": "GlacierSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "GlobalAbilityObjectConstructor.typetree",
    "domain_id": "ability_stat_components",
@@ -1009,6 +2529,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "GlyphOfDominionSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/GlyphOfDominionSkillTree.json",
+   "source_class": "GlyphOfDominionSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "GlyphOfInsightReplacementList.typetree",
    "domain_id": "crafting_glyphs",
@@ -1017,11 +2545,51 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "GoToNearestDungeonExitInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/GoToNearestDungeonExitInteraction.json",
+   "source_class": "GoToNearestDungeonExitInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "GoldPickupInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/GoldPickupInteraction.json",
+   "source_class": "GoldPickupInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "GrassFlattenActorAttacher.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/GrassFlattenActorAttacher.json",
+   "source_class": "GrassFlattenActorAttacher",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HailOfArrowsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HailOfArrowsTree.json",
+   "source_class": "HailOfArrowsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "HammerExplosionMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/HammerExplosionMutator.json",
    "source_class": "HammerExplosionMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HammerThrowTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HammerThrowTree.json",
+   "source_class": "HammerThrowTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1038,6 +2606,22 @@
    "domain_id": "endgame_systems",
    "expected_raw": "extracted_raw/typetree/HarbingersData.json",
    "source_class": "HarbingersData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HarpoonEnemyOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/HarpoonEnemyOnHit.json",
+   "source_class": "HarpoonEnemyOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HarvestTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HarvestTree.json",
+   "source_class": "HarvestTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1073,11 +2657,115 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "HealingHandsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HealingHandsTree.json",
+   "source_class": "HealingHandsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HeartseekerTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HeartseekerTree.json",
+   "source_class": "HeartseekerTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HitDetector.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/HitDetector.json",
+   "source_class": "HitDetector",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HitsParent.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/HitsParent.json",
+   "source_class": "HitsParent",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HitsTargets.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/HitsTargets.json",
+   "source_class": "HitsTargets",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HitsTargetsOverTime.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/HitsTargetsOverTime.json",
+   "source_class": "HitsTargetsOverTime",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HolyAuraTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HolyAuraTree.json",
+   "source_class": "HolyAuraTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HomingMovement.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/HomingMovement.json",
+   "source_class": "HomingMovement",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "HomingOnNavmesh.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/HomingOnNavmesh.json",
+   "source_class": "HomingOnNavmesh",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "HungeringSoulsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/HungeringSoulsTree.json",
+   "source_class": "HungeringSoulsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "IceBarrageTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/IceBarrageTree.json",
+   "source_class": "IceBarrageTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "IceThornsMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/IceThornsMutator.json",
    "source_class": "IceThornsMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "IceThornsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/IceThornsTree.json",
+   "source_class": "IceThornsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "IceWardSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/IceWardSkillTree.json",
+   "source_class": "IceWardSkillTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1114,10 +2802,50 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "IlluminateEnemiesOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/IlluminateEnemiesOnHit.json",
+   "source_class": "IlluminateEnemiesOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "IncreaseDamageOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/IncreaseDamageOnHit.json",
+   "source_class": "IncreaseDamageOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "InfernalAuraNovaMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/InfernalAuraNovaMutator.json",
    "source_class": "InfernalAuraNovaMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "InfernalShadeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/InfernalShadeTree.json",
+   "source_class": "InfernalShadeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "InputFieldActionBlocker.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/InputFieldActionBlocker.json",
+   "source_class": "InputFieldActionBlocker",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "InvenGridManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/InvenGridManager.json",
+   "source_class": "InvenGridManager",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1145,11 +2873,35 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ItemDropOnEnable.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ItemDropOnEnable.json",
+   "source_class": "ItemDropOnEnable",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "ItemList.typetree",
    "domain_id": "item_bases",
    "expected_raw": "extracted_raw/typetree/ItemList.json",
    "source_class": "ItemList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ItemPersistenceManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ItemPersistenceManager.json",
+   "source_class": "ItemPersistenceManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "JavelinTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/JavelinTree.json",
+   "source_class": "JavelinTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1161,11 +2913,59 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "JudgementTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/JudgementTree.json",
+   "source_class": "JudgementTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "Keepers_Gloves.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Keepers_Gloves.json",
    "source_class": "Keepers_Gloves",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "KillActorOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/KillActorOnHit.json",
+   "source_class": "KillActorOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "KillActorsOfTypeInteraction.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/KillActorsOfTypeInteraction.json",
+   "source_class": "KillActorsOfTypeInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "KillSelf.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/KillSelf.json",
+   "source_class": "KillSelf",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "KnightTree.typetree",
+   "domain_id": "passive_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/KnightTree.json",
+   "source_class": "KnightTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "KnockBackOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/KnockBackOnHit.json",
+   "source_class": "KnockBackOnHit",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1185,6 +2985,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "LethalMirageTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/LethalMirageTree.json",
+   "source_class": "LethalMirageTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "LightTempestMutator.typetree",
    "domain_id": "ability_mutators",
@@ -1201,6 +3009,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "LightningBlastSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/LightningBlastSkillTree.json",
+   "source_class": "LightningBlastSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "LightningSpearMutator.typetree",
    "domain_id": "ability_mutators",
@@ -1209,11 +3025,43 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "LimitedPickupable.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/LimitedPickupable.json",
+   "source_class": "LimitedPickupable",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "LoadLastTownInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/LoadLastTownInteraction.json",
+   "source_class": "LoadLastTownInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "LoadSceneInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/LoadSceneInteraction.json",
+   "source_class": "LoadSceneInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "PRESERVE_ONLY",
    "domain": "LoadingTipsList.typetree",
    "domain_id": "loading_tips",
    "expected_raw": "extracted_raw/typetree/LoadingTipsList.json",
    "source_class": "LoadingTipsList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "LocalTreeData.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/LocalTreeData.json",
+   "source_class": "LocalTreeData",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1233,6 +3081,86 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "LungeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/LungeTree.json",
+   "source_class": "LungeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MaelstromTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MaelstromTree.json",
+   "source_class": "MaelstromTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MageTree.typetree",
+   "domain_id": "passive_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MageTree.json",
+   "source_class": "MageTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ManaStrikeSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ManaStrikeSkillTree.json",
+   "source_class": "ManaStrikeSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ManifestArmorTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ManifestArmorTree.json",
+   "source_class": "ManifestArmorTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MarkForDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/MarkForDeath.json",
+   "source_class": "MarkForDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MarkForDeathTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MarkForDeathTree.json",
+   "source_class": "MarkForDeathTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MarkPreferredTargetForMinions.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/MarkPreferredTargetForMinions.json",
+   "source_class": "MarkPreferredTargetForMinions",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MarrowShardsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MarrowShardsTree.json",
+   "source_class": "MarrowShardsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MaterialItemManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/MaterialItemManager.json",
+   "source_class": "MaterialItemManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "MemoryList.typetree",
    "domain_id": "memories",
@@ -1249,11 +3177,75 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "MeteorSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MeteorSkillTree.json",
+   "source_class": "MeteorSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MineTrigger.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/MineTrigger.json",
+   "source_class": "MineTrigger",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "PRESERVE_ONLY",
    "domain": "MinimapInformation.typetree",
    "domain_id": "zones_and_scenes",
    "expected_raw": "extracted_raw/typetree/MinimapInformation.json",
    "source_class": "MinimapInformation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MinionUsesAbilityOnStart.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/MinionUsesAbilityOnStart.json",
+   "source_class": "MinionUsesAbilityOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ModifyAbilityMoverTargetOverTime.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ModifyAbilityMoverTargetOverTime.json",
+   "source_class": "ModifyAbilityMoverTargetOverTime",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ModifyAbilityWhileEnemyWithinRadius.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ModifyAbilityWhileEnemyWithinRadius.json",
+   "source_class": "ModifyAbilityWhileEnemyWithinRadius",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ModifyDamageOnRotation.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ModifyDamageOnRotation.json",
+   "source_class": "ModifyDamageOnRotation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ModifyDamageOnStart.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ModifyDamageOnStart.json",
+   "source_class": "ModifyDamageOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ModifyDamageStatsHolderInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ModifyDamageStatsHolderInteraction.json",
+   "source_class": "ModifyDamageStatsHolderInteraction",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1270,6 +3262,14 @@
    "domain_id": "quests",
    "expected_raw": "extracted_raw/typetree/MonolithObjectiveList.json",
    "source_class": "MonolithObjectiveList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MonolithPulse.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/MonolithPulse.json",
+   "source_class": "MonolithPulse",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1298,10 +3298,90 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "MoveCreatorToPositionOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/MoveCreatorToPositionOnDeath.json",
+   "source_class": "MoveCreatorToPositionOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MoveCreatorToTargetOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/MoveCreatorToTargetOnDeath.json",
+   "source_class": "MoveCreatorToTargetOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MoveToGroundOnStart.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/MoveToGroundOnStart.json",
+   "source_class": "MoveToGroundOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MoveToNearestMinion.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/MoveToNearestMinion.json",
+   "source_class": "MoveToNearestMinion",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "MovementFromAbility.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/MovementFromAbility.json",
+   "source_class": "MovementFromAbility",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MpPortalInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/MpPortalInteraction.json",
+   "source_class": "MpPortalInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "MpPortalSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/MpPortalSync.json",
+   "source_class": "MpPortalSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MultishotTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MultishotTree.json",
+   "source_class": "MultishotTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "MultistrikeDamageMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/MultistrikeDamageMutator.json",
    "source_class": "MultistrikeDamageMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "MultistrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/MultistrikeTree.json",
+   "source_class": "MultistrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "NPCInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/NPCInteraction.json",
+   "source_class": "NPCInteraction",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1310,6 +3390,14 @@
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/NecroticMortarAoEMutator.json",
    "source_class": "NecroticMortarAoEMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "NemesisEncounterGameplayObject.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/NemesisEncounterGameplayObject.json",
+   "source_class": "NemesisEncounterGameplayObject",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1337,6 +3425,22 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "NetTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/NetTree.json",
+   "source_class": "NetTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "NodeTooltipPropertyList.typetree",
+   "domain_id": "property_definitions",
+   "expected_raw": "extracted_raw/typetree/NodeTooltipPropertyList.json",
+   "source_class": "NodeTooltipPropertyList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "PRESERVE_ONLY",
    "domain": "NonAilmentUIBuff.typetree",
    "domain_id": "ui_buffs",
@@ -1361,6 +3465,22 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "NovaSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/NovaSkillTree.json",
+   "source_class": "NovaSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "NpcBarkInChat.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/NpcBarkInChat.json",
+   "source_class": "NpcBarkInChat",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "Objective.typetree",
    "domain_id": "endgame_systems",
@@ -1369,11 +3489,35 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ObjectiveCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ObjectiveCondition.json",
+   "source_class": "ObjectiveCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ObserverWindowData.typetree",
    "domain_id": "prophecies",
    "expected_raw": "extracted_raw/typetree/ObserverWindowData.json",
    "source_class": "ObserverWindowData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ObserverWindowSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/ObserverWindowSync.json",
+   "source_class": "ObserverWindowSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "OldSceneList.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/OldSceneList.json",
+   "source_class": "OldSceneList",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1401,6 +3545,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "OneShotCacheGameplayObject.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/OneShotCacheGameplayObject.json",
+   "source_class": "OneShotCacheGameplayObject",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "OneShotCacheList.typetree",
    "domain_id": "rewards_and_loot",
@@ -1418,10 +3570,58 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "OpenTombEntrance.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/OpenTombEntrance.json",
+   "source_class": "OpenTombEntrance",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "OtherAbilityHitListener.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/OtherAbilityHitListener.json",
+   "source_class": "OtherAbilityHitListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "OtherInteractableListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/OtherInteractableListener.json",
+   "source_class": "OtherInteractableListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "PhysTempestMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/PhysTempestMutator.json",
    "source_class": "PhysTempestMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PickupAncientBonesInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PickupAncientBonesInteraction.json",
+   "source_class": "PickupAncientBonesInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PickupExperiencePotionInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PickupExperiencePotionInteraction.json",
+   "source_class": "PickupExperiencePotionInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PickupFavorTomeInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PickupFavorTomeInteraction.json",
+   "source_class": "PickupFavorTomeInteraction",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1433,6 +3633,54 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PlayOneShotSound.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/PlayOneShotSound.json",
+   "source_class": "PlayOneShotSound",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayOneShotSoundInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PlayOneShotSoundInteraction.json",
+   "source_class": "PlayOneShotSoundInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PlaySoundBasedOnAge.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/PlaySoundBasedOnAge.json",
+   "source_class": "PlaySoundBasedOnAge",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PlaySoundOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/PlaySoundOnHit.json",
+   "source_class": "PlaySoundOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PlayerActorSync.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/PlayerActorSync.json",
+   "source_class": "PlayerActorSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayerMonolithQuestListHolder.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PlayerMonolithQuestListHolder.json",
+   "source_class": "PlayerMonolithQuestListHolder",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "PlayerPropertyList.typetree",
    "domain_id": "property_definitions",
@@ -1441,11 +3689,83 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayerQuestListHolder.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PlayerQuestListHolder.json",
+   "source_class": "PlayerQuestListHolder",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayerSpawnManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/PlayerSpawnManager.json",
+   "source_class": "PlayerSpawnManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayerSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/PlayerSync.json",
+   "source_class": "PlayerSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PlayerWalkToObjectInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PlayerWalkToObjectInteraction.json",
+   "source_class": "PlayerWalkToObjectInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PortalSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/PortalSync.json",
+   "source_class": "PortalSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PortalUsage.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/PortalUsage.json",
+   "source_class": "PortalUsage",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "PotionPickupInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/PotionPickupInteraction.json",
+   "source_class": "PotionPickupInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "Prefabs.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/Prefabs.json",
+   "source_class": "Prefabs",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "Preparation.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Preparation.json",
    "source_class": "Preparation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "PreparedVisualsSpawner.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/PreparedVisualsSpawner.json",
+   "source_class": "PreparedVisualsSpawner",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1462,6 +3782,22 @@
    "domain_id": "endgame_systems",
    "expected_raw": "extracted_raw/typetree/PrimalHuntData.json",
    "source_class": "PrimalHuntData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "PrimalistTree.typetree",
+   "domain_id": "passive_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/PrimalistTree.json",
+   "source_class": "PrimalistTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ProfaneVeilTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ProfaneVeilTree.json",
+   "source_class": "ProfaneVeilTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1521,6 +3857,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "PunctureTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/PunctureTree.json",
+   "source_class": "PunctureTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "PutridBombExplosionMutator.typetree",
    "domain_id": "ability_mutators",
@@ -1534,6 +3878,14 @@
    "domain_id": "quests",
    "expected_raw": "extracted_raw/typetree/Quest.json",
    "source_class": "Quest",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "QuestCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/QuestCondition.json",
+   "source_class": "QuestCondition",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1561,11 +3913,67 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "RandomCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/RandomCondition.json",
+   "source_class": "RandomCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "RandomEncounterData.typetree",
    "domain_id": "endgame_systems",
    "expected_raw": "extracted_raw/typetree/RandomEncounterData.json",
    "source_class": "RandomEncounterData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RandomiseDirection.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/RandomiseDirection.json",
+   "source_class": "RandomiseDirection",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RareMonsterAugments.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RareMonsterAugments.json",
+   "source_class": "RareMonsterAugments",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RaycastAbilityMover.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/RaycastAbilityMover.json",
+   "source_class": "RaycastAbilityMover",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RaycastGroundCollision.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/RaycastGroundCollision.json",
+   "source_class": "RaycastGroundCollision",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ReachablePointIndicator.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ReachablePointIndicator.json",
+   "source_class": "ReachablePointIndicator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ReaperFormTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ReaperFormTree.json",
+   "source_class": "ReaperFormTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1577,11 +3985,67 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "RebukeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RebukeTree.json",
+   "source_class": "RebukeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RectangleSpawner.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RectangleSpawner.json",
+   "source_class": "RectangleSpawner",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RefreshableVFX.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RefreshableVFX.json",
+   "source_class": "RefreshableVFX",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyAbsorbMinion.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyAbsorbMinion.json",
+   "source_class": "RepeatedlyAbsorbMinion",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "RepeatedlyApplyAilmentsInRadius.typetree",
    "domain_id": "ability_stat_components",
    "expected_raw": "extracted_raw/typetree/RepeatedlyApplyAilmentsInRadius.json",
    "source_class": "RepeatedlyApplyAilmentsInRadius",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyBuffInRadius.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyBuffInRadius.json",
+   "source_class": "RepeatedlyBuffInRadius",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyCastAbility.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyCastAbility.json",
+   "source_class": "RepeatedlyCastAbility",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyCastAtNearestEnemyWithinRadius.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyCastAtNearestEnemyWithinRadius.json",
+   "source_class": "RepeatedlyCastAtNearestEnemyWithinRadius",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1634,6 +4098,102 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyHitsTargets.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyHitsTargets.json",
+   "source_class": "RepeatedlyHitsTargets",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RepeatedlyHitsTargetsInBox.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/RepeatedlyHitsTargetsInBox.json",
+   "source_class": "RepeatedlyHitsTargetsInBox",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ResetComboOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ResetComboOnDeath.json",
+   "source_class": "ResetComboOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ResetCooldownForSpecificAbilitiesOnStart.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ResetCooldownForSpecificAbilitiesOnStart.json",
+   "source_class": "ResetCooldownForSpecificAbilitiesOnStart",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "RestartableParticleSystemIndicator.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/RestartableParticleSystemIndicator.json",
+   "source_class": "RestartableParticleSystemIndicator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ResurrectParentOnDeath.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ResurrectParentOnDeath.json",
+   "source_class": "ResurrectParentOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RetaliateWhenParentHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RetaliateWhenParentHit.json",
+   "source_class": "RetaliateWhenParentHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ReturnOnInanimateCollision.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ReturnOnInanimateCollision.json",
+   "source_class": "ReturnOnInanimateCollision",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ReturnToCasterAfterDuration.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ReturnToCasterAfterDuration.json",
+   "source_class": "ReturnToCasterAfterDuration",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "RicochetMovement.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/RicochetMovement.json",
+   "source_class": "RicochetMovement",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "RingOfShieldsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RingOfShieldsTree.json",
+   "source_class": "RingOfShieldsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "RipBloodTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RipBloodTree.json",
+   "source_class": "RipBloodTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "RiposteRetaliationHitMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/RiposteRetaliationHitMutator.json",
@@ -1649,11 +4209,43 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "RiveTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RiveTree.json",
+   "source_class": "RiveTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "RoamingOmensData.typetree",
    "domain_id": "endgame_systems",
    "expected_raw": "extracted_raw/typetree/RoamingOmensData.json",
    "source_class": "RoamingOmensData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "RogueTree.typetree",
+   "domain_id": "passive_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RogueTree.json",
+   "source_class": "RogueTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "RuneBoltSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RuneBoltSkillTree.json",
+   "source_class": "RuneBoltSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "RunePrison.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/RunePrison.json",
+   "source_class": "RunePrison",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1697,11 +4289,35 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "RunicInvocationSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/RunicInvocationSkillTree.json",
+   "source_class": "RunicInvocationSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "RunicInvocationSubSkillMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/RunicInvocationSubSkillMutator.json",
    "source_class": "RunicInvocationSubSkillMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SFXManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/SFXManager.json",
+   "source_class": "SFXManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SacrificeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SacrificeTree.json",
+   "source_class": "SacrificeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1729,6 +4345,38 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SelfDestroyer.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/SelfDestroyer.json",
+   "source_class": "SelfDestroyer",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SendEnemiesForwardInTimeOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/SendEnemiesForwardInTimeOnHit.json",
+   "source_class": "SendEnemiesForwardInTimeOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SerpentStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SerpentStrikeTree.json",
+   "source_class": "SerpentStrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SetAnimationVariableInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/SetAnimationVariableInteraction.json",
+   "source_class": "SetAnimationVariableInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "SetBonusesList.typetree",
    "domain_id": "set_bonuses",
@@ -1737,11 +4385,67 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SetXRotationToZero.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/SetXRotationToZero.json",
+   "source_class": "SetXRotationToZero",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShadowCascadeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShadowCascadeTree.json",
+   "source_class": "ShadowCascadeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ShadowLightAssigner.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ShadowLightAssigner.json",
+   "source_class": "ShadowLightAssigner",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ShadowRendDamageMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ShadowRendDamageMutator.json",
    "source_class": "ShadowRendDamageMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShadowRendTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShadowRendTree.json",
+   "source_class": "ShadowRendTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ShakeScreenOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ShakeScreenOnDeath.json",
+   "source_class": "ShakeScreenOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ShakeScreenOnEnable.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ShakeScreenOnEnable.json",
+   "source_class": "ShakeScreenOnEnable",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ShakeScreenOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ShakeScreenOnHit.json",
+   "source_class": "ShakeScreenOnHit",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1761,11 +4465,75 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShatterStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShatterStrikeTree.json",
+   "source_class": "ShatterStrikeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ShatteredRoadPortalSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/ShatteredRoadPortalSync.json",
+   "source_class": "ShatteredRoadPortalSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShieldBashTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShieldBashTree.json",
+   "source_class": "ShieldBashTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShieldRushTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShieldRushTree.json",
+   "source_class": "ShieldRushTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShieldThrowTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShieldThrowTree.json",
+   "source_class": "ShieldThrowTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShiftTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShiftTree.json",
+   "source_class": "ShiftTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ShopGridManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/ShopGridManager.json",
+   "source_class": "ShopGridManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "ShrapnelMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/ShrapnelMutator.json",
    "source_class": "ShrapnelMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "Shrine.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/Shrine.json",
+   "source_class": "Shrine",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1777,11 +4545,43 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ShrineSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/ShrineSync.json",
+   "source_class": "ShrineSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "ShurikensTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ShurikensTree.json",
+   "source_class": "ShurikensTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SigilTracker.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/SigilTracker.json",
+   "source_class": "SigilTracker",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "SigilsOfHopeActiveMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/SigilsOfHopeActiveMutator.json",
    "source_class": "SigilsOfHopeActiveMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SigilsOfHopeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SigilsOfHopeTree.json",
+   "source_class": "SigilsOfHopeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1794,10 +4594,50 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "SingleMinionCard.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/SingleMinionCard.json",
+   "source_class": "SingleMinionCard",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "SmeltersWrathEndMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/SmeltersWrathEndMutator.json",
    "source_class": "SmeltersWrathEndMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SmeltersWrathTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SmeltersWrathTree.json",
+   "source_class": "SmeltersWrathTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SmiteTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SmiteTree.json",
+   "source_class": "SmiteTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SmokeBombTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SmokeBombTree.json",
+   "source_class": "SmokeBombTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SnapFreezeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SnapFreezeTree.json",
+   "source_class": "SnapFreezeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1806,6 +4646,14 @@
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/SoulFeastReturningMutator.json",
    "source_class": "SoulFeastReturningMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SoulFeastTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SoulFeastTree.json",
+   "source_class": "SoulFeastTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1825,6 +4673,46 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SpawnController.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/SpawnController.json",
+   "source_class": "SpawnController",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SpawnTrigger.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/SpawnTrigger.json",
+   "source_class": "SpawnTrigger",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SpawnTriggerListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/SpawnTriggerListener.json",
+   "source_class": "SpawnTriggerListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SpawnedEntityModifier.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/SpawnedEntityModifier.json",
+   "source_class": "SpawnedEntityModifier",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SpawnerSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/SpawnerSync.json",
+   "source_class": "SpawnerSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "SpecialEchoChainData.typetree",
    "domain_id": "woven_echoes",
@@ -1834,10 +4722,114 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "SpiralMovement.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/SpiralMovement.json",
+   "source_class": "SpiralMovement",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SpiritPlagueTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SpiritPlagueTree.json",
+   "source_class": "SpiritPlagueTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SplitProjectiles.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/SplitProjectiles.json",
+   "source_class": "SplitProjectiles",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SpreadAilmentsOnHit.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/SpreadAilmentsOnHit.json",
+   "source_class": "SpreadAilmentsOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SprigganFormTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SprigganFormTree.json",
+   "source_class": "SprigganFormTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "Stance.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/Stance.json",
+   "source_class": "Stance",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "StartConversationInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/StartConversationInteraction.json",
+   "source_class": "StartConversationInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "StashGridManager.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/StashGridManager.json",
+   "source_class": "StashGridManager",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "StashPlayerQuestListHolder.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/StashPlayerQuestListHolder.json",
+   "source_class": "StashPlayerQuestListHolder",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "StatBuffs.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/StatBuffs.json",
+   "source_class": "StatBuffs",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "StaticOrbExplosionMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/StaticOrbExplosionMutator.json",
    "source_class": "StaticOrbExplosionMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "StaticOrbTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/StaticOrbTree.json",
+   "source_class": "StaticOrbTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "StaticTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/StaticTree.json",
+   "source_class": "StaticTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "Stats.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/Stats.json",
+   "source_class": "Stats",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1866,10 +4858,26 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "StopAtTargetLocation.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/StopAtTargetLocation.json",
+   "source_class": "StopAtTargetLocation",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "StormLightningMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/StormLightningMutator.json",
    "source_class": "StormLightningMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "StormTotemTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/StormTotemTree.json",
+   "source_class": "StormTotemTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1878,6 +4886,22 @@
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Stormtide.json",
    "source_class": "Stormtide",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "StretchToCreator.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/StretchToCreator.json",
+   "source_class": "StretchToCreator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "StretchToLocationCreatedFrom.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/StretchToLocationCreatedFrom.json",
+   "source_class": "StretchToLocationCreatedFrom",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1897,6 +4921,38 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "SubObjectTag.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/SubObjectTag.json",
+   "source_class": "SubObjectTag",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "SubObjectsStretchToLocationCreatedFrom.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/SubObjectsStretchToLocationCreatedFrom.json",
+   "source_class": "SubObjectsStretchToLocationCreatedFrom",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonBearSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonBearSkillTree.json",
+   "source_class": "SummonBearSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonBoneGolemTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonBoneGolemTree.json",
+   "source_class": "SummonBoneGolemTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "SummonEntityOnDeath.typetree",
    "domain_id": "ability_stat_components",
@@ -1905,11 +4961,91 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonRaptorTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonRaptorTree.json",
+   "source_class": "SummonRaptorTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonSabertoothTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonSabertoothTree.json",
+   "source_class": "SummonSabertoothTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonScorpionTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonScorpionTree.json",
+   "source_class": "SummonScorpionTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonSkeletonMageTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonSkeletonMageTree.json",
+   "source_class": "SummonSkeletonMageTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonSkeletonTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonSkeletonTree.json",
+   "source_class": "SummonSkeletonTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonSprigganSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonSprigganSkillTree.json",
+   "source_class": "SummonSprigganSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonStormCrowTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonStormCrowTree.json",
+   "source_class": "SummonStormCrowTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonVolatileZombieTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonVolatileZombieTree.json",
+   "source_class": "SummonVolatileZombieTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "SummonWeaponMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/SummonWeaponMutator.json",
    "source_class": "SummonWeaponMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonWolfSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonWolfSkillTree.json",
+   "source_class": "SummonWolfSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SummonWraithTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SummonWraithTree.json",
+   "source_class": "SummonWraithTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1929,11 +5065,43 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "SurgeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SurgeTree.json",
+   "source_class": "SurgeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "SwarmbladeShiftSlashMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/SwarmbladeShiftSlashMutator.json",
    "source_class": "SwarmbladeShiftSlashMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SwarmbladeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SwarmbladeTree.json",
+   "source_class": "SwarmbladeTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SwipeSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SwipeSkillTree.json",
+   "source_class": "SwipeSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "SynchronizedStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/SynchronizedStrikeTree.json",
+   "source_class": "SynchronizedStrikeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1954,10 +5122,42 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "TargetFinder.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/TargetFinder.json",
+   "source_class": "TargetFinder",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "Taste_of_Blood.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Taste_of_Blood.json",
    "source_class": "Taste_of_Blood",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "TauntOnHit.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/TauntOnHit.json",
+   "source_class": "TauntOnHit",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "TeleportTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/TeleportTree.json",
+   "source_class": "TeleportTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "TempestStrikeTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/TempestStrikeTree.json",
+   "source_class": "TempestStrikeTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -1977,6 +5177,14 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "ThornTotemTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/ThornTotemTree.json",
+   "source_class": "ThornTotemTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "TimeBeastBurningGroundMutator.typetree",
    "domain_id": "ability_mutators",
@@ -1990,6 +5198,22 @@
    "domain_id": "endgame_systems",
    "expected_raw": "extracted_raw/typetree/TimeBeastData.json",
    "source_class": "TimeBeastData",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TimeBeastEggs.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TimeBeastEggs.json",
+   "source_class": "TimeBeastEggs",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TimeBeastRift.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TimeBeastRift.json",
+   "source_class": "TimeBeastRift",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -2009,11 +5233,75 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TimelineCatalystSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/TimelineCatalystSync.json",
+   "source_class": "TimelineCatalystSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_NOW",
    "domain": "TimelineList.typetree",
    "domain_id": "monolith_timelines",
    "expected_raw": "extracted_raw/typetree/TimelineList.json",
    "source_class": "TimelineList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TimerCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TimerCondition.json",
+   "source_class": "TimerCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TimerListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TimerListener.json",
+   "source_class": "TimerListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ToggleCreatorDamageable.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ToggleCreatorDamageable.json",
+   "source_class": "ToggleCreatorDamageable",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ToggleCreatorSummonVisuals.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ToggleCreatorSummonVisuals.json",
+   "source_class": "ToggleCreatorSummonVisuals",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ToggleCreatorUsingAbilityState.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ToggleCreatorUsingAbilityState.json",
+   "source_class": "ToggleCreatorUsingAbilityState",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ToggleCreatorVisuals.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/ToggleCreatorVisuals.json",
+   "source_class": "ToggleCreatorVisuals",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TombBossDiscoveredInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TombBossDiscoveredInteraction.json",
+   "source_class": "TombBossDiscoveredInteraction",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -2050,6 +5338,30 @@
   },
   {
    "classification": "REQUIRED_NOW",
+   "domain": "TornadoSkillTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/TornadoSkillTree.json",
+   "source_class": "TornadoSkillTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "TownPortalKeyProvider.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/TownPortalKeyProvider.json",
+   "source_class": "TownPortalKeyProvider",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TrackedObjectiveCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TrackedObjectiveCondition.json",
+   "source_class": "TrackedObjectiveCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
    "domain": "TrackerPropertyList.typetree",
    "domain_id": "property_definitions",
    "expected_raw": "extracted_raw/typetree/TrackerPropertyList.json",
@@ -2058,10 +5370,74 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "TransformBackToHumanOnDeath.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/TransformBackToHumanOnDeath.json",
+   "source_class": "TransformBackToHumanOnDeath",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "TransformSkillBuffParent.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/TransformSkillBuffParent.json",
+   "source_class": "TransformSkillBuffParent",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "TransplantTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/TransplantTree.json",
+   "source_class": "TransplantTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TriggerEventInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TriggerEventInteraction.json",
+   "source_class": "TriggerEventInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "TriggerSelfDestroyerInteraction.typetree",
+   "domain_id": "ability_object_behaviours",
+   "expected_raw": "extracted_raw/typetree/TriggerSelfDestroyerInteraction.json",
+   "source_class": "TriggerSelfDestroyerInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "TriggerTransitionNotificationInteraction.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/TriggerTransitionNotificationInteraction.json",
+   "source_class": "TriggerTransitionNotificationInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "TwisterMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/TwisterMutator.json",
    "source_class": "TwisterMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "UILocalization.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/UILocalization.json",
+   "source_class": "UILocalization",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "UmbralBladesTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/UmbralBladesTree.json",
+   "source_class": "UmbralBladesTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -2082,6 +5458,38 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "UnitHealth.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/UnitHealth.json",
+   "source_class": "UnitHealth",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "UnreachablePointIndicator.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/UnreachablePointIndicator.json",
+   "source_class": "UnreachablePointIndicator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "UnstableRiftSync.typetree",
+   "domain_id": "network_replication",
+   "expected_raw": "extracted_raw/typetree/UnstableRiftSync.json",
+   "source_class": "UnstableRiftSync",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "UpheavalTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/UpheavalTree.json",
+   "source_class": "UpheavalTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "Urzils_Pride.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Urzils_Pride.json",
@@ -2090,10 +5498,42 @@
   },
   {
    "classification": "REQUIRED_FUTURE",
+   "domain": "UseAbilityInteraction.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/UseAbilityInteraction.json",
+   "source_class": "UseAbilityInteraction",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
    "domain": "Valeroot.typetree",
    "domain_id": "unique_item_mechanics",
    "expected_raw": "extracted_raw/typetree/Valeroot.json",
    "source_class": "Valeroot",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "VengeanceTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/VengeanceTree.json",
+   "source_class": "VengeanceTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "VisualTrailScaler.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/VisualTrailScaler.json",
+   "source_class": "VisualTrailScaler",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "VoidCleaveTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/VoidCleaveTree.json",
+   "source_class": "VoidCleaveTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -2121,6 +5561,30 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "VolatileReversalTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/VolatileReversalTree.json",
+   "source_class": "VolatileReversalTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "VolatileZombieAdapter.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/VolatileZombieAdapter.json",
+   "source_class": "VolatileZombieAdapter",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "VolcanicOrbTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/VolcanicOrbTree.json",
+   "source_class": "VolcanicOrbTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "Volcanus.typetree",
    "domain_id": "unique_item_mechanics",
@@ -2137,11 +5601,51 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "REQUIRED_NOW",
+   "domain": "WanderingSpiritsTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/WanderingSpiritsTree.json",
+   "source_class": "WanderingSpiritsTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "WarcryTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/WarcryTree.json",
+   "source_class": "WarcryTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "WarpathHitMutator.typetree",
    "domain_id": "ability_mutators",
    "expected_raw": "extracted_raw/typetree/WarpathHitMutator.json",
    "source_class": "WarpathHitMutator",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "WarpathTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/WarpathTree.json",
+   "source_class": "WarpathTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "WeaverTree.typetree",
+   "domain_id": "weaver_tree",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/WeaverTree.json",
+   "source_class": "WeaverTree",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_NOW",
+   "domain": "WerebearFormTree.typetree",
+   "domain_id": "skill_trees",
+   "expected_raw": "extracted_raw/typetree/sharedassets1.assets/WerebearFormTree.json",
+   "source_class": "WerebearFormTree",
    "status": "BLOCKED_NO_RAW"
   },
   {
@@ -2153,11 +5657,67 @@
    "status": "BLOCKED_NO_RAW"
   },
   {
+   "classification": "PRESERVE_ONLY",
+   "domain": "WhenStunVFXPlayer.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/WhenStunVFXPlayer.json",
+   "source_class": "WhenStunVFXPlayer",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "WorldAreaEnterListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/WorldAreaEnterListener.json",
+   "source_class": "WorldAreaEnterListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "WorldAreaExitListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/WorldAreaExitListener.json",
+   "source_class": "WorldAreaExitListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "WorldObjectClickListener.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/WorldObjectClickListener.json",
+   "source_class": "WorldObjectClickListener",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
    "classification": "REQUIRED_FUTURE",
    "domain": "WovenEchoList.typetree",
    "domain_id": "woven_echoes",
    "expected_raw": "extracted_raw/typetree/WovenEchoList.json",
    "source_class": "WovenEchoList",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "REQUIRED_FUTURE",
+   "domain": "ZoneAbilityHolder.typetree",
+   "domain_id": "authored_gameplay_components",
+   "expected_raw": "extracted_raw/typetree/ZoneAbilityHolder.json",
+   "source_class": "ZoneAbilityHolder",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "ZoneLevelCondition.typetree",
+   "domain_id": "world_scripting",
+   "expected_raw": "extracted_raw/typetree/ZoneLevelCondition.json",
+   "source_class": "ZoneLevelCondition",
+   "status": "BLOCKED_NO_RAW"
+  },
+  {
+   "classification": "PRESERVE_ONLY",
+   "domain": "transformAlwaysFaceCamera.typetree",
+   "domain_id": "dataless_components",
+   "expected_raw": "extracted_raw/typetree/transformAlwaysFaceCamera.json",
+   "source_class": "transformAlwaysFaceCamera",
    "status": "BLOCKED_NO_RAW"
   }
  ],
@@ -5420,7 +8980,7 @@
      "trees"
     ]
    },
-   "export_path_count": 30,
+   "export_path_count": 36,
    "export_record_count": 535,
    "fields": [
     {
@@ -5751,9 +9311,15 @@
    },
    "unattributed_export_paths": [
     "decode_suspect",
+    "field_shift_suspect",
     "requirements[].node_id",
     "requirements[].resolution",
-    "stats[].property.decode",
+    "stats[].property.band",
+    "stats[].property.index",
+    "stats[].property.namespace",
+    "stats[].property.reason",
+    "stats[].property.status",
+    "stats[].property.target",
     "stats[].tags.decode",
     "stats[].tags.names"
    ]
@@ -6829,7 +10395,7 @@
      "trees"
     ]
    },
-   "export_path_count": 32,
+   "export_path_count": 38,
    "export_record_count": 3936,
    "fields": [
     {
@@ -7103,9 +10669,15 @@
    },
    "unattributed_export_paths": [
     "decode_suspect",
+    "field_shift_suspect",
     "requirements[].node_id",
     "requirements[].resolution",
-    "stats[].property.decode",
+    "stats[].property.band",
+    "stats[].property.index",
+    "stats[].property.namespace",
+    "stats[].property.reason",
+    "stats[].property.status",
+    "stats[].property.target",
     "stats[].tags.decode",
     "stats[].tags.label_source",
     "stats[].tags.names",
@@ -7384,7 +10956,7 @@
      "trees"
     ]
    },
-   "export_path_count": 30,
+   "export_path_count": 36,
    "export_record_count": 77,
    "fields": [
     {
@@ -7658,9 +11230,15 @@
    },
    "unattributed_export_paths": [
     "decode_suspect",
+    "field_shift_suspect",
     "requirements[].node_id",
     "requirements[].resolution",
-    "stats[].property.decode",
+    "stats[].property.band",
+    "stats[].property.index",
+    "stats[].property.namespace",
+    "stats[].property.reason",
+    "stats[].property.status",
+    "stats[].property.target",
     "stats[].tags.decode",
     "stats[].tags.names"
    ]
@@ -7861,14 +11439,14 @@
   "uniques.legacy_export:uniques"
  ],
  "policy": "docs/r1/field_survival_policy.json",
- "report_hash": "ee3151fffacc6bbb680f7386cb7e69577ed38717ef653f3eaed176e35854e9ab",
+ "report_hash": "dffc9e492219396c821dd82099e6b0cf88492f9fbefaf1838fd57516d0aab213",
  "report_id": "r1_field_survival",
  "report_version": 1,
  "summary": {
   "blocked_by_status": {
-   "BLOCKED_NO_RAW": 270
+   "BLOCKED_NO_RAW": 715
   },
-  "blocked_domains": 270,
+  "blocked_domains": 715,
   "by_domain": {
    "affixes.canonical": {
     "evidence": "raw_dump",

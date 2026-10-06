@@ -1468,7 +1468,7 @@
       ],
       "status": "OPEN",
       "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
-      "r1_notes": "Generated denominator (1,326 candidates from all 1,170 manifest classes + secondary sources) rediscovers every listed family mechanically and classifies it; raw TypeTree dumps + lossless canonical envelopes for every in-scope class run in the operator extraction. Weaver tree now survives (exports_canonical/weaver_tree.json, 77 nodes, clean). Correction: MaterialList is a rendering-material table by its il2cpp layout, not crafting materials.",
+      "r1_notes": "Generated denominator (1,326 candidates from all 1,170 manifest classes + secondary sources) rediscovers every listed family mechanically and classifies it; raw TypeTree dumps + lossless canonical envelopes for every in-scope class run in the operator extraction. Weaver tree now survives (exports_canonical/weaver_tree.json, 77 nodes, all prerequisites resolved; R1.15 flags 18 legacy-decoder field-shift nodes). Correction: MaterialList is a rendering-material table by its il2cpp layout, not crafting materials. R1.15: UNKNOWN reduced 744 -> 399 by evidence-based structural rules; 581 extraction contracts declare what the operator run must dump.",
       "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
@@ -3338,7 +3338,7 @@
       ],
       "status": "OPEN",
       "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
-      "r1_notes": "Root cause found: extract_enums.py iterated MainModule.Types only, so nested enums (AffixList.SpecialAffixType) were never extracted. Fixed to walk nested types (unit-tested; takes effect on the operator run). Canonical affixes report specialAffixType 6 (134 affixes) and displayCategory 42/43 as UNKNOWN_VALUE; certification C6 fails until extracted.",
+      "r1_notes": "Root cause found: extract_enums.py iterated MainModule.Types only, so nested enums (AffixList.SpecialAffixType) were never extracted. Fixed to walk nested types (unit-tested; takes effect on the operator run). Canonical affixes report specialAffixType 6 (134 affixes) and displayCategory 42/43 as UNKNOWN_VALUE; certification C6 fails until extracted. R1.15: enum completeness gate C13 (218 of 275 referenced enums not extracted in the 1.4.6 dump).",
       "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
@@ -4831,8 +4831,8 @@
       "remediation_package": "AUDIT-R1",
       "dependencies": [],
       "status": "OPEN",
-      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
-      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06). R1.15 root cause, proven from the committed 1.4.6 dump: the walker never read SkillTreeNode.nodeStats. It read one u32 where the layout serializes two list counts and hid the shift with peek heuristics (185/185 empty-stats nodes have their description in altText). The strict layout-ordered decoder (last-epoch-data 02e4b34) fails nodes with a non-empty nodeStats loudly (NODE_STATS_LAYOUT_UNKNOWN). The operator TypeTree dump of every *TreeNode is the lossless source; the six Acolyte ids have a regression gate.",
       "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {

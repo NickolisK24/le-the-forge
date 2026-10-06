@@ -101,7 +101,7 @@ No current extractor reads streamed resources, so storing them is optional. Thei
 `snapshots/runs/1.4.6_22986002.retroactive.json` records what exists for the current exports:
 - export byte and content hashes, and record counts;
 - the identity taken from `exports_json/metadata.json` (operator-declared label; GameAssembly sha256 matches the resources manifest);
-- the 744 UNKNOWN denominator entries;
+- the UNKNOWN denominator entries as of that record (744; R1.15 structural rules reduced the live denominator to 399);
 - the in-scope domains that have no export.
 
 It has `raw_snapshot: null` and `reproducible_from_raw: false`. **1.4.6 is not reproducible from preserved raw input.** The only build-stamped raw dump is `extracted_raw/MasterAffixesList.json` (affixes).

@@ -32,36 +32,56 @@ Every prerequisite keeps its raw `node_path_id` and gets a resolution class. Gar
 | --- | --- |
 | Duplicate node ids | 0 |
 | Missing nodes (walker failed to decode) | **6 in AcolyteTree**, plus 5 in skill trees (ShatterStrike 2, BlackHole 1, ChaosBolts 1, Flurry 1) |
-| Dangling or implausible prerequisites | Passive: all 5 class trees DEFECTIVE. Skill: 8 trees DEFECTIVE. Weaver: clean. |
+| Dangling or implausible prerequisites | Passive: all 5 class trees DEFECTIVE. Skill: 8 trees DEFECTIVE on prerequisites. Weaver: prerequisites clean. R1.15 also marks every tree containing a legacy-decoder field-shift node DEFECTIVE (all 137 skill trees and the weaver tree). |
 | Declared vs decoded node count | Consistent |
 
 ### Missing Warlock nodes
 
-The six "Forge-only Acolyte nodes" the audit found (ids 86, 88, 97, 98, 101, 103) are exactly the six AcolyteTree nodes that `extract_skill_trees_fast.py` failed to decode. The failures are buffer overruns when nodes carry 2–4 alt-text properties.
+The six "Forge-only Acolyte nodes" the audit found (ids 86, 88, 97, 98, 101, 103) are exactly the six AcolyteTree nodes that `extract_skill_trees_fast.py` failed to decode. They are an extraction miss, not removed game content.
 
-So they are an extraction miss, not removed game content.
+### Root cause (R1.15, proven from the committed 1.4.6 evidence)
 
-### Garbage prerequisite ids
+The il2cpp layout serializes `SkillTreeNode` as: ... `pointBonusDescription`, **`nodeStats` (`List<AutomaticNodeStat>`)**, `stats` (`List<NodeTooltipStat>`), `nodeDescription`, `altText`, `propertiesForAltText`, `loreText`, `requirements`, `abilityGrantedByNode`.
 
-These come from misaligned reads near failed or variable-length records. Every class tree has a node whose prerequisites read ASCII bytes as pathIds.
+The legacy walker never read `nodeStats`. It read **one** u32 where the bytes hold **two** list counts, then patched the resulting 4-byte shift with three peek heuristics:
+- the zero-prefixed stats count;
+- the "optional secondary string" (actually the real `altText`, read and discarded);
+- the "optional lore prefix" (actually the real `propertiesForAltText` count).
+
+| Evidence (committed `raw_skill_trees_from_game.json`) | Nodes with empty `stats` | Nodes with `stats` |
+| --- | --- | --- |
+| `nodeDescription` non-empty | **0 / 185** | 3,014 / 4,373 |
+| Skill description found in `altText` | yes (shifted one field) | no |
+
+Mechanisms by symptom:
+- **Shifted text fields:** affect all 185 empty-stats nodes (167 skill, 18 weaver, 0 passive).
+- **Garbage prerequisites:** the requirements heuristic can read past an empty list into the `abilityGrantedByNode` PPtr; a regression test demonstrates this. The 16 IMPLAUSIBLE and 55 NULL prerequisite references in the dump are consistent with this mechanism and the field shift. Per-node attribution needs the bytes.
+- **The six passive failures:** these nodes have `stats`, so they are not shifted. The remaining mechanism consistent with the layout is a non-empty `nodeStats`, whose count the legacy walker reads as the stats count. That is the strongest candidate. It cannot be proven per node without the bytes.
+
+### Fix (last-epoch-data `02e4b34`)
+
+- **Strict decoder:** the strict layout-ordered decoder (`layout-strict-1`) reads the layout in order with no heuristics and validates every count and string.
+- **Fail loudly:** it fails a node with `NODE_STATS_LAYOUT_UNKNOWN` rather than guessing `AutomaticNodeStat`'s size, which is absent from the layout index (EXT-15).
+- **Provenance:** its output is build-stamped and records same-run, tree-attributed failures.
+- **Lossless source:** the operator run dumps every `*TreeNode` MonoBehaviour through TypeTree, which carries the real `nodeStats` layout and is the source for these nodes.
+- **Regression tests:**
+  - synthetic layout blobs that reproduce the shift and the garbage prerequisite;
+  - a gate on the six Acolyte ids. While the dump is legacy, the six must be missing and the tree DEFECTIVE. Once the dump is strict, they must be present, or carry a strict reason.
+- **Flagging:** canonical trees flag every legacy-decoded empty-stats node with `field_shift_suspect`. Text is never moved and never fabricated.
 
 ## Decoder coverage (layout → raw)
 
-`SkillTreeNode` declares two fields the binary walker never decodes:
-- `nodeStats` (`List<AutomaticNodeStat>`, the structured numeric stats);
-- `propertiesForAltText`.
-
-The walker only decodes the tooltip `stats`, whose `value` is display text ("+8%"). Field survival marks both fields UNKNOWN.
+The walker still decodes only the tooltip `stats`, whose `value` is display text ("+8%"). Field survival keeps `nodeStats` and `propertiesForAltText` UNKNOWN until the TypeTree dump lands.
 
 ## Provenance gaps
 
-- The raw tree dump carries no GameAssembly hash, so it cannot be proven to be 1.4.6.
-- The node-failure classification was produced by a different walker run: its tree path ids match none in the raw dump.
+- The committed raw tree dump predates the strict decoder. It carries no GameAssembly hash, so it cannot be proven to be 1.4.6.
+- The node-failure classification was produced by a different walker run: its tree path ids match none in the raw dump. Strict-decoder output records its own failures, so that file is no longer joined.
 
 ## What clears the blockers
 
-The binary walker's variable-length parsing cannot be fixed without the asset bytes, and the TypeTree tree extractor (`extract_skill_trees_tt.py`) is marked deprecated and incomplete.
-
-The operator run produces a build-stamped `raw_skill_trees_from_game.json` and the canonical gates are re-evaluated. If nodes still fail, the trees stay DEFECTIVE and QUARANTINED, and the walker fix becomes a tracked R1 remediation item with real bytes to test against.
+- **Operator run:** it produces a build-stamped, strictly decoded `raw_skill_trees_from_game.json` plus TypeTree dumps of every tree and tree node.
+- **Re-evaluated gates:** the canonical gates are re-evaluated against that output.
+- **If nodes still fail:** the trees stay DEFECTIVE and QUARANTINED with the exact strict failure reason. The TypeTree dump is then the source to decode `AutomaticNodeStat`.
 
 Forge mastery-order and prerequisite consumption is R2.

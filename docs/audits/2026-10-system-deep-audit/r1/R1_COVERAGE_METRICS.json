@@ -1,22 +1,64 @@
 {
- "denominator_report_hash": "271a27cd30523f98622aa6991786f81888fb256507d2ff8c9f22de205d6f1de1",
- "denominator_unknown_entries": 744,
+ "denominator_report_hash": "d4179d0f52962035af1bf26f6ffe14818c607fb9632cd1ed46c0826179399a21",
+ "denominator_unknown_entries": 399,
  "entity_coverage": {
   "REQUIRED_FUTURE": {
    "complete": false,
    "entity_coverage_of_measurable": 0.0,
-   "entries": 221,
-   "entries_source_count_measurable": 73,
-   "entries_source_count_not_measurable": 148,
+   "entries": 405,
+   "entries_source_count_measurable": 213,
+   "entries_source_count_not_measurable": 192,
    "entries_with_canonical_export": 0,
    "entry_coverage": 0.0,
    "exported_entities": 0,
    "shortfalls": [
     {
+     "entry_id": "resources.assets::AbilityCurveMovement",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 178
+    },
+    {
+     "entry_id": "resources.assets::AbilityCurveRotation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::AbilityList",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::AbilityMutatorManager",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 374
+    },
+    {
      "entry_id": "resources.assets::AbilityObjectConstructor",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2253
+    },
+    {
+     "entry_id": "resources.assets::AbilityObjectIndicator",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3872
+    },
+    {
+     "entry_id": "resources.assets::AbilitySync",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 15
+    },
+    {
+     "entry_id": "resources.assets::AbilityVisuals",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 1790
     },
     {
      "entry_id": "resources.assets::AbyssalEchoesMutator",
@@ -25,16 +67,64 @@
      "source_entities": 2
     },
     {
+     "entry_id": "resources.assets::AcceleratingHealthDrain",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
      "entry_id": "resources.assets::AcidFlaskExplosionMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
     },
     {
+     "entry_id": "resources.assets::Actor",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
      "entry_id": "resources.assets::ActorData",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 1020
+    },
+    {
+     "entry_id": "resources.assets::ActorStats",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::ActorSync",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::ActorVisuals",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 11
+    },
+    {
+     "entry_id": "resources.assets::AddStatsAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::AdditionalActorPreloader",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::AilmentReceiver",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
     },
     {
      "entry_id": "resources.assets::ApplyAilmentToCreator",
@@ -55,6 +145,12 @@
      "source_entities": 7
     },
     {
+     "entry_id": "resources.assets::ArcCollider",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 65
+    },
+    {
      "entry_id": "resources.assets::ArenaInformation",
      "exported_entities": 0,
      "missing_decoded": 0,
@@ -65,6 +161,30 @@
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::AttachRefreshableVFXOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::AttachToAllyOnCreation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 61
+    },
+    {
+     "entry_id": "resources.assets::AttachToNearestEnemyOnCreation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 31
+    },
+    {
+     "entry_id": "resources.assets::AttachTransformToCreatorVisuals",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 24
     },
     {
      "entry_id": "resources.assets::BallistaExplosionMutator",
@@ -79,6 +199,24 @@
      "source_entities": 4
     },
     {
+     "entry_id": "resources.assets::BeamColliderScaler",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::BeamObjectScaler",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::BeamRotateToTargetLocation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
      "entry_id": "resources.assets::BloodSplatterMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
@@ -89,6 +227,84 @@
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 102
+    },
+    {
+     "entry_id": "resources.assets::BuffCreator",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 24
+    },
+    {
+     "entry_id": "resources.assets::BuffCreatorAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::BuffCreatorOnCreation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 20
+    },
+    {
+     "entry_id": "resources.assets::BuffCreatorOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 10
+    },
+    {
+     "entry_id": "resources.assets::BuffCreatorOnDeathPerHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::BuffCreatorOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::BuffOnAllyHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 25
+    },
+    {
+     "entry_id": "resources.assets::BuffOnEnemyHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::BuffParent",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 173
+    },
+    {
+     "entry_id": "resources.assets::CastAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 857
+    },
+    {
+     "entry_id": "resources.assets::CastAtCorpseOnKill",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::CastAtRandomPointAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 58
+    },
+    {
+     "entry_id": "resources.assets::CastPoint",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
     },
     {
      "entry_id": "resources.assets::CastsAbilityMonsterMod",
@@ -103,10 +319,40 @@
      "source_entities": 650
     },
     {
+     "entry_id": "resources.assets::ChanceToCastOnKill",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::ChanceToCreateAbilityObjectOnNewEnemyHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::ChangeDamageModifierOverTime",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 82
+    },
+    {
+     "entry_id": "resources.assets::ChangeManaMaterialDuringLifetime",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
      "entry_id": "resources.assets::ChaosBoltsDamageMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::ChargeManager",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
     },
     {
      "entry_id": "resources.assets::CinderStrikeExplosionMutator",
@@ -115,10 +361,34 @@
      "source_entities": 2
     },
     {
+     "entry_id": "resources.assets::CleanseCreatorOnStart",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::ClearHitListAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 10
+    },
+    {
+     "entry_id": "resources.assets::ClientAbilityMover",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 25
+    },
+    {
      "entry_id": "resources.assets::ComplexGenericMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 9
+    },
+    {
+     "entry_id": "resources.assets::ComplexSubObjectMotion",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
     },
     {
      "entry_id": "resources.assets::ComponentMonsterMod",
@@ -139,10 +409,94 @@
      "source_entities": 2
     },
     {
+     "entry_id": "resources.assets::CreateAbilityObjectOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 570
+    },
+    {
+     "entry_id": "resources.assets::CreateAbilityObjectOnNewAllyHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 20
+    },
+    {
+     "entry_id": "resources.assets::CreateAbilityObjectOnNewEnemtHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 14
+    },
+    {
+     "entry_id": "resources.assets::CreateAbilityObjectOnStart",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 8
+    },
+    {
+     "entry_id": "resources.assets::CreateAtTargetLocationOnCreation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 141
+    },
+    {
+     "entry_id": "resources.assets::CreateEtheralReflectionsOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::CreateOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 248
+    },
+    {
+     "entry_id": "resources.assets::CreateOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 26
+    },
+    {
+     "entry_id": "resources.assets::CreateRandomAbilityObjectOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
      "entry_id": "resources.assets::CreateResourceReturnAbilityObjectOnEnemyHit",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::CreateVfxOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 1362
+    },
+    {
+     "entry_id": "resources.assets::CreationReferences",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5753
+    },
+    {
+     "entry_id": "resources.assets::CreatorEnterFalconIdleState",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::CreatorSummonEnterFalconIdleState",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::CullFrozenTargetsOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
     },
     {
      "entry_id": "resources.assets::DancingStrikes4End1Mutator",
@@ -169,6 +523,72 @@
      "source_entities": 3
     },
     {
+     "entry_id": "resources.assets::DeathItemDrop",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::DestroyAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5855
+    },
+    {
+     "entry_id": "resources.assets::DestroyAfterDurationScaledWithStat",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 14
+    },
+    {
+     "entry_id": "resources.assets::DestroyAfterDurationWithoutAHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::DestroyIfNotAbilityOfCaster",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::DestroyOnActorTypeDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::DestroyOnFailingToPierceEnemy",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 316
+    },
+    {
+     "entry_id": "resources.assets::DestroyWhenCasterUsesAbility",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
+    },
+    {
+     "entry_id": "resources.assets::DetachFromParentOnParentSelfDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::DetachParticleSystemsOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 1784
+    },
+    {
+     "entry_id": "resources.assets::DetachParticleSystemsOnParentDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 22
+    },
+    {
      "entry_id": "resources.assets::DivineFlareMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
@@ -187,6 +607,30 @@
      "source_entities": 5
     },
     {
+     "entry_id": "resources.assets::EchoActorPreloadSet",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 25
+    },
+    {
+     "entry_id": "resources.assets::EnableCollidersAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 30
+    },
+    {
+     "entry_id": "resources.assets::ExistsWhileChannelling",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 24
+    },
+    {
+     "entry_id": "resources.assets::ExtraProjectiles",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 166
+    },
+    {
      "entry_id": "resources.assets::FactionData",
      "exported_entities": 0,
      "missing_decoded": 0,
@@ -197,6 +641,24 @@
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 9
+    },
+    {
+     "entry_id": "resources.assets::FollowsPlayerSpawner",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::FormChanger",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::FreezeEnemyOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 13
     },
     {
      "entry_id": "resources.assets::FrostClawProjectileMutator",
@@ -277,7 +739,103 @@
      "source_entities": 13
     },
     {
+     "entry_id": "resources.assets::HitDetector",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3128
+    },
+    {
+     "entry_id": "resources.assets::HitsParent",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
+    },
+    {
+     "entry_id": "resources.assets::HitsTargets",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 26
+    },
+    {
+     "entry_id": "resources.assets::HomingMovement",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 86
+    },
+    {
+     "entry_id": "resources.assets::HomingOnNavmesh",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 8
+    },
+    {
      "entry_id": "resources.assets::IceThornsMutator",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::ItemDropOnEnable",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 24
+    },
+    {
+     "entry_id": "resources.assets::KillActorsOfTypeInteraction",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::KnockBackOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
+    },
+    {
+     "entry_id": "resources.assets::MineTrigger",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 21
+    },
+    {
+     "entry_id": "resources.assets::ModifyAbilityWhileEnemyWithinRadius",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::ModifyDamageOnRotation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::ModifyDamageOnStart",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::MoveCreatorToPositionOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 31
+    },
+    {
+     "entry_id": "resources.assets::MoveCreatorToTargetOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 40
+    },
+    {
+     "entry_id": "resources.assets::MoveToNearestMinion",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::MovementFromAbility",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
@@ -305,6 +863,36 @@
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 12
+    },
+    {
+     "entry_id": "resources.assets::OtherAbilityHitListener",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
+    },
+    {
+     "entry_id": "resources.assets::PlayOneShotSound",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2343
+    },
+    {
+     "entry_id": "resources.assets::PlaySoundBasedOnAge",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::PlaySoundOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 185
+    },
+    {
+     "entry_id": "resources.assets::PreparedVisualsSpawner",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
     },
     {
      "entry_id": "resources.assets::PreviouslyOpenedOneShotCacheItemSet",
@@ -355,10 +943,58 @@
      "source_entities": 903
     },
     {
+     "entry_id": "resources.assets::RandomiseDirection",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 19
+    },
+    {
+     "entry_id": "resources.assets::RareMonsterAugments",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::RaycastAbilityMover",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 65
+    },
+    {
+     "entry_id": "resources.assets::RaycastGroundCollision",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::RectangleSpawner",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 733
+    },
+    {
+     "entry_id": "resources.assets::RefreshableVFX",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
      "entry_id": "resources.assets::RepeatedlyApplyAilmentsInRadius",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 78
+    },
+    {
+     "entry_id": "resources.assets::RepeatedlyBuffInRadius",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 7
+    },
+    {
+     "entry_id": "resources.assets::RepeatedlyCastAbility",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
     },
     {
      "entry_id": "resources.assets::RepeatedlyGiveCreatorResources",
@@ -373,10 +1009,88 @@
      "source_entities": 5
     },
     {
+     "entry_id": "resources.assets::RepeatedlyHitsTargets",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::RepeatedlyHitsTargetsInBox",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::ResetCooldownForSpecificAbilitiesOnStart",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 9
+    },
+    {
+     "entry_id": "resources.assets::ResurrectParentOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::RetaliateWhenParentHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::ReturnOnInanimateCollision",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::ReturnToCasterAfterDuration",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 6
+    },
+    {
+     "entry_id": "resources.assets::RicochetMovement",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::SelfDestroyer",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 8376
+    },
+    {
+     "entry_id": "resources.assets::ShadowLightAssigner",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 2
+    },
+    {
      "entry_id": "resources.assets::ShadowRendDamageMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 4
+    },
+    {
+     "entry_id": "resources.assets::ShakeScreenOnDeath",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 119
+    },
+    {
+     "entry_id": "resources.assets::ShakeScreenOnEnable",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 433
+    },
+    {
+     "entry_id": "resources.assets::ShakeScreenOnHit",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 262
     },
     {
      "entry_id": "resources.assets::ShatterStrikeHitMutator",
@@ -391,10 +1105,28 @@
      "source_entities": 2
     },
     {
+     "entry_id": "resources.assets::Shrine",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 40
+    },
+    {
+     "entry_id": "resources.assets::SigilTracker",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
      "entry_id": "resources.assets::SoulFeastReturningMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
+    },
+    {
+     "entry_id": "resources.assets::SpawnedEntityModifier",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 4
     },
     {
      "entry_id": "resources.assets::SpecialEchoChainData",
@@ -403,10 +1135,52 @@
      "source_entities": 6
     },
     {
+     "entry_id": "resources.assets::SpiralMovement",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 46
+    },
+    {
+     "entry_id": "resources.assets::Stance",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 10
+    },
+    {
+     "entry_id": "resources.assets::StatBuffs",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
+    },
+    {
+     "entry_id": "resources.assets::Stats",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 488
+    },
+    {
      "entry_id": "resources.assets::StatsMonsterMod",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 236
+    },
+    {
+     "entry_id": "resources.assets::StopAtTargetLocation",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 38
+    },
+    {
+     "entry_id": "resources.assets::StretchToCreator",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 3
+    },
+    {
+     "entry_id": "resources.assets::StretchToLocationCreatedFrom",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 5
     },
     {
      "entry_id": "resources.assets::StunEnemyOnHit",
@@ -415,52 +1189,40 @@
      "source_entities": 20
     },
     {
+     "entry_id": "resources.assets::SubObjectsStretchToLocationCreatedFrom",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 64
+    },
+    {
      "entry_id": "resources.assets::SummonEntityOnDeath",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 260
     },
     {
+     "entry_id": "resources.assets::TargetFinder",
+     "exported_entities": 0,
+     "missing_decoded": 0,
+     "source_entities": 9
+    },
+    {
      "entry_id": "resources.assets::ThornShieldNovaMutator",
-     "exported_entities": 0,
-     "missing_decoded": 0,
-     "source_entities": 2
-    },
-    {
-     "entry_id": "resources.assets::VoidNagasaBossDoTAreaMutator",
-     "exported_entities": 0,
-     "missing_decoded": 0,
-     "source_entities": 2
-    },
-    {
-     "entry_id": "resources.assets::VoidRiftMutator",
-     "exported_entities": 0,
-     "missing_decoded": 0,
-     "source_entities": 3
-    },
-    {
-     "entry_id": "resources.assets::VolatileReversalAttackMutator",
-     "exported_entities": 0,
-     "missing_decoded": 0,
-     "source_entities": 2
-    },
-    {
-     "entry_id": "resources.assets::WanderingSpiritMutator",
      "exported_entities": 0,
      "missing_decoded": 0,
      "source_entities": 2
     }
    ],
-   "source_entities_measured": 7151
+   "source_entities_measured": 48173
   },
   "REQUIRED_NOW": {
    "complete": false,
    "entity_coverage_of_measurable": 0.451644,
-   "entries": 174,
+   "entries": 175,
    "entries_source_count_measurable": 156,
-   "entries_source_count_not_measurable": 18,
+   "entries_source_count_not_measurable": 19,
    "entries_with_canonical_export": 144,
-   "entry_coverage": 0.827586,
+   "entry_coverage": 0.822857,
    "exported_entities": 5660,
    "shortfalls": [
     {
@@ -575,22 +1337,22 @@
  },
  "field_coverage": {
   "blocked_by_status": {
-   "BLOCKED_NO_RAW": 270
+   "BLOCKED_NO_RAW": 715
   },
-  "blocked_domains": 270,
+  "blocked_domains": 715,
   "classified_paths": 180,
   "complete": false,
   "field_coverage_of_evaluated": 0.978261,
   "gated_source_paths": 184,
   "unknown_paths": 4
  },
- "field_survival_report_hash": "ee3151fffacc6bbb680f7386cb7e69577ed38717ef653f3eaed176e35854e9ab",
+ "field_survival_report_hash": "dffc9e492219396c821dd82099e6b0cf88492f9fbefaf1838fd57516d0aab213",
  "relationship_coverage": {
-  "classified_ratio": 0.446267,
+  "classified_ratio": 0.938324,
   "complete": false,
-  "dangling_unallowlisted": 8171,
-  "discovered": 14628,
-  "explicitly_classified": 6528,
+  "dangling_unallowlisted": 3173,
+  "discovered": 15776,
+  "explicitly_classified": 14803,
   "not_measured": [
    "timeline mods -> monster mods",
    "class/mastery -> skill",
@@ -598,6 +1360,67 @@
    "unique/set -> base item (legacy export measured at 100% in audit 04)"
   ],
   "relationships": {
+   "affix.AbilityProperty->property_definition": {
+    "classified_ratio": 0.953917,
+    "dangling": 10,
+    "dangling_sample": [
+     "affix.AbilityProperty reference 0",
+     "affix.AbilityProperty reference 1",
+     "affix.AbilityProperty reference 2",
+     "affix.AbilityProperty reference 3",
+     "affix.AbilityProperty reference 4",
+     "affix.AbilityProperty reference 5",
+     "affix.AbilityProperty reference 6",
+     "affix.AbilityProperty reference 7",
+     "affix.AbilityProperty reference 8",
+     "affix.AbilityProperty reference 9"
+    ],
+    "dangling_unallowlisted": 10,
+    "discovered": 217,
+    "explicitly_classified": 207,
+    "resolved": 207,
+    "resolved_ratio": 0.953917
+   },
+   "affix.IdolAltarProperty->property_definition": {
+    "classified_ratio": 1.0,
+    "dangling": 0,
+    "dangling_sample": [],
+    "dangling_unallowlisted": 0,
+    "discovered": 23,
+    "explicitly_classified": 23,
+    "resolved": 23,
+    "resolved_ratio": 1.0
+   },
+   "affix.PlayerProperty->property_definition": {
+    "classified_ratio": 0.909953,
+    "dangling": 19,
+    "dangling_sample": [
+     "affix.PlayerProperty reference 0",
+     "affix.PlayerProperty reference 1",
+     "affix.PlayerProperty reference 10",
+     "affix.PlayerProperty reference 11",
+     "affix.PlayerProperty reference 12",
+     "affix.PlayerProperty reference 13",
+     "affix.PlayerProperty reference 14",
+     "affix.PlayerProperty reference 15",
+     "affix.PlayerProperty reference 16",
+     "affix.PlayerProperty reference 17",
+     "affix.PlayerProperty reference 18",
+     "affix.PlayerProperty reference 2",
+     "affix.PlayerProperty reference 3",
+     "affix.PlayerProperty reference 4",
+     "affix.PlayerProperty reference 5",
+     "affix.PlayerProperty reference 6",
+     "affix.PlayerProperty reference 7",
+     "affix.PlayerProperty reference 8",
+     "affix.PlayerProperty reference 9"
+    ],
+    "dangling_unallowlisted": 19,
+    "discovered": 211,
+    "explicitly_classified": 192,
+    "resolved": 192,
+    "resolved_ratio": 0.909953
+   },
    "affix_property->SP": {
     "classified_ratio": 1.0,
     "dangling": 0,
@@ -609,65 +1432,65 @@
     "resolved_ratio": 1.0
    },
    "in_scope_class_reference": {
-    "classified_ratio": 0.044177,
-    "dangling": 238,
+    "classified_ratio": 0.011628,
+    "dangling": 935,
     "dangling_sample": [
+     "AbilityCurveMovement->Actor",
+     "AbilityCurveMovement->CreationReferences",
+     "AbilityCurveMovement->HitDetector",
+     "AbilityCurveRotation->Actor",
+     "AbilityCurveRotation->CreationReferences",
+     "AbilityCurveRotation->HitDetector",
+     "AbilityList->Ability",
+     "AbilityList->Actor",
+     "AbilityMutatorManager->Ability",
+     "AbilityMutatorManager->Actor",
+     "AbilityMutatorManager->ChargeManager",
+     "AbilityObjectConstructor->AbilityMutatorManager",
+     "AbilityObjectConstructor->AbilityObjectIndicator",
+     "AbilityObjectConstructor->Actor",
+     "AbilityObjectConstructor->CreationReferences",
+     "AbilityObjectConstructor->HitDetector",
+     "AbilityObjectConstructor->Stats",
+     "AbilityObjectIndicator->AbilitySync",
+     "AbilitySync->Ability",
+     "AbilitySync->AbilityObjectIndicator",
+     "AbilitySync->AbilityVisuals",
+     "AbilitySync->CreationReferences",
+     "AbilitySync->SelfDestroyer",
+     "AbilityVisuals->AbilitySync",
+     "AbilityVisuals->CreationReferences",
+     "AbilityVisuals->SelfDestroyer",
+     "AbilityVisuals->SigilTracker",
      "AbyssalEchoesMutator->Ability",
+     "AbyssalEchoesMutator->AbilityMutatorManager",
      "AbyssalEchoesMutator->AbilityObjectConstructor",
+     "AbyssalEchoesMutator->Actor",
      "AbyssalEchoesMutator->Ailment",
+     "AbyssalEchoesMutator->AilmentReceiver",
+     "AbyssalEchoesMutator->StatBuffs",
+     "AcceleratingHealthDrain->Actor",
+     "AcceleratingHealthDrain->CreationReferences",
      "AcidFlaskExplosionMutator->Ability",
+     "AcidFlaskExplosionMutator->AbilityMutatorManager",
      "AcidFlaskExplosionMutator->AbilityObjectConstructor",
-     "ActorDataList->ActorData",
-     "Arboreal_Circuit->AbilityObjectConstructor",
-     "ArenaInformation->ActorData",
-     "AterrothLingeringDamageMutator->Ability",
-     "AterrothSuperheatedBlackHoleMutator->Ability",
-     "AvalancheMutator->Ability",
-     "AvalancheMutator->AbilityObjectConstructor",
-     "BallistaExplosionMutator->Ability",
-     "BasicMeleeMutator->Ability",
-     "BladestormMutator->Ability",
-     "Bleeding_Heart->Ailment",
-     "BloodSplatterMutator->Ability",
-     "Bone_Harvester->Ability",
-     "Bone_Harvester->AbilityObjectConstructor",
-     "ChanceToApplyAilmentsOnHit->Ailment",
-     "ChaosBoltsDamageMutator->Ability",
-     "ChaosBoltsDamageMutator->AbilityObjectConstructor",
-     "ChaosBoltsDamageMutator->Ailment",
-     "ChaosBoltsSecondaryMissilesMutator->Ability",
-     "ChargedGroundMutator->Ability",
-     "CinderStrikeExplosionMutator->Ability",
-     "CoagulatedBloodMutator->Ability",
-     "ColdTempestMutator->Ability",
-     "ColdTempestMutator->AbilityObjectConstructor",
-     "ComplexGenericMutator->Ability",
-     "ConsecratedGroundMutator->Ability",
-     "ConstellationsList->ConstellationData",
-     "CreateResourceReturnAbilityObjectOnEnemyHit->Ability",
-     "CreateResourceReturnAbilityObjectsForCorpsesInArea->Ability",
-     "CreateVoidKnightEchoMutator->Ability",
-     "DancingStrikes4End1Mutator->Ability",
-     "DancingStrikes4End2Mutator->Ability",
-     "DancingStrikes4End2Mutator->AbilityObjectConstructor",
-     "DancingStrikes4EndMutator->Ability",
-     "DancingStrikes4EndMutator->AbilityObjectConstructor",
-     "DancingStrikesSubMutator->Ability",
-     "DarkQuiverArrowMutator->Ability",
-     "DeathSealWaveMutator->Ability",
-     "DelayedLightningExplosionMutator->Ability",
-     "DetonateBodyMutator->Ability",
-     "DetonateBodyMutator->AbilityObjectConstructor",
-     "DetonateGroundExplosionMutator->Ability",
-     "DetonatingArrowExplosionMutator->Ability",
-     "DetonatingChargeMutator->Ability",
-     "DetonatingChargeMutator->DetonatingArrowExplosionMutator"
+     "AcidFlaskExplosionMutator->Actor",
+     "Actor->AbilityList",
+     "Actor->AbilityMutatorManager",
+     "Actor->AbilityObjectConstructor",
+     "Actor->ActorData",
+     "Actor->ActorSync",
+     "Actor->AilmentReceiver",
+     "Actor->ChargeManager",
+     "Actor->CreationReferences",
+     "Actor->DeathItemDrop",
+     "Actor->LocalTreeData"
     ],
-    "dangling_unallowlisted": 238,
-    "discovered": 249,
+    "dangling_unallowlisted": 935,
+    "discovered": 946,
     "explicitly_classified": 11,
     "resolved": 11,
-    "resolved_ratio": 0.044177
+    "resolved_ratio": 0.011628
    },
    "tree_prerequisite[passive_trees.json]": {
     "classified_ratio": 0.988189,
@@ -744,75 +1567,80 @@
     "resolved_ratio": 1.0
    },
    "tree_stat_property->property_definition": {
-    "classified_ratio": 0.0,
-    "dangling": 7855,
+    "by_status": {
+     "RESOLVED": 5724,
+     "UNKNOWN_PROPERTY_TYPE": 2129,
+     "UNRESOLVED": 2
+    },
+    "classified_ratio": 0.999745,
+    "dangling": 2131,
     "dangling_sample": [
-     "AbyssalEchoesTree: raw 0",
-     "AbyssalEchoesTree: raw 10001",
-     "AbyssalEchoesTree: raw 10006",
-     "AbyssalEchoesTree: raw 10008",
-     "AbyssalEchoesTree: raw 10009",
-     "AbyssalEchoesTree: raw 10012",
-     "AbyssalEchoesTree: raw 10014",
-     "AbyssalEchoesTree: raw 10033",
-     "AbyssalEchoesTree: raw 10073",
-     "AbyssalEchoesTree: raw 15012",
-     "AbyssalEchoesTree: raw 2",
-     "AbyssalEchoesTree: raw 20002",
-     "AbyssalEchoesTree: raw 20008",
-     "AbyssalEchoesTree: raw 20014",
-     "AbyssalEchoesTree: raw 23",
-     "AbyssalEchoesTree: raw 38",
-     "AbyssalEchoesTree: raw 44",
-     "AbyssalEchoesTree: raw 5006",
-     "AbyssalEchoesTree: raw 5015",
-     "AbyssalEchoesTree: raw 5026",
-     "AbyssalEchoesTree: raw 5038",
-     "AbyssalEchoesTree: raw 5080",
-     "AbyssalEchoesTree: raw 5103",
-     "AbyssalEchoesTree: raw 54",
-     "AbyssalEchoesTree: raw 66",
-     "AbyssalEchoesTree: raw 69",
-     "AcidFlaskTree: raw 0",
-     "AcidFlaskTree: raw 10001",
-     "AcidFlaskTree: raw 10006",
-     "AcidFlaskTree: raw 10007",
-     "AcidFlaskTree: raw 10008",
-     "AcidFlaskTree: raw 10014",
-     "AcidFlaskTree: raw 10016",
-     "AcidFlaskTree: raw 10028",
-     "AcidFlaskTree: raw 10033",
-     "AcidFlaskTree: raw 10042",
-     "AcidFlaskTree: raw 15007",
-     "AcidFlaskTree: raw 2",
-     "AcidFlaskTree: raw 20006",
-     "AcidFlaskTree: raw 4",
-     "AcidFlaskTree: raw 5",
-     "AcidFlaskTree: raw 5000",
-     "AcidFlaskTree: raw 5001",
-     "AcidFlaskTree: raw 5005",
-     "AcidFlaskTree: raw 5015",
-     "AcidFlaskTree: raw 5026",
-     "AcidFlaskTree: raw 5037",
-     "AcidFlaskTree: raw 5080",
-     "AcidFlaskTree: raw 5093",
-     "AcidFlaskTree: raw 54"
+     "AbyssalEchoesTree: raw 5006 UNKNOWN_PROPERTY_TYPE",
+     "AbyssalEchoesTree: raw 5015 UNKNOWN_PROPERTY_TYPE",
+     "AbyssalEchoesTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "AbyssalEchoesTree: raw 5038 UNKNOWN_PROPERTY_TYPE",
+     "AbyssalEchoesTree: raw 5080 UNKNOWN_PROPERTY_TYPE",
+     "AbyssalEchoesTree: raw 5103 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5000 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5001 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5005 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5015 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5037 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5080 UNKNOWN_PROPERTY_TYPE",
+     "AcidFlaskTree: raw 5093 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 25203 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5013 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5015 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5018 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5021 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5028 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5029 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5037 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5038 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5048 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5049 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5055 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5062 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5068 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5081 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5087 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5093 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5110 UNKNOWN_PROPERTY_TYPE",
+     "AcolyteTree: raw 5131 UNKNOWN_PROPERTY_TYPE",
+     "AerialAssaultTree: raw 5015 UNKNOWN_PROPERTY_TYPE",
+     "AerialAssaultTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "AerialAssaultTree: raw 5038 UNKNOWN_PROPERTY_TYPE",
+     "AerialAssaultTree: raw 5039 UNKNOWN_PROPERTY_TYPE",
+     "AerialAssaultTree: raw 5093 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5001 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5015 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5028 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5056 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5057 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5093 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5103 UNKNOWN_PROPERTY_TYPE",
+     "AnomalyTree: raw 5111 UNKNOWN_PROPERTY_TYPE",
+     "ArcaneAscendanceTree: raw 5026 UNKNOWN_PROPERTY_TYPE",
+     "ArcaneAscendanceTree: raw 5048 UNKNOWN_PROPERTY_TYPE"
     ],
-    "dangling_unallowlisted": 7855,
+    "dangling_unallowlisted": 2131,
     "discovered": 7855,
-    "explicitly_classified": 0,
-    "resolved": 0,
-    "resolved_ratio": 0.0
+    "explicitly_classified": 7853,
+    "resolved": 5724,
+    "resolved_ratio": 0.728708
    }
   },
-  "resolved": 6457,
-  "resolved_ratio": 0.441414
+  "resolved": 12603,
+  "resolved_ratio": 0.798872
  },
- "report_hash": "c030627cb6d93576ff9b6fdb36a588992527403ac712fbf65fc428f1a5f81e63",
+ "report_hash": "8457a1ef4b1a38288ef558633f6c642f1d5a81b0c374f6515299a6257fa5d7fc",
  "report_id": "r1_coverage_metrics",
  "semantic_coverage": {
   "basis": "no ground-truth fixtures (in-game tooltips or combat logs) exist; R1 certifies extraction, not mechanics. Consumers must gate calculations on semantic status (R1_TRUST_CONTRACT.md).",
-  "in_scope_entries": 395,
+  "in_scope_entries": 580,
   "included_in_extraction_completeness": false,
   "mechanics_certified_for_calculation": 0,
   "semantic_coverage": 0.0

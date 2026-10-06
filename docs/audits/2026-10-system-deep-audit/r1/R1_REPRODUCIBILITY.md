@@ -15,10 +15,11 @@ Every canonical export is rebuilt **twice** from its committed raw input, in sep
 | Export | Result |
 | --- | --- |
 | `exports_canonical/affixes.json` | REPRODUCED, byte-identical across runs and with the committed file |
+| `exports_canonical/property_definitions.json` (R1.15) | REPRODUCED |
 | `exports_canonical/passive_trees.json` | REPRODUCED |
 | `exports_canonical/skill_trees.json` | REPRODUCED |
 | `exports_canonical/weaver_tree.json` | REPRODUCED |
-| 42 legacy `exports_json/*` files (including localization) | NOT_REGENERABLE_FROM_RAW: their game files and bundle dumps were never preserved |
+| 43 legacy `exports_json/*` files (including localization) | NOT_REGENERABLE_FROM_RAW: their game files and bundle dumps were never preserved |
 
 Raw inputs without a build stamp (flagged): `enums.json`, `il2cpp_class_layouts.json`, `raw_skill_trees_from_game.json` and `skill_node_failure_classification.json`.
 
