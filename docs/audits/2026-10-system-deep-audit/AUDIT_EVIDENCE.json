@@ -28,12 +28,12 @@
   "verdict_label": "FOUNDATION UNTRUSTWORTHY / REBUILD CORE AREAS",
   "severity_counts": {
     "P0": 8,
-    "P1": 64,
-    "P2": 54,
-    "P3": 13,
+    "P1": 66,
+    "P2": 57,
+    "P3": 14,
     "INFO": 1
   },
-  "finding_count": 140,
+  "finding_count": 146,
   "status_values": {
     "OPEN": "not remediated (or only partially; see r0_notes)",
     "FIXED_LOCAL": "fixed on fix/audit-r0-emergency-production and proven by local tests; not yet verified in production",
@@ -47,7 +47,8 @@
     "INFRA-1 (SQLAlchemy) was raised to P0 because it was reproduced independently three times, including on Python 3.11, and it blocks deploying any remediation.",
     "Confidence 'high' means reproduced or directly read in code/data; web-sourced game-version facts are 'medium' because official sites could not be fetched from the audit environment.",
     "Folded exact duplicates: API-1->SYS-1, FE-6->SYS-1, SYS-18->INFRA-1, DB-2->INFRA-1, SEC-2->API-4, SYS-8->INFRA-2",
-    "2026-10-06 AUDIT-R0: statuses updated on branch fix/audit-r0-emergency-production (base 1efcef7). See R0_IMPLEMENTATION_REPORT.md. No finding is VERIFIED; production verification is still required."
+    "2026-10-06 AUDIT-R0: statuses updated on branch fix/audit-r0-emergency-production (base 1efcef7). See R0_IMPLEMENTATION_REPORT.md. No finding is VERIFIED; production verification is still required.",
+    "2026-10-06 AUDIT-R1: r1_state/r1_notes added to R1 findings (EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED, MEASURED, BLOCKED_OPERATOR_EXTRACTION, R2_CONSUMPTION). No status changed: nothing is fixed in production and no current-patch extraction is certified. New findings EXT-11..EXT-15 and OPS-9 added from R1 evidence. See r1/R1_REMEDIATION_REPORT.md."
   ],
   "findings": [
     {
@@ -122,7 +123,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "No 1.5.x extraction exists in any repository. R1 built the one-command operator extraction (scripts/r1_operator_extract.ps1) that reads version/build from the install (PlayerSettings.bundleVersion, Steam buildid); it has not run.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-1",
@@ -161,7 +165,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "R2_CONSUMPTION",
+      "r1_notes": "Forge data/ is unchanged by R1 (R1.15). Extraction side: run manifests and a retroactive 1.4.6 provenance record now exist; the Forge sync carries upstream trust (sync_game_data.py upstream_trust). Resync/idempotency of data/ is R2.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-2",
@@ -200,7 +207,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "exports_canonical/affixes.json keeps source-scale floats (no x100) and every property of all 534 multi-property affixes with one roll per property per tier (golden tests: Added Health T1 5-15, Strength T8 24-28). Forge still consumes the x100 legacy data (R2).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "INFRA-1",
@@ -280,7 +290,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "R2_CONSUMPTION",
+      "r1_notes": "Canonical affixes carry source scale; the Forge stat_engine heuristic and x100 data are unchanged until R2 consumes the canonical model.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "REL-1",
@@ -1248,7 +1261,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "Not changed by R1.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "DRIFT-3",
@@ -1378,7 +1394,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "Semantic coverage reported separately as 0 in R1_COVERAGE_METRICS.json; never mixed into extraction completeness. Ground-truth fixtures remain future work.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-3",
@@ -1414,7 +1433,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "r1_forge_consumption_inventory lists 10 non-extracted runtime inputs (base_items, weaver_tree, enemy_profiles, crafting_rules, ...) and hand-authored backend game_data files. Replacement is R2.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-4",
@@ -1444,7 +1466,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Generated denominator (1,326 candidates from all 1,170 manifest classes + secondary sources) rediscovers every listed family mechanically and classifies it; raw TypeTree dumps + lossless canonical envelopes for every in-scope class run in the operator extraction. Weaver tree now survives (exports_canonical/weaver_tree.json, 77 nodes, clean). Correction: MaterialList is a rendering-material table by its il2cpp layout, not crafting materials.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-5",
@@ -1475,7 +1500,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Raw snapshot contract implemented (r1_snapshot.py: every install file hashed, extraction inputs in a content store outside git, committed manifests). No snapshot exists yet; retroactive 1.4.6 record states reproducible_from_raw=false.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "FE-1",
@@ -1821,7 +1849,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Canonical affixes carry numeric property ids, modifierType, tags, specialTag, setProperty, extraTag and extraRolls for every property; field survival raw->canonical 48/48 classified. Forge sync still drops them (R2).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "LOSS-3",
@@ -1855,7 +1886,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "R2_CONSUMPTION",
+      "r1_notes": "Not an extraction loss: legacy and canonical passive exports carry property, tags, downside, noScaling, pointBonusDescription; the Forge sync drops them. Separately R1 found SkillTreeNode.nodeStats/propertiesForAltText never decoded (EXT-12).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "LOSS-4",
@@ -1887,7 +1921,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "R2_CONSUMPTION",
+      "r1_notes": "Legacy items export already carries baseTypeID/subTypeID, requirements, attackRate and structured implicits; curated Forge base_items is the loss (R2). Raw ItemList dump and canonical envelope run in the operator extraction.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "LOSS-5",
@@ -1923,7 +1960,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Legacy uniques export has numeric ids and structured mods (property as name) and effectiveLevelForLP on 201/409; raw UniqueList/SetBonusesList dumps and canonical envelopes run in the operator extraction. Forge slug-keying is R2.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "OBS-1",
@@ -2390,7 +2430,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Trust manifest (exports_canonical/TRUST_MANIFEST.json) gives every family a consumer_state with reasons and carries data_bundle BLOCK/DEGRADE; Forge sync now records it in data/version.json (upstream_trust) and copies it unchanged. Runtime enforcement is R2.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "SYS-5",
@@ -3293,7 +3336,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Root cause found: extract_enums.py iterated MainModule.Types only, so nested enums (AffixList.SpecialAffixType) were never extracted. Fixed to walk nested types (unit-tested; takes effect on the operator run). Canonical affixes report specialAffixType 6 (134 affixes) and displayCategory 42/43 as UNKNOWN_VALUE; certification C6 fails until extracted.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "DRIFT-7",
@@ -3416,7 +3462,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Canonical affixes: 1,112 unique ids; idol affixes are ordinary raw records (469). The legacy idol section comes from AffixImport.csv (not game data) and disagrees with the raw tiers; it is not carried.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "EXT-8",
@@ -3853,7 +3902,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Legacy classes export carries per-level and minion scaling; raw CharacterClass/Ailment dumps + canonical envelopes run in the operator extraction; Forge consumption is R2.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "OBS-2",
@@ -4199,7 +4251,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Snapshot contract and content store implemented; no new binaries are committed to git. Existing patch_versions binaries are left as an owner licensing decision.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "SYS-7",
@@ -4407,7 +4462,10 @@
       "dependencies": [
         "AUDIT-R0 (INFRA-1 deploy unblock)"
       ],
-      "status": "OPEN"
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "Mechanically confirmed by r1_forge_consumption_inventory: ailments, quests, zones, timelines, loot_tables, monster_mods, actors, set_items and localization are synced but have no runtime consumer.",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     },
     {
       "id": "IMP-10",
@@ -4721,6 +4779,170 @@
       "remediation_package": "none",
       "dependencies": [],
       "status": "INFO"
+    },
+    {
+      "id": "EXT-11",
+      "severity": "P2",
+      "domain": "extraction",
+      "title": "Raw affix dump reads uint8 SP property ids as signed bytes",
+      "description": "extract_master_affixes.py output stores property -126/-128 for idol-altar affixes; the il2cpp layout declares property as uint8_t, so the true ids are 130 (IdolAltarProperty) and 128 (AilmentImmunity).",
+      "evidence": "exports_canonical/affixes.json properties[].property.sign_correction; extracted_raw/MasterAffixesList.json",
+      "files": [
+        "last-epoch-data/tools/scripts/extract_master_affixes.py",
+        "last-epoch-data/extracted_raw/MasterAffixesList.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Normalize by declared field type in the raw dumper; canonical builder already corrects and records it",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
+    },
+    {
+      "id": "EXT-12",
+      "severity": "P1",
+      "domain": "extraction",
+      "title": "Skill-tree walker misses six Acolyte nodes, decodes garbage prerequisites and never decodes structured node stats",
+      "description": "extract_skill_trees_fast.py failed 11 nodes (6 AcolyteTree = the audit's 'Forge-only' ids 86,88,97,98,101,103); every class tree has misread prerequisite pathIds (e.g. 1684808296038400); SkillTreeNode.nodeStats and propertiesForAltText are never decoded, only tooltip text.",
+      "evidence": "extracted_raw/skill_node_failure_classification.json; exports_canonical/passive_trees.json integrity_problems; r1_field_survival_report skill_tree_nodes.raw_decode_coverage",
+      "files": [
+        "last-epoch-data/tools/scripts/extract_skill_trees_fast.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Decode SkillTreeNode from the il2cpp-declared layout against real 1.5 bytes; keep the canonical integrity gates",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
+    },
+    {
+      "id": "EXT-13",
+      "severity": "P2",
+      "domain": "extraction",
+      "title": "Raw tree inputs come from different extraction runs",
+      "description": "skill_node_failure_classification.json tree path ids (e.g. AcolyteTree 395113) match none of the raw_skill_trees_from_game.json tree path ids (393013); neither file carries a game build stamp.",
+      "evidence": "exports_canonical/passive_trees.json _meta.source.failure_join",
+      "files": [
+        "last-epoch-data/extracted_raw/raw_skill_trees_from_game.json",
+        "last-epoch-data/extracted_raw/skill_node_failure_classification.json"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Stamp every raw dump with the GameAssembly sha256 (snapshot contract)",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "BLOCKED_OPERATOR_EXTRACTION",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
+    },
+    {
+      "id": "EXT-14",
+      "severity": "P1",
+      "domain": "extraction",
+      "title": "The pipeline does not re-run Il2CppDumper on a new patch",
+      "description": "run_all.py runs build_typetrees.py without --dump, so DummyDll, il2cpp.h, enums and class layouts stay those of the previous patch unless run manually.",
+      "evidence": "tools/scripts/run_all.py PIPELINE",
+      "files": [
+        "last-epoch-data/tools/scripts/run_all.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Operator command runs build_typetrees.py --dump and re-parses layouts with the build stamp",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "EXTRACTION_FIX_IMPLEMENTED_UNCERTIFIED",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
+    },
+    {
+      "id": "EXT-15",
+      "severity": "P3",
+      "domain": "extraction",
+      "title": "il2cpp class layout index omits base classes and nested value types",
+      "description": "il2cpp_class_layouts.json lacks AffixList_Affix, AffixList_AffixProperty, UniqueList_Entry, ItemList_BaseItem/SubItem and others, and carries no game build stamp.",
+      "evidence": "r1_field_survival_report source_schema_unresolved_types",
+      "files": [
+        "last-epoch-data/tools/scripts/il2cpp_h_parser.py"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Parse value-type structs too; field survival marks affected schemas incomplete",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R1",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
+    },
+    {
+      "id": "OPS-9",
+      "severity": "P2",
+      "domain": "operations",
+      "title": "last-epoch-data Regeneration Gate has failed on every main push and PR since at least run 157",
+      "description": "Regeneration Gate run 26729978526 on main 73e2ab0 concluded failure, as did every earlier run listed (157-185); locally 7 governance reports drift.",
+      "evidence": "GitHub Actions run list",
+      "files": [
+        "last-epoch-data/.github/workflows/regeneration-gate.yml"
+      ],
+      "line_numbers": [],
+      "commands_used": [],
+      "affected_components": [
+        "last-epoch-data"
+      ],
+      "user_impact": "Extraction truth/completeness",
+      "confidence": "high",
+      "recommended_action": "Fix or regenerate the drifting governance artifacts (outside R1 scope)",
+      "source_report": "r1/R1_REMEDIATION_REPORT.md",
+      "related_findings": [],
+      "remediation_package": "AUDIT-R7",
+      "dependencies": [],
+      "status": "OPEN",
+      "r1_state": "MEASURED",
+      "r1_notes": "Found during AUDIT-R1 (2026-10-06).",
+      "r1_commits": "last-epoch-data fix/audit-r1-extraction-truth"
     }
   ]
 }
