@@ -354,8 +354,14 @@ class BuildView(db.Model):
     __tablename__ = "build_views"
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
-    build_id = db.Column(db.String(36), db.ForeignKey("builds.id"), nullable=False, index=True)
+    build_id = db.Column(
+        db.String(36), db.ForeignKey("builds.id", ondelete="CASCADE"),
+        nullable=False, index=True,
+    )
     viewed_at = db.Column(db.DateTime(timezone=True), default=_now, nullable=False)
     viewer_ip_hash = db.Column(db.String(64), nullable=False)  # SHA-256 hash, never raw IP
 
-    build = db.relationship("Build", backref="views")
+    # View rows are analytics owned by their build and are deleted with it.
+    build = db.relationship(
+        "Build", backref=db.backref("views", cascade="all, delete-orphan"),
+    )
