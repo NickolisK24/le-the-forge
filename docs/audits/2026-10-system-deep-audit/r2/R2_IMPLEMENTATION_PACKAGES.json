@@ -1,0 +1,848 @@
+{
+  "report_id": "r2_implementation_packages",
+  "status": "R2 READY — WAITING FOR CERTIFIED R1 SNAPSHOT",
+  "basis": {
+    "le_the_forge": "9e1356a (docs/audit-r2-preparation)",
+    "last_epoch_data": "0111f1e (fix/audit-r1-extraction-truth)",
+    "production_main": "80bd559"
+  },
+  "timing_values": {
+    "CAN_BEGIN_BEFORE_OPERATOR_RUN": "code and tests can be built and merged behind flags without the operator extraction",
+    "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT": "build now against 1.4.6 canonical fixtures (QUARANTINED, ADVISORY only); production switch waits for the certified snapshot",
+    "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT": "needs the certified 1.5 snapshot (TypeTree dumps or certified data)",
+    "DONE": "completed during preparation"
+  },
+  "critical_path": [
+    "R2-P17",
+    "R2-P01",
+    "R2-P02",
+    "R2-P03",
+    "[certified 1.5 snapshot]",
+    "R2-P04",
+    "R2-P06",
+    "R2-P07",
+    "R2-P08",
+    "R2-P13",
+    "R2-P10",
+    "R2-P20",
+    "R2-P18"
+  ],
+  "packages": [
+    {
+      "id": "R2-P00",
+      "title": "R1 contract defects found during R2 preparation",
+      "status": "DONE",
+      "timing": "DONE",
+      "objective": "Make R1 artifacts bindable by a consumer: canonical exports hashed in the run manifest; extractor dirtiness ignores run outputs; tree -> ability reference carried.",
+      "findings_closed": [],
+      "findings_advanced": [
+        "EXT-1",
+        "REL-4",
+        "REL-6",
+        "REL-10"
+      ],
+      "dependencies": [],
+      "components": [
+        "last-epoch-data tools/scripts/r1_snapshot.py",
+        "tools/scripts/r1_reproduce.py",
+        "tools/scripts/extract_skill_trees_fast.py",
+        "tools/scripts/build_canonical_trees.py"
+      ],
+      "old_source": "run manifest without canonical inventory; trees without ability_ref",
+      "new_source": "run manifest canonical_exports + canonical_content_hash; canonical tree ability_ref",
+      "acceptance": [
+        "C7 and C8 are passable by an operator run (were failing by construction)",
+        "canonical trees carry ability_ref with status"
+      ],
+      "tests": [
+        "test_r1_snapshot.py::test_run_outputs_do_not_make_the_extractor_dirty",
+        "test_r1_snapshot.py::test_run_manifest_inventories_canonical_exports",
+        "test_r1_canonical_trees.py::test_tree_ability_ref_is_carried_or_stated"
+      ],
+      "production_impact": "none (extraction side)",
+      "rollback": "git revert 7dc1ad6 / 0111f1e",
+      "complexity": "S",
+      "commits": [
+        "last-epoch-data 7dc1ad6",
+        "last-epoch-data 0111f1e"
+      ]
+    },
+    {
+      "id": "R2-P17",
+      "title": "Contract test harness and golden fixtures",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Build the R2 contract test harness (T1-T14) and golden fixtures from R1 canonical outputs before any consumer code, so every later package is gated by tests that already exist.",
+      "findings_closed": [],
+      "findings_advanced": [
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P00"
+      ],
+      "components": [
+        "backend/tests/fixtures/canonical/1.4.6/ (sliced, hash-pinned)",
+        "backend/tests/fixtures/canonical/synthetic/ (L1-L11 manifests)",
+        "backend/tests/fixtures/builds/ (anonymised legacy builds)",
+        "scripts/build_r2_fixtures.py",
+        "backend/tests/contract/ harness",
+        "CI jobs r2-contract, r2-db, r2-parity, r2-bundle-verify (initially allowed-to-fail where the subject code does not exist)"
+      ],
+      "old_source": "none",
+      "new_source": "R1 canonical outputs at a pinned commit",
+      "acceptance": [
+        "fixtures regenerate byte-identically from the pinned commit",
+        "every T-test exists and is wired, xfail only where its subject package is not built"
+      ],
+      "tests": [
+        "T1-T14 skeletons"
+      ],
+      "production_impact": "none",
+      "rollback": "remove tests",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P01",
+      "title": "Canonical bundle importer and manifest schema",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Replace the game-data part of sync_game_data.py with an importer that copies R1 canonical families byte-identically into data/canonical/<data_version>/ with a CanonicalDataManifest, after verifying hashes, provenance, schema and certification.",
+      "findings_closed": [
+        "EXT-1 (sync not reproducible; replaced by verified import)"
+      ],
+      "findings_advanced": [
+        "SYS-3",
+        "SYS-4"
+      ],
+      "dependencies": [
+        "R2-P17"
+      ],
+      "components": [
+        "scripts/import_canonical_bundle.py",
+        "schemas/forge_canonical_data_manifest-1.json",
+        "data/canonical/ layout + CURRENT pointer",
+        "fix: the importer takes --upstream <path> explicitly (current sync reads a non-existent in-repo path)"
+      ],
+      "old_source": "scripts/sync_game_data.py (transforming copy, SRC_DIR inside the Forge repo)",
+      "new_source": "last-epoch-data run manifest + TRUST_MANIFEST + certification + exports_canonical",
+      "acceptance": [
+        "importing the same R1 commit twice yields identical bundles and manifest_hash",
+        "every L1-L11 violation is rejected offline with its error code",
+        "1.4.6 artifacts import only in --dry-run (no snapshot: PROVENANCE_MISSING) and are never written as CURRENT"
+      ],
+      "tests": [
+        "T6",
+        "T12 (bundle determinism)"
+      ],
+      "production_impact": "none until R2-P20 switches CURRENT",
+      "rollback": "delete data/canonical/",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P02",
+      "title": "CanonicalDataStore loader with fail-closed rejections",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Load exactly one manifest at startup, enforce L1-L11 and the mixed-patch rules, expose families with trust/relationship/coverage state, report dataset status in /api/health, and return 503 DATASET_UNAVAILABLE instead of any fallback.",
+      "findings_closed": [
+        "SYS-4 (runtime trust enforcement)"
+      ],
+      "findings_advanced": [
+        "SYS-3",
+        "DRIFT-3",
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P01"
+      ],
+      "components": [
+        "backend/app/canonical/store.py",
+        "backend/app/canonical/manifest.py",
+        "backend/app/canonical/errors.py",
+        "app factory registration (feature flag CANONICAL_DATA_ENABLED, default off)",
+        "/api/health dataset block"
+      ],
+      "old_source": "GameDataPipeline reading data/ (data_version 'unknown')",
+      "new_source": "data/canonical/CURRENT",
+      "acceptance": [
+        "every synthetic rejection manifest yields its error and no game data is served",
+        "QUARANTINED families are only reachable through ADVISORY accessors",
+        "no fallback path exists (T11)"
+      ],
+      "tests": [
+        "T6",
+        "T7",
+        "T11",
+        "T13"
+      ],
+      "production_impact": "none while the flag is off",
+      "rollback": "flag off",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P03",
+      "title": "Typed canonical identities and registry factories",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Introduce distinct id types (Python and TypeScript) for every family in R2_IDENTITY_POLICY.md, one formatter/parser per type, Found|Missing lookups, and registry factories that can only be built from CanonicalDataStore.",
+      "findings_closed": [],
+      "findings_advanced": [
+        "REL-6",
+        "REL-16",
+        "REL-1"
+      ],
+      "dependencies": [
+        "R2-P02"
+      ],
+      "components": [
+        "backend/app/canonical/ids.py",
+        "backend/app/canonical/registries/",
+        "frontend/src/canonical/ids.ts (generated types)",
+        "static check for name-keyed game-data dicts (T11 allowlist)"
+      ],
+      "old_source": "name/slug/index keyed dicts across pipeline, game_data_loader, AffixRegistry, SkillRegistry",
+      "new_source": "CanonicalDataStore families",
+      "acceptance": [
+        "ids round-trip; uniqueness asserted per family on 1.4.6 fixtures",
+        "registry constructors reject non-store inputs (FOREIGN_SOURCE)"
+      ],
+      "tests": [
+        "T3",
+        "T11"
+      ],
+      "production_impact": "none (new modules)",
+      "rollback": "remove modules",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P15",
+      "title": "Migration chain hardening and Postgres CI",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Make the Alembic chain verifiable: CI runs upgrade base->head on Postgres, downgrade/upgrade for reversible revisions; broken downgrades (drop_constraint(None)) fixed or declared irreversible; named-FK drop made explicit.",
+      "findings_closed": [
+        "DB-5"
+      ],
+      "findings_advanced": [],
+      "dependencies": [],
+      "components": [
+        ".github/workflows/ci.yml Postgres service job",
+        "backend/migrations/versions/3ffd55fa24ac, a7c3e91f4d20, a1b2c3d4e5f6 downgrade handling"
+      ],
+      "old_source": "sqlite create_all only",
+      "new_source": "Postgres upgrade/downgrade in CI",
+      "acceptance": [
+        "single head; upgrade base->head green on Postgres; every downgrade either works or raises an explicit irreversible error"
+      ],
+      "tests": [
+        "T12 (migration part)"
+      ],
+      "production_impact": "none (existing revisions unchanged for upgrade path)",
+      "rollback": "remove CI job",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P16",
+      "title": "Fallback elimination gate",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Add the data-path lint gate as a ratchet from 575 runtime dangerous fallbacks; each family package removes its own; this package owns the gate, the 6 script records and the final zero.",
+      "findings_closed": [
+        "REL-24 (at R2 close)"
+      ],
+      "findings_advanced": [],
+      "dependencies": [
+        "R2-P17"
+      ],
+      "components": [
+        "tools/lint/data_fallbacks.py (pattern set from R2_FALLBACK_CENSUS.jsonl)",
+        "CI ratchet baseline",
+        "annotation convention # fallback: SAFE_PRESENTATION|EXPLICIT_UNSUPPORTED"
+      ],
+      "old_source": "none",
+      "new_source": "CI gate",
+      "acceptance": [
+        "count can only decrease",
+        "R2-owned runtime dangerous count reaches 0 before R2 closes (69 R6-tagged allowlisted)"
+      ],
+      "tests": [
+        "T10"
+      ],
+      "production_impact": "none",
+      "rollback": "disable gate",
+      "complexity": "S"
+    },
+    {
+      "id": "R2-P09",
+      "title": "Reference API on the canonical store with data_version and trust envelope",
+      "timing": "CAN_BEGIN_BEFORE_OPERATOR_RUN",
+      "objective": "Serve /api/ref/*, /api/passives*, /api/skills* from CanonicalDataStore with a response envelope {data, data_version, trust{family: consumer_state, reasons}}; remove DB/JSON fallbacks and 200-[] on errors.",
+      "findings_closed": [
+        "SYS-4 (API surfacing)"
+      ],
+      "findings_advanced": [
+        "REL-24",
+        "DB-4",
+        "FE-8 (R6)"
+      ],
+      "dependencies": [
+        "R2-P02"
+      ],
+      "components": [
+        "backend/app/canonical/envelope.py",
+        "routes/ref.py, passives.py, skills.py, entities.py data endpoints",
+        "error codes 404 REFERENCE_NOT_FOUND / 503 DATASET_UNAVAILABLE"
+      ],
+      "old_source": "ref.py DB-or-JSON fallbacks, hard-coded item-type list",
+      "new_source": "CanonicalDataStore",
+      "acceptance": [
+        "no endpoint returns 200 with fallback data on error",
+        "every game-data payload has data_version and trust"
+      ],
+      "tests": [
+        "T7",
+        "T10",
+        "T13"
+      ],
+      "production_impact": "YES at switch: endpoint shapes gain envelope fields; error behaviour becomes explicit",
+      "rollback": "flag off",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P05",
+      "title": "Affix consumption from canonical affixes",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Replace all five affix paths with one canonical affix registry keyed by affix_id with per-property rolls at source scale; author the declared property -> BuildStats mapping (by SP id, not names); retire the x100 correction heuristic conceptually (no scaled data exists to correct).",
+      "findings_closed": [
+        "EXT-2 (consumer side)",
+        "LOSS-1",
+        "LOSS-2 (consumer side)",
+        "REL-7",
+        "REL-23",
+        "REL-16 (affix duplicates and name keying)"
+      ],
+      "findings_advanced": [
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P03"
+      ],
+      "components": [
+        "backend/app/canonical/affixes.py (registry + adapter, DECLARED_DERIVATIONS empty for values)",
+        "backend/app/canonical/stat_mapping.py (SP id -> BuildStats field, FORGE_RULE table, unmapped properties reported)",
+        "migrate: stat_engine (AFFIX_TIER_MIDPOINTS/AFFIX_STAT_KEYS/get_affix_value heuristic), efficiency_scorer, gear_upgrade_ranker, affix_catalog_service, craft_engine/craft_service (also fixes getattr(def,'type') never matching), affix_engine, routes/ref.py affixes, routes/admin.py (file writer removed), LET importer _AFFIX_MAP, forge_safe comparison, load.py",
+        "frontend: GearEditor uses affix_id; AFFIX_DEFINITIONS and getAffixValue removed; useLiveStats affix handling"
+      ],
+      "old_source": "data/items/affixes.json (x100, flattened, 116 duplicate affix_id), DB affix_defs, gameData.ts AFFIX_DEFINITIONS",
+      "new_source": "bundle affixes.json (r1_canonical_affix/1)",
+      "acceptance": [
+        "Added Health T1 5-15 served and used unscaled; Strength T8 24-28",
+        "every property of the 534 multi-property affixes is served with its own rolls",
+        "no module reads data/items/affixes.json (T11)",
+        "class_specificity and tags filters work",
+        "0 dangerous affix fallbacks owned by P05 remain (111 today)"
+      ],
+      "tests": [
+        "T1",
+        "T2",
+        "T3",
+        "T10",
+        "T11"
+      ],
+      "production_impact": "YES at switch: affix values in calculations change from x100 to source scale (corrects LOSS-1); behind CANONICAL_DATA_ENABLED until R2-P20",
+      "rollback": "flag off (legacy path stays until R2-P18)",
+      "complexity": "L"
+    },
+    {
+      "id": "R2-P12",
+      "title": "Game-fact constants registry (hand-authored inputs)",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Inventory every hand-authored constant that encodes a game fact; replace with canonical data where the game has it; otherwise declare it FORGE_RULE with basis and valid_for_data_versions; the loader refuses undeclared game-fact constants.",
+      "findings_closed": [
+        "DRIFT-7"
+      ],
+      "findings_advanced": [
+        "EXT-3",
+        "DOC-11 (R6)",
+        "CALC-6 (R6)"
+      ],
+      "dependencies": [
+        "R2-P02",
+        "R2-P06",
+        "R2-P11"
+      ],
+      "components": [
+        "backend/app/canonical/forge_rules.py registry",
+        "inventory: MAX_PASSIVE_POINTS 113 (3 copies), SECONDARY_MASTERY_DEPTH 20, constants.json, classes.json (game_data), stat_engine CLASS_BASE_STATS/MASTERY_BONUSES/KEYSTONE_BONUSES/ATTRIBUTE_SCALING, combat constants (R6 semantics), BASE_TYPE_ID maps, crafting FP tables (4 sources)"
+      ],
+      "old_source": "scattered literals",
+      "new_source": "canonical data or declared FORGE_RULE",
+      "acceptance": [
+        "static check finds no undeclared game-fact literal in runtime paths",
+        "each FORGE_RULE has basis + valid_for_data_versions"
+      ],
+      "tests": [
+        "T11"
+      ],
+      "production_impact": "YES where a constant is replaced by data (e.g. passive point budget)",
+      "rollback": "revert",
+      "complexity": "M",
+      "note": "Inventory and declaration can start now; replacement values come from the certified snapshot."
+    },
+    {
+      "id": "R2-P04",
+      "title": "Upstream typed canonical views and relationship gates (last-epoch-data)",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "Build typed canonical exports on the extraction side from the operator TypeTree envelopes: classes+masteries (source-ordered), abilities (ability_id, path join), item base types/subtypes/implicits, uniques (+subtype lists, structured mods), sets and bonuses, ailments, blessings, timelines; each with schema, identity contract, field survival and trust; add relationship gates for EXT-6.",
+      "findings_closed": [
+        "EXT-6",
+        "LOSS-6 (extraction side)",
+        "EXT-3 (where the game has the data)"
+      ],
+      "findings_advanced": [
+        "LOSS-4",
+        "LOSS-5",
+        "REL-1",
+        "REL-4"
+      ],
+      "dependencies": [
+        "certified R1 1.5 snapshot (operator run)"
+      ],
+      "components": [
+        "last-epoch-data tools/scripts/build_canonical_<family>.py x7",
+        "r1 field survival domains for each typed view",
+        "relationship metrics: class->ability, mastery->ability, tree->ability, unique->subtype, set member->set, monster/dungeon mod keys",
+        "optional: tree-node RectTransform positions (presentation overlay)"
+      ],
+      "old_source": "legacy exports_json/{classes,items,uniques,set_bonuses,ailments,blessings,timelines}.json",
+      "new_source": "exports_canonical/typetree/* envelopes",
+      "acceptance": [
+        "each typed view has 0 UNKNOWN field paths, a trust entry and its relationships measured",
+        "mastery order equals CharacterClass.masteries source order for all 5 classes",
+        "abilityPathIds resolve for all masteries (EXT-6)"
+      ],
+      "tests": [
+        "R1-side golden tests per view",
+        "T4 on the consumer side"
+      ],
+      "production_impact": "none (extraction side)",
+      "rollback": "drop the typed view; consumers stay on envelopes-not-served",
+      "complexity": "XL",
+      "note": "Field lists cannot be fixed before the 1.5 TypeTree dumps exist; the layout gives field names but not instance content or enum completeness."
+    },
+    {
+      "id": "R2-P06",
+      "title": "Class and mastery identity; MASTERY_MAP removal (REL-1)",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "Derive masteries as (class_id, mastery_index) from the canonical class view in source order; remove MASTERY_MAP and every name/position assumption (39 consumers); remove 'Sentinel' and first-mastery defaults.",
+      "findings_closed": [
+        "REL-1"
+      ],
+      "findings_advanced": [
+        "EXT-3",
+        "DRIFT-7",
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P03",
+        "R2-P04 (class view)"
+      ],
+      "components": [
+        "backend/app/canonical/classes.py",
+        "schemas CLASS_MASTERIES -> ids; validators.VALID_MASTERIES; routes/passives.py and routes/ref.py mastery filters by id; ref.py CLASS_META removed",
+        "importers: three _MASTERY_MAP copies -> canonical; base_importer index-0 acceptance removed; default .get(1) removed",
+        "stat_engine/frontend MASTERY_BONUSES declared FORGE_RULE or removed (R6 decides semantics)",
+        "frontend: MASTERIES/CLASS_MASTERIES (3 copies) -> /api/ref/classes; BuildPlannerPage defaults require explicit choice; BuildPassiveTree tabs by mastery_index"
+      ],
+      "old_source": "sync MASTERY_MAP, CLASS_MASTERIES (py, ts, buildApi), ref.py CLASS_META, gameData PASSIVE_REGIONS",
+      "new_source": "canonical class view masteries[] (source order)",
+      "acceptance": [
+        "T5-M passes for all 15 masteries and 5 base classes",
+        "/api/passives?class_id=&mastery_index= returns exactly the canonical set",
+        "no code path resolves a mastery by name (T11)"
+      ],
+      "tests": [
+        "T5",
+        "T8",
+        "T10",
+        "T11"
+      ],
+      "production_impact": "YES: 190 passive nodes change mastery; /api/passives mastery filters change for 6 masteries",
+      "rollback": "flag off",
+      "complexity": "M",
+      "note": "An interim REL-1 data fix is provable today from the 1.4.6 export (masteryName per node); it is not part of R2 and was not applied."
+    },
+    {
+      "id": "R2-P07",
+      "title": "Passive tree consumption as a graph",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Serve passive trees from canonical passive_trees with (class_id, node_id) identity, all requirement edges with points, resolution states, R1 integrity; one prerequisite semantics (all requirements); points counted, not de-duplicated; stats by property reference.",
+      "findings_closed": [
+        "REL-2 (consumer side: garbage edges never served as edges)",
+        "LOSS-3"
+      ],
+      "findings_advanced": [
+        "REL-24",
+        "EXT-12 (served ADVISORY while DEFECTIVE)"
+      ],
+      "dependencies": [
+        "R2-P03",
+        "R2-P06"
+      ],
+      "components": [
+        "backend/app/canonical/passives.py",
+        "build validation (create, PATCH, import all validated; int ids accepted as node_id)",
+        "passive_stat_resolver by property id; STAT_KEY_MAP name keying removed",
+        "stat_engine modulo fallback and unreachable KEYSTONE path removed or declared",
+        "build_analysis_service points handling",
+        "weaver tree served with the same graph model (consumer optional)"
+      ],
+      "old_source": "data/classes/passives.json, DB passive_nodes, frontend passiveTrees/*",
+      "new_source": "bundle passive_trees.json + class view",
+      "acceptance": [
+        "24 multi-prerequisite passive nodes keep all edges",
+        "IMPLAUSIBLE/NULL/UNRESOLVED edges are reported, never served as edges",
+        "6 phantom Warlock nodes absent unless the certified snapshot decodes them",
+        "allocation points are honoured"
+      ],
+      "tests": [
+        "T1",
+        "T2",
+        "T4",
+        "T5",
+        "T10"
+      ],
+      "production_impact": "YES: phantom nodes disappear; prerequisites change for 25 nodes; analysis counts points",
+      "rollback": "flag off",
+      "complexity": "L"
+    },
+    {
+      "id": "R2-P08",
+      "title": "Skills, abilities and specialization trees by identity",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "Join skill -> ability_id -> tree_id via SkillTree.ability (R2-P00); serve skill trees as graphs (all prerequisites, points); remove name-keyed skill metadata, skill_tree_nodes.json, community trees and frontend name maps; apply every slotted skill's tree, not only slot 0.",
+      "findings_closed": [
+        "REL-4",
+        "REL-6",
+        "REL-9",
+        "REL-10 (data side)"
+      ],
+      "findings_advanced": [
+        "REL-24",
+        "CALC-14 (R6 consumes values)"
+      ],
+      "dependencies": [
+        "R2-P03",
+        "R2-P06",
+        "R2-P04 (ability view)",
+        "certified snapshot (ability_ref is NOT_IN_RAW_DUMP in 1.4.6)"
+      ],
+      "components": [
+        "backend/app/canonical/skills.py, skill_trees.py",
+        "skill_tree_resolver rewritten on canonical stats (property refs; unresolved stats reported as unsupported_stats)",
+        "routes/skills.py on canonical graph (AND semantics)",
+        "SkillRegistry/skills.json/combat_engine.SKILL_STATS name keying -> ability_id (values remain R6)",
+        "importers: skill id maps from canonical (corrupted names fi9/en6/me27/rf1azz eliminated)",
+        "simulation_service exception swallowing removed"
+      ],
+      "old_source": "skills_metadata.json (name-keyed, corrupted names), skills_with_trees.json, skill_tree_nodes.json, community_skill_trees.json, frontend skillTrees/index.ts",
+      "new_source": "bundle skill_trees.json + ability view",
+      "acceptance": [
+        "Anomaly, Cinder Strike, Firebrand, Bladestorm resolve to their trees by ability_id",
+        "all 137 trees reachable; 680+ multi-prerequisite nodes keep all edges",
+        "Fireball/Meteor/Elemental Nova/Reaper Form resolve",
+        "0 P08-owned dangerous fallbacks (139 today)"
+      ],
+      "tests": [
+        "T1",
+        "T3",
+        "T4",
+        "T8",
+        "T10"
+      ],
+      "production_impact": "YES: skill-tree modifiers apply to correct trees and to all slotted skills",
+      "rollback": "flag off",
+      "complexity": "XL"
+    },
+    {
+      "id": "R2-P11",
+      "title": "Items, uniques, sets and blessings by source identity",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "Consume typed item views: (base_type_id, sub_type_id) items, structured implicits, uniques by unique_id with subtype lists and structured mods, sets by set_id, blessings as item subtypes; replace slot vocabularies with game EquipmentType; define the external id map shape for importers (R4 implements).",
+      "findings_closed": [
+        "LOSS-4 (consumer)",
+        "LOSS-5 (consumer)",
+        "REL-16 (slot vocabularies)"
+      ],
+      "findings_advanced": [
+        "IMP-4 (R4)",
+        "DRIFT-7",
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P03",
+        "R2-P05",
+        "R2-P04 (item/unique/set/blessing views)"
+      ],
+      "components": [
+        "backend/app/canonical/items.py, uniques.py, sets.py, blessings.py",
+        "base_engine, item_engine, craft_service, build_analysis_service unique resolution (no regex over text, no first match)",
+        "routes/ref.py base-items/uniques/implicits",
+        "external_id_map/<provider>/<data_version>.json loader (shape only)",
+        "BASE_TYPE_ID_TO_ITEM_TYPE_ID (TS/Py) and generate_item_constants.py retired"
+      ],
+      "old_source": "base_items.json (curated), implicit_stats.json, uniques.json (slug), set_items.json, blessings.json (hand), item_types literals",
+      "new_source": "typed item/unique/set/blessing views",
+      "acceptance": [
+        "every unique resolves by unique_id; 78 weapon uniques reachable by type",
+        "implicits are structured",
+        "importer never maps by sequential index (T14)",
+        "0 P11-owned dangerous fallbacks (116 today)"
+      ],
+      "tests": [
+        "T1",
+        "T3",
+        "T4",
+        "T10",
+        "T14"
+      ],
+      "production_impact": "YES: base items and uniques change identity and content",
+      "rollback": "flag off",
+      "complexity": "XL"
+    },
+    {
+      "id": "R2-P13",
+      "title": "Server-controlled build provenance (datasets, data_version, LEGACY_UNKNOWN)",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Add the datasets table and build provenance columns; server stamps data_version on create/update/import; one reference validator for all write paths; existing rows become LEGACY_UNKNOWN without fabricated history; LegacyReferenceResolver for degraded viewing.",
+      "findings_closed": [
+        "DB-3"
+      ],
+      "findings_advanced": [
+        "DRIFT-3",
+        "IMP-6 (R4)",
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P02",
+        "R2-P05",
+        "R2-P07",
+        "R2-P08",
+        "R2-P11"
+      ],
+      "components": [
+        "migration: datasets table, builds.data_version/provenance_status/reference_scheme/source/source_ref/importer_version, patch_version -> declared_patch, cycle input removed",
+        "build_service/import_route/builds routes: validator on create, PATCH and import",
+        "LegacyReferenceResolver",
+        "craft sessions affix_id storage",
+        "meta analytics excludes LEGACY_UNKNOWN from current-patch stats"
+      ],
+      "old_source": "client patch_version default 1.2.1, names in JSON blobs",
+      "new_source": "server stamp from CanonicalDataStore",
+      "acceptance": [
+        "forged patch_version/data_version in requests are ignored",
+        "all existing rows LEGACY_UNKNOWN; no historical data_version written",
+        "an update cannot mix datasets",
+        "unresolved references reject the write with a list"
+      ],
+      "tests": [
+        "T9",
+        "T10"
+      ],
+      "production_impact": "YES: provenance shown; 'Outdated build' banner logic changes; imports reject unresolved references",
+      "rollback": "migration downgrade restores patch_version (declared_patch kept); new columns dropped",
+      "complexity": "L",
+      "note": "The schema migration and LEGACY_UNKNOWN backfill can land before the run; stamping needs an active certified dataset."
+    },
+    {
+      "id": "R2-P14",
+      "title": "Reference data from bundles; retire DB reference seeding",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Implement decision B: reference reads come only from the store; affix_defs, passive_nodes and item_types stop being read; seed commands retired; deterministic startup; entrypoints stop masking failures; Render health fails on a rejected bundle.",
+      "findings_closed": [
+        "DB-4",
+        "REL-23 (seeding cause)"
+      ],
+      "findings_advanced": [
+        "REL-24"
+      ],
+      "dependencies": [
+        "R2-P02",
+        "R2-P05",
+        "R2-P07",
+        "R2-P09"
+      ],
+      "components": [
+        "routes/services reading AffixDef/PassiveNode/ItemType switched to the store",
+        "cli.py seed/reseed-affixes/seed-passives removed (seed-builds dev-only)",
+        "entrypoint.sh no '2>/dev/null ||'",
+        "render.yaml health check on /api/health dataset status",
+        "datasets row upsert at startup"
+      ],
+      "old_source": "DB reference tables + JSON fallbacks",
+      "new_source": "CanonicalDataStore",
+      "acceptance": [
+        "empty DB + db upgrade + start = complete system (T12)",
+        "no code reads the three tables"
+      ],
+      "tests": [
+        "T12",
+        "T13",
+        "T11"
+      ],
+      "production_impact": "YES: no seeding step; behaviour no longer depends on whether prod was seeded",
+      "rollback": "flag off; tables still exist until R2-P18",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P19",
+      "title": "Version surfaces from the manifest",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "/api/version, /api/health, dashboard, banner, pipeline/VersionedLoader/import diagnostics and docs take patch/build/data_version from the active manifest; explicit 'version unavailable' otherwise; no hard-coded patch anywhere.",
+      "findings_closed": [
+        "DRIFT-3",
+        "DOC-3"
+      ],
+      "findings_advanced": [
+        "SYS-3"
+      ],
+      "dependencies": [
+        "R2-P02",
+        "R2-P13"
+      ],
+      "components": [
+        "backend/config.py CURRENT_PATCH/CURRENT_SEASON/DATA_VERSION removed",
+        "routes/version.py, health.py",
+        "import_diagnostics data_version/extractor_version",
+        "frontend DashboardPage, BuildPlannerPage banner, AppLayout/TopBar",
+        "README/KNOWN_LIMITATIONS/deployment docs generated section"
+      ],
+      "old_source": "1.2.1 / 1.4.3 / unknown / 1.0.0",
+      "new_source": "CanonicalDataManifest",
+      "acceptance": [
+        "one patch identity across all surfaces; grep finds no hard-coded patch literal in runtime code"
+      ],
+      "tests": [
+        "T7",
+        "T10"
+      ],
+      "production_impact": "YES at switch",
+      "rollback": "flag off",
+      "complexity": "S",
+      "note": "Developed before the run; enabled only with R2-P20 because before cutover there is no certified manifest to report."
+    },
+    {
+      "id": "R2-P10",
+      "title": "Frontend data authority: generated artifacts and parity",
+      "timing": "BUILD_BEFORE_RUN_SWITCH_AFTER_CERTIFIED_SNAPSHOT",
+      "objective": "Generate frontend tree artifacts from the same bundle, stamp DATA_VERSION/CONTENT_SHA256, refuse mixed data, add the parity job, and delete hand-maintained frontend game data.",
+      "findings_closed": [
+        "REL-10 (frontend)",
+        "FE-10 (data divergence part; R6 owns the rest)"
+      ],
+      "findings_advanced": [
+        "DRIFT-7",
+        "REL-1 (UI)"
+      ],
+      "dependencies": [
+        "R2-P07",
+        "R2-P08",
+        "R2-P09"
+      ],
+      "components": [
+        "scripts/build_frontend_data.py",
+        "frontend/src/generated/canonical/<data_version>/",
+        "layout overlay with node-set parity",
+        "DATASET_MISMATCH handling",
+        "removal list in R2_FRONTEND_AUTHORITY_PLAN.md"
+      ],
+      "old_source": "frontend/src/data/passiveTrees/*, skillTrees/index.ts, gameData.ts game facts, backend/src/constants/classes.ts, buildApi.ts, passiveStatMap.ts",
+      "new_source": "bundle via generator + API",
+      "acceptance": [
+        "T8 parity green",
+        "generator deterministic and CI-diffed",
+        "no hand-written game facts in frontend/src (static check)"
+      ],
+      "tests": [
+        "T8",
+        "T11"
+      ],
+      "production_impact": "YES: UI trees switch to canonical graphs",
+      "rollback": "revert artifact switch commit",
+      "complexity": "L"
+    },
+    {
+      "id": "R2-P20",
+      "title": "Production cutover to the certified canonical dataset",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "Import the certified 1.5 bundle, run the full contract suite and the legacy-build revalidation report, set CURRENT, regenerate frontend artifacts, enable CANONICAL_DATA_ENABLED in one release.",
+      "findings_closed": [
+        "SYS-3",
+        "EXT-1 (production data reproducible from a certified snapshot)"
+      ],
+      "findings_advanced": [],
+      "dependencies": [
+        "certified R1 1.5 snapshot",
+        "R2-P05",
+        "R2-P06",
+        "R2-P07",
+        "R2-P08",
+        "R2-P09",
+        "R2-P10",
+        "R2-P11",
+        "R2-P12",
+        "R2-P13",
+        "R2-P14",
+        "R2-P19"
+      ],
+      "components": [
+        "data/canonical/<1.5 data_version>/",
+        "flag flip",
+        "release notes listing value changes (affix scale, mastery membership, phantom nodes)"
+      ],
+      "old_source": "legacy data/ path",
+      "new_source": "certified bundle",
+      "acceptance": [
+        "all CI R2 jobs green on the certified bundle",
+        "REQUIRED families CERTIFIED (TRUSTED) or explicitly ADVISORY by product decision",
+        "legacy-build revalidation report reviewed"
+      ],
+      "tests": [
+        "T1-T14"
+      ],
+      "production_impact": "YES (the R2 behaviour change)",
+      "rollback": "flag off and CURRENT back; bundles immutable",
+      "complexity": "M"
+    },
+    {
+      "id": "R2-P18",
+      "title": "Legacy retirement",
+      "timing": "MUST_WAIT_FOR_CERTIFIED_1_5_SNAPSHOT",
+      "objective": "After one release on the canonical path, delete or archive every legacy authority listed in R2_LEGACY_RETIREMENT_PLAN.md, drop retired DB tables, remove the v2 path, and close the fallback ratchet at zero.",
+      "findings_closed": [
+        "REL-24 (final)",
+        "REL-7 (v2 registry deleted)",
+        "REL-9 (v2 bundle deleted)"
+      ],
+      "findings_advanced": [
+        "SYS-5 (R6)",
+        "FE-3 (R6)",
+        "DEAD-3 (R6)"
+      ],
+      "dependencies": [
+        "R2-P20 + one release"
+      ],
+      "components": [
+        "see R2_LEGACY_RETIREMENT_PLAN.md"
+      ],
+      "old_source": "legacy files, tables, sync transformations, v2 path",
+      "new_source": "none",
+      "acceptance": [
+        "T11 allowlist empty",
+        "no runtime import of removed modules",
+        "migration drops affix_defs/passive_nodes/item_types"
+      ],
+      "tests": [
+        "T11",
+        "T12"
+      ],
+      "production_impact": "none visible (paths already unused)",
+      "rollback": "revert deletion commit; tables restored by downgrade",
+      "complexity": "M"
+    }
+  ]
+}
