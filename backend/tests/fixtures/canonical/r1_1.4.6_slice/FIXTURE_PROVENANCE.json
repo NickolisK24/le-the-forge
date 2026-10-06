@@ -1,0 +1,33 @@
+{
+ "notice": "Real 1.4.6 canonical records, sliced (whole records only). 1.4.6 has no raw snapshot: these files never form a valid bundle without the synthetic snapshot tests add.",
+ "originals": {
+  "docs/generated/r1_certification_report.json": "1d7ae957c5d5227d7ab8632b20ab4ccc858408bfc7f832679358bcda90a3c908",
+  "exports_canonical/TRUST_MANIFEST.json": "423bd2ddecdcf19318b4bdd13864bcdcca6289661ab891ac7407770ddaecb41f",
+  "exports_canonical/affixes.json": "151fd729244de9ab3844200308ecef0256956eacb15b52757e063f2bb5e8c5e3",
+  "exports_canonical/passive_trees.json": "010cc60ab3438a3a33936f794ba8e87135928075e5438a48625989d0a5e25c3f",
+  "exports_canonical/property_definitions.json": "72657d90b77379056d1b05727dbbb87aff91400cfe6196ec2f4e0edc665ff86d",
+  "exports_canonical/skill_trees.json": "98e8ca529f359c73cd2c10786a01247b4385170d473d08ffa8b876ecf2c75426",
+  "exports_canonical/weaver_tree.json": "9d750a1783a7f4b663f5f2fa0ddd8efeb0d253948a10ce2233958a42b83346ae",
+  "snapshots/runs/1.4.6_22986002.retroactive.json": "21dca9178d25fd7108cf583b281bfcb4aabc576d5c8d3a6c7c017f17226875f2"
+ },
+ "r1_content_sha256": {
+  "exports_canonical/TRUST_MANIFEST.json": "e0c5143789a16e59378dff6a586c7e342e6d337d0a4a130417584f196c3c2bc6",
+  "exports_canonical/affixes.json": "ddaba66031fcfdd899ff63c28ed24135a66dc4156fc33101a6ef23c909b24c7a",
+  "exports_canonical/passive_trees.json": "bebcbcffdf5a9b78c28499485be9dd15980d0dccb2074fdc2f9d915683700fe3",
+  "exports_canonical/property_definitions.json": "3a0a105505a42f62bf929efd4cdc61fa8c9d2feac99c70bfa7ab085ab6272f09",
+  "exports_canonical/skill_trees.json": "209008aaf7f7fb3f13fc57365485000e42e8d8ed6404a968fe610156fb9c8fc2",
+  "exports_canonical/weaver_tree.json": "5a89990c5a81524514372f9213fbaa9d914fed7136840bb00cc5825a2abc6255"
+ },
+ "slices": {
+  "1.4.6_22986002.retroactive": "unchanged copy",
+  "TRUST_MANIFEST": "canonical family entries only; domains_without_export removed",
+  "affixes": "first 25 single-property, first 25 multi-property, plus affix ids [14]",
+  "passive_trees": "trees ['AcolyteTree', 'MageTree']",
+  "property_definitions": "first 25 records of each family",
+  "r1_certification_report": "unchanged copy",
+  "skill_trees": "trees ['wo42', 'bl5st', 'er6no', 'flur3', 'fb8fe', 'an0my', 'fi9', 'rf1azz'] (multi-prerequisite, NULL/UNRESOLVED edges, name-collision and wrong-metadata cases)",
+  "weaver_tree": "unsliced"
+ },
+ "source_commit": "0111f1e26f6ebbf2052b5e878946f32b3dc55540",
+ "source_repository": "last-epoch-data"
+}

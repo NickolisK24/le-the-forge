@@ -1,0 +1,2010 @@
+{
+ "_meta": {
+  "builder": "tools/scripts/build_canonical_property_definitions.py",
+  "counts": {
+   "ability_properties": 567,
+   "ability_properties_with_abilityid": 567,
+   "conditional_damage_properties": 45,
+   "idol_altar_properties": 26,
+   "master_properties": 131,
+   "player_properties": 617,
+   "tracker_properties": 8
+  },
+  "master_localization": {
+   "localization_master_entries_without_sp": 32,
+   "localization_master_entries_without_sp_sample": [
+    "Armor",
+    "Armor Mitigation also applies to Damage over Time",
+    "Chance to Chill Attackers",
+    "Chance to Receive a Critical Strike",
+    "Chance to Shock Attackers",
+    "Chance to Slow Attackers",
+    "Chance to gain Haste for 1 second on Hit",
+    "Chance to receive a Glancing Blow when hit",
+    "Critical Strike Avoidance",
+    "Critical Strike Chance",
+    "Critical Strike Multiplier",
+    "Cull on Hit",
+    "Current Health Drained per Second",
+    "Damage Dealt to Mana Before Health",
+    "Damage Dealt to Mana Before Health or Ward",
+    "Damage Leeched as Health",
+    "Damage Reflected",
+    "Damage Reflected to Attackers",
+    "Dark Protection (deprecated)",
+    "Duration of Stuns Received",
+    "Freeze Rate per stack of Chill",
+    "Health Gained on Potion Use",
+    "Increased Chance To Find Potions",
+    "Increased Healing Effectiveness",
+    "Lens",
+    "More Damage Per Stack",
+    "Movement Speed",
+    "Overkill Damage Leeched as Health",
+    "Ward Gained on Potion Use",
+    "Ward per Second"
+   ],
+   "sp_values": 131,
+   "with_localization": 68
+  },
+  "not_available": [
+   "MasterPropertyList / PlayerPropertyList / AbilityPropertyList / TrackerPropertyList contents (value types, rounding, display flags, tags): resources.assets not preserved",
+   "NodeTooltipPropertyList contents (tree stat property name table): resources.assets not preserved"
+  ],
+  "schema": "r1_canonical_property_definitions/1",
+  "semantics_contract": "identities and names only; value type, scaling, rounding and units are recorded as NOT_IN_AVAILABLE_EVIDENCE and never inferred",
+  "source": "derived from extracted_raw/enums/enums.json and exports_json/localization/en.json",
+  "sources": {
+   "affixes": {
+    "path": "exports_canonical/affixes.json",
+    "sha256": "151fd729244de9ab3844200308ecef0256956eacb15b52757e063f2bb5e8c5e3"
+   },
+   "enums": {
+    "path": "extracted_raw/enums/enums.json",
+    "provenance": "enum dump; no game build stamp",
+    "sha256": "a6b1d63ba2650c82fb37bdb8399ba989ba336061d566c2ebdf8a5092823b2e40"
+   },
+   "localization": {
+    "path": "exports_json/localization/en.json",
+    "provenance": "game string table (1.4.6 Addressables) as exported by the legacy pipeline; not raw, raw bundle not preserved",
+    "sha256": "095b3ac154d23009451098e84210b7c029b47bee0643035aa310d46116808817"
+   },
+   "raw_trees": {
+    "path": "extracted_raw/raw_skill_trees_from_game.json",
+    "sha256": "313aa57c912c9f850b4d4cee99fc8bf4be0fceebe9fd0fdb8b22e7ad3ab7f053"
+   }
+  }
+ },
+ "families": {
+  "ability_properties": [
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Increased area of effect with Acid Flask",
+    "name_key": "Property_Ability_acidFlask_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Chance to Summon a Bee with Acid Flask",
+    "name_key": "Property_Ability_acidFlask_2_Name",
+    "property_index": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "When you hit a Bee with Acid Flask, it gains Toxic Coating",
+    "name_key": "Property_Ability_acidFlask_3_Name",
+    "property_index": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Throwing an Acid Flask consumes a potion in order to throw an additional flask that deals more damage",
+    "name_key": "Property_Ability_acidFlask_4_Name",
+    "property_index": 4,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Damage with an Acid Flask thrown by consuming a potion",
+    "name_key": "Property_Ability_acidFlask_5_Name",
+    "property_index": 5,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 50,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acidFlask",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Acid Flask Base Damage converted to Cold",
+    "name_key": "Property_Ability_acidFlask_6_Name",
+    "property_index": 6,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Evade Charge",
+    "name_key": "Property_Ability_acolyteEvade_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "increased Cooldown Recovery Speed for Evade",
+    "name_key": "Property_Ability_acolyteEvade_2_Name",
+    "property_index": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": "Does not work if Evade is replaced by another ability",
+    "alt_text_key": "Property_Ability_acolyteEvade_3_AltText",
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Dodge Rating while using Evade",
+    "name_key": "Property_Ability_acolyteEvade_3_Name",
+    "property_index": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Evade is replaced by Terrify",
+    "name_key": "Property_Ability_acolyteEvade_4_Name",
+    "property_index": 4,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Evade is turned into a Crab",
+    "name_key": "Property_Ability_acolyteEvade_5_Name",
+    "property_index": 5,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Evade is replaced by Spirit Step",
+    "name_key": "Property_Ability_acolyteEvade_6_Name",
+    "property_index": 6,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 782,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "acolyteEvade",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "increased Evade distance",
+    "name_key": "Property_Ability_acolyteEvade_7_Name",
+    "property_index": 7,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 731,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "aerialAssault",
+    "alt_text": "These Umbral Blades behave the same way as those thrown by the Twighlight Strike node on the Aerial Assault tree",
+    "alt_text_key": "Property_Ability_aerialAssault_1_AltText",
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Umbral Blades per 20 Dexterity thrown with Aerial Assault's Burst of Feathers",
+    "name_key": "Property_Ability_aerialAssault_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 731,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "aerialAssault",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "increased Throwing Attack Speed for 2 seconds after using Aerial Assault",
+    "name_key": "Property_Ability_aerialAssault_2_Name",
+    "property_index": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 731,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "aerialAssault",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "seconds of Haste after using Aerial Assault",
+    "name_key": "Property_Ability_aerialAssault_3_Name",
+    "property_index": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 256,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "auraOfDecay",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Increased Aura of Decay Area",
+    "name_key": "Property_Ability_auraOfDecay_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 256,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "auraOfDecay",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Increased Poison Damage while Aura of Decay is active",
+    "name_key": "Property_Ability_auraOfDecay_2_Name",
+    "property_index": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 138,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "bloodSplatter",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Increased damage with Blood Splatter",
+    "name_key": "Property_Ability_bloodSplatter_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 285,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "boneArmor",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Armor granted by Bone Armor",
+    "name_key": "Property_Ability_boneArmor_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 369,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "boneCurse",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Bone Curse also inflicts Decrepify",
+    "name_key": "Property_Ability_boneCurse_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 369,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "boneCurse",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Bone Curse also inflicts Penance",
+    "name_key": "Property_Ability_boneCurse_2_Name",
+    "property_index": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 369,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "boneCurse",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Bone Curse also inflicts Acid Skin",
+    "name_key": "Property_Ability_boneCurse_3_Name",
+    "property_index": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 139,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "boneNova",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Increased Projectile Speed with Bone Nova",
+    "name_key": "Property_Ability_boneNova_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "ability_id": 489,
+    "ability_id_status": "AbilityID enum",
+    "ability_key": "burningDagger",
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Ability_<abilityKey>_<index>",
+    "name": "Throwing Fire Damage with Burning Daggers per 2% increased chance to find potions",
+    "name_key": "Property_Ability_burningDagger_1_Name",
+    "property_index": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "conditional_damage_properties": [
+   {
+    "conditional_damage_property_id": 0,
+    "enum_name": "ToStunnedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 1,
+    "enum_name": "ToLowHealthEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 2,
+    "enum_name": "ToHighHealthEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 3,
+    "enum_name": "ToFullHealthEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 4,
+    "enum_name": "ToBossesAndRareEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 5,
+    "enum_name": "ToIgnitedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 6,
+    "enum_name": "PerStackOfPoisonUpTo30",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 7,
+    "enum_name": "PerStackOfBleedUpTo30",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 8,
+    "enum_name": "ToChilledEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 9,
+    "enum_name": "ToSlowedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 10,
+    "enum_name": "ToShockedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 11,
+    "enum_name": "ToEnemiesWithLessRemainingHealthThanYourCurrentWard",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 12,
+    "enum_name": "ToEnemiesWithABrandOfDeception",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 13,
+    "enum_name": "ToCursedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 14,
+    "enum_name": "ToBrandedEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 15,
+    "enum_name": "ToBrandedBossesAndRares",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 16,
+    "enum_name": "ToMovingEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 17,
+    "enum_name": "ToBossesButNotRares",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 18,
+    "enum_name": "PerStackOfArmourShredUpTo14",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 19,
+    "enum_name": "ToBleedingEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 20,
+    "enum_name": "ToFrozenEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 21,
+    "enum_name": "PerNegativeAilmentOnTheTarget",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 22,
+    "enum_name": "ToFearedOrSlowed",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 23,
+    "enum_name": "PerCurse",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "conditional_damage_property_id": 24,
+    "enum_name": "ToBossesAndMovingEnemies",
+    "identity_source": "enum ConditionalDamageProperty",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "idol_altar_properties": [
+   {
+    "enum_name": "MaximumOmenIdols",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 0,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "EffectOfPrefixesAndSuffixesInRefractedSlots",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "EffectOfPrefixesInRefractedSlots",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "EffectOfSuffixesInRefractedSlots",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "EffectOfIdolEnchantsInRefractedSlots",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 4,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "WeaverIdolLimit",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 5,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "HereticalIdolLimit",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 6,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "AdornedIdolLimit",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 7,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "CorruptedIdolLimit",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 8,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "DodgeRatingPerCorruptedIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 9,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ManaPerCorruptedIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 10,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ArmourPerCorruptedIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 11,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "WardDecayThresholdPerCorruptedIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 12,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "HealthPerHereticalIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 13,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "WardPerSecondPerHereticalIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 14,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ReducedBonusDamageFromCritsPerHereticalIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 15,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ManaRegenPerOrnateIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 16,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "IncreasedHealthPerHugeIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 17,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "IncreasedHasteEffectPerOmenIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 18,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "HealthPerOmenIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 19,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "DamageToBossesPerUniqueOrLegendaryIdol",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 20,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ICRSIfThereAreNoLargerIdolsAboveSmallerOnes",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 21,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "HealthPerIdolInARefractedSlot",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 22,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ManaPerIdolInARefractedSlot",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 23,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "ArmourPerIdolInARefractedSlot",
+    "identity_source": "enum IdolAltarPropertyID",
+    "idol_altar_property_id": 24,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "master_properties": [
+   {
+    "alt_text": "Increases the damage you deal",
+    "alt_text_key": "Property_Master_Damage_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Damage_AltText_Override_1",
+      "text": "Adds physical damage to your melee attacks"
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Damage_AltText_Override_2",
+      "text": "Increases the damage you deal with spells"
+     },
+     {
+      "index": 3,
+      "key": "Property_Master_Damage_AltText_Override_3",
+      "text": "Adds fire damage to your melee attacks"
+     },
+     {
+      "index": 4,
+      "key": "Property_Master_Damage_AltText_Override_4",
+      "text": "Adds cold damage to your melee attacks"
+     },
+     {
+      "index": 5,
+      "key": "Property_Master_Damage_AltText_Override_5",
+      "text": "Adds lightning damage to your melee attacks"
+     },
+     {
+      "index": 6,
+      "key": "Property_Master_Damage_AltText_Override_6",
+      "text": "Adds void damage to your melee attacks"
+     },
+     {
+      "index": 7,
+      "key": "Property_Master_Damage_AltText_Override_7",
+      "text": "Adds necrotic damage to your melee attacks"
+     },
+     {
+      "index": 8,
+      "key": "Property_Master_Damage_AltText_Override_8",
+      "text": "Adds physical damage to your spells"
+     },
+     {
+      "index": 9,
+      "key": "Property_Master_Damage_AltText_Override_9",
+      "text": "Adds fire damage to your spells"
+     },
+     {
+      "index": 10,
+      "key": "Property_Master_Damage_AltText_Override_10",
+      "text": "Adds cold damage to your spells"
+     },
+     {
+      "index": 11,
+      "key": "Property_Master_Damage_AltText_Override_11",
+      "text": "Adds lightning damage to your spells"
+     },
+     {
+      "index": 12,
+      "key": "Property_Master_Damage_AltText_Override_12",
+      "text": "Adds void damage to your spells"
+     },
+     {
+      "index": 13,
+      "key": "Property_Master_Damage_AltText_Override_13",
+      "text": "Adds necrotic damage to your spells"
+     },
+     {
+      "index": 14,
+      "key": "Property_Master_Damage_AltText_Override_14",
+      "text": "Increases the physical damage you deal"
+     },
+     {
+      "index": 15,
+      "key": "Property_Master_Damage_AltText_Override_15",
+      "text": "Increases the fire, cold and lightning damage you deal"
+     },
+     {
+      "index": 16,
+      "key": "Property_Master_Damage_AltText_Override_16",
+      "text": "Increases the fire damage you deal"
+     },
+     {
+      "index": 17,
+      "key": "Property_Master_Damage_AltText_Override_17",
+      "text": "Increases the cold damage you deal"
+     },
+     {
+      "index": 18,
+      "key": "Property_Master_Damage_AltText_Override_18",
+      "text": "Increases the lightning damage you deal"
+     },
+     {
+      "index": 19,
+      "key": "Property_Master_Damage_AltText_Override_19",
+      "text": "Increases the void damage you deal"
+     },
+     {
+      "index": 20,
+      "key": "Property_Master_Damage_AltText_Override_20",
+      "text": "Increases the necrotic damage you deal"
+     },
+     {
+      "index": 21,
+      "key": "Property_Master_Damage_AltText_Override_21",
+      "text": "Increases the poison damage you deal"
+     },
+     {
+      "index": 22,
+      "key": "Property_Master_Damage_AltText_Override_22",
+      "text": "Increases the damage you deal with melee attacks"
+     },
+     {
+      "index": 23,
+      "key": "Property_Master_Damage_AltText_Override_23",
+      "text": "Increases the physical damage you deal with melee attacks"
+     },
+     {
+      "index": 24,
+      "key": "Property_Master_Damage_AltText_Override_24",
+      "text": "Increases the damage over time you deal"
+     },
+     {
+      "index": 25,
+      "key": "Property_Master_Damage_AltText_Override_25",
+      "text": "Increases the damage your minions deal"
+     },
+     {
+      "index": 26,
+      "key": "Property_Master_Damage_AltText_Override_26",
+      "text": "Increases the physical damage your minions deal"
+     },
+     {
+      "index": 27,
+      "key": "Property_Master_Damage_AltText_Override_27",
+      "text": "Increases the damage you deal with spells if you have used a potion in the past 4 seconds"
+     },
+     {
+      "index": 28,
+      "key": "Property_Master_Damage_AltText_Override_28",
+      "text": "Increases the damage you deal while using a channelled skill"
+     },
+     {
+      "index": 29,
+      "key": "Property_Master_Damage_AltText_Override_29",
+      "text": "Increases all damage dealt on hit. Does not affect damage over time."
+     },
+     {
+      "index": 30,
+      "key": "Property_Master_Damage_AltText_Override_30",
+      "text": "Increases the damage of curses, but not of other ailments they apply."
+     },
+     {
+      "index": 31,
+      "key": "Property_Master_Damage_AltText_Override_31",
+      "text": "Multiplicative with other modifiers"
+     },
+     {
+      "index": 32,
+      "key": "Property_Master_Damage_AltText_Override_32",
+      "text": "Adds damage to all spells. The type of damage added matches the base damage of the spell."
+     },
+     {
+      "index": 33,
+      "key": "Property_Master_Damage_AltText_Override_33",
+      "text": "Adds damage to all melee attacks. The type of damage added matches the base damage of the attack."
+     },
+     {
+      "index": 34,
+      "key": "Property_Master_Damage_AltText_Override_34",
+      "text": "Adds damage to all bow attacks. The type of damage added matches the base damage of the attack."
+     },
+     {
+      "index": 35,
+      "key": "Property_Master_Damage_AltText_Override_35",
+      "text": "Adds damage to all throwing attacks. The type of damage added matches the base damage of the attack."
+     },
+     {
+      "index": 36,
+      "key": "Property_Master_Damage_AltText_Override_36",
+      "text": "Adds damage to all spells. The type of damage added matches the base damage of the spell."
+     },
+     {
+      "index": 37,
+      "key": "Property_Master_Damage_AltText_Override_37",
+      "text": "Adds damage to all curse spells. The type of damage added matches the base damage of the curse."
+     },
+     {
+      "index": 38,
+      "key": "Property_Master_Damage_AltText_Override_38",
+      "text": "Increases the damage of ailments such as ignite, poison, bleed, and frostbite. Does not affect triggered effects such as shadow daggers or spark charges."
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Damage",
+    "enum_name": "Damage",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 0,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Inflicts an ailment on hit",
+    "alt_text_key": "Property_Master_Ailment Chance_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Ailment Chance_AltText_Override_1",
+      "text": "Poison deals poison damage over time and lasts 3 seconds. The first 30 stacks each reduce poison resistance by 5% (2% against bosses and players)."
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Ailment Chance_AltText_Override_2",
+      "text": "Ignite deals fire damage over time, lasts 2.5 seconds, and can stack an unlimited number of times."
+     },
+     {
+      "index": 3,
+      "key": "Property_Master_Ailment Chance_AltText_Override_3",
+      "text": "Each stack of Chill reduces attack speed, cast speed and movement speed by 12% (6% against players) and is multiplicative with other modifiers, including other stacks of chill. Chill stacks up to 3 times and lasts 4 seconds by default."
+     },
+     {
+      "index": 4,
+      "key": "Property_Master_Ailment Chance_AltText_Override_4",
+      "text": "Each stack of Slow reduces movement speed by 20% (10% against players) and is multiplicative with other modifiers, including other stacks of slow. Slow stacks up to 3 times and lasts 4 seconds by default."
+     },
+     {
+      "index": 5,
+      "key": "Property_Master_Ailment Chance_AltText_Override_5",
+      "text": "Blinded enemies cannot critically strike."
+     },
+     {
+      "index": 6,
+      "key": "Property_Master_Ailment Chance_AltText_Override_6",
+      "text": "Bleed deals physical damage over time, lasts 3 seconds, and can stack an unlimited number of times."
+     },
+     {
+      "index": 7,
+      "key": "Property_Master_Ailment Chance_AltText_Override_7",
+      "text": "Shock reduces lightning resistance by 5%, increases chance to be stunned by 20%, lasts 4 seconds, and can stack up to 10 times. It has 60% reduced effect against bosses and players."
+     },
+     {
+      "index": 8,
+      "key": "Property_Master_Ailment Chance_AltText_Override_8",
+      "text": "Frostbite deals cold damage over time and lasts 3 seconds. The first 15 stacks each increase chance to be frozen by 20%."
+     },
+     {
+      "index": 9,
+      "key": "Property_Master_Ailment Chance_AltText_Override_9",
+      "text": "Plague deals poison damage over time and spreads between enemies. It cannot stack."
+     },
+     {
+      "index": 10,
+      "key": "Property_Master_Ailment Chance_AltText_Override_10",
+      "text": "Time Rot is an ailment that deals 60 void damage over time, increases stun duration by 5%, lasts 3 seconds, and stacks up to 12 times. "
+     },
+     {
+      "index": 11,
+      "key": "Property_Master_Ailment Chance_AltText_Override_11",
+      "text": "Future Strike lasts 2 seconds then deals 60 void damage all at once at the end of its duration. Counts as damage over time."
+     },
+     {
+      "index": 12,
+      "key": "Property_Master_Ailment Chance_AltText_Override_12",
+      "text": "Spark Charges are spells that explode after 0.7 seconds dealing lightning damage in an area around the target. This damage does not scale with modifiers to the hit that applied the charge."
+     },
+     {
+      "index": 13,
+      "key": "Property_Master_Ailment Chance_AltText_Override_13",
+      "text": "Damned deals necrotic damage over time, reduces health regen by 20%, lasts 2.5 seconds, and can stack an unlimited number of times."
+     },
+     {
+      "index": 14,
+      "key": "Property_Master_Ailment Chance_AltText_Override_14",
+      "text": "Frailty reduces damage dealt by 6% (multiplicative with other modifiers), lasts 4 seconds, and stacks up to 3 times."
+     },
+     {
+      "index": 15,
+      "key": "Property_Master_Ailment Chance_AltText_Override_15",
+      "text": "Each stack of Armor Shred reduces armor by 100, increasing damage taken from all hits. Can reduce armor below 0. Lasts 4 seconds."
+     },
+     {
+      "index": 16,
+      "key": "Property_Master_Ailment Chance_AltText_Override_16",
+      "text": "Spirit Plague is a curse that deals necrotic spell damage over time for 3 seconds and spreads to other enemies when the original target dies. It cannot stack."
+     },
+     {
+      "index": 17,
+      "key": "Property_Master_Ailment Chance_AltText_Override_17",
+      "text": "Doom deals massive void damage over time, increases melee damage taken by 4%, and lasts 4 seconds. Can stack up to 4 times."
+     },
+     {
+      "index": 18,
+      "key": "Property_Master_Ailment Chance_AltText_Override_18",
+      "text": "Void Resistance Shred reduces void resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 19,
+      "key": "Property_Master_Ailment Chance_AltText_Override_19",
+      "text": "Fire Resistance Shred reduces fire resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 20,
+      "key": "Property_Master_Ailment Chance_AltText_Override_20",
+      "text": "Cold Resistance Shred reduces cold resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 21,
+      "key": "Property_Master_Ailment Chance_AltText_Override_21",
+      "text": "Poison Resistance Shred reduces poison resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 22,
+      "key": "Property_Master_Ailment Chance_AltText_Override_22",
+      "text": "Necrotic Resistance Shred reduces necrotic resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 23,
+      "key": "Property_Master_Ailment Chance_AltText_Override_23",
+      "text": "Physical Resistance Shred reduces physical resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 24,
+      "key": "Property_Master_Ailment Chance_AltText_Override_24",
+      "text": "Lightning Resistance Shred reduces lightning resistance by 5% (2% against bosses and players). Lasts 4 seconds and can stack up to 10 times."
+     },
+     {
+      "index": 25,
+      "key": "Property_Master_Ailment Chance_AltText_Override_25",
+      "text": "Haste is a buff that grants 30% Increased movement speed. It cannot stack."
+     },
+     {
+      "index": 26,
+      "key": "Property_Master_Ailment Chance_AltText_Override_26",
+      "text": "Frenzy is a buff that grants 20% Increased attack and cast speed. It cannot stack."
+     },
+     {
+      "index": 27,
+      "key": "Property_Master_Ailment Chance_AltText_Override_27",
+      "text": "Mark for Death is a Curse that lasts for 8 seconds and reduces all resistances by 25%. It cannot stack."
+     },
+     {
+      "index": 28,
+      "key": "Property_Master_Ailment Chance_AltText_Override_28",
+      "text": "Spreading Flames deals 50 fire damage per second for 4 seconds and spreads between enemies. It cannot stack."
+     },
+     {
+      "index": 29,
+      "key": "Property_Master_Ailment Chance_AltText_Override_29",
+      "text": "Electrify deals lightning damage over time, lasts 2.5 seconds, and can stack an unlimited number of times."
+     },
+     {
+      "index": 30,
+      "key": "Property_Master_Ailment Chance_AltText_Override_30",
+      "text": "Fear causes enemies to flee from you and your allies and lasts for 0.5 to 0.9 seconds. Enemies can only be affected by Fear once."
+     },
+     {
+      "index": 31,
+      "key": "Property_Master_Ailment Chance_AltText_Override_31",
+      "text": "Efficacious Toxin causes enemies to take 12% increased damage over time for 4 seconds. It cannot stack."
+     },
+     {
+      "index": 32,
+      "key": "Property_Master_Ailment Chance_AltText_Override_32",
+      "text": "Upon reaching 4 stacks of Shadow Daggers, the Daggers plunge into the target, dealing physical damage. This damage scales with modifiers to melee and throwing damage and always critically strikes."
+     },
+     {
+      "index": 33,
+      "key": "Property_Master_Ailment Chance_AltText_Override_33",
+      "text": "Each stack of Critical Vulnerability adds an additional 2% chance to be crit, reduces critical strike avoidance by 10%, and lasts 4 seconds. Stacks up to 10 times."
+     },
+     {
+      "index": 34,
+      "key": "Property_Master_Ailment Chance_AltText_Override_34",
+      "text": "Brand of Trespass is an ailment which deals 400 fire damage over 3 seconds, but does not stack"
+     },
+     {
+      "index": 35,
+      "key": "Property_Master_Ailment Chance_AltText_Override_35",
+      "text": "Brand of Deception is an ailment which deals 400 lightning damage over 3 seconds, but does not stack"
+     },
+     {
+      "index": 36,
+      "key": "Property_Master_Ailment Chance_AltText_Override_36",
+      "text": "Brand of Subjugation is an ailment which deals 400 cold damage over 3 seconds, but does not stack"
+     },
+     {
+      "index": 37,
+      "key": "Property_Master_Ailment Chance_AltText_Override_37",
+      "text": "Each stack of Withering increases damage taken from curses by 10% (6% against players and bosses), lasts 3 seconds, and can stack up to 10 times."
+     },
+     {
+      "index": 38,
+      "key": "Property_Master_Ailment Chance_AltText_Override_38",
+      "text": "Torment is a Curse which deals 120 spell necrotic damage over 3 seconds with added damage applying at 200% effectiveness per second and reduces movement by 18% (multiplicative with other modifiers), but it does not stack."
+     },
+     {
+      "index": 39,
+      "key": "Property_Master_Ailment Chance_AltText_Override_39",
+      "text": "Penance is a Curse that lasts 15 seconds which causes affected targets to take 20 spell fire damage when they hit another target, but it does not stack. Cannot trigger on the affected target more than once every 0.35 seconds."
+     },
+     {
+      "index": 40,
+      "key": "Property_Master_Ailment Chance_AltText_Override_40",
+      "text": "Decrepify is a Curse which deals 200 physical damage over 10 seconds with added damage applying at 100% effectiveness per second, and gains 1% more damage per 5 of your missing health. It also causes the target to take 15% more damage from damage over time."
+     },
+     {
+      "index": 41,
+      "key": "Property_Master_Ailment Chance_AltText_Override_41",
+      "text": "Anguish is a Curse that lasts 10 seconds, causes the target to deal 15% less damage over time, and deals necrotic damage to all enemies afflicted with it whenever you kill an enemy. It cannot stack."
+     },
+     {
+      "index": 42,
+      "key": "Property_Master_Ailment Chance_AltText_Override_42",
+      "text": "Acid Skin is a Curse which deals 80 poison damage over 5 seconds with added damage applying at 80% effectiveness per second, and adds a 20% chance to be critically hit."
+     },
+     {
+      "index": 43,
+      "key": "Property_Master_Ailment Chance_AltText_Override_43",
+      "text": "Witchfire is an ailment that deals 600 fire and 600 necrotic damage over 12 seconds. It cannot stack."
+     },
+     {
+      "index": 44,
+      "key": "Property_Master_Ailment Chance_AltText_Override_44",
+      "text": "Chained enemies are immobilized and take 40 necrotic damage over 2 seconds with added damage applying at 200% effectiveness. This cannot stack on the same enemy."
+     },
+     {
+      "index": 45,
+      "key": "Property_Master_Ailment Chance_AltText_Override_45",
+      "text": "You dodge the next hit you would receive and consume all stacks of Silver Shroud to gain 100 ward per stack."
+     },
+     {
+      "index": 46,
+      "key": "Property_Master_Ailment Chance_AltText_Override_46",
+      "text": "Crimson Shroud grants +50% bleed chance and 5% less damage over time taken for 4 seconds. This stacks up to 3 times."
+     },
+     {
+      "index": 47,
+      "key": "Property_Master_Ailment Chance_AltText_Override_47",
+      "text": "Dusk Shroud grants +5% glancing blow chance and 50 dodge rating for 2 seconds. This effect can stack an unlimited number of times."
+     },
+     {
+      "index": 48,
+      "key": "Property_Master_Ailment Chance_AltText_Override_48",
+      "text": "Void Essence is a buff that grants 3% more void and melee damage (multiplicative with other modifiers) and 15% reduced stun duration on you, stacking up to 3 times. Each stack lasts 8 seconds."
+     },
+     {
+      "index": 49,
+      "key": "Property_Master_Ailment Chance_AltText_Override_49",
+      "text": "Exposed Flesh is a Curse which reduces cold resistance by 15%, reduces armor by 15 per point of the inflicter's dexterity, and increases chance to be frozen by 30%."
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Ailment Chance",
+    "enum_name": "AilmentChance",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 1,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases the number of attacks you can use per second",
+    "alt_text_key": "Property_Master_Attack Speed_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Attack Speed_AltText_Override_1",
+      "text": "Increases the number of melee attacks you can use per second"
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Attack Speed_AltText_Override_2",
+      "text": "Increases the number of melee attacks your minions can use per second"
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Attack Speed",
+    "enum_name": "AttackSpeed",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 2,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases the number of spells you can cast per second",
+    "alt_text_key": "Property_Master_Cast Speed_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Cast Speed_AltText_Override_1",
+      "text": "Increases the number of spells your minions can cast per second"
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Cast Speed",
+    "enum_name": "CastSpeed",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 3,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": null,
+    "enum_name": "CriticalChance",
+    "identity_source": "enum SP",
+    "localization_match": "none",
+    "property_id": 4,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": null,
+    "enum_name": "CriticalMultiplier",
+    "identity_source": "enum SP",
+    "localization_match": "none",
+    "property_id": 5,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Modifies the damage you take",
+    "alt_text_key": "Property_Master_Damage Taken_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Damage Taken_AltText_Override_1",
+      "text": "Reduces the damage you take when you block a hit"
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Damage Taken_AltText_Override_2",
+      "text": "Reduces the damage you take from damage over time (multiplicative with other modifiers)"
+     },
+     {
+      "index": 3,
+      "key": "Property_Master_Damage Taken_AltText_Override_3",
+      "text": "Reduces the damage you take from enemy critical strikes. Multiplicative with other modifiers."
+     },
+     {
+      "index": 4,
+      "key": "Property_Master_Damage Taken_AltText_Override_4",
+      "text": "Reduces the damage you take when you block a hit. Multiplicative with other modifiers."
+     },
+     {
+      "index": 5,
+      "key": "Property_Master_Damage Taken_AltText_Override_5",
+      "text": "Reduces the physical damage you take when you block a hit. Multiplicative with other modifiers."
+     },
+     {
+      "index": 6,
+      "key": "Property_Master_Damage Taken_AltText_Override_6",
+      "text": "Reduces the fire, cold, and lightning damage you take when you block a hit. Multiplicative with other modifiers."
+     },
+     {
+      "index": 7,
+      "key": "Property_Master_Damage Taken_AltText_Override_7",
+      "text": "Reduces the poison damage you take while transformed. Multiplicative with other modifiers."
+     },
+     {
+      "index": 8,
+      "key": "Property_Master_Damage Taken_AltText_Override_8",
+      "text": "Reduces the fire damage you take. Multiplicative with other modifiers."
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Damage Taken",
+    "enum_name": "DamageTaken",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 6,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases your maximum health",
+    "alt_text_key": "Property_Master_Health_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Health_AltText_Override_1",
+      "text": "Adds to the maximum health of your minions"
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Health_AltText_Override_2",
+      "text": "Increases the maximum health of your minions"
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Health",
+    "enum_name": "Health",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 7,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases your maximum mana",
+    "alt_text_key": "Property_Master_Mana_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Mana",
+    "enum_name": "Mana",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 8,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": null,
+    "enum_name": "Movespeed",
+    "identity_source": "enum SP",
+    "localization_match": "none",
+    "property_id": 9,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": null,
+    "enum_name": "Armour",
+    "identity_source": "enum SP",
+    "localization_match": "none",
+    "property_id": 10,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Improves your chance to dodge",
+    "alt_text_key": "Property_Master_Dodge Rating_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Dodge Rating_AltText_Override_1",
+      "text": "Improves the chance for your minions to dodge"
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Dodge Rating",
+    "enum_name": "DodgeRating",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 11,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "All hits can have a chance to stun you based on their damage. Stun Avoidance reduces that chance.",
+    "alt_text_key": "Property_Master_Stun Avoidance_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Stun Avoidance_AltText_Override_1",
+      "text": "Increases your stun avoidance when you use your potion by pressing E. Stun avoidance reduces your chance to be stunned."
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Stun Avoidance",
+    "enum_name": "StunAvoidance",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 12,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Reduces all fire damage you take. Capped at 75%.",
+    "alt_text_key": "Property_Master_Fire Resistance_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Fire Resistance",
+    "enum_name": "FireResistance",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 13,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Reduces all cold damage you take. Capped at 75%.",
+    "alt_text_key": "Property_Master_Cold Resistance_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Cold Resistance",
+    "enum_name": "ColdResistance",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 14,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Reduces all lightning damage you take. Capped at 75%.",
+    "alt_text_key": "Property_Master_Lightning Resistance_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Lightning Resistance",
+    "enum_name": "LightningResistance",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 15,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Ward is decaying shield with no limit, that steadily decays. Ward retention reduces the rate at which your ward decays.",
+    "alt_text_key": "Property_Master_Ward Retention_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Ward Retention",
+    "enum_name": "WardRetention",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 16,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases the rate at which your health regenerates over time",
+    "alt_text_key": "Property_Master_Health Regen_AltText",
+    "alt_text_overrides": [
+     {
+      "index": 1,
+      "key": "Property_Master_Health Regen_AltText_Override_1",
+      "text": "Increases the rate at which your minions regenerate health"
+     },
+     {
+      "index": 2,
+      "key": "Property_Master_Health Regen_AltText_Override_2",
+      "text": "Increases your health regen if you have used a potion in the past 4 seconds"
+     }
+    ],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Health Regen",
+    "enum_name": "HealthRegen",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 17,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Increases the rate at which your mana regenerates over time",
+    "alt_text_key": "Property_Master_Mana Regen_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Mana Regen",
+    "enum_name": "ManaRegen",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 18,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Each point of strength increases armor by 4% and improves skills that rely the raw strength of you and your companions",
+    "alt_text_key": "Property_Master_Strength_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Strength",
+    "enum_name": "Strength",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 19,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Each point of vitality grants 6 health and 1% poison and necrotic resistance.",
+    "alt_text_key": "Property_Master_Vitality_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Vitality",
+    "enum_name": "Vitality",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 20,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Each point of intelligence grants 2% ward retention and improves skills that rely on carefully studied magic",
+    "alt_text_key": "Property_Master_Intelligence_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Intelligence",
+    "enum_name": "Intelligence",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 21,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Each point of dexterity adds 4 dodge rating and improves skills that rely on the skillful handling of weapons",
+    "alt_text_key": "Property_Master_Dexterity_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Dexterity",
+    "enum_name": "Dexterity",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 22,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Each point of attunement grants 2 mana and improves skills that rely on the innate magic inside you and your surroundings",
+    "alt_text_key": "Property_Master_Attunement_AltText",
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": "Attunement",
+    "enum_name": "Attunement",
+    "identity_source": "enum SP",
+    "localization_match": "normalized enum name == key display name",
+    "property_id": 23,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "alt_text_overrides": [],
+    "display_flags": "NOT_IN_AVAILABLE_EVIDENCE",
+    "display_name": null,
+    "enum_name": "ManaBeforeHealthPercent",
+    "identity_source": "enum SP",
+    "localization_match": "none",
+    "property_id": 24,
+    "rounding": "NOT_IN_AVAILABLE_EVIDENCE",
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "player_properties": [
+   {
+    "alt_text": "Haste grants 30% increased movement speed by default",
+    "alt_text_key": "Property_Player_0_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance to gain Haste for 3 seconds when you Summon a Totem",
+    "name_key": "Property_Player_0_Name",
+    "player_property_id": 0,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Lightning Strike is a lightning spell that scales with attunement",
+    "alt_text_key": "Property_Player_1_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance to Cast Lightning Strike when you use a skill that costs at least 10 Mana",
+    "name_key": "Property_Player_1_Name",
+    "player_property_id": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance on kill to refresh the cooldown of a random companion activatable ability",
+    "name_key": "Property_Player_2_Name",
+    "player_property_id": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Chills enemies within 4m",
+    "alt_text_key": "Property_Player_3_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance To Chill Nearby Enemies when you use a skill that costs at least 20 Mana",
+    "name_key": "Property_Player_3_Name",
+    "player_property_id": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Bzzzz",
+    "alt_text_key": "Property_Player_4_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Bees Per 10 Seconds",
+    "name_key": "Property_Player_4_Name",
+    "player_property_id": 4,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance on hit to summon a Thorn Totem (up to 3 times per 5 seconds)",
+    "name_key": "Property_Player_5_Name",
+    "player_property_id": 5,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Does not trigger if you manually transform back using the skill Human Form.",
+    "alt_text_key": "Property_Player_6_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Mana gained when auto transforming back to human form",
+    "name_key": "Property_Player_6_Name",
+    "player_property_id": 6,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "This is affected by your Ice Thorns tree",
+    "alt_text_key": "Property_Player_7_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance to cast Ice Thorns when you are hit",
+    "name_key": "Property_Player_7_Name",
+    "player_property_id": 7,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Inspiration is a 4 second buff that gives 20% increased cooldown recovery speed.",
+    "alt_text_key": "Property_Player_8_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Gain Inspiration when you stun an enemy",
+    "name_key": "Property_Player_8_Name",
+    "player_property_id": 8,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance to cast Healing Nova when hit",
+    "name_key": "Property_Player_9_Name",
+    "player_property_id": 9,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "Cannot trigger if Earthquake cannot create Aftershocks",
+    "alt_text_key": "Property_Player_10_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance to create an Earthquake Aftershock at a nearby enemy on melee attack (up to 10 times per 2 seconds)",
+    "name_key": "Property_Player_10_Name",
+    "player_property_id": 10,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "This is affected by your Avalanche tree",
+    "alt_text_key": "Property_Player_11_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance for an Avalanche Boulder to drop at a nearby enemy on spell cast (up to 3 times per second)",
+    "name_key": "Property_Player_11_Name",
+    "player_property_id": 11,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": "This is affected by your Avalanche tree",
+    "alt_text_key": "Property_Player_12_AltText",
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance for an Avalanche Boulder to drop at a nearby enemy on melee attack (up to 3 times per second)",
+    "name_key": "Property_Player_12_Name",
+    "player_property_id": 12,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Shark Effect",
+    "name_key": "Property_Player_13_Name",
+    "player_property_id": 13,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Shark Duration",
+    "name_key": "Property_Player_14_Name",
+    "player_property_id": 14,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Boar Effect",
+    "name_key": "Property_Player_15_Name",
+    "player_property_id": 15,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Boar Duration",
+    "name_key": "Property_Player_16_Name",
+    "player_property_id": 16,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Viper Effect",
+    "name_key": "Property_Player_17_Name",
+    "player_property_id": 17,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Viper Duration",
+    "name_key": "Property_Player_18_Name",
+    "player_property_id": 18,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Lynx Effect",
+    "name_key": "Property_Player_19_Name",
+    "player_property_id": 19,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Aspect of the Lynx Duration",
+    "name_key": "Property_Player_20_Name",
+    "player_property_id": 20,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Chance on Melee Kill to heal a Random Minion to Full Health",
+    "name_key": "Property_Player_21_Name",
+    "player_property_id": 21,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Spell Damage if you have an active Totem",
+    "name_key": "Property_Player_22_Name",
+    "player_property_id": 22,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Increased Cold Damage per active Totem",
+    "name_key": "Property_Player_23_Name",
+    "player_property_id": 23,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "alt_text": null,
+    "alt_text_key": null,
+    "identity_source": "localization key Property_Player_<id>",
+    "name": "Potion Use Cleanses Stun and Freeze",
+    "name_key": "Property_Player_24_Name",
+    "player_property_id": 24,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "tracker_properties": [
+   {
+    "enum_name": "None",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 0,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "CrystalWindStacksUsedOnCast",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 1,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "DiveBombMoreDamageDebuff",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 2,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "HailOfArrowsLessHitDamage",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 3,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "DetArrowMoreHitDmgInHailOfArrows",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 4,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "OmenTetherBuff",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 5,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "SoulFeastMoreHitDamage",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 6,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   },
+   {
+    "enum_name": "DrainLifeLessDamageFromRecentlyDamaged",
+    "identity_source": "enum TrackerPropertyID",
+    "tracker_property_id": 7,
+    "value_type": "NOT_IN_AVAILABLE_EVIDENCE"
+   }
+  ],
+  "tree_stat_name_table": {
+   "note": "List<string> read by GetStatPropertyName; acquired by the operator run",
+   "source_class": "NodeTooltipPropertyList",
+   "status": "RAW_MISSING"
+  }
+ },
+ "reference_encodings": {
+  "affix": [
+   {
+    "agreement_rate": 0.8177,
+    "encoding_id": "affix.PlayerProperty",
+    "name_agreement": 157,
+    "references": 211,
+    "rule": "property == SP.PlayerProperty -> player_property_id = tags",
+    "status": "ACCEPTED",
+    "target_found": 192,
+    "validation": "token agreement between affix name and target name >= 0.6"
+   },
+   {
+    "agreement_rate": 0.8357,
+    "encoding_id": "affix.AbilityProperty",
+    "name_agreement": 173,
+    "offset_test": {
+     "specialTag+0": {
+      "absent": 78,
+      "agree": 64,
+      "found": 139
+     },
+     "specialTag+1": {
+      "absent": 10,
+      "agree": 173,
+      "found": 207
+     }
+    },
+    "references": 217,
+    "rule": "property == SP.AbilityProperty -> ability_id = tags (AbilityID), property_index = specialTag + 1",
+    "status": "ACCEPTED",
+    "target_found": 207,
+    "validation": "token agreement between affix name and target name >= 0.6"
+   },
+   {
+    "agreement_rate": 0.8696,
+    "encoding_id": "affix.IdolAltarProperty",
+    "name_agreement": 20,
+    "references": 23,
+    "rule": "property == SP.IdolAltarProperty -> IdolAltarPropertyID = tags",
+    "status": "ACCEPTED",
+    "target_found": 23,
+    "validation": "token agreement between affix name and target name >= 0.6"
+   }
+  ],
+  "tree_stat_bands": [
+   {
+    "band": [
+     0,
+     5000
+    ],
+    "best_enum": "SP",
+    "best_enum_agreement": 2249,
+    "best_share": 0.4815,
+    "distinct_indices": 84,
+    "references": 4671,
+    "rule": "index = property - 0 indexes enum SP",
+    "second_enum": "ParticleSystemTimingMode",
+    "second_enum_agreement": 158,
+    "stat_name_keyword_share": {
+     "chance": 0.118,
+     "duration": 0.013,
+     "effect": 0.013,
+     "penetration": 0.006,
+     "stacks": 0.022
+    },
+    "status": "ACCEPTED",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   },
+   {
+    "band": [
+     5000,
+     10000
+    ],
+    "best_enum": "HitEvents",
+    "best_enum_agreement": 83,
+    "best_share": 0.0393,
+    "distinct_indices": 133,
+    "references": 2112,
+    "rule": "no extracted enum explains this band; namespace not decodable from available evidence",
+    "second_enum": "HitEventTag",
+    "second_enum_agreement": 83,
+    "stat_name_keyword_share": {
+     "chance": 0.098,
+     "duration": 0.107,
+     "effect": 0.007,
+     "penetration": 0.016,
+     "stacks": 0.012
+    },
+    "status": "UNDECODED_NAMESPACE",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   },
+   {
+    "band": [
+     10000,
+     15000
+    ],
+    "best_enum": "AilmentID",
+    "best_enum_agreement": 713,
+    "best_share": 0.8093,
+    "distinct_indices": 49,
+    "references": 881,
+    "rule": "index = property - 10000 indexes enum AilmentID",
+    "second_enum": "WeaponEffect",
+    "second_enum_agreement": 92,
+    "stat_name_keyword_share": {
+     "chance": 0.689,
+     "duration": 0.059,
+     "effect": 0.007,
+     "penetration": 0.014,
+     "stacks": 0.087
+    },
+    "status": "ACCEPTED",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   },
+   {
+    "band": [
+     15000,
+     20000
+    ],
+    "best_enum": "AilmentID",
+    "best_enum_agreement": 81,
+    "best_share": 0.871,
+    "distinct_indices": 19,
+    "references": 93,
+    "rule": "index = property - 15000 indexes enum AilmentID",
+    "second_enum": "WeaponEffect",
+    "second_enum_agreement": 11,
+    "stat_name_keyword_share": {
+     "chance": 0.043,
+     "duration": 0.817,
+     "effect": 0.022,
+     "penetration": 0.011,
+     "stacks": 0.0
+    },
+    "status": "ACCEPTED",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   },
+   {
+    "band": [
+     20000,
+     25000
+    ],
+    "best_enum": "AilmentID",
+    "best_enum_agreement": 49,
+    "best_share": 0.6049,
+    "distinct_indices": 18,
+    "references": 81,
+    "rule": "index = property - 20000 indexes enum AilmentID",
+    "second_enum": "WeaponEffect",
+    "second_enum_agreement": 14,
+    "stat_name_keyword_share": {
+     "chance": 0.074,
+     "duration": 0.012,
+     "effect": 0.21,
+     "penetration": 0.531,
+     "stacks": 0.062
+    },
+    "status": "ACCEPTED",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   },
+   {
+    "band": [
+     25000,
+     30000
+    ],
+    "best_enum": "HitEventTag",
+    "best_enum_agreement": 10,
+    "best_share": 0.5882,
+    "distinct_indices": 8,
+    "references": 17,
+    "rule": "no extracted enum explains this band; namespace not decodable from available evidence",
+    "second_enum": "HitEvents",
+    "second_enum_agreement": 3,
+    "stat_name_keyword_share": {
+     "chance": 0.176,
+     "duration": 0.0,
+     "effect": 0.0,
+     "penetration": 0.0,
+     "stacks": 0.0
+    },
+    "status": "INSUFFICIENT_SAMPLE",
+    "validation": "best enum agreement >= 3.0x the next enum, >= 0.3 of references, and >= 30 references"
+   }
+  ]
+ }
+}

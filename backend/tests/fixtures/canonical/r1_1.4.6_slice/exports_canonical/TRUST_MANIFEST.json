@@ -1,0 +1,262 @@
+{
+ "consumer_rules": [
+  "Only CERTIFIED families may feed trusted production calculations.",
+  "QUARANTINED families may be displayed or used as advisory input, labelled as such.",
+  "UNKNOWN and UNSUPPORTED must not be consumed by trusted calculations.",
+  "A sync/copy step must carry consumer_state and reasons for every family it copies, unchanged."
+ ],
+ "families": [
+  {
+   "consumer_state": "QUARANTINED",
+   "coverage_status": "FIELDS_CLASSIFIED",
+   "extraction_status": "EXTRACTED",
+   "family": "exports_canonical/affixes.json",
+   "kind": "canonical",
+   "patch": {
+    "build": "22986002",
+    "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "reasons": [
+    "undecodable enum values {'displayCategory': [42, 43], 'specialAffixType': [6]}"
+   ],
+   "relationship_status": "NONE_DISCOVERED",
+   "semantic_status": "UNVERIFIED",
+   "source_provenance": {
+    "builder": "tools/scripts/build_canonical_affixes.py",
+    "entries": [
+     "resources.assets::AffixList"
+    ],
+    "entry_count": 1,
+    "raw_sha256": "02e31ec3647a6d8de2a9dd57c6163f78cb916d77be1ba3d9510798d660a4a7ea",
+    "raw_status": [
+     "RAW_AVAILABLE"
+    ]
+   },
+   "trusted_calculation_eligible": false
+  },
+  {
+   "consumer_state": "QUARANTINED",
+   "coverage_status": "FIELDS_CLASSIFIED",
+   "extraction_status": "EXTRACTED",
+   "family": "exports_canonical/passive_trees.json",
+   "kind": "canonical",
+   "patch": {
+    "build": "22986002",
+    "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "reasons": [
+    "raw input not build-stamped/preserved (UNKNOWN)",
+    "integrity defects in 5 tree(s): ['AcolyteTree', 'KnightTree', 'MageTree', 'PrimalistTree', 'RogueTree']",
+    "67 unallowlisted dangling relationship(s)"
+   ],
+   "relationship_status": "DANGLING",
+   "semantic_status": "UNVERIFIED",
+   "source_provenance": {
+    "builder": "tools/scripts/build_canonical_trees.py",
+    "entries": [
+     "sharedassets1.assets::AcolyteTree",
+     "sharedassets1.assets::KnightTree",
+     "sharedassets1.assets::MageTree",
+     "sharedassets1.assets::PrimalistTree",
+     "sharedassets1.assets::RogueTree"
+    ],
+    "entry_count": 5,
+    "raw_sha256": "313aa57c912c9f850b4d4cee99fc8bf4be0fceebe9fd0fdb8b22e7ad3ab7f053",
+    "raw_status": [
+     "UNKNOWN"
+    ]
+   },
+   "trusted_calculation_eligible": false
+  },
+  {
+   "consumer_state": "QUARANTINED",
+   "coverage_status": "FIELDS_UNMEASURED",
+   "extraction_status": "EXTRACTED",
+   "family": "exports_canonical/property_definitions.json",
+   "kind": "canonical",
+   "patch": {
+    "build": "22986002",
+    "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "reasons": [
+    "raw input not build-stamped/preserved (RAW_MISSING)"
+   ],
+   "relationship_status": "NONE_DISCOVERED",
+   "semantic_status": "UNVERIFIED",
+   "source_provenance": {
+    "builder": "tools/scripts/build_canonical_property_definitions.py",
+    "entries": [
+     "addressables::localization_string_tables"
+    ],
+    "entry_count": 1,
+    "raw_sha256": null,
+    "raw_status": [
+     "RAW_MISSING"
+    ]
+   },
+   "trusted_calculation_eligible": false
+  },
+  {
+   "consumer_state": "QUARANTINED",
+   "coverage_status": "FIELDS_CLASSIFIED",
+   "extraction_status": "EXTRACTED",
+   "family": "exports_canonical/skill_trees.json",
+   "kind": "canonical",
+   "patch": {
+    "build": "22986002",
+    "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "reasons": [
+    "raw input not build-stamped/preserved (UNKNOWN)",
+    "undecodable enum values {'stats.tags': [536870912]}",
+    "integrity defects in 137 tree(s): ['AbyssalEchoesTree', 'AcidFlaskTree', 'AerialAssaultTree', 'AnomalyTree', 'ArcaneAscendanceTree', 'AssembleAbominationTree', 'AuraOfDecayTree', 'AvalancheTree', 'BallistaTree', 'BlackHoleTree', 'BladestormTree', 'BoneCurseTree', 'ChaosBoltsSkillTree', 'ChthonicFissureTree', 'CinderStrikeTree', 'DancingStrikesTree', 'DarkQuiverTree', 'DeathSealTree', 'DecoyTree', 'DetonatingArrowTree', 'DevouringOrbTree', 'DisintegrateTree', 'DiveBombTree', 'DrainLifeTree', 'DreadShadeTree', 'EarthquakeSlamTree', 'EnchantWeaponTree', 'EntanglingRootsTree', 'ErasingStrikeTree', 'EterrasBlessingTree', 'ExplosiveTrapTree', 'FalconryTree', 'FireShieldSkillTree', 'FireballSkillTree', 'FirebrandTree', 'FlameReaveTree', 'FlameRushSkillTree', 'FlameWardTree', 'FlayTree', 'FlurryTree', 'FocusTree', 'ForgeStrikeTree', 'FrenzyTotemTree', 'FrostClawTree', 'FrostWallSkillTree', 'FuryLeapSkillTree', 'GatheringStormTree', 'GhostflameTree', 'GlacierSkillTree', 'GlyphOfDominionSkillTree', 'HailOfArrowsTree', 'HammerThrowTree', 'HarvestTree', 'HealingHandsTree', 'HeartseekerTree', 'HolyAuraTree', 'HungeringSoulsTree', 'IceBarrageTree', 'IceThornsTree', 'IceWardSkillTree', 'InfernalShadeTree', 'JavelinTree', 'JudgementTree', 'LethalMirageTree', 'LightningBlastSkillTree', 'LungeTree', 'MaelstromTree', 'ManaStrikeSkillTree', 'ManifestArmorTree', 'MarkForDeathTree', 'MarrowShardsTree', 'MeteorSkillTree', 'MultishotTree', 'MultistrikeTree', 'NetTree', 'NovaSkillTree', 'ProfaneVeilTree', 'PunctureTree', 'ReaperFormTree', 'RebukeTree', 'RingOfShieldsTree', 'RipBloodTree', 'RiveTree', 'RuneBoltSkillTree', 'RunicInvocationSkillTree', 'SacrificeTree', 'SerpentStrikeTree', 'ShadowCascadeTree', 'ShadowRendTree', 'ShatterStrikeTree', 'ShieldBashTree', 'ShieldRushTree', 'ShieldThrowTree', 'ShiftTree', 'ShurikensTree', 'SigilsOfHopeTree', 'SmeltersWrathTree', 'SmiteTree', 'SmokeBombTree', 'SnapFreezeTree', 'SoulFeastTree', 'SpiritPlagueTree', 'SprigganFormTree', 'StaticOrbTree', 'StaticTree', 'StormTotemTree', 'SummonBearSkillTree', 'SummonBoneGolemTree', 'SummonRaptorTree', 'SummonSabertoothTree', 'SummonScorpionTree', 'SummonSkeletonMageTree', 'SummonSkeletonTree', 'SummonSprigganSkillTree', 'SummonStormCrowTree', 'SummonVolatileZombieTree', 'SummonWolfSkillTree', 'SummonWraithTree', 'SurgeTree', 'SwarmbladeTree', 'SwipeSkillTree', 'SynchronizedStrikeTree', 'TeleportTree', 'TempestStrikeTree', 'ThornTotemTree', 'TornadoSkillTree', 'TransplantTree', 'UmbralBladesTree', 'UpheavalTree', 'VengeanceTree', 'VoidCleaveTree', 'VolatileReversalTree', 'VolcanicOrbTree', 'WanderingSpiritsTree', 'WarcryTree', 'WarpathTree', 'WerebearFormTree']",
+    "11 unallowlisted dangling relationship(s)"
+   ],
+   "relationship_status": "DANGLING",
+   "semantic_status": "UNVERIFIED",
+   "source_provenance": {
+    "builder": "tools/scripts/build_canonical_trees.py",
+    "entries": [
+     "sharedassets1.assets::AbyssalEchoesTree",
+     "sharedassets1.assets::AcidFlaskTree",
+     "sharedassets1.assets::AerialAssaultTree",
+     "sharedassets1.assets::AnomalyTree",
+     "sharedassets1.assets::ArcaneAscendanceTree",
+     "sharedassets1.assets::AssembleAbominationTree",
+     "sharedassets1.assets::AuraOfDecayTree",
+     "sharedassets1.assets::AvalancheTree",
+     "sharedassets1.assets::BallistaTree",
+     "sharedassets1.assets::BlackHoleTree",
+     "sharedassets1.assets::BladestormTree",
+     "sharedassets1.assets::BoneCurseTree",
+     "sharedassets1.assets::ChaosBoltsSkillTree",
+     "sharedassets1.assets::ChthonicFissureTree",
+     "sharedassets1.assets::CinderStrikeTree",
+     "sharedassets1.assets::DancingStrikesTree",
+     "sharedassets1.assets::DarkQuiverTree",
+     "sharedassets1.assets::DeathSealTree",
+     "sharedassets1.assets::DecoyTree",
+     "sharedassets1.assets::DetonatingArrowTree",
+     "sharedassets1.assets::DevouringOrbTree",
+     "sharedassets1.assets::DisintegrateTree",
+     "sharedassets1.assets::DiveBombTree",
+     "sharedassets1.assets::DrainLifeTree",
+     "sharedassets1.assets::DreadShadeTree",
+     "sharedassets1.assets::EarthquakeSlamTree",
+     "sharedassets1.assets::EnchantWeaponTree",
+     "sharedassets1.assets::EntanglingRootsTree",
+     "sharedassets1.assets::ErasingStrikeTree",
+     "sharedassets1.assets::EterrasBlessingTree",
+     "sharedassets1.assets::ExplosiveTrapTree",
+     "sharedassets1.assets::FalconryTree",
+     "sharedassets1.assets::FireShieldSkillTree",
+     "sharedassets1.assets::FireballSkillTree",
+     "sharedassets1.assets::FirebrandTree",
+     "sharedassets1.assets::FlameReaveTree",
+     "sharedassets1.assets::FlameRushSkillTree",
+     "sharedassets1.assets::FlameWardTree",
+     "sharedassets1.assets::FlayTree",
+     "sharedassets1.assets::FlurryTree",
+     "sharedassets1.assets::FocusTree",
+     "sharedassets1.assets::ForgeStrikeTree",
+     "sharedassets1.assets::FrenzyTotemTree",
+     "sharedassets1.assets::FrostClawTree",
+     "sharedassets1.assets::FrostWallSkillTree",
+     "sharedassets1.assets::FuryLeapSkillTree",
+     "sharedassets1.assets::GatheringStormTree",
+     "sharedassets1.assets::GhostflameTree",
+     "sharedassets1.assets::GlacierSkillTree",
+     "sharedassets1.assets::GlyphOfDominionSkillTree"
+    ],
+    "entry_count": 137,
+    "raw_sha256": "313aa57c912c9f850b4d4cee99fc8bf4be0fceebe9fd0fdb8b22e7ad3ab7f053",
+    "raw_status": [
+     "UNKNOWN"
+    ]
+   },
+   "trusted_calculation_eligible": false
+  },
+  {
+   "consumer_state": "QUARANTINED",
+   "coverage_status": "FIELDS_CLASSIFIED",
+   "extraction_status": "EXTRACTED",
+   "family": "exports_canonical/weaver_tree.json",
+   "kind": "canonical",
+   "patch": {
+    "build": "22986002",
+    "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "reasons": [
+    "raw input not build-stamped/preserved (UNKNOWN)",
+    "integrity defects in 1 tree(s): ['WeaverTree']"
+   ],
+   "relationship_status": "RESOLVED_OR_ALLOWLISTED",
+   "semantic_status": "UNVERIFIED",
+   "source_provenance": {
+    "builder": "tools/scripts/build_canonical_trees.py",
+    "entries": [
+     "sharedassets1.assets::WeaverTree"
+    ],
+    "entry_count": 1,
+    "raw_sha256": "313aa57c912c9f850b4d4cee99fc8bf4be0fceebe9fd0fdb8b22e7ad3ab7f053",
+    "raw_status": [
+     "UNKNOWN"
+    ]
+   },
+   "trusted_calculation_eligible": false
+  }
+ ],
+ "patch": {
+  "build": "22986002",
+  "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+  "identity_status": "COMPLETE_CROSS_CHECKED",
+  "patch": "1.4.6",
+  "unity_version": "6000.0.42f1"
+ },
+ "report_hash": "6ca62b439beb4edcbd7f82de9eead2baa23b8ea9196139e1855dccfa4b4e4276",
+ "states": [
+  "CERTIFIED",
+  "PRESERVED_ONLY",
+  "QUARANTINED",
+  "UNSUPPORTED",
+  "UNKNOWN"
+ ],
+ "summary": {
+  "certified_families": 0,
+  "domain_states": {
+   "CERTIFIED": 0,
+   "PRESERVED_ONLY": 0,
+   "QUARANTINED": 0,
+   "UNKNOWN": 399,
+   "UNSUPPORTED": 40
+  },
+  "domains_without_export": 439,
+  "families": 47,
+  "family_states": {
+   "CERTIFIED": 0,
+   "PRESERVED_ONLY": 0,
+   "QUARANTINED": 44,
+   "UNKNOWN": 3,
+   "UNSUPPORTED": 0
+  }
+ },
+ "trust_schema": "r1_trust_manifest/1",
+ "trusted_calculation_states": [
+  "CERTIFIED"
+ ]
+}

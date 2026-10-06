@@ -1,0 +1,285 @@
+{
+ "certified": false,
+ "certified_exports": [],
+ "criteria": [
+  {
+   "criterion": "denominator has no UNKNOWN entries",
+   "evidence": {
+    "total": 1326,
+    "unknown_entries": 399
+   },
+   "id": "C1",
+   "passed": false
+  },
+  {
+   "criterion": "every manifest class is in the denominator",
+   "evidence": {
+    "in_denominator": 1170,
+    "manifest_script_classes": 1170,
+    "manifested_files": [
+     "resources.assets"
+    ],
+    "unenumerated_source_files": [
+     "actors_player_specific_gameplay_assets_all.bundle",
+     "duplicateassetisolation_assets_all.bundle",
+     "globalgamemanagers.assets",
+     "raw_bundles/actors_misc (legacy bundle dump)",
+     "raw_bundles/database (legacy bundle dump)",
+     "raw_bundles/defaultlocalgroup (legacy bundle dump)",
+     "raw_bundles/duplicateasset (legacy bundle dump)",
+     "raw_bundles/localization_en (legacy bundle dump)",
+     "raw_bundles/pcg_data (legacy bundle dump)",
+     "shared_assets_all.bundle",
+     "sharedassets1.assets"
+    ]
+   },
+   "id": "C2",
+   "passed": true
+  },
+  {
+   "criterion": "REQUIRED_NOW entity coverage is 100% and measurable",
+   "evidence": {
+    "entity_coverage_of_measurable": 0.451644,
+    "entries": 175,
+    "entries_source_count_not_measurable": 19,
+    "entries_with_canonical_export": 144,
+    "entry_coverage": 0.822857
+   },
+   "id": "C3",
+   "passed": false
+  },
+  {
+   "criterion": "no unclassified source fields; no blocked domains",
+   "evidence": {
+    "blocked_domains": 715,
+    "unknown_paths": 4,
+    "unknown_sample": [
+     "skill_tree_nodes.raw_decode_coverage:isBaseLockNode",
+     "skill_tree_nodes.raw_decode_coverage:isLockNode",
+     "skill_tree_nodes.raw_decode_coverage:nodeStats",
+     "skill_tree_nodes.raw_decode_coverage:propertiesForAltText"
+    ]
+   },
+   "id": "C4",
+   "passed": false
+  },
+  {
+   "criterion": "no unallowlisted dangling relationships",
+   "evidence": {
+    "by_relationship": {
+     "affix.AbilityProperty->property_definition": 10,
+     "affix.IdolAltarProperty->property_definition": 0,
+     "affix.PlayerProperty->property_definition": 19,
+     "affix_property->SP": 0,
+     "in_scope_class_reference": 935,
+     "tree_prerequisite[passive_trees.json]": 67,
+     "tree_prerequisite[skill_trees.json]": 11,
+     "tree_prerequisite[weaver_tree.json]": 0,
+     "tree_stat_property->property_definition": 2131
+    },
+    "dangling_unallowlisted": 3173
+   },
+   "id": "C5",
+   "passed": false
+  },
+  {
+   "criterion": "no unknown enum values",
+   "evidence": {
+    "enum_dump_has_nested_types": false,
+    "undecodable": [
+     {
+      "subject": "exports_canonical/affixes.json:displayCategory",
+      "values": [
+       42,
+       43
+      ]
+     },
+     {
+      "subject": "exports_canonical/affixes.json:specialAffixType",
+      "values": [
+       6
+      ]
+     },
+     {
+      "subject": "exports_canonical/skill_trees.json:stats.tags",
+      "values": [
+       536870912
+      ]
+     }
+    ]
+   },
+   "id": "C6",
+   "passed": false
+  },
+  {
+   "criterion": "raw snapshot provenance present (authoritative snapshot + clean run manifest)",
+   "evidence": {
+    "extract_stage_reports": [],
+    "runs": [],
+    "snapshots": []
+   },
+   "id": "C7",
+   "passed": false
+  },
+  {
+   "criterion": "exports regenerate from raw (normalize and extract stages)",
+   "evidence": {
+    "extract_stage_reproduced": false,
+    "normalize_stage_passed": true,
+    "raw_inputs_without_build_stamp": [
+     "exports_json/localization/en.json",
+     "extracted_raw/enums/enums.json",
+     "extracted_raw/il2cpp_class_layouts.json",
+     "extracted_raw/raw_skill_trees_from_game.json",
+     "extracted_raw/skill_node_failure_classification.json"
+    ]
+   },
+   "id": "C8",
+   "passed": false
+  },
+  {
+   "criterion": "patch identity explicit and cross-checked",
+   "evidence": {
+    "build": "22986002",
+    "identity_status": "COMPLETE_CROSS_CHECKED",
+    "patch": "1.4.6",
+    "unity_version": "6000.0.42f1"
+   },
+   "id": "C9",
+   "passed": true
+  },
+  {
+   "criterion": "every REQUIRED_NOW domain extracted to a canonical export",
+   "evidence": {
+    "missing_count": 31,
+    "missing_sample": [
+     "GameAssembly::enums",
+     "addressables::localization_string_tables",
+     "resources.assets::Ability",
+     "resources.assets::AbilityManager",
+     "resources.assets::AbilityPropertyList",
+     "resources.assets::Ailment",
+     "resources.assets::AilmentList",
+     "resources.assets::CharacterClass",
+     "resources.assets::CharacterClassList",
+     "resources.assets::CoreAttribute",
+     "resources.assets::DamageAllyOnHit",
+     "resources.assets::DamageEnemiesWithBeam",
+     "resources.assets::DamageEnemyOnHit",
+     "resources.assets::ExtraStatData",
+     "resources.assets::GlobalPlayerProperties",
+     "resources.assets::GlobalTreeData",
+     "resources.assets::ItemList",
+     "resources.assets::KnownAbilityList",
+     "resources.assets::MonolithTimeline",
+     "resources.assets::NodeTooltipPropertyList",
+     "resources.assets::OnDeathStatusDamage",
+     "resources.assets::PlayerPropertyList",
+     "resources.assets::PropertyList",
+     "resources.assets::RepeatedlyDamageEnemiesWithinArc",
+     "resources.assets::RepeatedlyDamageEnemiesWithinRadius",
+     "resources.assets::RepeatedlyDamageParent",
+     "resources.assets::SetBonusesList",
+     "resources.assets::StatusDamage",
+     "resources.assets::TimelineList",
+     "resources.assets::TrackerPropertyList",
+     "resources.assets::UniqueList"
+    ]
+   },
+   "id": "C10",
+   "passed": false
+  },
+  {
+   "criterion": "patch diff has no UNKNOWN or BREAKING change",
+   "evidence": {
+    "by_classification": {
+     "BREAKING": 0,
+     "EXPECTED": 0,
+     "REVIEW_REQUIRED": 0,
+     "UNKNOWN": 3
+    },
+    "previous_certified": false
+   },
+   "id": "C11",
+   "passed": false
+  },
+  {
+   "criterion": "every referenced enum is extracted",
+   "evidence": {
+    "by_kind": {
+     "CANONICAL_DECODER": 10,
+     "NESTED_IN_IN_SCOPE_CLASS": 188,
+     "ODIN_SERIALIZED": 99,
+     "PROPERTY_DEFINITION": 0
+    },
+    "canonical_fields_on_hand_coded_tables": 10,
+    "referenced": 275,
+    "referenced_unextracted": 218,
+    "sample": [
+     "AbilityCurveMovement_DisplacementType",
+     "AbilityCurveMovement_MovementType",
+     "AbilityCurveRotation_DisplacementType",
+     "AbilityCurveRotation_DurationType",
+     "AbilityCurveRotation_RotationType",
+     "AbilitySync_PositionSyncType",
+     "AbilitySync_RotationSyncType",
+     "AbilitySync_ScaleSyncType",
+     "Ability_AbilityObjectRotation",
+     "Ability_AbilityObjectType",
+     "Ability_AbilityReplacementWeaponCondition",
+     "Ability_AbilityTagCriteria",
+     "Ability_AccessibleTargetPathLimitType",
+     "Ability_ActiveMinionCriteria",
+     "Ability_AreaTagDisplay",
+     "Ability_ChargeRegenDuringUseType",
+     "Ability_ComboBehaviour",
+     "Ability_CreationBufferingType",
+     "Ability_CreatorRangeRequirement",
+     "Ability_EffectOfHealthOnTargeting"
+    ]
+   },
+   "id": "C13",
+   "passed": false
+  },
+  {
+   "criterion": "committed R1 artifacts are current",
+   "evidence": {
+    "stale_or_failed": []
+   },
+   "id": "C12",
+   "passed": true
+  }
+ ],
+ "failed_criteria": [
+  "C1",
+  "C3",
+  "C4",
+  "C5",
+  "C6",
+  "C7",
+  "C8",
+  "C10",
+  "C11",
+  "C13"
+ ],
+ "notes": [
+  "Semantic coverage is reported only; it never affects extraction certification.",
+  "A 1.4.6 certification is not possible: its raw inputs were not preserved (C7, C8)."
+ ],
+ "report_hash": "b37592587a64a9ff10a901cd751b9095de907c6b1f1ce399466e79c0ebef5f6d",
+ "report_id": "r1_certification",
+ "semantic_coverage": {
+  "basis": "no ground-truth fixtures (in-game tooltips or combat logs) exist; R1 certifies extraction, not mechanics. Consumers must gate calculations on semantic status (R1_TRUST_CONTRACT.md).",
+  "in_scope_entries": 580,
+  "included_in_extraction_completeness": false,
+  "mechanics_certified_for_calculation": 0,
+  "semantic_coverage": 0.0
+ },
+ "source_identity": {
+  "build": "22986002",
+  "game_assembly_sha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+  "patch": "1.4.6",
+  "unity_version": "6000.0.42f1"
+ },
+ "verdict": "R1 NOT CERTIFIED"
+}

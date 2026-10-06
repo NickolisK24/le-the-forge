@@ -1,0 +1,4372 @@
+{
+ "_meta": {
+  "builder": "tools/scripts/build_canonical_trees.py",
+  "counts": {
+   "defective_trees": 1,
+   "field_shift_suspect_nodes": 18,
+   "missing_nodes": 0,
+   "nodes": 77,
+   "requirement_resolution": {
+    "RESOLVED": 148
+   },
+   "trees": 1
+  },
+  "defective_trees": [
+   "WeaverTree"
+  ],
+  "enums": {
+   "enum_dump_game_build": null,
+   "enum_dump_has_nested_types": false,
+   "enum_table_count": 506,
+   "label_sources": {
+    "stats.tags": "GAME_ENUM"
+   },
+   "requested_game_enums": {
+    "stats.tags": [
+     "AT"
+    ]
+   },
+   "unknown_value_count": 0,
+   "unknown_values": {}
+  },
+  "identity_contract": "node identity = (tree_class, node_id); path_id kept; names are presentation",
+  "kind": "weaver",
+  "schema": "r1_canonical_tree/1",
+  "source": {
+   "build_provenance": "ABSENT: the raw tree dump carries no GameAssembly hash; it cannot be proven to come from 1.4.6 build 22986002",
+   "decoder": "LEGACY_HEURISTIC (EXT-12)",
+   "decoder_defect": "legacy decoder read one u32 where SkillTreeNode serializes two lists (nodeStats, stats); nodes with empty stats have text fields shifted by one",
+   "failure_classification_sha256": "8d4e8f3e1af8f6ced7c6e06dcb0ca950910c9dc0c56102fcbb788d9d85753fd3",
+   "failure_join": {
+    "failure_records": 11,
+    "failure_tree_path_ids_found_in_raw_dump": 0,
+    "note": "failure records were produced by a different walker run than the raw dump (tree path ids differ); joined by tree class. Mixed-run raw inputs are a provenance defect (R1.2).",
+    "raw_meta_node_parse_failures": 11
+   },
+   "raw_meta": {
+    "extractedWith": "extract_skill_trees_fast.py (H1 patch — fail-loud error handling)",
+    "matched": 143,
+    "nodeCandidatesSeen": 4983,
+    "nodeParseFailures": 11,
+    "source": "sharedassets1.assets",
+    "totalNodes": 4548,
+    "totalTrees": 143,
+    "treeCandidatesSeen": 143,
+    "treeParseFailures": 0,
+    "unmatched": 0
+   },
+   "raw_path": "extracted_raw/raw_skill_trees_from_game.json",
+   "raw_sha256": "313aa57c912c9f850b4d4cee99fc8bf4be0fceebe9fd0fdb8b22e7ad3ab7f053"
+  },
+  "stat_property_contract": "stats[].property keeps the raw id and a reference classification (RESOLVED / UNRESOLVED / AMBIGUOUS / UNKNOWN_PROPERTY_TYPE) from the bands validated in exports_canonical/property_definitions.json",
+  "stat_property_raw_values": {
+   "by_thousand": {
+    "0-4999": 5
+   },
+   "distinct": 5,
+   "max": 183,
+   "min": 0,
+   "property_definitions_sha256": "72657d90b77379056d1b05727dbbb87aff91400cfe6196ec2f4e0edc665ff86d",
+   "references": 65,
+   "resolution": {
+    "RESOLVED": 63,
+    "UNRESOLVED": 2
+   }
+  },
+  "stat_value_contract": "stats[].value_text is the tooltip text the walker decoded; numeric node stats (SkillTreeNode.nodeStats) are not decoded by the current walker"
+ },
+ "trees": [
+  {
+   "ability_ref": {
+    "file_id": null,
+    "path_id": null,
+    "status": "NOT_IN_RAW_DUMP"
+   },
+   "declared_node_count": 77,
+   "has_set_ability": null,
+   "integrity_problems": [
+    "18 node(s) with text fields shifted by the legacy decoder (EXT-12)"
+   ],
+   "integrity_status": "DEFECTIVE",
+   "kind": "weaver",
+   "missing_nodes": [],
+   "node_count": 77,
+   "nodes": [
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Beginning of the web",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 0,
+     "name": "Weaver Tree",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 0,
+     "path_id": 370090,
+     "point_bonus_description": "",
+     "requirements": [],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Echoes you discover on your echo web that would have had {Experience} rewards have a different random reward instead.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Shifted Knowledge",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 1,
+     "path_id": 467302,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 151,
+       "node_path_id": 415940,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Echoes you discover on your echo web that would have had {Gold} rewards have a different random reward instead.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Giveaway Coins",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 2,
+     "path_id": 337050,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 151,
+       "node_path_id": 415940,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Echoes you discover on your echo web that would have had {Rune} rewards have a different random reward instead.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Runic Diversion",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 3,
+     "path_id": 366134,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 25,
+       "node_path_id": 409978,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Echoes you discover on your echo web that would have had {Arena Key} rewards have a different random reward instead.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Keyless Exchange",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 4,
+     "path_id": 485382,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 151,
+       "node_path_id": 415940,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Echoes you discover on your echo web that would have had {Glyph} rewards have a different random reward instead.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Rewritten Reality",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 5,
+     "path_id": 484697,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 25,
+       "node_path_id": 409978,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Chance is similar to Exalted item rewards. With 100% increased chance, the chance is equal to Exalted item reward type.",
+     "decode_suspect": false,
+     "description": "Your echoes have a higher chance to spawn with a new reward type which grants {Dungeon Keys} and {Dungeon Key Charms}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 5,
+     "name": "Vaulted Keychain",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 6,
+     "path_id": 447858,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 54,
+       "node_path_id": 486080,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "80%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Chance is similar to Exalted item rewards. With 100% increased chance, the chance is equal to Exalted item reward type.\n\nMemory Amber is the currency used to increased your rank with The Woven faction. It can be used to buy Woven Echoes and is needed to respecialize your Weaver Tree.",
+     "decode_suspect": false,
+     "description": "You have a chance for your echoes to spawn with the {Memory Amber} reward type.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Elder Sap",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 7,
+     "path_id": 476221,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 130,
+       "node_path_id": 429484,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 8,
+       "node_path_id": 354253,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "50%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Chance is similar to Exalted item rewards. With 100% increased chance, the chance is equal to Exalted item reward type.\n\nWoven Echoes are echoes in the form of an item that can be placed on a Timeline Echo Web through the Altar of the Weaver.",
+     "decode_suspect": false,
+     "description": "Your echoes have a chance to spawn with a new reward type which grants {Woven Echoes}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Entwined Spoils",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 8,
+     "path_id": 354253,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 7,
+       "node_path_id": 476221,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 9,
+       "node_path_id": 482058,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 51,
+       "node_path_id": 387576,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 183,
+       "node_path_id": 387831,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "50%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Your echo rewards have a chance to be doubled on completion.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 4,
+     "name": "Enthralling Bounty",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 9,
+     "path_id": 482058,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 0,
+       "node_path_id": 370090,
+       "points_required": 0,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Double Reward Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You have a chance for experience tomes to drop when you complete an echo objective.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Tomes of Insight",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 10,
+     "path_id": 403772,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 59,
+       "node_path_id": 460573,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 58,
+       "node_path_id": 500250,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 41,
+       "node_path_id": 416607,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Experience Tome Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You have a chance for a pile of gold to drop when you complete an echo objective.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Golden Treasures",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 11,
+     "path_id": 435137,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 56,
+       "node_path_id": 371560,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 13,
+       "node_path_id": 486826,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 156,
+       "node_path_id": 434975,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Piles Of Gold Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You have a chance for a pile of {Glyphs} to drop when you complete an echo objective.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Echoed Inscriptions",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 12,
+     "path_id": 435898,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 9,
+       "node_path_id": 482058,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 51,
+       "node_path_id": 387576,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 13,
+       "node_path_id": 486826,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Pile Of Glyphs Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You have a chance for a pile of {Runes} to drop when you complete an echo objective.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Runic Hoard",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 13,
+     "path_id": 486826,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 12,
+       "node_path_id": 435898,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 165,
+       "node_path_id": 365915,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 11,
+       "node_path_id": 435137,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Pile Of Runes Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Arena echoes no longer appear on your echo web.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Eclipsed Battleground",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 21,
+     "path_id": 494059,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 58,
+       "node_path_id": 500250,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 156,
+       "node_path_id": 434975,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 182,
+       "node_path_id": 394450,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Beacons never appear.\n\nYour echoes have a chance to contain additional spiderling packs. ",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "8 Eyes in the Dark",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 22,
+     "path_id": 501559,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 10,
+       "node_path_id": 403772,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Chance for additional Spiderling Packs",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "{Arena} echoes are more common on your echo web.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 5,
+     "name": "Call of the Duellist",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 23,
+     "path_id": 339152,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 24,
+       "node_path_id": 487259,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 52,
+       "node_path_id": 461242,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Arena Echo Spawn Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "Your {Arena} echoes have a chance to be replaced by more difficult {Super Arena} echoes, which contain additional {Champions}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Gladiatory Crucible",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 24,
+     "path_id": 487259,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 44,
+       "node_path_id": 492370,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 23,
+       "node_path_id": 339152,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Super Arena Echo Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "34#"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Super Beacons reveal echoes further than a normal Beacon, but are guarded by more dangerous enemies.",
+     "decode_suspect": false,
+     "description": "{Beacons} in your echo web have a chance to be replaced by {Super Beacons}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Beacon of the Ascended",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 25,
+     "path_id": 409978,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 41,
+       "node_path_id": 416607,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Super Beacon Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "35%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Place a weapon or jewelry item to imprint it in this slot to have a small chance to drop a pile of similar items when killing enemies in your regular echoes.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Commoner’s Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 41,
+     "path_id": 416607,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 10,
+       "node_path_id": 403772,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 57,
+       "node_path_id": 499207,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Lost Caches are chests that contain lots of different valuable rewards.\n\nSimilar items are more likely to have the same rarity, sub type and affixes as the imprinted item. When imprinting a unique item, the similar items also have an increased chance of being the exact same unique.\n\nItems dropped this way are affected by normal drop requirements and cannot be gifted without a resonance. They cannot include sub types, affixes, or uniques, that are not dropped by regular enemies",
+     "decode_suspect": false,
+     "description": "Place an armor or weapon item to imprint it in this slot to have a chance to drop a pile of similar items when opening {Lost Caches} in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Sealed Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 42,
+     "path_id": 486649,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 154,
+       "node_path_id": 421564,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 59,
+       "node_path_id": 460573,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Socketed Item Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "6%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Similar items are more likely to have the same rarity, sub type and affixes as the imprinted item. When imprinting a unique item, the similar items also have an increased chance of being the exact same unique.\n\nItems dropped this way are affected by normal drop requirements and cannot be gifted without a resonance. They cannot include sub types, affixes, or uniques, that are not dropped by regular enemies",
+     "decode_suspect": false,
+     "description": "Place an armor or jewelry item to imprint it in this slot to have a chance to drop a pile of similar items as an extra reward when you receive echo rewards.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Echoing Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 43,
+     "path_id": 477643,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 131,
+       "node_path_id": 416077,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 168,
+       "node_path_id": 430021,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Maximum Chance To Drop",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "50%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "Place an item to imprint it in this slot to make {Champions} sometimes drop a pile of items of the same item type that always have a sealed affix matching one of the affixes on the imprinted item. \n\nThe tier of the sealed affix can roll up to the tier of the corresponding affix on the item. The number of items in the pile is equal to the number of affixes on the item.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Warlord’s Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 44,
+     "path_id": 492370,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 166,
+       "node_path_id": 357509,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 24,
+       "node_path_id": 487259,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Pile Of Items Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "3%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Place a {Woven Echo} to imprint it in this slot for it to have a chance to spawn on your echo web when a new echo is generated.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Woven Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 45,
+     "path_id": 342845,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 161,
+       "node_path_id": 466054,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 64,
+       "node_path_id": 405004,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Place a {Woven Echo} to imprint it in this slot for it to have a chance to spawn on your echo web when a new echo is generated.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Loomed Riches",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 46,
+     "path_id": 393438,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 165,
+       "node_path_id": 365915,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 156,
+       "node_path_id": 434975,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You gain increased bonus {Timeline Stability} from killing enemies in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Anchored Reality",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 51,
+     "path_id": 387576,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 52,
+       "node_path_id": 461242,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 8,
+       "node_path_id": 354253,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 12,
+       "node_path_id": 435898,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 64,
+       "node_path_id": 405004,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Bonus Timeline Stability",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Your {Arena} echoes contain fewer waves.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Swift Trial",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 52,
+     "path_id": 461242,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 23,
+       "node_path_id": 339152,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 51,
+       "node_path_id": 387576,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 124,
+       "node_path_id": 339643,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Fewer Arena Waves",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "-1"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Rune Prisons contain Exiled Mages.",
+     "decode_suspect": false,
+     "description": "{Rune Prisons} have a chance to spawn two {Exiled Mages} inside your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 5,
+     "name": "Exiled But Not Forgotten",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 53,
+     "path_id": 501105,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 104,
+       "node_path_id": 354671,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 167,
+       "node_path_id": 455692,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Twinned Mage Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "20%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Your echoes have a chance to spawn a rare enemy alongside a pack from a specific dungeon, that drop that dungeon’s respective key and have a chance to drop the respective dungeon boss’s unique items.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Warden’s Echo",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 54,
+     "path_id": 486080,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 165,
+       "node_path_id": 365915,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Rare And Dungeon Enemy Pack Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Rare enemies in your echoes have a chance to drop a {Weaver’s Will} item.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Woven Treasures",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 55,
+     "path_id": 357029,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 168,
+       "node_path_id": 430021,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Chance To Drop Weaver's Will Item",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "2%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "You have a 7% chance for {Zerrick} to join you in your echoes, who fights alongside you and increases your gold drops significantly.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Zerrick's Aid",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 56,
+     "path_id": 371560,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 0,
+       "node_path_id": 370090,
+       "points_required": 0,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Gold Drops",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "85%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Nemeses are encounters that you can choose interact with and fight to claim their items.",
+     "decode_suspect": false,
+     "description": "{Nemesis} encounters are more common in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Fated Nemesis",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 57,
+     "path_id": 499207,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 41,
+       "node_path_id": 416607,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 127,
+       "node_path_id": 364946,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Nemesis Spawn Rate",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "8%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Caches are found throughout Eterra and the Monolith and when opened offer great rewards.",
+     "decode_suspect": false,
+     "description": "{Lost Caches} drop an additional exalted item in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Exalted Find",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 58,
+     "path_id": 500250,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 10,
+       "node_path_id": 403772,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 21,
+       "node_path_id": 494059,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 164,
+       "node_path_id": 441714,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 154,
+       "node_path_id": 421564,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Additional Exalted Items",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+1"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Caches are found throughout Eterra and the Monolith and when opened offer great rewards.",
+     "decode_suspect": false,
+     "description": "You have a chance for {Favor Caches} to spawn in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Gift of Allegiance",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 59,
+     "path_id": 460573,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 42,
+       "node_path_id": 486649,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 10,
+       "node_path_id": 403772,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Favor Cache Spawn Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Boss objective echoes have a chance to contain two bosses instead of one. They deal more damage, have more health, and drop an additional unique item when slain.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Twinned Tyrants",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 60,
+     "path_id": 346196,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 168,
+       "node_path_id": 430021,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Boss Conversion Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "A random {Shade of Orobyss} can sometimes ambush you in your echoes.\n\nThis Shade has normal item drops and it scales off of distance, like any other Shade.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "The Abyssal Trap",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 61,
+     "path_id": 468064,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 162,
+       "node_path_id": 418349,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "All rare enemies are permanently {Enraged}, but they drop additional {Runes} and {Glyphs}.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Fury and Fortune",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 62,
+     "path_id": 482066,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 54,
+       "node_path_id": 486080,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Killing {Shades of Orobyss} no longer grants corruption in your Timelines.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Purged Horizon",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 63,
+     "path_id": 405775,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 131,
+       "node_path_id": 416077,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nMemory Amber can be spend to buy Woven Echoes and increase your Weaver Faction rank.",
+     "decode_suspect": false,
+     "description": "Bosses and rare enemies in your echoes have a chance to be possessed by {Souls of the Erased}.\n\nAdditionally, some enemies in the last wave of your {Arena Echoes} have a chance to be possessed by {Souls of the Erased}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Outrider Souls",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 64,
+     "path_id": 405004,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 51,
+       "node_path_id": 387576,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 45,
+       "node_path_id": 342845,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 124,
+       "node_path_id": 339643,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Bosses And Rares Possession Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Arena Echo Enemies Possession Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "{Weaver's Will} value in unique items found in your echoes has a chance to be rolled twice and keep the higher value.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Prime Weaver",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 101,
+     "path_id": 500075,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 55,
+       "node_path_id": 357029,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Weaver's Will Lucky Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "When a {Nemesis} escapes through a portal after being {Empowered}, it drops exalted weapons that can be upgraded if you kill a {Harbinger}.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Forsaken Weaponry",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 102,
+     "path_id": 426896,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 57,
+       "node_path_id": 499207,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Memory Amber is the currency used to increased your rank with The Woven faction. It can be used to buy Woven Echoes and is needed to respecialize your Weaver Tree.",
+     "decode_suspect": false,
+     "description": "You have increased drop rate of {Memory Amber} in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Memories of Fortune",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 103,
+     "path_id": 343320,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 164,
+       "node_path_id": 441714,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 121,
+       "node_path_id": 338774,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Memory Amber Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Exiled Mages are powerful mages. Free them and slay them to take their experimental items.",
+     "decode_suspect": false,
+     "description": "{Exiled Mages} in your echoes have a chance to drop a pile of items with +level of skill affixes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Opulent Usurpers",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 104,
+     "path_id": 354671,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 128,
+       "node_path_id": 454638,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 53,
+       "node_path_id": 501105,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Pile Of Items Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Woven Echoes are echoes in the form of an item that can be placed on a Timeline Echo Web through the Altar of the Weaver.",
+     "decode_suspect": false,
+     "description": "When a {Boss Woven Echo} drops it has a chance to be duplicated.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 4,
+     "name": "Call of the Firstborn",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 105,
+     "path_id": 462988,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 121,
+       "node_path_id": 338774,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Duplicated Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Cemeteries contain an Altar to the Weaver, where you can insert Woven Echoes into your current Echo Web. In Cemeteries you can collect Memory Amber as well as a Woven Echo when defeating the Altar Guardian boss.",
+     "decode_suspect": false,
+     "description": "{Cemeteries} are more common on your echo web.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Graveborn Paths",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 121,
+     "path_id": 338774,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 127,
+       "node_path_id": 364946,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 126,
+       "node_path_id": 390965,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 103,
+       "node_path_id": 343320,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Cemetery Spawn Rate",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.",
+     "decode_suspect": false,
+     "description": "{Tombs of the Erased} are more common on your echo web.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Grand Catacombs",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 122,
+     "path_id": 429282,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 0,
+       "node_path_id": 370090,
+       "points_required": 0,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Tombs Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nCemeteries contain an Altar to the Weaver, where you can insert Woven Echoes into your current Echo Web. In Cemeteries you can collect Memory Amber as well as a Woven Echo when defeating the Altar Guardian boss.",
+     "decode_suspect": false,
+     "description": "Your {Tombs} and {Cemeteries} have increased monster pack size.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Burial Grounds",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 123,
+     "path_id": 447551,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 126,
+       "node_path_id": 390965,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 125,
+       "node_path_id": 454196,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 129,
+       "node_path_id": 429007,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 128,
+       "node_path_id": 454638,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Pack Size",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nMemory Amber is the currency used to increased your rank with The Woven faction. It can be used to buy Woven Echoes and is needed to respecialize your Weaver Tree.",
+     "decode_suspect": false,
+     "description": "Your {Tombs of the Erased} have increased packsize.\nYour {Arena} echoes have increased packsize.\nYour {Arena} echoes drop {Memory Amber} on completion.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Hallowed Depths",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 124,
+     "path_id": 339643,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 52,
+       "node_path_id": 461242,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 131,
+       "node_path_id": 416077,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 64,
+       "node_path_id": 405004,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Tombs Pack Size",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "4%"
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Arena Echo Pack Size",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "8%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nCemeteries contain an Altar to the Weaver, where you can insert Woven Echoes into your current Echo Web. In Cemeteries you can collect Memory Amber as well as a Woven Echo when defeating the Altar Guardian boss.\n\nWoven Echoes are echoes in the form of an item that can be placed on a Timeline Echo Web through the Altar of the Weaver.",
+     "decode_suspect": false,
+     "description": "Rare enemies inside your {Tombs} and {Cemeteries} have an additional chance to drop {Woven Echoes}\r.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Necropolis of the Weaver",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 125,
+     "path_id": 454196,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 122,
+       "node_path_id": 429282,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 123,
+       "node_path_id": 447551,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 166,
+       "node_path_id": 357509,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Woven Echo Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+3%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nCemeteries contain an Altar to the Weaver, where you can insert Woven Echoes into your current Echo Web. In Cemeteries you can collect Memory Amber as well as a Woven Echo when defeating the Altar Guardian boss.",
+     "decode_suspect": false,
+     "description": "Rare enemies in your {Tombs} and {Cemeteries of the Erased} have a small chance to drop that timeline's boss specific rewards.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Bountiful Sarcophagy",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 126,
+     "path_id": 390965,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 122,
+       "node_path_id": 429282,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 121,
+       "node_path_id": 338774,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 123,
+       "node_path_id": 447551,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Timeline Boss Reward Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+0.1%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs are side zones able to spawn in most regular Monolith Echoes. Tombs are a good source of collecting Memory Amber and finding Woven Echoes. Completing a Tomb also grants additional Echo rewards.\n\nCemeteries contain an Altar to the Weaver, where you are able to insert Woven Echoes direct into the Echo Web of your current Timeline. Like Tombs, Cemeteries are also a great source of Memory Amber as well as a guaranteed Woven Echo when defeating the boss guarding the Altar.\n\nNemeses are encounters that you can choose interact with and fight to claim their items.",
+     "decode_suspect": false,
+     "description": "{Tombs} and {Cemeteries of the Erased} in your echoes have a chance to include a {Possessed Nemesis} encounter.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Warden of the Dead",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 127,
+     "path_id": 364946,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 57,
+       "node_path_id": 499207,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 121,
+       "node_path_id": 338774,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Possessed Nemesis Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "34#"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Your {Tombs} and {Cemeteries} have a guaranteed {Rune Prison} with a {Posessed Exiled Mage}.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Graveyard Prisons",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 128,
+     "path_id": 454638,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 123,
+       "node_path_id": 447551,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 104,
+       "node_path_id": 354671,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Tombs can spawn in most regular Monolith Echoes, where you can find Memory Amber, Woven Echoes and additional Echo rewards.\n\nCemeteries contain an Altar to the Weaver, where you can insert Woven Echoes into your current Echo Web. In Cemeteries you can collect Memory Amber as well as a Woven Echo when defeating the Altar Guardian boss.",
+     "decode_suspect": false,
+     "description": "You have a chance for {Masque} to accompany you in {Tombs} and {Cemeteries}. He provides defensive buffs and casts spells at enemies.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Woven Masque",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 129,
+     "path_id": 429007,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 122,
+       "node_path_id": 429282,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 123,
+       "node_path_id": 447551,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Masque Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "25%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Incubated Silk is a possessed and trapped soul incubating inside Silken Cocoons that will hunt and kill you.",
+     "decode_suspect": false,
+     "description": "{Silken Cocoons} have a higher chance to contain {Incubated Silk} in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Darkwoven Threads",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 130,
+     "path_id": 429484,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 166,
+       "node_path_id": 357509,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 7,
+       "node_path_id": 476221,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Incubated Silk Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "80%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "Completing a {Tomb of the Erased} or killing a {Shade of Orobyss} in your echoes has a chance to drop the {Confluence of Oblivion}.\n\nThe {Confluence of Oblivion} is a woven echo that is guarded by a {Gauntlet of Shades}.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Reflections of Orobyss",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 131,
+     "path_id": 416077,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 124,
+       "node_path_id": 339643,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 43,
+       "node_path_id": 477643,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Loot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "{Loot Lizards} in your echoes have a chance to drop a pile of exalted items.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Lizard’s Inheritance",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 151,
+     "path_id": 415940,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 25,
+       "node_path_id": 409978,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Exalted Items Pile Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "This is unaffected by modifiers to Loot Lizard spawn rate.\n\nLoot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "{Champions} have a chance to be accompanied by a {Blue} or {Green Loot Lizard}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Greedy Lizards",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "This node has no effect in {Arena Echoes}.\n\nChampions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.\n\nLoot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "node_id": 152,
+     "path_id": 384932,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 153,
+       "node_path_id": 468259,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Loot Lizard Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Increases the amount of shrines that are Loot Lizard shrines rather than increasing the number of shrines.\n\nLoot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "{Loot Lizard} shrines are more common in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Scaled Shrines",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 153,
+     "path_id": 468259,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 154,
+       "node_path_id": 421564,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Loot Lizard Shrines",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Caches are found throughout Eterra and the Monolith and when opened offer great rewards.\n\nLoot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "Opening a cache in your echoes has a chance to spawn a {Loot Lizard}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Hidden Scales",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 154,
+     "path_id": 421564,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 156,
+       "node_path_id": 434975,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 42,
+       "node_path_id": 486649,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 58,
+       "node_path_id": 500250,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Loot Lizard From Cache Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Loot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "{Loot Lizards} in your echoes always drop a unique item and they have double the chance to drop their tail.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Gilded Tails",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 155,
+     "path_id": 400573,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 153,
+       "node_path_id": 468259,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Guaranteed Unique Item",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": ""
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Double Lizard Tail Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": ""
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Loot Lizards are creatures that drop items when you attack them. There are several different types of Loot Lizards that carry different items.",
+     "decode_suspect": false,
+     "description": "{Loot Lizards} spawn more often in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Hoarding Reptiles",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 156,
+     "path_id": 434975,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 46,
+       "node_path_id": 393438,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 11,
+       "node_path_id": 435137,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 154,
+       "node_path_id": 421564,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 21,
+       "node_path_id": 494059,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Loot Lizard Spawn Rate",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "{Champions} have a chance to appear in pairs in your Echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Dual Destruction",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 161,
+     "path_id": 466054,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 168,
+       "node_path_id": 430021,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 45,
+       "node_path_id": 342845,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 165,
+       "node_path_id": 365915,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Twinned Champions Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "13%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "{Champions} are much more common in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Heroic Gauntlet",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 162,
+     "path_id": 418349,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 167,
+       "node_path_id": 455692,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 166,
+       "node_path_id": 357509,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Champion Spawn Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "12%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "{Champions} in your echoes have a chance to drop uniques with at least 1 {Legendary Potential}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Echoed Legends",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 163,
+     "path_id": 371646,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 162,
+       "node_path_id": 418349,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Uniques With Legendary Potential Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "1%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "Your echoes have a high chance to spawn a {Champion}.\n\nAdditionally, {Champions} have a chance to drop additional exalted items in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Exalted Challenger",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 164,
+     "path_id": 441714,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 0,
+       "node_path_id": 370090,
+       "points_required": 0,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Champion Spawn Rate",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Exalted Item Drop Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Rare enemies have an additional chance to drop Dungeon Keys and Dungeon Key Charms.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Gatekeeper’s Bounty",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 165,
+     "path_id": 365915,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 13,
+       "node_path_id": 486826,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 161,
+       "node_path_id": 466054,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 46,
+       "node_path_id": 393438,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Dungeon Key Modifier Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+1%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.\n\nWoven Echoes are echoes in the form of an item that can be placed on a Timeline Echo Web through the Altar of the Weaver.",
+     "decode_suspect": false,
+     "description": "You have a chance for {Champions} in your regular echoes to drop a pile of {Woven Echoes}.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Woven Fortunes",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 166,
+     "path_id": 357509,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 125,
+       "node_path_id": 454196,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 162,
+       "node_path_id": 418349,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 44,
+       "node_path_id": 492370,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 130,
+       "node_path_id": 429484,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 183,
+       "node_path_id": 387831,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Pile Of Woven Echoes Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "3%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Exiled Mages are powerful mages. Free them and slay them to take their experimental items.\n\nChampions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "When you open a {Rune Prison}, there is a chance that a {Champion} will appear to fight the {Exiled Mage}.\r",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "The Mage Bane",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 167,
+     "path_id": 455692,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 53,
+       "node_path_id": 501105,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 162,
+       "node_path_id": 418349,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Champion Appearance Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "22%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Champions are more formidable Rare Enemies which drop more items and items with affixes tied to their modifiers.",
+     "decode_suspect": false,
+     "description": "Bosses and {Champions} in your echoes drop an additional pile of gold and have an additional chance to drop a unique item.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Regal Foes",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 168,
+     "path_id": 430021,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 43,
+       "node_path_id": 477643,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 161,
+       "node_path_id": 466054,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Unique Item Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "+1%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Rift Beasts are enemies that gain different abilities depending on how they have evolved.\nThis node affects both the number of normally occuring Rift Beasts and the number of Rift Beast Ambushes from the {Primordial Ambush} node.",
+     "decode_suspect": false,
+     "description": "{Rift Beasts} are more common in your echoes.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Age of Beasts",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 181,
+     "path_id": 418228,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 164,
+       "node_path_id": 441714,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 182,
+       "node_path_id": 394450,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 181,
+        "namespace": "SP",
+        "raw": 181,
+        "reason": "index not present in the accepted enum",
+        "status": "UNRESOLVED",
+        "target": null
+       },
+       "stat_name": "Increased Rift Beast chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "10%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "{Rift Beasts} that emerge from rifts are accompanied by other enemies from the Ancient Era that drop Ancient Bones when slain.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Riven Gateway",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 182,
+     "path_id": 394450,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 181,
+       "node_path_id": 418228,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 21,
+       "node_path_id": 494059,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "Rift Beasts are enemies that gain different abilities depending on how they have evolved.\nRift Beasts that have Crystallized Hearts are more dangerous but drop their Crystallized Heart upon death. \nCrystallized Hearts can be used to purchase items from Skarven Bloodhorn. ",
+     "decode_suspect": false,
+     "description": "{Rift Beasts} have higher chance to have {Crystallized Hearts}, and Rift Beasts with Crystallized Hearts have more health and damage (multiplicative with other modifiers).",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Crystal Growth",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 183,
+     "path_id": 387831,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 8,
+       "node_path_id": 354253,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      },
+      {
+       "node_id": 166,
+       "node_path_id": 357509,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 183,
+        "namespace": "SP",
+        "raw": 183,
+        "reason": "index not present in the accepted enum",
+        "status": "UNRESOLVED",
+        "target": null
+       },
+       "stat_name": "Increased Crystallized Heart Chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": false,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 7,
+        "namespace": "SP",
+        "raw": 7,
+        "status": "RESOLVED",
+        "target": "Health"
+       },
+       "stat_name": "More Health With Crystallized Heart",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "15%"
+      },
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": false,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 0,
+        "namespace": "SP",
+        "raw": 0,
+        "status": "RESOLVED",
+        "target": "Damage"
+       },
+       "stat_name": "More Damage With Crystallized Heart",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "5%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": true,
+     "description": "You have a chance to be ambushed by randomly evolved {Rift Beasts} in your echoes.\n\nThese Rift Beasts have a slightly higher chance to drop {Primordial Unique Items} that cannot be purchased from {Skarven Bloodhorn}.",
+     "field_shift_suspect": true,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Primordial Ambush",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 184,
+     "path_id": 393381,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 183,
+       "node_path_id": 387831,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "This does not affect the spawn rate of special echo chains, which can be revealed without this node.",
+     "decode_suspect": false,
+     "description": "Most regular echoes in your echo web appear in {Echo Chains} rather than as single echoes.\n\nCemeteries and imprinted Woven Echoes appear to the sides of chains rather than inside them.\n\nBeacons no longer appear.",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 1,
+     "name": "Memories of the Observer",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 185,
+     "path_id": 354138,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 126,
+       "node_path_id": 390965,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Regular Echoes Appear in Chains",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": ""
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Omen Echo Chains are more likely to spawn",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 4,
+     "name": "Plentiful Windows",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 186,
+     "path_id": 480414,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 125,
+       "node_path_id": 454196,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Increased Omen Echo chain chance",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "20%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Roaming Omens have a chance to spawn in any echo",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 3,
+     "name": "Inescapable Omens",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 187,
+     "path_id": 504701,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 186,
+       "node_path_id": 480414,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Chance of Roaming Omens to appear in any echo",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "13%"
+      }
+     ],
+     "tree_path_id": 462415
+    },
+    {
+     "ability_granted_by_node": null,
+     "alt_text": "",
+     "decode_suspect": false,
+     "description": "Omens have a chance to summon void Champions during Omen Windows encounters",
+     "field_shift_suspect": false,
+     "lore_text": "",
+     "mastery": 0,
+     "mastery_requirement": 0,
+     "max_points": 2,
+     "name": "Omen's Soldiers",
+     "no_scaling_point_threshold": 0,
+     "no_scaling_type": 0,
+     "node_description": "",
+     "node_id": 188,
+     "path_id": 411724,
+     "point_bonus_description": "",
+     "requirements": [
+      {
+       "node_id": 186,
+       "node_path_id": 480414,
+       "points_required": 1,
+       "resolution": "RESOLVED"
+      }
+     ],
+     "stats": [
+      {
+       "downside": false,
+       "no_scaling": false,
+       "override_sprite": true,
+       "property": {
+        "band": [
+         0,
+         5000
+        ],
+        "index": 54,
+        "namespace": "SP",
+        "raw": 54,
+        "status": "RESOLVED",
+        "target": "None"
+       },
+       "stat_name": "Chance for Omens to spawn a void Champion",
+       "tags": {
+        "decode": "GAME_ENUM",
+        "names": [
+         "None"
+        ],
+        "raw": 0
+       },
+       "value_text": "22%"
+      }
+     ],
+     "tree_path_id": 462415
+    }
+   ],
+   "requirement_resolution": {
+    "RESOLVED": 148
+   },
+   "specialised": null,
+   "tree_class": "WeaverTree",
+   "tree_id": "weaver",
+   "tree_path_id": 462415
+  }
+ ]
+}
