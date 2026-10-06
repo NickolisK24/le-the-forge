@@ -273,3 +273,14 @@ The R0 regression tests sit in each fix commit next to the code they cover, rath
 | 10 | Are focused R0 regression tests green? | **YES** | 244 backend + 26 frontend |
 
 **R0 is complete locally.** Production verification (§10) is still required before any finding moves to `VERIFIED`.
+
+## 14. Production deployment (2026-10-06)
+
+- PR #572 merged into main as `80bd559dbdcc950fbf69b62946ff49b130ba51b9` (13:55:11Z), after operator-confirmed backup (logical export at 9:41 AM, PITR 3-day) and configuration checks.
+- **Backend:** `80bd559` Live; both R0 migrations applied by pre-deploy; gunicorn booted; `/api/health` 200; no driver or migration errors.
+- **Frontend:** `80bd559` Live; production `VITE_API_BASE_URL=https://epochforge-api.onrender.com/api` composes correctly.
+- **Verified in production:** INFRA-1, IMP-1 (LET guidance, no alert), FE-1 (`/api` routing).
+- **Deployed but not probed in production (FIXED_LOCAL):** SYS-1, SYS-2, API-4, API-5, API-6, DB-1, IMP-2, IMP-3, API-2.
+- FE-4 and OBS-1 stay OPEN (partial; R4 / R7 / R1).
+
+Final classification and the remaining production probes are in `R0_PRODUCTION_VERIFICATION.md`. main → dev reconciliation has not been performed (it is gated on production verification). R1 has not begun.

@@ -36,8 +36,8 @@
   "finding_count": 140,
   "status_values": {
     "OPEN": "not remediated (or only partially; see r0_notes)",
-    "FIXED_LOCAL": "fixed on fix/audit-r0-emergency-production and proven by local tests; not yet verified in production",
-    "VERIFIED": "verified in the appropriate (production) environment",
+    "FIXED_LOCAL": "fixed and deployed to production (main 80bd559) where noted, proven by local tests; the production behaviour itself was not probed",
+    "VERIFIED": "verified in production by operator-observed evidence (see production_evidence)",
     "DEFERRED_WITH_REASON": "intentionally deferred; reason in notes",
     "INFO": "checked; no defect found"
   },
@@ -47,7 +47,8 @@
     "INFRA-1 (SQLAlchemy) was raised to P0 because it was reproduced independently three times, including on Python 3.11, and it blocks deploying any remediation.",
     "Confidence 'high' means reproduced or directly read in code/data; web-sourced game-version facts are 'medium' because official sites could not be fetched from the audit environment.",
     "Folded exact duplicates: API-1->SYS-1, FE-6->SYS-1, SYS-18->INFRA-1, DB-2->INFRA-1, SEC-2->API-4, SYS-8->INFRA-2",
-    "2026-10-06 AUDIT-R0: statuses updated on branch fix/audit-r0-emergency-production (base 1efcef7). See R0_IMPLEMENTATION_REPORT.md. No finding is VERIFIED; production verification is still required."
+    "2026-10-06 AUDIT-R0: statuses updated on branch fix/audit-r0-emergency-production (base 1efcef7). See R0_IMPLEMENTATION_REPORT.md. No finding is VERIFIED; production verification is still required.",
+    "2026-10-06 R0 production verification: main 80bd559 deployed (backend and frontend Live). VERIFIED only where operator-observed production evidence covers the finding (INFRA-1, IMP-1, FE-1). Security, ownership, telemetry and simulation-bound behaviour remain FIXED_LOCAL because their production probes were not performed. See R0_PRODUCTION_VERIFICATION.md."
   ],
   "findings": [
     {
@@ -240,9 +241,10 @@
       ],
       "remediation_package": "AUDIT-R0",
       "dependencies": [],
-      "status": "FIXED_LOCAL",
+      "status": "VERIFIED",
       "r0_commits": "58d4448",
-      "r0_notes": "SQLAlchemy pinned to 2.0.54 and postgresql:// URLs pinned to psycopg2 (config + create_app). Verified: fresh Python 3.11 venv, production config boot, flask db heads/upgrade on PostgreSQL 16. Not yet verified on Render."
+      "r0_notes": "SQLAlchemy pinned to 2.0.54 and postgresql:// URLs pinned to psycopg2 (config + create_app). Verified: fresh Python 3.11 venv, production config boot, flask db heads/upgrade on PostgreSQL 16. Not yet verified on Render.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Build installed from requirements.txt; pre-deploy ran both R0 migrations; gunicorn 22.0.0 booted; GET /api/health 200 repeatedly; no ModuleNotFoundError/OperationalError/boot loop. The deployment failure mode did not occur."
     },
     {
       "id": "LOSS-1",
@@ -368,7 +370,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "77e8a83",
-      "r0_notes": "PATCH /api/admin/affixes/<id> returns 404 unless GAME_DATA_MUTATION_ENABLED (hard-coded off in ProductionConfig), then 401/403 for non-admins. Tests assert file hash and in-memory pipeline unchanged."
+      "r0_notes": "PATCH /api/admin/affixes/<id> returns 404 unless GAME_DATA_MUTATION_ENABLED (hard-coded off in ProductionConfig), then 401/403 for non-admins. Tests assert file hash and in-memory pipeline unchanged.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; the anonymous affix PATCH probe was not run in production (operator decision)."
     },
     {
       "id": "API-2",
@@ -399,7 +402,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "337fbd0",
-      "r0_notes": "Schema bounds (duration <=300 s, tick 0.01-10 s, <=20 targets, step budget 120,000) checked before simulation; response capped at 5,000 events with explicit truncation fields. Audit payload rejected before the engine runs."
+      "r0_notes": "Schema bounds (duration <=300 s, tick 0.01-10 s, <=20 targets, step budget 120,000) checked before simulation; response capped at 5,000 events with explicit truncation fields. Audit payload rejected before the engine runs.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; the oversized multi-target request was not sent to production (operator decision)."
     },
     {
       "id": "API-3",
@@ -466,7 +470,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "9016ddd",
-      "r0_notes": "Skill-node PATCH requires the build owner via app/services/build_access.py."
+      "r0_notes": "Skill-node PATCH requires the build owner via app/services/build_access.py.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; cross-user skill-node mutation not probed in production."
     },
     {
       "id": "API-5",
@@ -500,7 +505,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "9016ddd",
-      "r0_notes": "Builds: only owners may update/delete; ownerless builds are read-only. Craft sessions: owned sessions owner-only (unchanged), ownerless sessions can no longer be deleted. Residual by design: ownerless craft-session action/undo still works for whoever holds the 64-bit random slug (the anonymous crafting feature depends on it); permanent anonymous lifecycle deferred to AUDIT-R4."
+      "r0_notes": "Builds: only owners may update/delete; ownerless builds are read-only. Craft sessions: owned sessions owner-only (unchanged), ownerless sessions can no longer be deleted. Residual by design: ownerless craft-session action/undo still works for whoever holds the 64-bit random slug (the anonymous crafting feature depends on it); permanent anonymous lifecycle deferred to AUDIT-R4.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; anonymous/cross-user mutation not probed in production."
     },
     {
       "id": "API-6",
@@ -533,7 +539,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "9016ddd",
-      "r0_notes": "Private owned builds readable only by the owner on every build-by-slug route (404 otherwise), checked before caches. Residual by design: ownerless builds are readable by link; new private ownerless builds get an unguessable slug, existing ones keep their slugs (AUDIT-R4)."
+      "r0_notes": "Private owned builds readable only by the owner on every build-by-slug route (404 otherwise), checked before caches. Residual by design: ownerless builds are readable by link; new private ownerless builds get an unguessable slug, existing ones keep their slugs (AUDIT-R4).",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; private-build disclosure not probed in production. No 401/403/404 regression on legitimate traffic was observed."
     },
     {
       "id": "API-7",
@@ -985,7 +992,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "c6ed5e4",
-      "r0_notes": "ORM cascade + ON DELETE CASCADE (migration a7c3e91f4d20). Reproduced 500 on PostgreSQL 16 before; 204 after; raw SQL cascade verified."
+      "r0_notes": "ORM cascade + ON DELETE CASCADE (migration a7c3e91f4d20). Reproduced 500 on PostgreSQL 16 before; 204 after; raw SQL cascade verified.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Migration a7c3e91f4d20 (FK ON DELETE CASCADE) applied in production per the pre-deploy log. The delete-of-a-viewed-build behaviour itself was not exercised in production."
     },
     {
       "id": "DB-3",
@@ -1519,9 +1527,10 @@
       "related_findings": [],
       "remediation_package": "AUDIT-R0",
       "dependencies": [],
-      "status": "FIXED_LOCAL",
+      "status": "VERIFIED",
       "r0_commits": "b996038",
-      "r0_notes": "Repository is internally correct: any VITE_API_BASE_URL form composes to /api/... (verified in Chromium with the committed render.yaml value). The live Render dashboard value was not readable from this environment and requires operator verification; not VERIFIED."
+      "r0_notes": "Repository is internally correct: any VITE_API_BASE_URL form composes to /api/... (verified in Chromium with the committed render.yaml value). The live Render dashboard value was not readable from this environment and requires operator verification; not VERIFIED.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Live VITE_API_BASE_URL=https://epochforge-api.onrender.com/api; production frontend traffic reached /api routes (GET /api/version, /api/ref/affixes, /api/ref/blessings, /api/passives/Sentinel -> 200; CORS preflight from https://epochforge.gg -> 200). The origin-only form is covered by local tests only; it is not the live configuration."
     },
     {
       "id": "FE-3",
@@ -1602,7 +1611,8 @@
       ],
       "status": "OPEN",
       "r0_commits": "e61429b, 79aeb15",
-      "r0_notes": "Partially addressed in R0: LET URLs routed to the JSON flow; Maxroll 403 no longer described as an expired build. Remaining for AUDIT-R4: Quick Fetch tab still shown (disabled), the '422' issue-reported footer never renders, no paste fallback for Maxroll."
+      "r0_notes": "Partially addressed in R0: LET URLs routed to the JSON flow; Maxroll 403 no longer described as an expired build. Remaining for AUDIT-R4: Quick Fetch tab still shown (disabled), the '422' issue-reported footer never renders, no paste fallback for Maxroll.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Partial: the LET guidance flow is verified in production (IMP-1). Remaining for AUDIT-R4: the disabled Quick Fetch tab, the never-rendered 'issue reported' footer, and the Maxroll paste fallback."
     },
     {
       "id": "FE-5",
@@ -1676,9 +1686,10 @@
       "related_findings": [],
       "remediation_package": "AUDIT-R0",
       "dependencies": [],
-      "status": "FIXED_LOCAL",
+      "status": "VERIFIED",
       "r0_commits": "e61429b",
-      "r0_notes": "LET planner URLs are never submitted to the server importer; the modal routes to the JSON/bookmarklet flow with the original URL preserved."
+      "r0_notes": "LET planner URLs are never submitted to the server importer; the modal routes to the JSON/bookmarklet flow with the original URL preserved.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. On epochforge.gg the LET planner URL B5P5P8M3 showed the 'One more step for Last Epoch Tools builds' guidance with Continue/Open-your-planner actions, no HTTP 403, and no new #forge-alerts Import Failure alert."
     },
     {
       "id": "IMP-2",
@@ -1712,7 +1723,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "e61429b, 79aeb15",
-      "r0_notes": "Server-side LET fetch retired (/api/import/build and /api/import/url return 422 LET_SERVER_FETCH_UNSUPPORTED, no fetch, no alert). Importers now record HTTP status and safe upstream headers. Upstream LE Tools behaviour itself is unchanged and not bypassed."
+      "r0_notes": "Server-side LET fetch retired (/api/import/build and /api/import/url return 422 LET_SERVER_FETCH_UNSUPPORTED, no fetch, no alert). Importers now record HTTP status and safe upstream headers. Upstream LE Tools behaviour itself is unchanged and not bypassed.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. The user-facing path no longer invokes the server fetch (see IMP-1). The direct-API LET_SERVER_FETCH_UNSUPPORTED response and the importer upstream diagnostics were not exercised in production."
     },
     {
       "id": "IMP-4",
@@ -1959,7 +1971,8 @@
       ],
       "status": "OPEN",
       "r0_commits": "79aeb15",
-      "r0_notes": "Partially addressed in R0: structured diagnostics record (stage, status, category, safe upstream headers, versions, replay status), alert sent even if the DB write fails. Remaining for AUDIT-R7: dedupe/aggregation, isolated-vs-systemic detection, stored replay payloads for JSON imports, extractor version (data/ has none yet)."
+      "r0_notes": "Partially addressed in R0: structured diagnostics record (stage, status, category, safe upstream headers, versions, replay status), alert sent even if the DB write fails. Remaining for AUDIT-R7: dedupe/aggregation, isolated-vs-systemic detection, stored replay payloads for JSON imports, extractor version (data/ has none yet).",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Partial: the diagnostics column is migrated in production. Remaining for AUDIT-R7: dedupe/grouping, isolated-vs-systemic detection, stored replay payloads. Extractor-version provenance depends on R1 (logs still report data version='unknown')."
     },
     {
       "id": "REL-10",
@@ -2319,7 +2332,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "77e8a83",
-      "r0_notes": "POST /api/load/game-data gated the same way as SYS-1."
+      "r0_notes": "POST /api/load/game-data gated the same way as SYS-1.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Code deployed; the anonymous reload probe was not run in production."
     },
     {
       "id": "SYS-3",
@@ -3653,7 +3667,8 @@
       "dependencies": [],
       "status": "FIXED_LOCAL",
       "r0_commits": "79aeb15",
-      "r0_notes": "partial_data forwarded; missing-field state NOT_EVALUATED / NONE_MISSING / MISSING_FIELDS_PRESENT; incident replay test."
+      "r0_notes": "partial_data forwarded; missing-field state NOT_EVALUATED / NONE_MISSING / MISSING_FIELDS_PRESENT; incident replay test.",
+      "production_evidence": "Production 2026-10-06 (operator-observed): main 80bd559 Live on epochforge-api and epochforge-frontend. Migration c5d8e2b7a913 (import_failures.diagnostics) applied. No controlled import failure was triggered in production, so the NOT_EVALUATED/NONE_MISSING/MISSING_FIELDS_PRESENT record and Discord embed are verified locally only."
     },
     {
       "id": "IMP-5",
