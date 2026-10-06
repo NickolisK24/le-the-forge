@@ -94,6 +94,29 @@ def login_required(f):
     return decorated
 
 
+def game_data_mutation_required(f):
+    """Route decorator for endpoints that change server-side game data.
+
+    Fails closed: 404 unless GAME_DATA_MUTATION_ENABLED is set (it is never
+    set in production), then 401 without a valid JWT, then 403 unless the
+    authenticated user is an administrator.
+    """
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        from app.utils.responses import forbidden, not_found, unauthorized
+        if not current_app.config.get("GAME_DATA_MUTATION_ENABLED", False):
+            return not_found()
+        try:
+            verify_jwt_in_request()
+        except Exception:
+            return unauthorized()
+        user = get_current_user()
+        if user is None or not getattr(user, "is_admin", False):
+            return forbidden()
+        return f(*args, **kwargs)
+    return decorated
+
+
 def owner_required(get_resource_fn):
     """
     Decorator factory for routes that require ownership.

@@ -60,6 +60,13 @@ class Config:
     FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
     FORGE_SAFE_AFFIX_CONSUMPTION_MODE = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_MODE", "shadow")
 
+    # Remote mutation of on-disk game data (affix editor PATCH, pipeline
+    # reload). Off unless explicitly enabled, and always admin-only.
+    GAME_DATA_MUTATION_ENABLED = (
+        os.environ.get("GAME_DATA_MUTATION_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+
     # Pagination defaults
     DEFAULT_PAGE_SIZE = 20
     MAX_PAGE_SIZE = 100
@@ -108,6 +115,9 @@ class ProductionConfig(Config):
         "pool_size": 10,
         "max_overflow": 20,
     }
+
+    # Production game data is read-only over HTTP; this is not env-overridable.
+    GAME_DATA_MUTATION_ENABLED = False
 
     # Tighter rate limits for production
     RATELIMIT_DEFAULT = "1000 per day;200 per hour;30 per minute"
