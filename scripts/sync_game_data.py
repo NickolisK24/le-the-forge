@@ -32,6 +32,43 @@ def _detect_patch_version() -> str:
     return "unknown"
 
 
+TRUST_MANIFEST_NAME = "TRUST_MANIFEST.json"
+
+
+def _upstream_trust() -> dict:
+    """Per-export trust states from last-epoch-data (AUDIT-R1.13 contract).
+
+    The sync must carry upstream consumer_state and reasons through unchanged;
+    it never upgrades or invents trust. Absent manifest -> status ABSENT.
+    """
+    path = SRC_DIR.parent / "exports_canonical" / TRUST_MANIFEST_NAME
+    if not path.exists():
+        return {"status": "ABSENT",
+                "note": "last-epoch-data exports_canonical/TRUST_MANIFEST.json not found; "
+                        "synced data carries no upstream trust and must be treated as UNKNOWN"}
+    with open(path, encoding="utf-8") as f:
+        manifest = json.load(f)
+    families = {}
+    for fam in manifest.get("families", []):
+        name = fam.get("family", "")
+        if name.startswith("exports_json/"):
+            families[name[len("exports_json/"):]] = {
+                "consumer_state": fam.get("consumer_state"),
+                "trusted_calculation_eligible": fam.get("trusted_calculation_eligible", False),
+                "reasons": fam.get("reasons", []),
+            }
+    return {"status": "PRESENT", "trust_schema": manifest.get("trust_schema"),
+            "manifest_hash": manifest.get("report_hash"), "patch": manifest.get("patch"),
+            "exports": dict(sorted(families.items()))}
+
+
+def _write_upstream_trust_copy() -> None:
+    """Copy the upstream trust manifest next to the synced data, unchanged."""
+    src = SRC_DIR.parent / "exports_canonical" / TRUST_MANIFEST_NAME
+    if src.exists():
+        (DATA_DIR / "upstream_trust_manifest.json").write_bytes(src.read_bytes())
+
+
 def _write_version_stamp(files_updated: list[str]) -> None:
     """Write data/version.json after a sync with patch and timestamp info."""
     from datetime import datetime, timezone
@@ -40,7 +77,9 @@ def _write_version_stamp(files_updated: list[str]) -> None:
         "patch_version": _detect_patch_version(),
         "synced_at": datetime.now(timezone.utc).isoformat(),
         "files_updated": files_updated,
+        "upstream_trust": _upstream_trust(),
     }
+    _write_upstream_trust_copy()
     version_path = DATA_DIR / "version.json"
     with open(version_path, "w", encoding="utf-8") as f:
         json.dump(stamp, f, indent=2, ensure_ascii=False)
