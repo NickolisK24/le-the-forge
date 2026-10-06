@@ -1,6 +1,51 @@
 # AUDIT-R0 — Production Verification
 
 Date: 2026-10-06
+Status: **R0 DEPLOYMENT VERIFICATION PENDING**. PR #572 is merged; the production deployment and smoke tests still need operator confirmation.
+
+## Update — merge (2026-10-06 13:55 UTC)
+
+### Operator-verified pre-deploy gates
+| Gate | Operator result |
+|---|---|
+| Database | `epochforge-db` |
+| Fresh logical export | completed 2026-10-06 9:41 AM; artifact shown in Render |
+| Point-in-time recovery | enabled, 3-day window |
+| epochforge-api | healthy; branch `main`; root `backend`; build installs `requirements.txt`; pre-deploy `flask db upgrade`; Gunicorn start; auto-deploy enabled |
+| epochforge-frontend | branch `main`; root `frontend`; static site; publish `dist`; auto-deploy On Commit |
+| `VITE_API_BASE_URL` | `https://epochforge-api.onrender.com/api`. It already ends in `/api`, so `resolveApiBase()` keeps it and requests compose to `https://epochforge-api.onrender.com/api/...`. Compatible. |
+
+These differ from the committed `render.yaml` (auto-deploy is on; the API host is the Render hostname). The blueprint still drifts from live configuration, which is a known R7 item.
+
+### Final PR revalidation (all passed)
+- PR #572 open; head `409607d91a43e2b325381ec2bfdfb9608eeb369c` (the tested revision)
+- CI 3/3 `success`, none pending
+- 0 reviews, review threads and comments
+- `mergeable_state: clean`; base `main` @ `1efcef7`
+
+### Merge record
+| Item | Value |
+|---|---|
+| PR | #572 |
+| PR head SHA | `409607d91a43e2b325381ec2bfdfb9608eeb369c` |
+| Merge method | merge commit (repository convention), pinned with `expectedHeadSha` |
+| Resulting main SHA | `80bd559dbdcc950fbf69b62946ff49b130ba51b9` (parents `1efcef7`, `409607d`) |
+| Merge timestamp | 2026-10-06T13:55:11Z |
+| R0 commits in main | all 11 confirmed with `git merge-base --is-ancestor`; `SQLAlchemy==2.0.54` and both migration files present on main |
+
+### Post-merge automation observed (GitHub only)
+- **Deploy to Render** run #8 (`37474647287`) on `80bd559`: `success` at 13:55:23Z. This proves only that the deploy hook accepted the request. **It does not show that Render built, migrated or booted successfully.** Both services also have auto-deploy enabled, so Render may start its own deploy from the push as well.
+- **Sync main back to dev** run #6 (`37474647247`): started automatically by the push; still in progress when checked. It opens a PR merging main into dev with `-X ours` (dev wins conflicting hunks). Per the R0 instructions, **main → dev reconciliation is not performed and that PR must not be merged until R0 is production-verified.** A `-X ours` merge could silently keep dev's side of any conflicting hunk in an R0 file, so it needs a hand-checked merge later.
+
+### Classification
+**R0 DEPLOYMENT VERIFICATION PENDING.** No finding is promoted to `VERIFIED`; `AUDIT_EVIDENCE.json` is unchanged.
+
+---
+
+## Previous state (before operator confirmation)
+
+
+Date: 2026-10-06
 Status: **R0 NOT VERIFIED — BLOCKED** (before merge; production was not touched)
 
 ## Summary
