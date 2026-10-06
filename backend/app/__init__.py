@@ -8,7 +8,7 @@ from flask_limiter.util import get_remote_address
 from pathlib import Path
 import time
 
-from config import config
+from config import config, normalize_database_url
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -48,6 +48,10 @@ def _init_limiter(app: Flask) -> None:
 def create_app(env: str = "development") -> Flask:
     app = Flask(__name__)
     app.config.from_object(config[env])
+    # Select the installed PostgreSQL driver explicitly, however the URI was set.
+    app.config["SQLALCHEMY_DATABASE_URI"] = normalize_database_url(
+        app.config.get("SQLALCHEMY_DATABASE_URI", "")
+    )
     app.extensions["start_time"] = time.time()
 
     # -----------------------------------------------------------------------

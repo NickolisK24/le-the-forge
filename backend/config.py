@@ -2,6 +2,22 @@ import os
 from datetime import timedelta
 
 
+def normalize_database_url(url: str) -> str:
+    """Pin PostgreSQL URLs to the installed psycopg2 driver.
+
+    A bare ``postgresql://`` (or legacy ``postgres://``) URL lets SQLAlchemy
+    pick its default DBAPI, which changed to psycopg v3 in SQLAlchemy 2.1.
+    Only psycopg2 is a declared dependency, so the driver is made explicit.
+    URLs that already name a driver, and non-PostgreSQL URLs, are unchanged.
+    """
+    if not url:
+        return url
+    for prefix in ("postgresql://", "postgres://"):
+        if url.startswith(prefix):
+            return "postgresql+psycopg2://" + url[len(prefix):]
+    return url
+
+
 class Config:
     """Base configuration shared across all environments."""
 
@@ -11,9 +27,9 @@ class Config:
         seconds=int(os.environ.get("JWT_ACCESS_TOKEN_EXPIRES", 3600))
     )
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get(
+    SQLALCHEMY_DATABASE_URI = normalize_database_url(os.environ.get(
         "DATABASE_URL", "postgresql://forge:forgedev@127.0.0.1:5432/the_forge"
-    )
+    ))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
         "pool_pre_ping": True,
