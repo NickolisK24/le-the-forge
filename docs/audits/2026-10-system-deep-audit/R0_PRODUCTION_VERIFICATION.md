@@ -1,195 +1,137 @@
 # AUDIT-R0 — Production Verification
 
 Date: 2026-10-06
-Status: **R0 DEPLOYMENT VERIFICATION PENDING**. PR #572 is merged; the production deployment and smoke tests still need operator confirmation.
-
-## Update — merge (2026-10-06 13:55 UTC)
-
-### Operator-verified pre-deploy gates
-| Gate | Operator result |
-|---|---|
-| Database | `epochforge-db` |
-| Fresh logical export | completed 2026-10-06 9:41 AM; artifact shown in Render |
-| Point-in-time recovery | enabled, 3-day window |
-| epochforge-api | healthy; branch `main`; root `backend`; build installs `requirements.txt`; pre-deploy `flask db upgrade`; Gunicorn start; auto-deploy enabled |
-| epochforge-frontend | branch `main`; root `frontend`; static site; publish `dist`; auto-deploy On Commit |
-| `VITE_API_BASE_URL` | `https://epochforge-api.onrender.com/api`. It already ends in `/api`, so `resolveApiBase()` keeps it and requests compose to `https://epochforge-api.onrender.com/api/...`. Compatible. |
-
-These differ from the committed `render.yaml` (auto-deploy is on; the API host is the Render hostname). The blueprint still drifts from live configuration, which is a known R7 item.
-
-### Final PR revalidation (all passed)
-- PR #572 open; head `409607d91a43e2b325381ec2bfdfb9608eeb369c` (the tested revision)
-- CI 3/3 `success`, none pending
-- 0 reviews, review threads and comments
-- `mergeable_state: clean`; base `main` @ `1efcef7`
-
-### Merge record
-| Item | Value |
-|---|---|
-| PR | #572 |
-| PR head SHA | `409607d91a43e2b325381ec2bfdfb9608eeb369c` |
-| Merge method | merge commit (repository convention), pinned with `expectedHeadSha` |
-| Resulting main SHA | `80bd559dbdcc950fbf69b62946ff49b130ba51b9` (parents `1efcef7`, `409607d`) |
-| Merge timestamp | 2026-10-06T13:55:11Z |
-| R0 commits in main | all 11 confirmed with `git merge-base --is-ancestor`; `SQLAlchemy==2.0.54` and both migration files present on main |
-
-### Post-merge automation observed (GitHub only)
-- **Deploy to Render** run #8 (`37474647287`) on `80bd559`: `success` at 13:55:23Z. This proves only that the deploy hook accepted the request. **It does not show that Render built, migrated or booted successfully.** Both services also have auto-deploy enabled, so Render may start its own deploy from the push as well.
-- **Sync main back to dev** run #6 (`37474647247`): started automatically by the push; still in progress when checked. It opens a PR merging main into dev with `-X ours` (dev wins conflicting hunks). Per the R0 instructions, **main → dev reconciliation is not performed and that PR must not be merged until R0 is production-verified.** A `-X ours` merge could silently keep dev's side of any conflicting hunk in an R0 file, so it needs a hand-checked merge later.
-
-### Classification
-**R0 DEPLOYMENT VERIFICATION PENDING.** No finding is promoted to `VERIFIED`; `AUDIT_EVIDENCE.json` is unchanged.
-
----
-
-## Previous state (before operator confirmation)
-
-
-Date: 2026-10-06
-Status: **R0 NOT VERIFIED — BLOCKED** (before merge; production was not touched)
+Final classification: **R0 NOT VERIFIED — BLOCKED on unperformed production security probes** (no failure observed; see Verdict)
 
 ## Summary
 
 | Item | Value |
 |---|---|
-| PR | #572 `fix/audit-r0-emergency-production` → `main` — **open, not merged** |
-| PR head | `409607d91a43e2b325381ec2bfdfb9608eeb369c` (unchanged from the tested revision) |
-| main head | `1efcef76ba03f82711b5d6f11eedbc48d5ccbefa` |
-| Merge SHA | — (not merged) |
-| Backend deployed SHA/version | — (no deploy) |
-| Frontend deployed SHA/version | — (no deploy) |
-| Migration head (repo) | `c5d8e2b7a913` (single head; chain `dd1840cac963 → a7c3e91f4d20 → c5d8e2b7a913`) |
-| Production config checked | **NO**. Render dashboard and API unreachable; PRODUCTION CONFIG VERIFICATION REQUIRED |
-| Backup verified | **NO**. Production database unreachable |
-| Smoke / security / importer / telemetry / simulation tests in production | **Not executed** |
-| Production observations | None possible |
-| dev reconciliation | **Not started**. It is gated on R0 being merged and production-verified |
-| Remaining R0 findings | 12 `FIXED_LOCAL`; FE-4 and OBS-1 `OPEN` (partial); none `VERIFIED` |
+| PR | #572 `fix/audit-r0-emergency-production` → `main`, merged |
+| PR head | `409607d91a43e2b325381ec2bfdfb9608eeb369c` |
+| Merge SHA | `80bd559dbdcc950fbf69b62946ff49b130ba51b9` (merge commit; parents `1efcef7`, `409607d`), 2026-10-06T13:55:11Z |
+| Backend deployed | `80bd559`, Live on `epochforge-api` (operator-observed) |
+| Frontend deployed | `80bd559`, Live on `epochforge-frontend` (operator-observed) |
+| Migration head | `c5d8e2b7a913`; pre-deploy ran `dd1840cac963 → a7c3e91f4d20 → c5d8e2b7a913` |
+| Production config checked | YES (operator); no configuration changed |
+| Backup verified | YES (operator): logical export of `epochforge-db` completed 2026-10-06 9:41 AM; point-in-time recovery enabled (3-day window) |
+| Smoke tests | Partial: LET user flow and API routing verified; security/ownership/telemetry/simulation probes **not performed** |
+| Production observations | Several minutes post-deploy: no 500s, SQLAlchemy/psycopg errors, restarts, migration errors or routing regressions |
+| dev reconciliation | **Not performed** (gated on production verification; see below) |
+| Remaining R0 findings | VERIFIED 3, FIXED_LOCAL 9, OPEN (partial) 2 |
 
-## Blocker
+All production facts below were observed and reported by the operator. Nothing in this document was observed from the verification environment, which has no network path to production.
 
-From this environment, outbound connections to every production host are refused by the network policy (curl returns `000`, connection rejected at the proxy):
+## Pre-deploy gates (operator)
 
-- `https://api.epochforge.gg` (backend)
-- `https://epochforge.gg` (frontend)
-- `https://api.render.com` (Render API)
-- `https://dashboard.render.com`
+| Gate | Result |
+|---|---|
+| Backup | PASS: fresh logical export completed 2026-10-06 9:41 AM; artifact present; PITR on, 3-day window |
+| epochforge-api config | PASS: branch `main`, root `backend`, requirements-based build, pre-deploy `flask db upgrade`, Gunicorn start, auto-deploy on |
+| epochforge-frontend config | PASS: branch `main`, root `frontend`, static site, publish `dist`, auto-deploy On Commit |
+| `VITE_API_BASE_URL` | `https://epochforge-api.onrender.com/api`. It already ends in `/api`, so `resolveApiBase()` keeps it; compatible |
+| Final PR revalidation | PASS: head `409607d`, CI 3/3 green, no reviews/comments, `mergeable_state: clean` |
 
-No Render credential (for example `RENDER_API_KEY`) or production database access is available either.
+## Deployment (operator)
 
-Merging PR #572 pushes to `main`, which triggers `.github/workflows/deploy.yml`. That calls the Render deploy hook, whose `preDeployCommand` runs `flask db upgrade` against production. Merging would therefore:
+**Backend: PASS.** Commit `80bd559` Live. The pre-deploy log shows:
 
-1. deploy and migrate production without a confirmed backup (Phase 3 requires one first), and
-2. leave the deploy, migrations, boot and every R0 smoke test unobservable, so a failure could not be detected or verified.
-
-The Phase 2 allowance (merge even if the dashboard can't be read) applies only when production verification can safely detect failure. From here it cannot. The merge was therefore not performed.
-
-## Phase 1 — Final PR verification (completed)
-
-| # | Check | Result |
-|---|---|---|
-| 1 | PR open | YES (state `open`, not draft) |
-| 2 | CI green | YES: Backend Tests, Frontend Type-Check and Data Validation all `success` on `409607d` |
-| 3 | No pending required check | YES: 3/3 completed |
-| 4 | No unresolved blocking review comment | YES: 0 reviews, 0 review threads, 0 comments |
-| 5 | PR head | `409607d91a43e2b325381ec2bfdfb9608eeb369c` = tested revision |
-| 6 | main head | `1efcef76ba03f82711b5d6f11eedbc48d5ccbefa` = branch base |
-| 7 | No unexpected commits | YES: exactly the 11 R0 commits |
-| 8 | Tested commits present | YES: `58d4448 77e8a83 7c83b8a 9016ddd c6ed5e4 e61429b 79aeb15 337fbd0 b996038 b9b0bfe 409607d` |
-| 9 | Single migration head | YES: `c5d8e2b7a913` |
-| 10 | No merge conflict | YES: `mergeable_state: clean`; main is an ancestor of the PR head |
-
-## Phase 2 — Production config (not possible)
-
-**PRODUCTION CONFIG VERIFICATION REQUIRED.** An operator must check the following in the Render dashboard. Report shapes and presence only, never secret values.
-
-| Service | Check | Expected for R0 |
-|---|---|---|
-| epochforge-frontend | `VITE_API_BASE_URL` | Any of `https://api.epochforge.gg` or `https://api.epochforge.gg/api` (with or without a trailing `/`). After R0 both compose to `https://api.epochforge.gg/api/...`. A value pointing at another host, or a path under the API host other than `/api`, is incompatible. |
-| epochforge-frontend | branch, build command, auto-deploy | branch `main`; `npm install && npm run build`; the blueprint says `autoDeploy: false`. **Record whether the deploy hook in GitHub targets the frontend at all**: the repo has one hook (`RENDER_DEPLOY_HOOK_URL`) and two services, so the frontend may need a manual deploy. |
-| epochforge-api | branch, build command | `main`; `pip install -r requirements.txt` |
-| epochforge-api | pre-deploy | `flask db upgrade` |
-| epochforge-api | start | `gunicorn wsgi:app --workers=4 --threads=2 --timeout=120 ...` |
-| epochforge-api | `PYTHON_VERSION` | `3.11` (R0 was verified on 3.11) |
-| epochforge-api | `DATABASE_URL` | present, from `epochforge-db`. R0 accepts `postgres://` or `postgresql://`. |
-| epochforge-api | `GAME_DATA_MUTATION_ENABLED` | any value is fine: production ignores it |
-| GitHub | `RENDER_DEPLOY_HOOK_URL` secret | present; record which service it deploys |
-
-## Phase 3 — Database safety
-
-**Backup: NOT VERIFIED.** The production database is unreachable from here. An operator must create an on-demand backup/snapshot of `epochforge-db` (Render Postgres → Backups / Recovery) and record its timestamp before the merge.
-
-Migration review (rendered with `flask db upgrade dd1840cac963:c5d8e2b7a913 --sql`), identical to what was tested on PostgreSQL 16:
-
-```sql
-BEGIN;
-ALTER TABLE build_views DROP CONSTRAINT build_views_build_id_fkey;
-ALTER TABLE build_views ADD CONSTRAINT build_views_build_id_fkey
-  FOREIGN KEY(build_id) REFERENCES builds (id) ON DELETE CASCADE;
-ALTER TABLE import_failures ADD COLUMN diagnostics JSON;
-UPDATE alembic_version SET version_num='c5d8e2b7a913' ...;
-COMMIT;
+```
+Running upgrade dd1840cac963 -> a7c3e91f4d20, Cascade build_views rows when their build is deleted
+Running upgrade a7c3e91f4d20 -> c5d8e2b7a913, Add diagnostics JSON to import_failures
+Pre-deploy complete!
+Running 'gunicorn wsgi:app'
+Starting gunicorn 22.0.0
+Booting worker
+GET /api/health -> 200
+Your service is live
 ```
 
-| Concern | Assessment |
-|---|---|
-| Destructive operations | None on data. A constraint is dropped and re-created inside the same transaction. |
-| Table rewrites | None. `ADD COLUMN ... JSON` (nullable, no default) is metadata-only in PostgreSQL. |
-| Lock risk | Adding the FK validates existing `build_views` rows while holding `SHARE ROW EXCLUSIVE` on `build_views` and `builds`. Writes to both block for the scan, expected to be short at current scale. |
-| Nullable / default | `diagnostics` is nullable with no default; existing rows read NULL. The code tolerates NULL. |
-| Existing-data compatibility | Existing rows already satisfy the FK (the same constraint exists today). |
-| Failure mode | If production's constraint name differed from PostgreSQL's default `build_views_build_id_fkey`, the transaction rolls back atomically and pre-deploy fails. Render keeps the previous release running. |
-| Downgrade | Exact inverse; dropping `diagnostics` discards only the new diagnostics data. |
+No ModuleNotFoundError, NotNullViolation, OperationalError, migration failure or boot loop. The INFRA-1 failure mode (SQLAlchemy 2.1 selecting the uninstalled psycopg3) did not occur.
 
-Nothing differs from what was locally tested.
+The logs still report data version `unknown`. That is the known R1/R2 provenance gap, not an R0 regression.
 
-## Phases 4–9 — Not executed
+**Frontend: PASS.** Commit `80bd559` Live. `tsc && vite build` completed (1001 modules) and was uploaded. npm reported the already-audited dependency advisories (SEC-4/SEC-8), which are out of R0 scope.
 
-Merge, deploy observation, the production smoke suite (A–G), health observation, the evidence upgrade to `VERIFIED`, and dev reconciliation all depend on the blocker above. `AUDIT_EVIDENCE.json` is unchanged: no finding is promoted to `VERIFIED`.
+## Production smoke results
 
-## Gates
+| Test | Status | Evidence |
+|---|---|---|
+| D. LET import flow (`planner/B5P5P8M3` on epochforge.gg) | **PASS** | LET recognised; no HTTP 403; "ONE MORE STEP FOR LAST EPOCH TOOLS BUILDS" with "CONTINUE WITH LAST EPOCH TOOLS IMPORT" and "Open your planner"; **no new #forge-alerts Import Failure alert** |
+| G. API base URL | **PASS** | epochforge.gg traffic reached `/api` routes: `GET /api/version`, `/api/ref/affixes`, `/api/ref/blessings`, `/api/passives/Sentinel` → 200; CORS preflight from `https://epochforge.gg` → 200 |
+| Post-deploy health | **PASS** | repeated `GET /api/health` → 200; no 500s, DB-driver errors, worker restarts or migration errors |
+| A. Anonymous affix PATCH / game-data reload | **NOT PERFORMED** | operator chose not to issue security probes |
+| B. Build privacy / ownership | **NOT PERFORMED** | |
+| C. Viewed-build delete | **NOT PERFORMED** | migration that enables it is applied |
+| E. Import-failure telemetry | **NOT PERFORMED** | no controlled failure triggered; the LET flow correctly generated *no* alert |
+| F. Multi-target bounds | **NOT PERFORMED** | |
+
+Untested behaviour is not inferred from the deployment. Its evidence remains the focused R0 regression suite (244 backend + 26 frontend tests, each shown to fail on pre-fix code), green CI on `409607d`, and the PostgreSQL 16 migration verification.
+
+## Finding status (AUDIT_EVIDENCE.json)
+
+| Finding | Status | Basis |
+|---|---|---|
+| INFRA-1 | **VERIFIED** | production build, migrations, boot and health |
+| IMP-1 | **VERIFIED** | production LET flow shows guidance; no alert |
+| FE-1 | **VERIFIED** | production frontend reaches `/api` routes with the live base value |
+| DB-1 | FIXED_LOCAL | cascade migration applied in production; delete behaviour not exercised |
+| IMP-2 | FIXED_LOCAL | user path verified via IMP-1; direct-API response and importer diagnostics not exercised |
+| IMP-3 | FIXED_LOCAL | diagnostics column migrated; no failure record produced in production |
+| SYS-1, SYS-2 | FIXED_LOCAL | game-data mutation probes not run |
+| API-4, API-5, API-6 | FIXED_LOCAL | ownership/privacy probes not run |
+| API-2 | FIXED_LOCAL | bound probe not run |
+| FE-4 | OPEN (partial) | LET guidance verified; remaining Quick Fetch tab, footer and Maxroll fallback → R4 |
+| OBS-1 | OPEN (partial) | diagnostics migrated; dedupe/grouping → R7; extractor-version provenance → R1 |
+
+`AUDIT_EVIDENCE.json` already supports `OPEN`, `FIXED_LOCAL`, `VERIFIED`, `DEFERRED_WITH_REASON` and `INFO`. It has no `PARTIAL` status, so partial findings stay `OPEN`, and each finding's `production_evidence` field says what is done and what remains. No finding is `DEFERRED_WITH_REASON`.
+
+## Gate assessment
 
 | # | Gate | Answer |
 |---|---|---|
-| 1 | Production backend deploys successfully? | **NO**: not deployed / not verified |
-| 2 | Production frontend deploys successfully? | **NO**: not deployed / not verified |
-| 3 | Production DB migrated successfully? | **NO**: not run |
-| 4 | Unauthorized game-data mutation blocked? | **NO** (not verified in production; production still runs pre-R0 `main`, where it is **not** blocked) |
-| 5 | Cross-user build mutation blocked? | **NO** (not verified; pre-R0 code still live) |
-| 6 | Private build disclosure blocked? | **NO** (not verified; pre-R0 code still live) |
-| 7 | Viewed-build deletion works? | **NO** (not verified; pre-R0 code still live) |
-| 8 | LET dead fetch removed from user flow? | **NO** (not verified; pre-R0 code still live) |
-| 9 | Import telemetry truthful? | **NO** (not verified; pre-R0 code still live) |
-| 10 | Multi-target resource attack bounded? | **NO** (not verified; pre-R0 code still live) |
-| 11 | API URL composition correct? | **NO** (not verified in production) |
-| 12 | No R0-introduced production regression detected? | **NO**: nothing deployed, so nothing observed |
+| 1 | Production backend deploys successfully? | **YES** |
+| 2 | Production frontend deploys successfully? | **YES** |
+| 3 | Production DB migrated successfully? | **YES** (both upgrades in the pre-deploy log; pre-deploy complete) |
+| 4 | Unauthorized game-data mutation blocked? | **NO**: not verified in production (locally YES; code deployed) |
+| 5 | Cross-user build mutation blocked? | **NO**: not verified in production (locally YES; code deployed) |
+| 6 | Private build disclosure blocked? | **NO**: not verified in production (locally YES; code deployed) |
+| 7 | Viewed-build deletion works? | **NO**: not verified in production (locally YES; migration applied) |
+| 8 | LET dead fetch removed from user flow? | **YES** |
+| 9 | Import telemetry truthful? | **NO**: not verified in production. No false alert was generated, but no failure record was exercised (locally YES) |
+| 10 | Multi-target resource attack bounded? | **NO**: not verified in production (locally YES; code deployed) |
+| 11 | API URL composition correct? | **YES** |
+| 12 | No R0-introduced production regression detected? | **YES**, within the observed window |
 
-All 12 are YES locally (see `R0_IMPLEMENTATION_REPORT.md` §13). None are verified in production.
-
-## Final verdict
+## Verdict
 
 **R0 NOT VERIFIED — BLOCKED**
 
-**Exact blocker:** this environment has no network path or credentials to production (`api.epochforge.gg`, `epochforge.gg`, `api.render.com`, the production database). So:
+The gate requires production confirmation for gates 4, 5, 6, 7, 9 and 10, and those probes were not performed. This verdict does not weaken the gate. **Nothing failed.** The deployment is healthy and no regression was observed. The block is purely that six security and behaviour gates are verified locally but not in production.
 
-- a pre-migration backup cannot be confirmed;
-- the deploy triggered by merging cannot be observed;
-- no production smoke test can run.
+**Do the FIXED_LOCAL findings block R1?** Not technically. R1 (extraction truth and completeness) works in the extractor repository, the sync pipeline and `data/`. It does not depend on the authorization, ownership, telemetry or simulation-bound code paths. Starting R1 with these findings at `FIXED_LOCAL` is a governance decision, which is the owner's to make, and does not create a dependency risk.
 
-**To unblock, either:**
+**To reach `R0 VERIFIED — READY FOR R1`,** run these non-destructive probes against `https://epochforge-api.onrender.com/api`:
+1. `PATCH /admin/affixes/<id>` and `POST /load/game-data` anonymously → 404.
+2. Two-account build checks for private read/mutate, public mutate, and anonymous-build mutate/delete, using throwaway builds deleted afterwards.
+3. Open a throwaway owned build page, then delete it as the owner → 204.
+4. `POST /import/build` with `https://maxroll.gg/last-epoch/planner/r0telemetrytest` → 422. The Discord embed shows "Not evaluated", Stage `fetch`, an HTTP status, and no raw payload.
+5. An oversized multi-target body (3600 s / 0.01 s / 10 targets) → fast 422. A `single_boss` template request → 200.
 
-1. **Give this environment access:**
-   - Network access to `api.epochforge.gg`, `epochforge.gg` and `api.render.com` (environment settings → Network access → Custom → Allowed domains).
-   - A Render API key as an environment secret. Read access covers the config check; deploy/log access covers observation.
-   - Confirmation that a fresh `epochforge-db` backup exists.
+Then mark SYS-1, SYS-2, API-4, API-5, API-6, DB-1, IMP-2, IMP-3 and API-2 `VERIFIED` as their probes pass.
 
-   Then rerun this task: the merge and every phase continue from here.
+## dev reconciliation
 
-2. **Or have an operator:**
-   - take the backup and check the Phase 2 table;
-   - explicitly authorise the merge without in-environment observation;
-   - report the deploy result and smoke-test results back.
+**Not performed.** The R0 rule permits main → dev reconciliation only after R0 is merged **and production-verified**, and the verdict above is not verified.
 
-   This verification would then be completed from those observations.
+State recorded for when it is permitted:
+- The merge triggered the repository's `sync-main-to-dev` workflow (run #6). It pushed `chore/sync-main-to-dev-80bd559` (`1057806`, parents dev `558557c` + main `80bd559`) but failed before opening a PR. **dev is unchanged.**
+- That branch contains both histories in full. Every R0 file (routes, services, importers, models, migrations, auth utils, frontend lib/modal, R0 tests) is identical to main. Its only differences from main are dev's additive changes (the `/api/trust` blueprint, the v3.1 config flags, trust-surface frontend modules). The workflow's `-X ours` strategy did **not** drop any R0 change.
+- When permitted: merge main into dev (as that branch does, or with a fresh `git merge origin/main` on dev), then run `pytest tests/test_r0_*.py` and the two R0 vitest files against the result.
+
+## History
+
+- **Earlier the same day:** verification was blocked before merge because the verification environment had no production access and no backup confirmation. The operator then supplied the backup and configuration evidence above.
+- **13:55:11Z:** merged; the Deploy to Render workflow (run #8) accepted the hook. Render's own deploy result is the operator evidence above.
 
 R1 has not begun.
